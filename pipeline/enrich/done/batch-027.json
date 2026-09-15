@@ -1,0 +1,630 @@
+{
+ "batch": "batch-027",
+ "items": {
+  "CVE-2021-30563": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion in V8 erlaubt über eine präparierte Seite Heap-Korruption in Chrome.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Renderer-Prozess."
+    },
+    "C": {
+     "why": "Codeausführung im Renderer: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,09: Zero-Day. V8-Type-Confusion (CWE-843), das häufigste Chrome-Muster im Korpus; als Renderer-Bug ein Kettenglied, das einen Sandbox-Escape braucht. NVD vergab hier S:U (8,8), konsistent mit der älteren Praxis."
+  },
+  "CVE-2013-3897": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Use-After-Free in der CDisplayPointer-Klasse in mshtml.dll (Internet Explorer) erlaubt über den onpropertychange-Event-Handler Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Code im Browserprozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,77: Watering-Hole gegen südkoreanische und japanische Nutzer 2013. Use-After-Free (CWE-416); die benannte Klasse (CDisplayPointer) und der Event-Handler machen die Beschreibung ungewöhnlich präzise."
+  },
+  "CVE-2022-25305": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Das WordPress-Plugin WP Statistics ist über den IP-Parameter anfällig für Cross-Site-Scripting, das ausgeführt wird, wenn Admins bestimmte Seiten ansehen.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter IP-Parameter (X-Forwarded-For)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig (der Header wird beim Besuch gesetzt)."
+    },
+    "UI": {
+     "why": "NVD: UI:R (ein Admin muss die Statistikseite ansehen); der CNA UI:N."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Admins, Scope Changed."
+    },
+    "C": {
+     "why": "Admin-Browserkontext: C:L."
+    },
+    "I": {
+     "why": "Aktionen als Admin: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "UI": "CNA (WPScan): UI:N (6,1). Ob das Ansehen der Statistikseite Interaktion ist, ist die Frage; NVD verlangt es."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,79: Die dritte WP-Statistics-Lücke im Korpus (nach zwei SQLi). XSS über den X-Forwarded-For-Header (CWE-79); der Angreifer setzt den Header, das Opfer ist der Admin, der die Logs ansieht. Ein Plugin mit systematischen Eingabeproblemen."
+  },
+  "CVE-2013-3896": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+   "summary_de": "Microsoft Silverlight validiert Zeiger beim Zugriff auf Silverlight-Elemente nicht korrekt, was über eine präparierte Silverlight-Anwendung Informationspreisgabe erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Die Silverlight-Anwendung wird lokal ausgeführt: AV:L."
+    },
+    "AC": {
+     "why": "Präparierte Silverlight-Anwendung."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Silverlight-Anwendung öffnen."
+    },
+    "S": {
+     "why": "Bleibt im Silverlight-Prozess."
+    },
+    "C": {
+     "why": "Speicherinhalte (Adressen für ASLR-Bypass): NVD C:H.",
+     "pitfall": "Ein Info-Leck (noinfo bei NVD, real Memory-Read) als Kettenglied: Die Adressen durchbrechen ASLR vor dem eigentlichen Exploit."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,70: Silverlight war (wie Flash) ein Browser-Plugin mit breiter Angriffsfläche. Ein Info-Leck zum ASLR-Bypass; Plugins sind heute tot, das Ketten-Muster (Leak plus Speicherfehler) lebt weiter."
+  },
+  "CVE-2017-10271": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Die WLS-Security-Komponente von Oracle WebLogic Server erlaubt einem unauthentifizierten Angreifer über T3 die Kompromittierung (real: XML-Deserialisierung zu RCE).",
+   "metrics": {
+    "AV": {
+     "why": "'Network access via T3' wörtlich."
+    },
+    "AC": {
+     "why": "'Easily exploitable' (Oracle-Formulierung für AC:L)."
+    },
+    "PR": {
+     "why": "'Unauthenticated attacker' wörtlich."
+    },
+    "UI": {
+     "why": "Keine Interaktion genannt."
+    },
+    "S": {
+     "why": "Kein 'additional products'-Satz: S:U."
+    },
+    "C": {
+     "why": "Vertraulichkeit: NVD: C:N.",
+     "pitfall": "Oracle bewertete nur den DoS-Aspekt (A:H, 7,5). Real war es unauthentifizierte RCE über XMLDecoder-Deserialisierung. Wie oft bei Oracle: Der Vektor bewertet, was Oracle bestätigt, nicht was Angreifer erreichen."
+    },
+    "I": {
+     "why": "NVD: I:N (real I:H über RCE)."
+    },
+    "A": {
+     "why": "Oracle: A:H."
+    }
+   },
+   "context_de": "KEV, EPSS 0,9999: Massenausnutzung für Kryptominer. Der Vektor (7,5, nur DoS) unterschätzt die RCE dramatisch; die Klasse ist CWE-306 (fehlende Auth), real Deserialisierung. Ein Musterfall, dass EPSS (0,9999) die Realität besser abbildet als der Score."
+  },
+  "CVE-2023-29298": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Adobe ColdFusion hat eine Zugriffskontroll-Lücke, über die Angreifer die Administrations-CFM- und CFC-Endpunkte erreichen (Security-Feature-Bypass).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL (Pfad-Segment-Trick)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist ColdFusion."
+    },
+    "C": {
+     "why": "Zugriff auf Admin-Endpunkte: gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Zugriff bewertet (die RCE kam über CVE-2023-29300)."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung bewertet."
+    }
+   },
+   "context_de": "KEV, EPSS 0,998: In Kette mit CVE-2023-29300 (Deserialisierung); der Zugriffs-Bypass (CWE-284) öffnete die Admin-Endpunkte, die zweite Lücke lieferte die RCE. ColdFusion ist im Korpus ein Dauerbrenner mit Ketten aus Bypass plus RCE."
+  },
+  "CVE-2019-16920": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Mehrere D-Link-Produkte haben in einem PingTest-CGI eine unauthentifizierte Command Injection.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des Geräts über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Eingabe an das PingTest-CGI."
+    },
+    "PR": {
+     "why": "Die PingTest-CGI nimmt Eingaben ohne Anmeldung an; „unauthenticated remote code execution“: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Gerät."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Gerät abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99996: Wieder ein PingTest-CGI als Command Injection (CWE-78), wie CVE-2015-1187 und CVE-2018-10562. D-Link-Router sind im Korpus so oft mit CGI-Injection vertreten, dass das Muster eine eigene Merkregel verdient: Diagnose-Parameter (ping, traceroute) sind Command-Injection-Verdächtige."
+  },
+  "CVE-2014-6287": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die findMacroMarker-Funktion im Rejetto HTTP File Server (HFS) erlaubt über eine %00-Sequenz in einer Suchaktion die Ausführung beliebiger Programme.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Suchanfrage mit Null-Byte."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle im HFS-Prozess, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Ein Metasploit-Klassiker und beliebtes CTF-/Übungsziel. Code-Injection (CWE-94) über die Makro-Verarbeitung von HFS; das Null-Byte umging die Filterung. HFS ist klein und weit verbreitet für schnelles Filesharing."
+  },
+  "CVE-2018-2628": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die WLS-Core-Komponente von Oracle WebLogic Server erlaubt einem unauthentifizierten Angreifer über T3 die Kompromittierung (Java-Deserialisierung).",
+   "metrics": {
+    "AV": {
+     "why": "'Network access via T3' wörtlich."
+    },
+    "AC": {
+     "why": "'Easily exploitable' (Oracle-AC:L)."
+    },
+    "PR": {
+     "why": "'Unauthenticated attacker' wörtlich."
+    },
+    "UI": {
+     "why": "Keine Interaktion genannt."
+    },
+    "S": {
+     "why": "Kein 'additional products'-Satz: S:U."
+    },
+    "C": {
+     "why": "RCE über Deserialisierung: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: WebLogic T3-Deserialisierung (CWE-502), wie CVE-2015-4852. T3 gehört nie ins Internet; WebLogic ist im Korpus mehrfach vertreten (2015, 2017, 2018, 2023). Ein Protokoll, das serialisierte Java-Objekte annimmt, ist eine Dauerbaustelle."
+  },
+  "CVE-2018-15961": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Adobe ColdFusion hat eine unbeschränkte Datei-Upload-Lücke, die zu Codeausführung führt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im ColdFusion-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,9995: Von APT-Gruppen (APT41) ausgenutzt. ColdFusion zum fünften Mal im Korpus; ein Datei-Upload (CWE-434), der eine CFM-Webshell platziert. Ein Produkt mit einer langen KEV-Historie verdient eine eigene Beobachtungsliste."
+  },
+  "CVE-2020-13166": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Management-Tool MyLittleAdmin verwendet einen fest kodierten machineKey in web.config, mit dem sich serialisierter ASP-Code einschleusen lässt (RCE).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Bekannter machineKey, präparierte ViewState-Nutzlast."
+    },
+    "PR": {
+     "why": "Fest kodierter Key ist kein eigenes Recht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,78: Derselbe machineKey für alle Installationen (CWE-798), wie CentreStack CVE-2025-30406 und Telerik. Ein fest kodierter ASP.NET-machineKey erlaubt ViewState-Deserialisierung; das Muster wiederholt sich über Produkte und Jahre."
+  },
+  "CVE-2021-34429": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Eclipse Jetty erlaubt über bestimmte kodierte Zeichen in URIs den Zugriff auf WEB-INF-Inhalte oder die Umgehung von Sicherheitsbeschränkungen (Variante von CVE-2021-28164).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL mit Encoding-Trick."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Jetty."
+    },
+    "C": {
+     "why": "Nur WEB-INF-Dateien, begrenzt: C:L."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,99: Die dritte Jetty-Encoding-Bypass-Lücke im Korpus (mit CVE-2021-28164, CVE-2021-28169). Jede neue Kodierungsvariante umging den Fix der vorigen; ein Server, der URLs vor der vollständigen Dekodierung prüft (CWE-200), bleibt anfällig für die nächste Variante."
+  },
+  "CVE-2013-2251": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Apache Struts 2 erlaubt über Parameter mit action:-, redirect:- oder redirectAction:-Präfix die Ausführung beliebiger OGNL-Ausdrücke (RCE).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Parameter mit OGNL-Ausdruck."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Struts-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99998: Struts OGNL-Injection (CWE-74), das Muster, das 2017 zum Equifax-Einbruch führte (CVE-2017-5638). Struts wertet Parameterwerte als OGNL-Ausdrücke aus; über die Jahre eine ganze Serie von RCE-Lücken. Framework-Injection in Reinform."
+  },
+  "CVE-2017-12319": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "BGP über EVPN in Cisco IOS XE erlaubt einem unauthentifizierten Angreifer den Reload des Geräts oder die Korruption der BGP-Routing-Tabelle.",
+   "metrics": {
+    "AV": {
+     "why": "BGP über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:H (der Angreifer braucht eine BGP-Peering-Position oder präzise Bedingungen)."
+    },
+    "PR": {
+     "why": "Ein unauthentifizierter, entfernter Angreifer sendet BGP/EVPN-Pakete; eine Anmeldung am Gerät ist nicht nötig: PR:N."
+    },
+    "UI": {
+     "why": "Kein Nutzer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist das Gerät (und das Routing)."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "NVD: I:N (die Routing-Korruption wird nur unter A gewertet)."
+    },
+    "A": {
+     "why": "Reload oder Routing-Korruption: A:H."
+    }
+   },
+   "context_de": "KEV, EPSS 0,05: BGP-Verarbeitungsfehler (CWE-20); der Angreifer braucht meist eine BGP-Peering-Beziehung (AC:H). Routing-Protokoll-Lücken treffen die Netzinfrastruktur selbst; die Wahrscheinlichkeit hängt daran, mit wem das Gerät peert."
+  },
+  "CVE-2019-5825": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+   "summary_de": "Ein Out-of-Bounds-Write in der JavaScript-Engine von Chrome erlaubt über eine präparierte Seite Heap-Korruption.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Renderer-Prozess."
+    },
+    "C": {
+     "why": "Vertraulichkeit: NVD: C:N."
+    },
+    "I": {
+     "why": "Integrität: NVD: I:N."
+    },
+    "A": {
+     "why": "Heap-Korruption: A:H (Absturz oder potenzielle Ausführung)."
+    }
+   },
+   "context_de": "KEV, EPSS 0,56: Ein V8-Out-of-Bounds-Write (CWE-787), hier nur mit A:H bewertet (nicht der übliche 8,8-RCE-Vektor). Ein Beispiel dafür, dass NVD 'potentially exploit heap corruption' mal als reinen DoS (6,5), mal als RCE (8,8) wertet."
+  },
+  "CVE-2018-18809": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Die TIBCO JasperReports Library erlaubt einem authentifizierten Nutzer über die Standard-Server-Implementierung ein Directory Traversal zum Lesen beliebiger Dateien.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL."
+    },
+    "PR": {
+     "why": "'Authenticated': PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der JasperReports-Server."
+    },
+    "C": {
+     "why": "Beliebige Dateien lesen (Konfiguration, Secrets): gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,79: JasperReports ist eine eingebettete Reporting-Bibliothek in vielen Produkten. Path Traversal (CWE-22); eine Bibliotheks-Lücke, deren reale Reichweite von den Produkten abhängt, die JasperReports einbetten."
+  },
+  "CVE-2022-22960": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "VMware Workspace ONE Access, Identity Manager und vRealize Automation haben durch unsichere Rechte in Support-Skripten eine lokale Rechteausweitung zu root.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Zugriff nötig."
+    },
+    "AC": {
+     "why": "Kein besonderer Aufwand."
+    },
+    "PR": {
+     "why": "Ein lokaler Nutzer: PR:L."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Rechteausweitung zu root, S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,36: In Kette mit CVE-2022-22954 (RCE) für vollen Root-Zugriff. Unsichere Skript-Rechte (CWE-732); ein lokaler EoP als zweites Glied nach der RCE. VMware-Identity-Produkte tauchen mehrfach im Korpus auf."
+  },
+  "CVE-2026-46817": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Oracle Payments in der E-Business Suite (Komponente File Transmission) erlaubt einem unauthentifizierten Angreifer über HTTP die Kompromittierung.",
+   "metrics": {
+    "AV": {
+     "why": "'Network access via HTTP' wörtlich."
+    },
+    "AC": {
+     "why": "'Easily exploitable' (Oracle-AC:L)."
+    },
+    "PR": {
+     "why": "'Unauthenticated attacker' wörtlich."
+    },
+    "UI": {
+     "why": "Keine Interaktion genannt."
+    },
+    "S": {
+     "why": "Kein 'additional products'-Satz: S:U."
+    },
+    "C": {
+     "why": "Kompromittierung: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,13, nur CNA-Vektor (Oracle). Die E-Business Suite ist ein ERP-System mit Zahlungsdaten; eine unauthentifizierte RCE (CWE-269) in einem so kritischen System ist ein Prioritätsfall. Oracle-Texte sind zum Vektor-Üben ideal: jedes Wort eine Metrik."
+  },
+  "CVE-2023-2650": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+   "summary_de": "OpenSSL verarbeitet bestimmte ASN.1-Objekt-Identifier über OBJ_obj2txt() sehr langsam, was ohne Größenlimit zu langen Verzögerungen (Denial of Service) führt.",
+   "metrics": {
+    "AV": {
+     "why": "Über eine Anwendung, die betroffene OpenSSL-Subsysteme nutzt (z. B. TLS/OCSP über das Netz)."
+    },
+    "AC": {
+     "why": "Präparierter ASN.1-OID."
+    },
+    "PR": {
+     "why": "Die langsame ASN.1-Verarbeitung wird durch präparierte Daten ausgelöst, die ohne Konto eingespeist werden; das Öffnen/Verarbeiten übernimmt das Opfer (UI:R): PR:N."
+    },
+    "UI": {
+     "why": "NVD: UI:R (abhängig von der einbettenden Anwendung)."
+    },
+    "S": {
+     "why": "Betroffen ist die einbettende Anwendung."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Sehr lange Verarbeitung: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,75: OpenSSL steckt überall, daher der hohe EPSS. Algorithmische Komplexität (CWE-770); die reale Ausnutzbarkeit hängt daran, ob die Anwendung OBJ_obj2txt() ohne Limit auf unvertraute OIDs anwendet. Ein Bibliotheks-DoS, dessen Reichweite die Einbettung bestimmt."
+  },
+  "CVE-2021-20028": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die End-of-Life-SonicWall-SRA-Appliances haben eine unauthentifizierte SQL-Injection.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank gehört zur Appliance, S:U."
+    },
+    "C": {
+     "why": "SQLi: alle Daten lesbar."
+    },
+    "I": {
+     "why": "SQLi: alles änderbar."
+    },
+    "A": {
+     "why": "SQLi: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,30: End-of-Life-Geräte ohne Patch (wie die SMA100-Serie). SQLi (CWE-89) in einer VPN-Appliance; wenn es keinen Patch gibt, bleibt nur Austausch oder Exposition senken. SonicWall SRA/SMA ist im Korpus ein Dauerthema."
+  }
+ }
+}

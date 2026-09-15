@@ -1,0 +1,625 @@
+{
+ "batch": "batch-043",
+ "items": {
+  "CVE-2020-12812": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "FortiOS SSL-VPN erlaubt die Anmeldung ohne den zweiten Authentifizierungsfaktor (FortiToken), wenn der Nutzer die Groß-/Kleinschreibung seines Benutzernamens ändert.",
+   "metrics": {
+    "AV": {
+     "why": "SSL-VPN über das Netz."
+    },
+    "AC": {
+     "why": "Groß-/Kleinschreibung des Nutzernamens ändern."
+    },
+    "PR": {
+     "why": "Der Angreifer braucht das Passwort, umgeht aber die 2FA: NVD wertet PR:N (Auth-Umgehung)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Zugang ins interne Netz, S:U."
+    },
+    "C": {
+     "why": "VPN-Zugang: alle erreichbaren Daten."
+    },
+    "I": {
+     "why": "Netzzugang: alles erreichbare änderbar."
+    },
+    "A": {
+     "why": "Netzzugang: Systeme störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,49: 2FA-Umgehung (CWE-287) durch Case-Sensitivity-Verwechslung: Der Nutzername-Vergleich war case-insensitiv, die 2FA-Zuordnung case-sensitiv. Ein subtiler Logikfehler, der die zweite Faktor-Prüfung aushebelte. Fortinet ist im Korpus das zweithäufigste Herstellerthema; 2FA-Umgehungen sind besonders heikel, weil sie den Schutz umgehen statt zu brechen."
+  },
+  "CVE-2023-38035": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das MICS-Admin-Portal von Ivanti MobileIron Sentry erlaubt durch eine zu wenig restriktive Apache-HTTPD-Konfiguration die Umgehung der Authentifizierung des Verwaltungs-Interfaces.",
+   "metrics": {
+    "AV": {
+     "why": "Admin-Portal über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage an das Admin-Portal."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Admin plus RCE, S:U."
+    },
+    "C": {
+     "why": "Admin: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Admin: alles änderbar."
+    },
+    "A": {
+     "why": "Admin: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,999: Ivanti Sentry sichert den Zugriff auf Mobilgeräte-Backends (wie EPMM, Avalanche). Autorisierungslücke (CWE-863) durch eine fehlerhafte Apache-Konfiguration; das Admin-Portal war nicht richtig geschützt. Ivanti ist das häufigste Herstellerthema im Korpus; eine Fehlkonfiguration statt eines Code-Bugs."
+  },
+  "CVE-2021-22502": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Micro Focus Operation Bridge Reporter erlaubt unauthentifizierte Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Server, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,97: Operation Bridge Reporter ist ein Monitoring-/Reporting-Tool (wie CVE-2020-11854 im selben Portfolio). Command Injection (CWE-78); Monitoring-Server sehen das ganze Netz. Micro Focus (heute OpenText) ist im Korpus mit mehreren Enterprise-Management-Lücken vertreten."
+  },
+  "CVE-2020-17530": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Struts S2-061: Erzwungene OGNL-Auswertung von rohen Nutzereingaben in Tag-Attributen führt zu Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Eingabe in einem Tag-Attribut, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Struts-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,96: Wieder Struts OGNL-Injection (CWE-917), die Umgehung des Fixes für S2-059 (CVE-2019-0230). Die Struts-Serie im Korpus umfasst nun sieben CVEs über 14 Jahre; jede erzwungene OGNL-Auswertung von Nutzereingaben ist eine neue RCE-Variante. Ein Framework mit einer strukturellen OGNL-Schwäche und einer Kette unvollständiger Fixes."
+  },
+  "CVE-2022-47986": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "IBM Aspera Faspex erlaubt über eine YAML-Deserialisierung in einem veralteten API-Aufruf unauthentifizierte Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter veralteter API-Aufruf."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Faspex-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,9997: Aspera Faspex ist ein Dateitransfer-Server (wie MOVEit, GoAnywhere, Cleo, Accellion). YAML-Deserialisierung (CWE-502) über eine veraltete, aber noch aktive API. MFT-Server sind im Korpus die Kategorie mit den größten Ransomware-Vorfällen; von mehreren Gruppen (IceFire, Buhti) genutzt."
+  },
+  "CVE-2021-24145": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Modern-Events-Calendar-Lite-WordPress-Plugin erlaubt einem Administrator über den Content-Type text/csv das Hochladen von PHP-Dateien.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Content-Type text/csv setzen, PHP hochladen."
+    },
+    "PR": {
+     "why": "Admin-Rechte (Import-Funktion): PR:H."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,87: Content-Type-Umgehung (CWE-434): Der Filter prüfte den Content-Type-Header (text/csv), nicht den Dateiinhalt. Ein Klassiker der Upload-Filter-Umgehung; der Header ist vom Angreifer kontrolliert und kein zuverlässiger Typ-Nachweis. WordPress-Plugin-Uploads sind im Korpus ein Dauerthema."
+  },
+  "CVE-2014-9614": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Web Panel von Netsweeper hat für das branding-Konto ein Standardpasswort ('branding'), das Remote-Zugriff erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web Panel über HTTP."
+    },
+    "AC": {
+     "why": "Standardpasswort eingeben."
+    },
+    "PR": {
+     "why": "Standardpasswort ist kein eigenes Recht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Netsweeper, S:U."
+    },
+    "C": {
+     "why": "Zugang: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Zugang: alles änderbar."
+    },
+    "A": {
+     "why": "Zugang: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,69: Standardpasswort (CWE-798), das mit dem Kontonamen identisch ist. Netsweeper ist eine Web-Filtering-Lösung; ein Standardkonto ist faktisch keine Authentifizierung. Standardpasswörter sind im Korpus ein Dauerthema (EyesOfNetwork, MyLittleAdmin, IDRM)."
+  },
+  "CVE-2014-6039": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "ManageEngine EventLog Analyzer hat eine Credentials-Disclosure-Lücke.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Die Zugangsdaten werden ohne vorherige Anmeldung preisgegeben; Netzwerkzugriff auf den EventLog Analyzer ist die einzige Voraussetzung: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist EventLog Analyzer."
+    },
+    "C": {
+     "why": "Zugangsdaten: gezielt, maximal wertvoll, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,69: Schwester von CVE-2014-6038 (Info-Leck im selben Produkt). Credentials Disclosure (CWE-522); Log-Management-Systeme sammeln Zugangsdaten aus Logs. Zwei Lücken im selben Produkt derselben Klasse zeigen fehlende systematische Absicherung. ManageEngine ist im Korpus stark vertreten."
+  },
+  "CVE-2022-32215": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+   "summary_de": "Der llhttp-Parser in Node.js behandelt mehrzeilige Transfer-Encoding-Header falsch, was HTTP Request Smuggling ermöglicht.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Node-Anwendung."
+    },
+    "C": {
+     "why": "Begrenzt, abhängig vom Proxy-Setup: C:L."
+    },
+    "I": {
+     "why": "Begrenzt: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,69: Schwester von CVE-2022-32214 (llhttp Smuggling im selben Parser). Request Smuggling (CWE-444) wirkt nur hinter einem Proxy, der anders parst; ohne Proxy bedeutungslos. Node.js ist verbreitet, daher der EPSS; die reale Ausnutzbarkeit hängt am Setup."
+  },
+  "CVE-2022-29499": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Service-Appliance-Komponente von Mitel MiVoice Connect erlaubt durch fehlerhafte Datenvalidierung unauthentifizierte Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf der Appliance, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,56: Von der Gruppe Lorenz für Ransomware genutzt, ein VoIP-System als Einstiegspunkt ins Netz. Fehlerhafte Datenvalidierung (CWE-20) zu RCE. Mitel ist im Korpus mehrfach vertreten (MiCollab, MiVoice); VoIP-Systeme sind ein unterschätzter Netzwerk-Brückenkopf."
+  },
+  "CVE-2021-20038": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Stack-Buffer-Overflow im mod_cgi-Modul der SonicWall SMA100 (über Umgebungsvariablen) erlaubt unauthentifizierte Codeausführung als 'nobody'.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface der Appliance über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Der Stack-Overflow in mod_cgi-Umgebungsvariablen ist von einem „remote unauthenticated attacker“ erreichbar: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code als nobody auf der Appliance, S:U."
+    },
+    "C": {
+     "why": "Code: alle für nobody lesbaren Daten."
+    },
+    "I": {
+     "why": "Code: änderbar im nobody-Kontext."
+    },
+    "A": {
+     "why": "Code: Dienst störbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,999: SonicWall SMA100 ist im Korpus mehrfach vertreten (CVE-2019-7481, CVE-2021-20016, CVE-2021-20028). Buffer Overflow (CWE-121) in mod_cgi über Umgebungsvariablen (wie Shellshock, GoAhead); der nobody-Kontext begrenzt die direkte Auswirkung, in Kette mit einer Rechteausweitung wird es root. VPN-Appliances sind das meistangegriffene Segment."
+  },
+  "CVE-2019-3396": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Widget-Connector-Makro in Atlassian Confluence Server hat ein Path Traversal, das über Server-Side Template Injection zu Remote Code Execution führt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Wiki über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Makro-Anfrage, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Confluence-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,999: Die erste große Confluence-RCE, massenhaft für Kryptominer (GandCrab) genutzt. Path Traversal (CWE-22) plus SSTI (Velocity-Template); Confluence ist im Korpus viermal mit RCE vertreten (3396, 26084, 22527, 26134). Ein Produkt mit einer jahrelangen Serie kritischer RCEs."
+  },
+  "CVE-2020-13935": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Die Payload-Länge in einem WebSocket-Frame wird in Apache Tomcat nicht korrekt validiert, sodass ungültige Längen eine Endlosschleife und Denial of Service auslösen.",
+   "metrics": {
+    "AV": {
+     "why": "WebSocket über das Netz."
+    },
+    "AC": {
+     "why": "Ungültige Payload-Länge."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Tomcat."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Endlosschleife, Ressourcenerschöpfung: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,87: Eine Endlosschleife (CWE-835) durch fehlende Längenvalidierung. Tomcat ist im Korpus mehrfach vertreten (Ghostcat, Upload, Deserialisierung, Smuggling); ein DoS über eine ungültige WebSocket-Länge. Nur bei aktiven WebSockets ausnutzbar."
+  },
+  "CVE-2021-24762": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Perfect-Survey-WordPress-Plugin validiert den question_id-GET-Parameter nicht, was in der get_question-AJAX-Aktion eine unauthentifizierte SQL-Injection erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter question_id-Parameter."
+    },
+    "PR": {
+     "why": "Die get_question-AJAX-Aktion ist für unauthentifizierte Nutzer erreichbar: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank und Anwendung im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "SQLi: alle Daten lesbar."
+    },
+    "I": {
+     "why": "SQLi: alles änderbar."
+    },
+    "A": {
+     "why": "SQLi: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,87: Wieder WordPress-Plugin-SQLi (CWE-89) über einen ungeprüften GET-Parameter in einer AJAX-Aktion. WordPress-Plugin-SQLi ist im Korpus die häufigste Web-Lücken-Klasse; das Muster (Parameter ohne Parametrisierung in einer AJAX-Route) wiederholt sich über Dutzende Plugins."
+  },
+  "CVE-2021-33690": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Der SAP NetWeaver Development Infrastructure Component Build Service hat eine Server-Side Request Forgery, die einem authentifizierten Angreifer weitreichenden Zugriff gibt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Ein authentifizierter Nutzer: PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:C, die SSRF erreicht interne Systeme."
+    },
+    "C": {
+     "why": "Interne Ressourcen erreichbar: gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Über interne Anfragen: alles änderbar."
+    },
+    "A": {
+     "why": "Interne Dienste störbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,69: SSRF (CWE-918) in SAP NetWeaver. SAP-Systeme sind Kronjuwelen mit langen Patchzyklen; eine SSRF im internen Netz kann andere SAP-Komponenten erreichen. SAP ist im Korpus mehrfach vertreten (NetWeaver, Solution Manager, CRM)."
+  },
+  "CVE-2024-23222": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion in WebKit erlaubt über präparierte Webinhalte Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Browserprozess."
+    },
+    "C": {
+     "why": "Codeausführung mit Browserrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,11: Zero-Day gegen iOS. WebKit-Type-Confusion (CWE-843); Teil der laufenden Apple-WebKit-Zero-Day-Serie. Type Confusion ist die häufigste Browser-RCE-Klasse; die Apple- und Chrome-Serien im Korpus machen sie zum Paradebeispiel."
+  },
+  "CVE-2018-15982": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Use-After-Free in Adobe Flash Player erlaubt über präparierten Flash-Inhalt Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Flash-Inhalt über das Web; NVD: AV:L (Datei-Verarbeitung)."
+    },
+    "AC": {
+     "why": "Präparierter Flash-Inhalt (in einem Office-Dokument)."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss das Dokument öffnen."
+    },
+    "S": {
+     "why": "Code im Plugin-Prozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,89: Zero-Day, über ein Office-Dokument mit eingebettetem Flash gegen eine russische Klinik. Use-After-Free (CWE-416); die Flash-Serie im Korpus reicht bis 2018, kurz vor Flashs Ende. Flash in Dokumenten war ein besonders heimtückischer Vektor."
+  },
+  "CVE-2018-12998": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Mehrere ManageEngine-Produkte (Netflow Analyzer, OpManager, Firewall Analyzer u. a.) haben ein reflektiertes Cross-Site-Scripting.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierter Link über das Netz."
+    },
+    "AC": {
+     "why": "Ein präparierter Link genügt."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss den Link öffnen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Browserkontext des Opfers: C:L."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,99: XSS (CWE-79), das mehrere ManageEngine-Produkte gleichzeitig betrifft (gemeinsame Codebasis). Wie bei OEM-Firmware trifft ein gemeinsamer Bug alle Produkte, die den Code teilen. ManageEngine ist im Korpus stark vertreten; der hohe EPSS spiegelt die breite Produktbasis."
+  },
+  "CVE-2021-3129": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Laravel Ignition (Debug-Seite) erlaubt durch unsichere Nutzung von file_get_contents() und file_put_contents() unauthentifizierte Remote Code Execution, wenn Laravel im Debug-Modus läuft.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Ignition führt file_get_contents/file_put_contents für unauthentifizierte Angreifer aus, solange der Debug-Modus aktiv ist: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Laravel-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,999: Ignition ist Laravels Debug-Fehlerseite (noinfo bei NVD). Nur im Debug-Modus verwundbar, der aber oft versehentlich in Produktion läuft (wie Rails-Dev-Modus CVE-2019-5420). Debug-/Development-Features in Produktion sind im Korpus ein wiederkehrendes Muster; die Debug-Seite selbst wird zum RCE-Vektor."
+  },
+  "CVE-2023-35078": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ivanti Endpoint Manager Mobile (EPMM) hat eine Authentifizierungsumgehung, die unauthentifizierten Zugriff auf eingeschränkte Funktionen erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist EPMM, S:U."
+    },
+    "C": {
+     "why": "Zugriff auf Nutzerdaten und Konfiguration: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99999: Von einer staatlichen Gruppe gegen die norwegische Regierung als Zero-Day genutzt. Auth-Bypass (CWE-287); EPMM verwaltet alle Mobilgeräte einer Organisation. In Kette mit CVE-2023-35081 (Path Traversal) zu RCE. Ivanti ist das häufigste Herstellerthema im Korpus, EPMM mehrfach vertreten."
+  }
+ }
+}

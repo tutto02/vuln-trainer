@@ -1,0 +1,652 @@
+{
+ "batch": "batch-016",
+ "items": {
+  "CVE-2019-9082": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "ThinkPHP vor 3.2.4 erlaubt über den Parameter s=index/\\think\\app/invokefunction den Aufruf beliebiger PHP-Funktionen wie system(), also Remote Command Execution.",
+   "metrics": {
+    "AV": {
+     "why": "PHP-Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Ein GET-Request mit dem bekannten Muster, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig, der Endpunkt ist offen."
+    },
+    "UI": {
+     "why": "NVD vergab UI:R, obwohl der Angreifer die URL selbst aufrufen kann.",
+     "pitfall": "Eine präparierte URL braucht kein klickendes Opfer; UI:N (9,8) wäre korrekter. NVD hat hier das Phishing-Szenario angenommen."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, dieselbe Domäne."
+    },
+    "C": {
+     "why": "Beliebige Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Beliebige Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Beliebige Befehle: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,97: Über Jahre in Botnetzen (Mirai-Varianten) gegen chinesische Webframeworks. ThinkPHP ist in Asien verbreitet; die Wahrscheinlichkeit ist bei Internetexposition sehr hoch."
+  },
+  "CVE-2023-26035": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "ZoneMinder prüft bei der snapshot-Aktion keine Berechtigungen, sodass unauthentifizierte Angreifer über die monitor-ID Code ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Missing Authorization', keine Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im ZoneMinder-Prozess.",
+     "pitfall": "Der CNA vergab S:C mit C:L/I:L (5,x). NVD nahm den 9,8-RCE-Standard. Die Beschreibung nennt RCE, also passt NVD besser."
+    },
+    "C": {
+     "why": "RCE: alle Daten (Kameraaufnahmen)."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA: S:C, C:L, I:L, A:N. Die niedrige Bewertung passt nicht zu 'Remote Code Execution' in der eigenen Beschreibung."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,80: Videoüberwachungssoftware im Internet ist heikel, die Auswirkung ist der Zugriff auf Kamerabilder plus RCE. Klasse: fehlende Autorisierung (CWE-862), nicht die RCE selbst."
+  },
+  "CVE-2014-6271": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Shellshock: GNU Bash führt Code aus, der nach einer Funktionsdefinition in einer Umgebungsvariablen steht; über CGI, SSH ForceCommand oder DHCP gelangt der Angreifer an diese Variablen.",
+   "metrics": {
+    "AV": {
+     "why": "Über CGI-Skripte (mod_cgi) oder DHCP aus dem Netz."
+    },
+    "AC": {
+     "why": "Ein präparierter HTTP-Header, der als Umgebungsvariable ans CGI geht."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U, Code läuft mit den Rechten des CGI-Prozesses.",
+     "pitfall": "Man könnte S:C argumentieren (Bash als Komponente unter dem Webserver), NVD blieb bei S:U. Vergleiche Log4Shell, wo NVD S:C vergab."
+    },
+    "C": {
+     "why": "Befehle mit Webserver-Rechten: alle Daten."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99999: 2014, binnen Stunden massenhaft ausgenutzt, jahrelang in Botnetzen. Eine Umgebungsvariable als Angriffsvektor; die Klasse (CWE-78) trifft nur den Kern, der Weg (CGI-Header) ist das Überraschende."
+  },
+  "CVE-2012-0158": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Die ListView- und TreeView-ActiveX-Controls in MSCOMCTL.OCX (Microsoft Office und weitere) erlauben über ein präpariertes Dokument Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Dokument per Mail oder Web; NVD bewertet Office-Dokument-Exploits als AV:N."
+    },
+    "AC": {
+     "why": "Präpariertes Dokument öffnen."
+    },
+    "PR": {
+     "why": "Der Absender braucht keine Rechte."
+    },
+    "UI": {
+     "why": "Das Opfer muss das Dokument öffnen."
+    },
+    "S": {
+     "why": "Code im Office-Prozess des Nutzers."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Nutzerdaten."
+    },
+    "I": {
+     "why": "Code mit Nutzerrechten: alles änderbar."
+    },
+    "A": {
+     "why": "Code mit Nutzerrechten: System störbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,9998: Über ein Jahrzehnt der beliebteste Dokument-Exploit für APT-Gruppen (RTF-Dateien). Ein ActiveX-Control als jahrelanger Standard-Einstieg; alte Office-Installationen halten die Wahrscheinlichkeit hoch."
+  },
+  "CVE-2017-11317": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Telerik UI für ASP.NET AJAX verwendet für RadAsyncUpload einen schwachen, teils fest kodierten Verschlüsselungsschlüssel, sodass Angreifer Dateien hochladen und Code ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Bekannter Schlüssel, präparierter Upload."
+    },
+    "PR": {
+     "why": "Keine Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess."
+    },
+    "C": {
+     "why": "Webshell: alle Daten."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,84: Jahrelang gegen ASP.NET-Anwendungen genutzt, weil Telerik in vielen Produkten eingebettet ist. Klasse schwache Kryptografie (CWE-326), Auswirkung RCE über den Upload; wie Shiro und CentreStack ein Schlüssel-Problem."
+  },
+  "CVE-2021-35216": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Orion-Platform-Integrationsmodul von SolarWinds Patch Manager deserialisiert unvertraute Daten, was authentifizierten Angreifern Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "NVD: AV:N, HTTP; der CNA vergab AV:A (nur im Management-Netz erreichbar)."
+    },
+    "AC": {
+     "why": "Präparierte serialisierte Nutzlast."
+    },
+    "PR": {
+     "why": "'Authenticated attacker': PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U; CNA S:C.",
+     "pitfall": "Wieder die Deserialisierungs-Scope-Frage. NVD S:U, CNA S:C. Kein fester Konsens."
+    },
+    "C": {
+     "why": "RCE: alle Daten."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "NVD: A:H; CNA A:L."
+    }
+   },
+   "dissent": {
+    "AV": "CNA (SolarWinds): AV:A, S:C, A:L (8,0). Nach dem SUNBURST-Vorfall bewertete SolarWinds konservativ und mit Netzwerksegmentierung im Blick."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,81. SolarWinds nach SUNBURST unter besonderer Beobachtung; Patch-Management-Systeme haben Zugriff auf alle verwalteten Hosts."
+  },
+  "CVE-2017-12617": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Apache Tomcat mit aktiviertem HTTP PUT (readonly=false) erlaubt über einen präparierten Pfad das Hochladen einer JSP-Datei, die dann ausgeführt wird.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP PUT über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:H wegen der Nicht-Standard-Konfiguration readonly=false.",
+     "pitfall": "Identisch zu CVE-2017-12615 (gleiche Lücke, andere Plattform), beide AC:H. Vergleiche CVE-2025-24813 (readonly=false, AC:L): Die Konfiguration wird über die Jahre unterschiedlich gewertet."
+    },
+    "PR": {
+     "why": "PUT ohne Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Tomcat-Prozess."
+    },
+    "C": {
+     "why": "JSP-Webshell: alle Daten."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,9999: Massenscans. Schwester von CVE-2017-12615 (Windows), diese für alle Plattformen. Nur mit readonly=false verwundbar; die Konfiguration ist die Wahrscheinlichkeitsfrage."
+  },
+  "CVE-2020-13160": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "AnyDesk für Linux und FreeBSD vor 5.5.3 hat einen Format-String-Fehler, der zu Remote Code Execution genutzt werden kann.",
+   "metrics": {
+    "AV": {
+     "why": "AnyDesk lauscht auf einem Netzwerkport (Discovery)."
+    },
+    "AC": {
+     "why": "Präparierte Nachricht mit Format-Spezifizierern."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt (Discovery-Broadcast reicht)."
+    },
+    "S": {
+     "why": "Code im AnyDesk-Prozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,81. Fernwartungs-Clients hören oft im LAN; ein Format-String im Discovery-Protokoll trifft jeden im selben Netz. Klasse CWE-134, die eine Klasse, die man heute selten sieht und leicht übersieht."
+  },
+  "CVE-2024-28987": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+   "summary_de": "SolarWinds Web Help Desk enthält fest kodierte Zugangsdaten, mit denen unauthentifizierte Angreifer interne Funktionen erreichen und Daten ändern.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Bekannte Zugangsdaten verwenden."
+    },
+    "PR": {
+     "why": "Fest kodierte Zugangsdaten sind kein eigenes Recht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist WHD selbst."
+    },
+    "C": {
+     "why": "Interne Funktionen: alle Ticketdaten lesbar."
+    },
+    "I": {
+     "why": "'Modify data' laut Beschreibung: Daten änderbar."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung genannt."
+    }
+   },
+   "context_de": "KEV, EPSS 0,93: Zweite WHD-Lücke 2024 (nach der RCE CVE-2024-28986). Helpdesk-Daten enthalten oft Passwörter aus Support-Tickets; die Auswirkung reicht über das Tool hinaus."
+  },
+  "CVE-2023-21237": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "In applyRemoteView von NotificationContentInflater.java kann eine App durch irreführende UI eine Vordergrunddienst-Benachrichtigung verstecken, was lokale Informationspreisgabe ermöglicht.",
+   "metrics": {
+    "AV": {
+     "why": "Eine App auf dem Gerät."
+    },
+    "AC": {
+     "why": "Kein besonderer Aufwand."
+    },
+    "PR": {
+     "why": "NVD: eine App mit normalen Rechten; Google PR:N.",
+     "pitfall": "Android-Schablone: 'local information disclosure', 'no additional execution privileges', 'user interaction is not needed' ergibt AV:L/UI:N. Der PR-Wert ist der Streitpunkt zwischen NVD und Google."
+    },
+    "UI": {
+     "why": "'User interaction is not needed' wörtlich."
+    },
+    "S": {
+     "why": "Innerhalb des Geräts."
+    },
+    "C": {
+     "why": "Verstecken einer Dienst-Benachrichtigung ermöglicht heimliches Mitlaufen: NVD wertet den Informationsgewinn als H."
+    },
+    "I": {
+     "why": "Keine Änderung beschrieben."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,003: Von Spyware genutzt, um im Vordergrund laufende Dienste (Mikrofon, Standort) zu verbergen. Ein 5,5, dessen wahre Gefahr im Verschleiern liegt, nicht im Score."
+  },
+  "CVE-2023-36469": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "XWiki erlaubt jedem Nutzer, der sein eigenes Profil und die Benachrichtigungseinstellungen bearbeiten darf, die Ausführung beliebiger Groovy- oder Python-Skriptmakros, also Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Wiki-Weboberfläche über HTTP."
+    },
+    "AC": {
+     "why": "Makro in die Profileinstellungen schreiben."
+    },
+    "PR": {
+     "why": "Jeder registrierte Nutzer, der sein Profil bearbeiten darf: PR:L.",
+     "pitfall": "Bei offener Registrierung ist PR:L faktisch PR:N. Wikis erlauben oft Selbstregistrierung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im XWiki-Prozess.",
+     "pitfall": "Der CNA vergab S:C. RCE im selben Prozess ist S:U."
+    },
+    "C": {
+     "why": "RCE plus Lesezugriff auf alle Wiki-Inhalte."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (XWiki): S:C (9,9). NVD 8,8."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,82. Skript-Makros in Wikis sind ein wiederkehrendes RCE-Muster (auch Confluence); die Frage ist immer, wer Makros schreiben darf."
+  },
+  "CVE-2009-0927": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Stack-Überlauf in Adobe Reader/Acrobat erlaubt über ein präpariertes Argument an die getIcon-Methode eines Collab-Objekts Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Präpariertes PDF über Web oder Mail."
+    },
+    "AC": {
+     "why": "PDF öffnen."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Das Opfer muss das PDF öffnen."
+    },
+    "S": {
+     "why": "Code im Reader-Prozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,97: 2009 der Standard-PDF-Exploit in allen Kits. PDF-JavaScript (getIcon, Collab) war jahrelang die Angriffsfläche; die Klasse ist ein klassischer Stack-Overflow (CWE-121)."
+  },
+  "CVE-2022-0185": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Heap-Überlauf in legacy_parse_param der Filesystem-Context-Funktion des Linux-Kernels erlaubt einem lokalen Nutzer (mit User-Namespaces) Rechteausweitung.",
+   "metrics": {
+    "AV": {
+     "why": "Lokale Systemaufrufe."
+    },
+    "AC": {
+     "why": "Bekannter Exploit, kein Timing."
+    },
+    "PR": {
+     "why": "NVD setzt PR:N: Bei aktivierten unprivileged user namespaces genügt ein unprivilegierter lokaler Nutzer ohne Sonderrechte; nur ohne diese Option wäre CAP_SYS_ADMIN nötig.",
+     "pitfall": "Die Beschreibung sagt 'unprivileged local user' mit User-Namespaces, sonst CAP_SYS_ADMIN. PR:N ist vertretbar (unprivilegiert), man könnte PR:L argumentieren. Der Namespace-Zugang ist der Schlüssel, wie bei CVE-2021-22555."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Kernel-EoP: S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,25: Öffentlicher Exploit, auch als Container-Ausbruch relevant. Length-Prüfung mit Integer-Fehler (CWE-191): Der Heap-Overflow entsteht aus einem Vorzeichenfehler bei der Längenberechnung."
+  },
+  "CVE-2024-53150": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:H",
+   "summary_de": "Der USB-Audio-Treiber des Linux-Kernels prüft die bLength von Deskriptoren nicht, sodass ein präpariertes USB-Gerät Out-of-Bounds-Reads auslöst.",
+   "metrics": {
+    "AV": {
+     "why": "Präpariertes USB-Gerät oder lokaler Treiberzugriff."
+    },
+    "AC": {
+     "why": "Präparierter Deskriptor."
+    },
+    "PR": {
+     "why": "Lokaler Nutzer mit Gerätezugriff."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Innerhalb des Systems."
+    },
+    "C": {
+     "why": "Kernelspeicher lesbar: H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Out-of-Bounds-Read kann den Kernel zum Absturz bringen: A:H."
+    }
+   },
+   "context_de": "KEV, EPSS 0,01: Wie CVE-2024-50302 in Geräte-Entsperr-Werkzeugen (Cellebrite) per USB. USB-Treiber sind eine unterschätzte Angriffsfläche bei physischem Zugriff."
+  },
+  "CVE-2025-22457": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Stack-Überlauf in Ivanti Connect Secure, Policy Secure und ZTA Gateways erlaubt unauthentifizierten Angreifern Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "VPN-Appliance aus dem Internet."
+    },
+    "AC": {
+     "why": "NVD: AC:L; Ivanti AC:H.",
+     "pitfall": "Ivanti stufte die Lücke anfangs als schwer ausnutzbar ein (AC:H), bis aktive Ausnutzung bekannt wurde. NVDs AC:L bildet die Realität ab."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U; Ivanti S:C (Zugang zum Netz dahinter)."
+    },
+    "C": {
+     "why": "RCE auf dem Gateway: alle Daten."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Gateway abschaltbar."
+    }
+   },
+   "dissent": {
+    "AC": "CNA (Ivanti): AC:H, S:C (9,0). Die anfängliche AC:H-Einstufung wurde von der Realität widerlegt: China-nahe Gruppen nutzten sie aktiv."
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,9998: April 2025, wieder Ivanti. Die Lücke wurde zunächst als geringfügig gepatcht, bevor die RCE-Fähigkeit klar war. Ein Fall, in dem der anfängliche Vektor die Gefahr unterschätzte."
+  },
+  "CVE-2024-13161": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Ivanti Endpoint Manager erlaubt über absolute Pfade unauthentifizierten Angreifern das Auslesen sensibler Informationen.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz."
+    },
+    "AC": {
+     "why": "Präparierter Pfad."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist EPM."
+    },
+    "C": {
+     "why": "Beliebige Dateien lesbar: H."
+    },
+    "I": {
+     "why": "NVD: nur Lesen; CNA I:H (Credential-Relay-Kette)."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung bewertet."
+    }
+   },
+   "dissent": {
+    "I": "CNA (Ivanti): H/H/H (9,8). Real war der Weg NTLM-Relay zu Codeausführung."
+   },
+   "context_de": "KEV, EPSS 0,90: Eine von fünf gleichlautenden EPM-Traversal-CVEs (13159 bis 13163) im selben Patch. Bei solchen Bündeln zählt der Patch, nicht die einzelne CVE."
+  },
+  "CVE-2025-11371": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Gladinet CentreStack und TrioFox haben in der Standardkonfiguration eine unauthentifizierte Local File Inclusion, die Systemdateien preisgibt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist CentreStack."
+    },
+    "C": {
+     "why": "Systemdateien lesbar, darunter Web.config mit dem machineKey: gezielt, hochwertig, H.",
+     "pitfall": "In Kette mit dem machineKey-Leck (CVE-2025-30406) führt dieses LFI zur RCE. Das gelesene File ist der Schlüssel für den nächsten Schritt."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,92, nur CNA-Vektor. CentreStack zum zweiten Mal in KEV (nach CVE-2025-30406); das LFI liefert genau den machineKey, den die frühere Lücke voraussetzte. Produkthistorie zählt."
+  },
+  "CVE-2017-5689": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Intel AMT/ISM (Manageability Engine) lässt sich mit einem leeren Response-Hash authentifizieren, sodass ein unprivilegierter Netzwerkangreifer Systemrechte auf der Management-Ebene erlangt.",
+   "metrics": {
+    "AV": {
+     "why": "AMT-Weboberfläche (Port 16992/16993) über das Netz."
+    },
+    "AC": {
+     "why": "Leeren oder beliebigen Hash senden, der Vergleich ist fehlerhaft."
+    },
+    "PR": {
+     "why": "Der Authentifizierungsfehler ersetzt jedes Recht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U; AMT läuft aber unter dem Betriebssystem (Out-of-Band), man könnte S:C argumentieren."
+    },
+    "C": {
+     "why": "AMT-Zugriff: KVM, Ein/Aus, Boot: volle Kontrolle über die Hardware."
+    },
+    "I": {
+     "why": "Volle Kontrolle: alles änderbar."
+    },
+    "A": {
+     "why": "Volle Kontrolle: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,92: Intel-AMT sitzt unter dem Betriebssystem und ist von EDR nicht sichtbar. Ein Vergleich, der einen leeren Hash akzeptiert (CWE-287): Die Auswirkung ist Hardware-Kontrolle unterhalb des OS."
+  },
+  "CVE-2021-0920": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Use-After-Free durch Race Condition in unix_scm_to_skb (af_unix.c) des Linux-Kernels erlaubt lokale Rechteausweitung auf Systemebene.",
+   "metrics": {
+    "AV": {
+     "why": "Lokale Systemaufrufe."
+    },
+    "AC": {
+     "why": "Race Condition: Timing außerhalb der Kontrolle, AC:H."
+    },
+    "PR": {
+     "why": "NVD: PR:H, 'System execution privileges needed' in der Beschreibung.",
+     "pitfall": "Die Android-Schablone nennt hier 'System execution privileges needed', daher PR:H. Andere Android-EoPs sagen 'no additional privileges' (PR:L). Lies die Rechtestufe im Text."
+    },
+    "UI": {
+     "why": "'User interaction is not needed' wörtlich."
+    },
+    "S": {
+     "why": "Kernel-EoP: S:U."
+    },
+    "C": {
+     "why": "System: alle Daten lesbar."
+    },
+    "I": {
+     "why": "System: alles änderbar."
+    },
+    "A": {
+     "why": "System: Gerät abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,008: Von einer kommerziellen Spyware (Cytrox/Predator) in einer Android-Kette genutzt. AC:H und PR:H, trotzdem in KEV: Gezielte Angreifer scheuen den Aufwand nicht."
+  },
+  "CVE-2023-41993": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "WebKit verarbeitet Webinhalte fehlerhaft, was über eine präparierte Seite Codeausführung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht, keine Sonderbedingung."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Browserprozess."
+    },
+    "C": {
+     "why": "Codeausführung mit Browserrechten: Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,29: Teil der Predator-Spyware-Kette (mit CVE-2023-41991/41992), von Citizen Lab dokumentiert. Klasse laut NVD Fehlerbehandlung (CWE-754); Apple-CWEs sind grob."
+  }
+ }
+}

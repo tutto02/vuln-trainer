@@ -1,0 +1,626 @@
+{
+ "batch": "batch-013",
+ "items": {
+  "CVE-2024-1709": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "ConnectWise ScreenConnect bis 23.9.7 erlaubt über einen alternativen Pfad (SetupWizard erneut aufrufbar) die Umgehung der Authentifizierung und das Anlegen eines Admin-Kontos.",
+   "metrics": {
+    "AV": {
+     "why": "Weboberfläche des Fernwartungsservers."
+    },
+    "AC": {
+     "why": "Ein Pfad-Trick (/SetupWizard.aspx/), trivial."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Fernwartung: Admin auf dem Server heißt Zugriff auf alle verwalteten Endpunkte, S:C begründet."
+    },
+    "C": {
+     "why": "Alle verwalteten Rechner: alles."
+    },
+    "I": {
+     "why": "Fernsteuerung aller Rechner."
+    },
+    "A": {
+     "why": "Fernsteuerung aller Rechner."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,9998: 'SlashAndGrab', Exploit binnen Stunden, Ransomware auf Kunden der MSPs. Ein RMM-Server ist der wertvollste Einstiegspunkt, den es gibt."
+  },
+  "CVE-2024-38856": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Apache OFBiz erlaubt über unauthentifizierte Endpunkte das Rendern von Screens, deren Definitionen die Nutzerrechte nicht selbst prüfen, was bis zur Codeausführung führt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung."
+    },
+    "AC": {
+     "why": "NVD: keine Sonderbedingung, obwohl 'some preconditions' im Text stehen."
+    },
+    "PR": {
+     "why": "'Unauthenticated endpoints' wörtlich.",
+     "pitfall": "Der CNA vergab PR:L. Der Text ist zweideutig: unauthentifizierte Endpunkte, aber Vorbedingungen. NVD nimmt den schlimmsten Pfad."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist OFBiz."
+    },
+    "C": {
+     "why": "Codeausführung: alle Daten."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "NVD: A:H; CNA A:N."
+    }
+   },
+   "dissent": {
+    "PR": "CNA (Apache): PR:L, A:N (8,1). Patch-Umgehung von CVE-2024-36104; jede Umgehung bekam einen etwas anderen Vektor."
+   },
+   "context_de": "KEV, EPSS 0,99: Vierte OFBiz-Lücke in Folge 2024. Bei Serien lohnt die Frage, ob das Produkt überhaupt noch ins Internet gehört."
+  },
+  "CVE-2018-6961": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die standardmäßig deaktivierte lokale Web-UI von VMware NSX SD-WAN Edge (VeloCloud) hat eine Command Injection, die Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-UI über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:H, weil die Komponente standardmäßig deaktiviert ist.",
+     "pitfall": "Hier wertet NVD 'disabled by default' als AC:H. Bei Vite (--host) nicht. Die Regel 'Nicht-Standard ist eine Hürde' wird nicht konsequent angewendet."
+    },
+    "PR": {
+     "why": "Keine Anmeldung genannt."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Edge-Gerät."
+    },
+    "C": {
+     "why": "Befehle: alles."
+    },
+    "I": {
+     "why": "Befehle: alles."
+    },
+    "A": {
+     "why": "Befehle: abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,86: Trotz 'disabled by default' in KEV, also wurde es genug aktiviert. Herstellerhinweise zur Standardkonfiguration sind keine Garantie für die Praxis."
+  },
+  "CVE-2022-24816": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "JAI-EXT kompiliert Jiffle-Skripte über Janino zu Java-Code; Anwendungen wie GeoServer, die Jiffle per Netzwerkanfrage annehmen, sind für Remote Code Execution anfällig.",
+   "metrics": {
+    "AV": {
+     "why": "Über GeoServer-Anfragen aus dem Netz."
+    },
+    "AC": {
+     "why": "Präpariertes Skript."
+    },
+    "PR": {
+     "why": "WMS/WPS-Endpunkte sind meist öffentlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: Bibliothek verwundbar, GeoServer/Host betroffen: S:C (Bibliotheksmuster)."
+    },
+    "C": {
+     "why": "RCE: alles."
+    },
+    "I": {
+     "why": "RCE: alles."
+    },
+    "A": {
+     "why": "RCE: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Massenausnutzung gegen GeoServer 2024. Bibliotheks-CVE mit Produkt-Auswirkung; im Scanner steht JAI-EXT, im Internet steht GeoServer."
+  },
+  "CVE-2018-0824": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "'Microsoft COM for Windows' behandelt serialisierte Objekte fehlerhaft, was über eine präparierte Datei oder Webseite Codeausführung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Datei oder Seite über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:L; Microsoft AC:H (Exploit-Zuverlässigkeit)."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Der Nutzer muss die Datei öffnen."
+    },
+    "S": {
+     "why": "Code im Nutzerkontext."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten."
+    },
+    "I": {
+     "why": "Code mit Nutzerrechten."
+    },
+    "A": {
+     "why": "Code mit Nutzerrechten."
+    }
+   },
+   "dissent": {
+    "AC": "CNA (Microsoft): AC:H (7,5). Microsoft vergab damals bei Speicherfehlern häufig AC:H."
+   },
+   "context_de": "KEV, EPSS 0,73: Von APT-Gruppen in Dokument-Ketten genutzt. Microsofts Text sagt fast nichts; 'serialized objects' ist der einzige Hinweis auf die Klasse."
+  },
+  "CVE-2021-21351": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "XStream vor 1.4.16 lässt sich über manipulierte Eingabeströme dazu bringen, Code von einem entfernten Host zu laden und auszuführen, sofern keine Typ-Whitelist konfiguriert ist.",
+   "metrics": {
+    "AV": {
+     "why": "Eingabestrom über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:L; CNA AC:H (Konfiguration und Gadget-Abhängigkeit)."
+    },
+    "PR": {
+     "why": "NVD vergab PR:H, untypisch.",
+     "pitfall": "Vergleiche CVE-2021-39144 (XStream, PR:L) und andere XStream-CVEs mit PR:N. NVD hat die XStream-Serie 2021 mit wechselnden PR-Werten bewertet; die Beschreibungen sind fast identisch."
+    },
+    "UI": {
+     "why": "NVD: UI:N; CNA UI:R."
+    },
+    "S": {
+     "why": "Bibliothek zu Host: S:C."
+    },
+    "C": {
+     "why": "NVD: RCE, alles; CNA C:N."
+    },
+    "I": {
+     "why": "RCE: alles."
+    },
+    "A": {
+     "why": "NVD: alles; CNA A:N."
+    }
+   },
+   "dissent": {
+    "PR": "CNA: AC:H, UI:R, C:N, A:N (6,1?). Vier Metriken Differenz bei einer Bibliotheks-RCE."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,82. Die XStream-Serie 2021 hatte über 20 CVEs mit gleichem Muster; im Scanner ist jede eine Zeile, in der Realität ist es ein Problem: Whitelist konfigurieren."
+  },
+  "CVE-2023-6448": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Unitronics VisiLogic verwendet ein Standard-Administratorpasswort (1111), sodass Angreifer mit Netzzugang Vision- und Samba-PLCs übernehmen.",
+   "metrics": {
+    "AV": {
+     "why": "PLC über das Netz (Port 20256)."
+    },
+    "AC": {
+     "why": "Standardpasswort eingeben."
+    },
+    "PR": {
+     "why": "Standardpasswort ist kein eigenes Recht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U, obwohl eine PLC physische Prozesse steuert.",
+     "pitfall": "Bei ICS könnte man S:C argumentieren (PLC zu physischem Prozess). NVD bleibt bei S:U; die physische Auswirkung ist eine Environmental-Frage."
+    },
+    "C": {
+     "why": "Admin auf der PLC: alles."
+    },
+    "I": {
+     "why": "Steuerlogik änderbar."
+    },
+    "A": {
+     "why": "Prozess abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,02: CyberAv3ngers (Iran) gegen Wasserwerke in den USA, November 2023. EPSS sieht keine Scans, KEV sieht den Vorfall; bei ICS zählt die Auswirkung auf die physische Welt."
+  },
+  "CVE-2021-25369": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Die sec_log-Datei in Samsung-Android ist mit falschen Rechten versehen und gibt Kernel-Informationen an den Userspace preis.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Dateizugriff."
+    },
+    "AC": {
+     "why": "Datei lesen."
+    },
+    "PR": {
+     "why": "NVD: eine App mit normalen Rechten; Samsung PR:N."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Innerhalb des Geräts."
+    },
+    "C": {
+     "why": "Kernel-Informationen (Adressen für KASLR-Bypass): NVD C:H.",
+     "pitfall": "Vergleiche Mali CVE-2023-26083 (Kernel-Metadaten, C:L). Gleiche Art Leak, andere Bewertung. NVD ist bei Kernel-Leaks zwischen L und H nicht konsistent."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,01: Teil einer Samsung-Spyware-Kette. Leak plus Kernel-Bug plus Persistenz: Jedes Glied hat einen eigenen CVE."
+  },
+  "CVE-2019-17558": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der VelocityResponseWriter von Apache Solr rendert Velocity-Templates aus Configsets oder Parametern; wer Configsets hochladen oder die Parameter aktivieren kann, erreicht Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Solr-API über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:H, weil params.resource.loader.enabled erst per Config-API aktiviert werden muss."
+    },
+    "PR": {
+     "why": "NVD: PR:L, obwohl Solr standardmäßig keine Authentifizierung hat.",
+     "pitfall": "Solr ohne Auth ist der Normalfall; PR:L ist dann faktisch PR:N. NVD bewertet die API-Rechte, nicht die typische Deployment-Realität."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Solr-Prozess."
+    },
+    "C": {
+     "why": "RCE: alles."
+    },
+    "I": {
+     "why": "RCE: alles."
+    },
+    "A": {
+     "why": "RCE: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Exploit im Metasploit, Massenscans. Score 7,5 mit AC:H und PR:L, Praxis: unauthentifizierte RCE in zwei Requests."
+  },
+  "CVE-2021-44228": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Log4Shell: Log4j2 löst JNDI-Lookups in Log-Nachrichten auf, sodass jeder, der einen String ins Log bringt, Code von einem LDAP-Server des Angreifers laden lässt.",
+   "metrics": {
+    "AV": {
+     "why": "Jede geloggte Eingabe (User-Agent, Formularfeld) über das Netz."
+    },
+    "AC": {
+     "why": "Ein String wie ${jndi:ldap://...}, Standardkonfiguration verwundbar."
+    },
+    "PR": {
+     "why": "Nur Daten liefern, keine Rechte."
+    },
+    "UI": {
+     "why": "Automatisch beim Loggen."
+    },
+    "S": {
+     "why": "Bibliothek verwundbar, einbettende Anwendung und Host betroffen: S:C (Bibliotheksmuster).",
+     "pitfall": "Log4Shell ist der Referenzfall für S:C bei Bibliotheken: Die Bibliothek hat keine eigene Autorität, sie läuft mit der der Anwendung."
+    },
+    "C": {
+     "why": "RCE: alles."
+    },
+    "I": {
+     "why": "RCE: alles."
+    },
+    "A": {
+     "why": "RCE: alles."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999. Klasse laut NVD CWE-20 (Input Validation), real CWE-917 (Expression Language Injection). Die generische Klasse war eine Verlegenheitslösung."
+  },
+  "CVE-2013-2596": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Integer-Überlauf in fb_mmap des Linux-Kernels erlaubt über mmap2-Aufrufe auf /dev/graphics/fb0 eine schreibbare Abbildung des gesamten Kernelspeichers (Motochopper).",
+   "metrics": {
+    "AV": {
+     "why": "Lokale Systemaufrufe."
+    },
+    "AC": {
+     "why": "Bekannter Exploit, kein Timing."
+    },
+    "PR": {
+     "why": "Nutzer mit Zugriff auf das Framebuffer-Gerät."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Kernel-EoP: S:U."
+    },
+    "C": {
+     "why": "Gesamter Kernelspeicher lesbar."
+    },
+    "I": {
+     "why": "Gesamter Kernelspeicher schreibbar."
+    },
+    "A": {
+     "why": "root: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,03: Android-Rooting-Exploit, von Malware übernommen. Integer-Überlauf bei Größenberechnung (CWE-190) mit der maximal möglichen Folge: Kernel komplett beschreibbar."
+  },
+  "CVE-2014-0160": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Heartbleed: OpenSSL prüft die Länge von Heartbeat-Anfragen nicht, sodass ein Angreifer bis zu 64 KB Prozessspeicher pro Anfrage liest, inklusive privater Schlüssel.",
+   "metrics": {
+    "AV": {
+     "why": "TLS über das Netz."
+    },
+    "AC": {
+     "why": "Ein Paket, wiederholbar."
+    },
+    "PR": {
+     "why": "Vor jeder Authentifizierung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U, Bibliothek und Dienst als eine Komponente.",
+     "pitfall": "Anders als bei Log4Shell vergab NVD hier S:U, obwohl OpenSSL ebenfalls eine Bibliothek ist. Bibliotheks-S:C ist eine Neigung, keine Regel."
+    },
+    "C": {
+     "why": "Private Schlüssel und Session-Daten, wiederholt lesbar: H.",
+     "pitfall": "Der Angreifer wählt nicht, was er liest (64 KB Zufall). Trotzdem H, weil wiederholtes Lesen alles einsammelt. Vergleiche Grafana: ein Objekt, einmal, L."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99999: Der Lehrbuchfall. Score 7,5 für eine Lücke, die private Schlüssel des halben Internets preisgab; Scores haben eine Obergrenze für 'nur Lesen'."
+  },
+  "CVE-2016-0189": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Die JScript- und VBScript-Engines im Internet Explorer erlauben über eine präparierte Webseite Codeausführung oder Absturz.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "NVD: AC:H (Exploit-Zuverlässigkeit).",
+     "pitfall": "Vergleiche CVE-2016-7201 (Edge, gleiche Formulierung, AC:L). Zwei Vektoren, eine Schablone; AC hängt am Analysten."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Die Skript-Engine wird über eine präparierte Website ausgelöst, die das Opfer aufrufen muss: UI:R."
+    },
+    "S": {
+     "why": "Im Browser."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten."
+    },
+    "I": {
+     "why": "Code mit Nutzerrechten."
+    },
+    "A": {
+     "why": "Code oder Absturz."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,94: Zero-Day in Südkorea, danach in allen Exploit-Kits. AC:H hat die Kits nicht gestört."
+  },
+  "CVE-2016-0742": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Der Resolver von nginx dereferenziert bei einer präparierten UDP-DNS-Antwort einen ungültigen Zeiger, was den Worker-Prozess zum Absturz bringt.",
+   "metrics": {
+    "AV": {
+     "why": "DNS-Antwort über das Netz; der Angreifer muss die Antwort einschleusen (Spoofing oder eigener DNS)."
+    },
+    "AC": {
+     "why": "NVD: AC:L, obwohl das Einschleusen einer DNS-Antwort eine Netzposition braucht."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Kein Nutzer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist nginx."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Worker-Absturz: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,82 wegen nginx-Verbreitung. Nur bei konfiguriertem Resolver verwundbar; NULL-Dereferenzierung (CWE-476) ist die DoS-Klasse schlechthin."
+  },
+  "CVE-2024-13159": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Ivanti Endpoint Manager erlaubt über absolute Pfade (Absolute Path Traversal) unauthentifizierten Angreifern das Auslesen sensibler Informationen (real: Erzwingen von NTLM-Authentifizierung zu UNC-Pfaden).",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz."
+    },
+    "AC": {
+     "why": "Präparierter Pfad."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist EPM."
+    },
+    "C": {
+     "why": "NVD: 'sensitive information', beliebige Dateien: H."
+    },
+    "I": {
+     "why": "NVD: nur Lesen; CNA I:H/A:H (Credential-Relay zu RCE)."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung bewertet."
+    }
+   },
+   "dissent": {
+    "I": "CNA (Ivanti): H/H/H (9,8). Real war der Weg: UNC-Pfad, Maschinenkonto-Hash abgreifen, Relay, Domänenübernahme. Der CNA rechnet die Kette ein."
+   },
+   "context_de": "KEV, EPSS 0,9999. Die Beschreibung ('leak sensitive information') verrät nicht, dass es um NTLM-Relay geht; der Exploit-Bericht (Horizon3) tat es. Vier gleichlautende CVEs (13159 bis 13163)."
+  },
+  "CVE-2025-48928": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "TeleMessage hält als JSP-Anwendung den Heap wie einen Core-Dump vor, sodass ein zuvor über HTTP gesendetes Passwort im Speicherabbild enthalten ist.",
+   "metrics": {
+    "AV": {
+     "why": "CNA: AV:L, weil der Heap als lokale Ressource gilt.",
+     "pitfall": "Kombiniert mit CVE-2025-48927 (/heapdump per HTTP) wird daraus AV:N. Der CNA bewertet das Speicher-Design, nicht den Zugriffsweg."
+    },
+    "AC": {
+     "why": "Kein Aufwand."
+    },
+    "PR": {
+     "why": "Der Heap-Dump wird lokal ausgelesen; dafür sind keine besonderen Rechte nötig (CNA und NVD: PR:N)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Anwendung."
+    },
+    "C": {
+     "why": "CNA: C:L, ein Passwort im Speicher.",
+     "pitfall": "Ein Passwort im Klartext ist der Wertfall (H). Der CNA blieb bei L. Beide TeleMessage-CVEs sind niedrig bewertet und beide in KEV."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "C": "Nur CNA-Vektor (4,0). Zwei Design-Fehler (Passwort im Heap, Heap per HTTP) ergeben zusammen Klartext-Passwörter über das Netz."
+   },
+   "context_de": "KEV, EPSS 0,006: Score 4,0, der niedrigste Wert im Korpus mit KEV. Die Kette mit 48927 war der Vorfall; einzeln sind beide Bausteine harmlos bewertet."
+  },
+  "CVE-2002-0367": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Debugging-Subsystem von smss.exe in Windows NT/2000 authentifiziert verbindende Programme nicht, sodass ein lokaler Nutzer per Handle-Duplizierung SYSTEM-Rechte erlangt (DebPloit).",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Zugriff auf das System nötig."
+    },
+    "AC": {
+     "why": "Bekannter Exploit."
+    },
+    "PR": {
+     "why": "Der Angreifer braucht ein lokales Benutzerkonto, um ein Programm am Debugging-Subsystem anzumelden; dass smss.exe verbindende Programme nicht authentifiziert, ersetzt kein Konto: PR:L."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Lokale EoP: S:U."
+    },
+    "C": {
+     "why": "SYSTEM: alles."
+    },
+    "I": {
+     "why": "SYSTEM: alles."
+    },
+    "A": {
+     "why": "SYSTEM: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,05: Die älteste CVE im Korpus (2002), 2022 in KEV aufgenommen, weil NT/2000 in Industrieanlagen noch laufen. Alter schützt nicht vor KEV."
+  },
+  "CVE-2020-6819": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Race Condition im nsDocShell-Destruktor von Firefox führt zu einem Use-After-Free; gezielte Angriffe nutzten die Lücke aus.",
+   "metrics": {
+    "AV": {
+     "why": "Webinhalte über das Netz."
+    },
+    "AC": {
+     "why": "Race Condition: AC:H."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "NVD: UI:N, obwohl ein Seitenbesuch nötig ist.",
+     "pitfall": "Bei Chrome vergibt NVD UI:R, bei Firefox hier UI:N. Gleiche Situation, anderer Vektor."
+    },
+    "S": {
+     "why": "Im Browser."
+    },
+    "C": {
+     "why": "Codeausführung angenommen."
+    },
+    "I": {
+     "why": "Codeausführung."
+    },
+    "A": {
+     "why": "Codeausführung."
+    }
+   },
+   "dissent": {
+    "UI": "Kein CNA-Vektor. UI:R (7,5) wäre konsistent mit Browser-Bugs."
+   },
+   "context_de": "KEV, EPSS 0,03: Zero-Day-Paar mit CVE-2020-6820. Zwei UAFs, ein Angriff; Mozilla vergibt je Bug eine CVE."
+  },
+  "CVE-2024-20481": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:L",
+   "summary_de": "Der Remote-Access-VPN-Dienst von Cisco ASA/FTD erschöpft bei vielen VPN-Authentifizierungsanfragen seine Ressourcen und verweigert den Dienst.",
+   "metrics": {
+    "AV": {
+     "why": "VPN-Anfragen über das Netz."
+    },
+    "AC": {
+     "why": "Viele Anfragen, kein Aufwand."
+    },
+    "PR": {
+     "why": "Der RAVPN-Dienst wird durch Anfragen eines unauthentifizierten Angreifers erschöpft: PR:N."
+    },
+    "UI": {
+     "why": "Kein Nutzer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:C, VPN-Ausfall trifft die Nutzer hinter der Firewall."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Nur der RAVPN-Dienst, nicht das Gerät: A:L.",
+     "pitfall": "Vergleiche CVE-2024-20353 (Reload, A:H). Ein Dienst weg ist L, das Gerät weg ist H."
+    }
+   },
+   "context_de": "KEV, EPSS 0,16: Nebeneffekt von Brute-Force-Kampagnen gegen VPNs. Ein DoS, den niemand beabsichtigte; die Angreifer wollten Passwörter."
+  }
+ }
+}

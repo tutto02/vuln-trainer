@@ -1,0 +1,635 @@
+{
+ "batch": "batch-037",
+ "items": {
+  "CVE-2021-37415": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "ManageEngine ServiceDesk Plus erlaubt über einige REST-API-URLs die Authentifizierungsumgehung.",
+   "metrics": {
+    "AV": {
+     "why": "REST-API über HTTP."
+    },
+    "AC": {
+     "why": "Bestimmte URLs ohne Auth aufrufen."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist ServiceDesk Plus, S:U."
+    },
+    "C": {
+     "why": "API-Zugriff: alle Daten lesbar."
+    },
+    "I": {
+     "why": "API: alles änderbar."
+    },
+    "A": {
+     "why": "API: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,998: ManageEngine ist im Korpus mehrfach vertreten (ADSelfService, ADAudit, Desktop Central, ServiceDesk). Auth-Bypass (CWE-306) über ungeschützte REST-URLs; Helpdesk-Systeme mit AD-Anbindung sind hochwertige Ziele."
+  },
+  "CVE-2019-7192": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "QNAP Photo Station hat eine fehlerhafte Zugriffskontrolle, die unauthentifizierten Zugriff auf das System erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des NAS über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Unauthorized access': keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist das NAS, S:U."
+    },
+    "C": {
+     "why": "Systemzugriff: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Gerät abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,88: Das erste Glied einer QNAP-Kette (mit CVE-2019-7193 Input-Validation, CVE-2019-7194/7195 Traversal). QNAP-NAS sind ein Ransomware-Dauerziel (Qlocker, DeadBolt); die Beschreibung ist minimal ('unauthorized access'), der Vektor folgt dem Auth-Bypass-Standard."
+  },
+  "CVE-2021-35394": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der MP-Daemon ('UDPServer') im Realtek Jungle SDK hat mehrere Speicherkorruptions- und eine Command-Injection-Lücke.",
+   "metrics": {
+    "AV": {
+     "why": "UDP-Dienst über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte UDP-Pakete."
+    },
+    "PR": {
+     "why": "Der UDPServer-Diagnosedienst nimmt Pakete von entfernten, unauthentifizierten Angreifern an: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Gerät, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Gerät abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,999: Wieder das Realtek SDK (wie CVE-2014-8361), diesmal der Diagnose-Daemon. Command Injection (CWE-78) in einer OEM-Komponente, die in Geräten Dutzender Hersteller steckt; ein SDK-Bug mit riesiger Geräte-Reichweite. Botnetze scannen Realtek-basierte Geräte massenhaft."
+  },
+  "CVE-2021-26084": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Confluence Server und Data Center haben eine OGNL-Injection, die unauthentifizierten Angreifern die Ausführung beliebigen Codes erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Wiki über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Die OGNL-Injection ist von einem unauthentifizierten Angreifer ausnutzbar: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Confluence-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: Massenausnutzung binnen Tagen (Kryptominer, Ransomware). OGNL-Injection (CWE-917) wie bei Struts; Confluence wertete einen Parameter als OGNL-Ausdruck aus. Atlassian-Produkte (Confluence, Jira, Crowd, Bitbucket) sind im Korpus ein Dauerthema; die OGNL/SSTI-Klasse zieht sich durch."
+  },
+  "CVE-2020-16952": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Microsoft SharePoint prüft das Quell-Markup eines Anwendungspakets nicht, was Codeausführung im Kontext des SharePoint-Application-Pools erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "NVD: AV:L; der CNA vergab AV:N.",
+     "pitfall": "NVD vergab AV:L/UI:R (7,8), Microsoft AV:N/UI:N. SharePoint-RCEs sind über das Netz erreichbar; Microsofts AV:N ist realistischer. Ein Fall abweichender AV-Bewertung."
+    },
+    "AC": {
+     "why": "Präpariertes Anwendungspaket."
+    },
+    "PR": {
+     "why": "Ein Nutzer mit Seiten-Erstellungsrecht."
+    },
+    "UI": {
+     "why": "NVD setzt UI:R: Ein Nutzer muss das präparierte Anwendungspaket in SharePoint hochladen bzw. öffnen. Der CNA (Microsoft) sah UI:N — ein echter Provenienz-Dissens."
+    },
+    "S": {
+     "why": "Code im SharePoint-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "NVD: A:H; der CNA A:L."
+    }
+   },
+   "dissent": {
+    "AV": "CNA (Microsoft): AV:N, UI:N, C:L, A:L (7,x). Vier Metriken Unterschied; NVD und Microsoft lasen die Erreichbarkeit und Auswirkung verschieden."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,71: Eine SharePoint-Deserialisierung (CWE-346), wie CVE-2019-0604. SharePoint ist ein wiederkehrendes RCE-Ziel; hier ein gutes Beispiel für NVD-gegen-CNA-Abweichung bei AV und UI."
+  },
+  "CVE-2021-27852": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Checkbox Survey deserialisiert in CheckboxWeb.dll unvertraute Daten, was unauthentifizierte Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt."
+    },
+    "PR": {
+     "why": "Die Deserialisierung in CheckboxWeb.dll erfolgt für unauthentifizierte Requests: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,32: .NET-Deserialisierung (CWE-502) über ein ViewState-artiges Feld. .NET-Deserialisierung ist im Korpus ein Dauerthema (ColdFusion, Telerik, DNN, Sitecore, MyLittleAdmin); ein serialisiertes Objekt in einem Formularfeld ist der wiederkehrende Weg."
+  },
+  "CVE-2026-48939": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die iCagenda-Erweiterung für Joomla erlaubt über die Datei-Anhang-Funktion das Hochladen beliebiger Dateien und damit PHP-Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Web-CMS über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,20: Datei-Upload (CWE-434) in einer Joomla-Erweiterung. CMS-Erweiterungen (WordPress-Plugins, Joomla-Extensions) sind im Korpus die größte Einzelkategorie von Upload-Lücken; die Angriffsfläche eines CMS umfasst seine Erweiterungen, nicht nur den Kern."
+  },
+  "CVE-2023-21492": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Samsung-Android druckt Kernel-Zeiger in die Log-Datei, was einem privilegierten lokalen Angreifer die Umgehung von ASLR erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Zugriff nötig."
+    },
+    "AC": {
+     "why": "Log-Datei lesen."
+    },
+    "PR": {
+     "why": "'Privileged local attacker': PR:H."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Innerhalb des Geräts."
+    },
+    "C": {
+     "why": "Kernel-Zeiger (ASLR-Bypass): gezielt, hochwertig, H.",
+     "pitfall": "Ein einzelner Zeigerwert wäre für sich C:L; hier C:H, weil er ASLR bricht und den Weg für den Kernel-Exploit öffnet. Der Wert liegt in der Ketten-Rolle."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,03: In einer Spyware-Kette gegen Samsung-Geräte. Ein Info-Leck (CWE-532) über die Log-Datei; Kernel-Zeiger im Log durchbrechen ASLR. Wie bei Windows-GDI-Lecks ist das Aufklärungsglied, das den eigentlichen Kernel-Exploit ermöglicht."
+  },
+  "CVE-2022-27924": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+   "summary_de": "Zimbra Collaboration erlaubt einem unauthentifizierten Angreifer die Injektion beliebiger Memcache-Kommandos, die unescaped verarbeitet werden und Cache-Einträge überschreiben.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage mit CRLF-Sequenzen."
+    },
+    "PR": {
+     "why": "Die memcache-Befehle werden von einem unauthentifizierten Angreifer eingeschleust: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Zimbra."
+    },
+    "C": {
+     "why": "NVD: C:N (die Injection selbst liest nicht)."
+    },
+    "I": {
+     "why": "Cache-Einträge überschreiben: I:H.",
+     "pitfall": "Real diente das Überschreiben dem Diebstahl von Klartext-Zugangsdaten (durch Vergiften des Auth-Cache). Der Vektor bewertet nur die Primitive (Überschreiben), nicht den Credential-Diebstahl."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,85: Memcache-Injection (CWE-74) über CRLF; das Vergiften des Auth-Cache ermöglichte den Diebstahl von Klartext-Zugangsdaten. Zimbra ist im Korpus das meistangegriffene Mailsystem; die Klasse (CRLF-Injection in ein Backend-Protokoll) ist ungewöhnlich und lehrreich."
+  },
+  "CVE-2019-7193": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "QNAP QTS validiert Eingaben unzureichend, was unauthentifizierten Angreifern die Injektion beliebigen Codes erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des NAS über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf dem NAS, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Gerät abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,14: Zweites Glied der QNAP-Kette (mit CVE-2019-7192 Zugriffskontrolle). QNAP-NAS sind ein Ransomware-Dauerziel; die Beschreibung ist minimal (CWE-20), der reale Angriff kombinierte mehrere Lücken zu unauthentifizierter RCE."
+  },
+  "CVE-2020-13579": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Integer-Overflow beim Parsen von PlanMaker-Dokumenten in SoftMaker Office 2021 führt zu einer zu kleinen Heap-Allokation und Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Dokument über Web oder Mail; lokal geöffnet: AV:L."
+    },
+    "AC": {
+     "why": "Präpariertes Dokument."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss das Dokument öffnen."
+    },
+    "S": {
+     "why": "Code im Office-Prozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,71: Ein Dokument-Parser-Integer-Overflow (CWE-190), der eine zu kleine Allokation und damit einen Heap-Overflow verursacht. Das Muster (Integer-Overflow bei Größenberechnung, dann Heap-Overflow) ist im Korpus häufig; Office-Alternativen sind ebenso angreifbar wie Microsoft Office."
+  },
+  "CVE-2013-0640": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Adobe Reader/Acrobat erlaubt über ein präpariertes PDF Codeausführung (Speicherkorruption).",
+   "metrics": {
+    "AV": {
+     "why": "PDF über Web oder Mail."
+    },
+    "AC": {
+     "why": "Präpariertes PDF."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss das PDF öffnen."
+    },
+    "S": {
+     "why": "Code im Reader-Prozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,87: Von der Gruppe ItaDuke (mit einem Sandbox-Escape) gegen Regierungsstellen genutzt, einer der ersten Reader-Sandbox-Escapes. Speicherkorruption (CWE-787); die Adobe-PDF-Serie im Korpus dokumentiert ein Jahrzehnt Reader-Exploits."
+  },
+  "CVE-2024-32113": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Apache OFBiz hat ein Path Traversal, das zu unauthentifizierter Codeausführung führt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im OFBiz-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "NVD: A:H; der CNA A:N."
+    }
+   },
+   "dissent": {
+    "A": "CNA (Apache): A:N (9,1). NVD 9,8. Ermessen bei der Verfügbarkeitsbewertung."
+   },
+   "context_de": "KEV, EPSS 0,99: OFBiz ist im Korpus ein Dauerthema (CVE-2020-9496, CVE-2023-49070, CVE-2024-38856, CVE-2023-51467). Path Traversal (CWE-22) zu RCE; OFBiz hatte 2023/2024 eine Serie von Lücken, jede oft die Umgehung des vorigen Fixes. Ein Produkt mit systematischen Problemen."
+  },
+  "CVE-2021-35064": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "KramerAV VIAWare erlaubt Rechteausweitung durch eine Fehlkonfiguration von sudo, die gefährliche Befehle (unzip, systemctl, dpkg) erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP (dann sudo-Missbrauch)."
+    },
+    "AC": {
+     "why": "sudo-Regeln ausnutzen."
+    },
+    "PR": {
+     "why": "NVD: PR:N (in Kette mit einem Web-Zugang)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Rechteausweitung zu root, S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: System abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,71: sudo-Fehlkonfiguration (CWE-269), wie EyesOfNetwork CVE-2020-8655. Erlaubte sudo-Befehle wie dpkg, unzip oder systemctl sind ein Rechteausweitungs-Klassiker: Sie können beliebige Dateien schreiben oder Dienste starten. Presentation-Gateways in Konferenzräumen sind selten inventarisiert."
+  },
+  "CVE-2026-28318": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "SolarWinds Serv-U stürzt über präparierte POST-Anfragen mit Content-Encoding: deflate ohne Authentifizierung ab.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte deflate-POST-Anfrage."
+    },
+    "PR": {
+     "why": "Der präparierte POST mit Content-Encoding: deflate bringt Serv-U ohne Authentifizierung zum Absturz: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Serv-U."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Serv-U-Absturz: A:H."
+    }
+   },
+   "context_de": "KEV, EPSS 0,40, nur CNA-Vektor: Serv-U ist im Korpus mehrfach vertreten (CVE-2021-35211, CVE-2024-28995, CVE-2025-40536). Ein DoS (CWE-400) über eine präparierte Kompression; SolarWinds-Produkte stehen seit SUNBURST unter Dauerbeobachtung. Ein reiner DoS, dessen Wert in der Störung eines Dateitransfer-Servers liegt."
+  },
+  "CVE-2026-9082": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Drupal-Kern hat eine SQL-Injection.",
+   "metrics": {
+    "AV": {
+     "why": "Web-CMS über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank und Anwendung im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "SQLi: alle Daten lesbar."
+    },
+    "I": {
+     "why": "SQLi: alles änderbar."
+    },
+    "A": {
+     "why": "SQLi: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,88, nur CNA-Vektor: Eine SQL-Injection (CWE-89) im Drupal-Kern, wie Drupageddon (CVE-2014-3704). Drupal-Kern-Lücken treffen Millionen Sites; SQLi im Kern ist besonders schwerwiegend, weil sie jede Installation betrifft, nicht nur bestimmte Module. Ein Kern-Bug wie bei Struts und WordPress."
+  },
+  "CVE-2022-26135": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Das Mobile-Plugin für Jira erlaubt einem authentifizierten Nutzer (auch über die Selbstregistrierung) eine vollständige lesende Server-Side Request Forgery über einen Batch-Endpunkt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Batch-Anfrage."
+    },
+    "PR": {
+     "why": "Ein Konto (auch selbstregistriert): PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Jira."
+    },
+    "C": {
+     "why": "Vollständig lesende SSRF (interne Ressourcen, Cloud-Metadaten): gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,71: Eine 'full read' SSRF (CWE-918) ist wertvoller als eine blinde, weil der Angreifer die Antworten sieht. Bei aktivierter Selbstregistrierung ist PR:L faktisch PR:N. Atlassian-Produkte sind im Korpus ein Dauerthema."
+  },
+  "CVE-2023-3079": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion in V8 erlaubt über eine präparierte Seite Heap-Korruption in Chrome.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Renderer-Prozess."
+    },
+    "C": {
+     "why": "Codeausführung im Renderer: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,32: Zero-Day. Ein weiteres V8-Type-Confusion (CWE-843). Die Chrome-V8-Reihe im Korpus ist die dichteste Fallsammlung für eine einzelne Klasse; ideal, um CWE-843 im Klassen-Quiz sicher zu erkennen."
+  },
+  "CVE-2022-22620": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Use-After-Free in WebKit erlaubt über präparierte Webinhalte Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Browserprozess."
+    },
+    "C": {
+     "why": "Codeausführung mit Browserrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,16: Zero-Day gegen iOS. WebKit-Use-After-Free (CWE-416), eine Wiederbelebung einer 2013 gepatchten Lücke (ein 'Zombie'-Bug). Die Apple-WebKit-Serie im Korpus spiegelt Chrome-V8; Type Confusion und Use-After-Free sind die zwei häufigsten Browser-RCE-Klassen."
+  },
+  "CVE-2020-8143": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Revive Adserver hat einen Open Redirect, über den ein Angreifer angemeldete Nutzer auf ein beliebiges Ziel umleiten kann.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierter Link über das Netz."
+    },
+    "AC": {
+     "why": "Ein präparierter Link genügt."
+    },
+    "PR": {
+     "why": "Der Angreifer selbst braucht kein Konto; er verleitet angemeldete Opfer zum Klick auf den präparierten Link: PR:N.",
+     "pitfall": "„Logged-in users“ sind die Opfer, nicht der Angreifer — PR bewertet den Angreifer."
+    },
+    "UI": {
+     "why": "Das Opfer muss dem Link folgen."
+    },
+    "S": {
+     "why": "XSS-/Redirect-Standardvektor: S:C."
+    },
+    "C": {
+     "why": "Umleitung, Phishing-Risiko: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Beeinflussung: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,70: Open Redirect (CWE-601) in einem Werbeserver. Werbeserver sind ein besonders wertvolles Open-Redirect-Ziel, weil sie per Design Nutzer weiterleiten und Vertrauen genießen; ein Redirect dort ist Phishing mit legitimer Domain."
+  }
+ }
+}

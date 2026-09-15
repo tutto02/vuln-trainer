@@ -1,0 +1,645 @@
+{
+ "batch": "batch-026",
+ "items": {
+  "CVE-2013-2551": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Use-After-Free im Internet Explorer erlaubt über eine präparierte Website Codeausführung (Pwn2Own 2013).",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Code im Browserprozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,74: Von VUPEN bei Pwn2Own 2013 demonstriert. Use-After-Free (CWE-416); IE-UAFs waren jahrelang die verlässlichste Browser-Exploit-Quelle. VUPEN verkaufte solche Exploits an Regierungen."
+  },
+  "CVE-2023-2442": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "GitLab erlaubt gespeichertes XSS über einen präparierten Merge Request, das Aktionen im Namen des Opfers ermöglicht.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Merge Request."
+    },
+    "PR": {
+     "why": "Ein Konto: PR:L."
+    },
+    "UI": {
+     "why": "Ein anderer Nutzer muss den Merge Request ansehen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Browserkontext des Opfers: C:L; der CNA vergab C:H."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L; der CNA I:H."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "C": "CNA (GitLab): C:H, I:H (8,7). Der wiederkehrende GitLab-XSS-Streit über C und I."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,96. Wieder gespeichertes XSS in GitLab; das Muster ist im Korpus so oft vertreten, dass es dein XSS-Scope-Training festigt: bei XSS immer S:C, und NVD vergibt C:L/I:L, der Hersteller oft C:H/I:H."
+  },
+  "CVE-2020-14179": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Der /secure/QueryComponent!Default.jspa-Endpunkt in Atlassian Jira erlaubt unauthentifizierten Angreifern das Auslesen von Custom-Field- und SLA-Namen.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Eine URL aufrufen."
+    },
+    "PR": {
+     "why": "Der Endpunkt QueryComponent!Default.jspa antwortet unauthentifizierten Angreifern: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Jira."
+    },
+    "C": {
+     "why": "Nur Feld- und SLA-Namen: begrenzter Umfang, C:L."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,76: Der vierte Jira-Info-Leak im Korpus (mit CVE-2019-8449, CVE-2020-36289, CVE-2020-14181). Atlassian-Endpunkte, die interne Namen preisgeben; Aufklärung für gezielte Angriffe, allein ein Medium."
+  },
+  "CVE-2015-1187": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Ping-Tool auf mehreren D-Link- und TRENDnet-Geräten erlaubt über den ping_addr-Parameter an ping.ccp die Ausführung beliebigen Codes.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des Geräts über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Parameter."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Gerät."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Gerät abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,83: Der Ping-Diagnose-Parameter als Command Injection, wieder (wie CVE-2018-10562, CVE-2017-18368). Router-Botnetze leben von genau diesem Muster; die Klasse ist bei NVD CWE-287, real Command Injection."
+  },
+  "CVE-2021-40655": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Der D-Link DIR-605 gibt über eine gefälschte POST-Anfrage an /getcfg.php Benutzername und Passwort preis.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des Routers über HTTP."
+    },
+    "AC": {
+     "why": "Eine POST-Anfrage."
+    },
+    "PR": {
+     "why": "Ein gefälschter POST auf getcfg.php liefert Nutzername und Passwort ohne vorherige Anmeldung: PR:N.",
+     "pitfall": "Die Zugangsdaten sind die Beute, nicht die Eintrittskarte."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Router."
+    },
+    "C": {
+     "why": "Benutzername und Passwort: gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,87: getcfg.php gibt die Zugangsdaten im Klartext preis (CWE-863). Ein 7,5-Info-Leck, das faktisch die Admin-Übernahme erlaubt; bei Consumer-Routern ist das der direkte Weg."
+  },
+  "CVE-2019-15107": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der old-Parameter in password_change.cgi von Webmin enthält eine Command Injection (eine über eine kompromittierte Build-Infrastruktur eingeschleuste Hintertür).",
+   "metrics": {
+    "AV": {
+     "why": "Webmin-Interface über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Parameter."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig (Passwortänderungsseite)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle als root im Webmin-Prozess, S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,998: Webmin läuft als root und verwaltet Unix-Server. Die Command Injection (CWE-78) war eine bewusst eingeschleuste Hintertür, die über kompromittierten Quellcode in die offiziellen Builds gelangte: ein früher Supply-Chain-Fall."
+  },
+  "CVE-2023-26477": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "XWiki erlaubt über den newThemeName-URL-Parameter die Injektion von Groovy-, Python- und Velocity-Makros (unauthentifiziert).",
+   "metrics": {
+    "AV": {
+     "why": "Wiki-Weboberfläche über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter URL-Parameter."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im XWiki-Prozess.",
+     "pitfall": "Der CNA vergab S:C. Neunte XWiki-Makro-RCE; hier sogar unauthentifiziert."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (XWiki): S:C (10,0). Neunte XWiki-Makro-RCE im Korpus, diesmal PR:N."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,75. XWiki-Makro-RCE Nummer neun, unauthentifiziert. Ein Produkt mit neun gleichartigen CVEs im Korpus; die Konsequenz ist nicht Patchen einzelner CVEs, sondern die grundsätzliche Frage, ob XWiki ins Internet gehört."
+  },
+  "CVE-2018-1000861": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Stapler-Web-Framework von Jenkins erlaubt über präparierte URLs den Aufruf beliebiger Java-Methoden, was zu unauthentifizierter Remote Code Execution führt.",
+   "metrics": {
+    "AV": {
+     "why": "Jenkins-Weboberfläche über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf dem Jenkins-Master, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Credentials und Builds."
+    },
+    "I": {
+     "why": "RCE: alles änderbar (Supply Chain)."
+    },
+    "A": {
+     "why": "RCE: Master abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,98: Das Stapler-Routing erlaubte über URL-Pfade den Aufruf beliebiger Getter/Methoden (CWE-502-nah). In Kette mit einem Groovy-Sandbox-Bypass zu voller RCE; CI-Master sind Supply-Chain-Kronjuwelen."
+  },
+  "CVE-2021-21344": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "XStream vor 1.4.16 erlaubt über einen manipulierten Eingabestrom das Laden und Ausführen von Code von einem entfernten Host.",
+   "metrics": {
+    "AV": {
+     "why": "Eingabestrom über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:L; der CNA vergab AC:H."
+    },
+    "PR": {
+     "why": "Der Angreifer manipuliert nur den verarbeiteten XML-Eingabestrom; XStream selbst verlangt keine Anmeldung: PR:N.",
+     "pitfall": "Die XStream-Serie 2021 (CVE-2021-21341 bis 21351) hat fast identische Beschreibungen mit wechselnden Vektoren. Hier NVD PR:N/S:U (9,8), CNA C:N/I:H/UI:R (7,x)."
+    },
+    "UI": {
+     "why": "NVD: UI:N; der CNA UI:R."
+    },
+    "S": {
+     "why": "NVD: S:U; der CNA teils S:C."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "UI": "CNA (XStream): AC:H, UI:R, C:N (5,x). Die dritte XStream-CVE im Korpus mit stark abweichenden NVD/CNA-Vektoren; die Serie ist ein Lehrstück in Vektor-Inkonsistenz."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,76. Ein weiteres Mitglied der XStream-2021-Serie; im Scanner zwanzig Zeilen, in der Realität eine Maßnahme (Whitelist). Für dein Training: Provenienz UND Konsistenz beide prüfen."
+  },
+  "CVE-2022-1162": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "GitLab setzte für über einen OmniAuth-Provider (OAuth, LDAP, SAML) registrierte Konten ein fest kodiertes Passwort, was Kontoübernahme erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "GitLab-Login über HTTP."
+    },
+    "AC": {
+     "why": "Das bekannte fest kodierte Passwort verwenden."
+    },
+    "PR": {
+     "why": "Fest kodiertes Passwort ist kein eigenes Recht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist GitLab, S:U."
+    },
+    "C": {
+     "why": "Kontoübernahme: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "NVD: A:H; der CNA A:N."
+    }
+   },
+   "dissent": {
+    "A": "CNA (GitLab): A:N (9,1). Kontoübernahme trifft primär C und I; ob A:H, ist Ermessen."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,76: Ein fest kodiertes Passwort (CWE-798) für SSO-registrierte Konten; wer sich per OAuth anmeldete, hatte alle dasselbe Passwort. Ein Programmierfehler, der jede SSO-Anmeldung kompromittierte."
+  },
+  "CVE-2025-68686": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "FortiOS gibt sensible Informationen an einen unautorisierten Akteur preis, der damit einen entwickelten Patch umgehen kann.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz."
+    },
+    "AC": {
+     "why": "CNA: AC:H (die Umgehung braucht bestimmte Bedingungen)."
+    },
+    "PR": {
+     "why": "Ein entfernter, unauthentifizierter Angreifer umgeht die Prüfung und liest Informationen; kein FortiOS-Konto nötig: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist FortiOS."
+    },
+    "C": {
+     "why": "Sensible Informationen: gezielt, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,30, nur CNA-Vektor. Ein Patch-Bypass (CWE-200): Der Fix für eine frühere Lücke ließ sich umgehen. Fortinet hat mehrere solcher Fälle; wie bei OFBiz und Craft sind unvollständige Fixes ein eigenes Risiko."
+  },
+  "CVE-2023-29524": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "XWiki erlaubt jedem Nutzer über die Scheduler-Application-Sheet-Seite die Ausführung von Code, indem er sein Profil mit einem präparierten Objekt bearbeitet.",
+   "metrics": {
+    "AV": {
+     "why": "Wiki-Weboberfläche über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes Profilobjekt."
+    },
+    "PR": {
+     "why": "Ein Nutzer ohne Skriptrechte: PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im XWiki-Prozess.",
+     "pitfall": "Der CNA vergab S:C. Zehnte XWiki-Makro-RCE im Korpus."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (XWiki): S:C (8,8). Zehnte XWiki-Makro-RCE."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,76. XWiki-Makro-RCE Nummer zehn. Zehn Varianten desselben Grundfehlers (ungeprüfte Makro-Ausführung, CWE-74) im Korpus; ein extremes Beispiel für eine produktweite Schwachstellenklasse."
+  },
+  "CVE-2017-0148": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "EternalBlue: Der SMBv1-Server in Windows verarbeitet präparierte Pakete fehlerhaft, was wurmfähige Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "SMB (Port 445) über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:H (die ursprüngliche Ausnutzung war nicht trivial); in der Praxis lieferte der EternalBlue-Exploit hohe Zuverlässigkeit.",
+     "pitfall": "AC:H bei einer wurmfähigen Lücke, die WannaCry und NotPetya trug: Der Vektor unterschätzt die reale Ausnutzbarkeit, weil AC die Technik bewertet, nicht die verfügbaren Exploits."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "SMB läuft im Kernel; NVD blieb hier bei S:U (anders als SMBGhost CVE-2020-0796 mit S:C)."
+    },
+    "C": {
+     "why": "Kernel-RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Kernel-RCE: alles änderbar."
+    },
+    "A": {
+     "why": "Kernel-RCE: System abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99: Teil des EternalBlue-Bündels (mit CVE-2017-0143 bis 0148), das WannaCry und NotPetya trug. Score 8,1 mit AC:H für eine der folgenreichsten Lücken der Geschichte: der klarste Fall, dass CVSS reale Auswirkung nicht abbildet. EPSS und KEV tun es."
+  },
+  "CVE-2018-0798": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Der Equation Editor in Microsoft Office hat eine Speicherkorruption, die über ein präpariertes Dokument Codeausführung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Dokument per Mail oder Web."
+    },
+    "AC": {
+     "why": "Präpariertes Dokument."
+    },
+    "PR": {
+     "why": "Der Absender braucht keine Rechte."
+    },
+    "UI": {
+     "why": "Das Opfer muss das Dokument öffnen."
+    },
+    "S": {
+     "why": "Code im Office-Prozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,95: Der Equation Editor (eine uralte, nicht mehr kompilierte Komponente) war jahrelang der beliebteste Office-Exploit-Vektor (mit CVE-2017-11882). Ein Out-of-Bounds-Write (CWE-787); Microsoft entfernte die Komponente schließlich ganz."
+  },
+  "CVE-2024-57727": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "SimpleHelp Remote-Support-Software ist über mehrere Path-Traversal-Lücken anfällig, die unauthentifizierten Angreifern das Herunterladen beliebiger Dateien (Konfiguration mit Secrets und Hashes) erlauben.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL."
+    },
+    "PR": {
+     "why": "Die Path-Traversals erlauben unauthentifizierten Angreifern den Download von Konfigurationsdateien: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist SimpleHelp."
+    },
+    "C": {
+     "why": "Konfigurationsdateien mit Secrets und Hashes: gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "NVD: nur Lesen; der CNA vergab I:H."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung bewertet."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,95: SimpleHelp ist ein RMM-Tool (wie ScreenConnect); ein Path Traversal (CWE-22), das die Server-Secrets liefert, ist der Einstieg zur Übernahme aller verwalteten Endpunkte. Die erbeuteten Hashes öffnen die nächste Tür."
+  },
+  "CVE-2020-13927": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Experimental API von Apache Airflow erlaubte in der Standardkonfiguration alle Anfragen ohne Authentifizierung.",
+   "metrics": {
+    "AV": {
+     "why": "Airflow-API über HTTP."
+    },
+    "AC": {
+     "why": "Eine API-Anfrage."
+    },
+    "PR": {
+     "why": "Standardmäßig keine Authentifizierung: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Airflow, S:U."
+    },
+    "C": {
+     "why": "API-Zugriff plus Task-Ausführung: alle Daten lesbar."
+    },
+    "I": {
+     "why": "DAGs auslösen: alles änderbar."
+    },
+    "A": {
+     "why": "Tasks manipulieren: Dienst störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,998: Eine unsichere Standardkonfiguration (CWE-1188): Die API erlaubte per Default alle Anfragen. Airflow orchestriert Datenpipelines mit Zugriff auf viele Systeme; die Konfiguration ab Werk war das Problem, nicht ein Code-Bug."
+  },
+  "CVE-2025-41244": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "VMware Aria Operations und VMware Tools haben eine lokale Rechteausweitung, über die ein nicht-administrativer Nutzer auf einer verwalteten VM root-Rechte erlangt.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Zugriff auf die VM nötig."
+    },
+    "AC": {
+     "why": "Kein besonderer Aufwand."
+    },
+    "PR": {
+     "why": "Ein nicht-administrativer lokaler Nutzer: PR:L."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Rechteausweitung auf root, S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,08, nur CNA-Vektor: Von einer China-nahen Gruppe (UNC5174) ausgenutzt. Rechteausweitung (CWE-267) über SDMP in VMware Tools; ein lokaler EoP als zweites Glied nach dem Ersteinbruch in die VM."
+  },
+  "CVE-2022-44267": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+   "summary_de": "ImageMagick lässt den convert-Prozess beim Parsen eines präparierten PNG auf stdin-Eingabe warten (Denial of Service).",
+   "metrics": {
+    "AV": {
+     "why": "Das PNG wird über einen Webdienst hochgeladen und verarbeitet."
+    },
+    "AC": {
+     "why": "Präpariertes PNG mit einem Datei-Referenz-Trick."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Ein Prozess oder Nutzer muss das Bild verarbeiten."
+    },
+    "S": {
+     "why": "Betroffen ist der ImageMagick-Prozess."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Der Prozess hängt (wartet auf stdin): A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,77: Schwester von CVE-2022-44268 (Info-Leak), gleicher PNG-Parser-Trick, andere Auswirkung (DoS statt Leak). Ein Bild, das den Konvertierungsprozess blockiert (CWE-404); Bildverarbeitung auf Servern ist eine unterschätzte DoS-Fläche."
+  },
+  "CVE-2021-20016": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die SonicWall SSLVPN SMA100 hat eine unauthentifizierte SQL-Injection, über die sich Benutzername, Passwort und Session-Informationen auslesen lassen.",
+   "metrics": {
+    "AV": {
+     "why": "SSLVPN-Interface über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank gehört zur Appliance, S:U."
+    },
+    "C": {
+     "why": "Zugangsdaten und Sessions: gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "SQLi kann auch schreiben: I:H."
+    },
+    "A": {
+     "why": "Verfügbarkeit: NVD: A:H."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,40: Von einer Gruppe als Zero-Day gegen SonicWall selbst und Kunden genutzt. SMA100 taucht mehrfach im Korpus auf (CVE-2019-7481, CVE-2021-20028); SQLi (CWE-89) in VPN-Appliances gibt Session-Zugang und damit Netzzugang."
+  },
+  "CVE-2016-3718": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N",
+   "summary_de": "Die HTTP- und FTP-Coder in ImageMagick erlauben über ein präpariertes Bild Server-Side Request Forgery.",
+   "metrics": {
+    "AV": {
+     "why": "Das Bild wird lokal verarbeitet (Upload-Konvertierung): AV:L."
+    },
+    "AC": {
+     "why": "Präpariertes Bild mit http:/ftp:-Pseudo-Protokoll."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Ein Prozess oder Nutzer muss das Bild verarbeiten."
+    },
+    "S": {
+     "why": "Betroffen ist der ImageMagick-Prozess."
+    },
+    "C": {
+     "why": "NVD: C:N (SSRF, kein direktes Lesen bewertet)."
+    },
+    "I": {
+     "why": "Anfragen an interne Systeme: I:H nach NVD."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,77: Teil von ImageTragick (mit CVE-2016-3714 RCE, CVE-2016-3715 Datei-Löschen). ImageMagicks Delegates verarbeiten Pseudo-Protokolle aus Bilddaten (CWE-918); ein Bild, das den Server Anfragen stellen lässt. Die ganze ImageTragick-Familie im Korpus zeigt eine Bibliothek mit systematischem Delegate-Problem."
+  }
+ }
+}

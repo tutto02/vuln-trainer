@@ -1,0 +1,626 @@
+{
+ "batch": "batch-003",
+ "items": {
+  "CVE-2018-15473": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "OpenSSH bis 7.7 bricht bei ungültigem Benutzernamen an anderer Stelle ab als bei gültigem, sodass ein Angreifer über das Antwortverhalten gültige Benutzernamen erraten kann.",
+   "metrics": {
+    "AV": {
+     "why": "SSH über das Netz."
+    },
+    "AC": {
+     "why": "Ein fehlerhaft formatiertes Authentifizierungspaket reicht."
+    },
+    "PR": {
+     "why": "Vor der Anmeldung, also ohne Konto."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der SSH-Dienst selbst."
+    },
+    "C": {
+     "why": "Preisgegeben wird nur, ob ein Benutzername existiert: ein Bit Information pro Anfrage, ohne Zugriff auf Daten. Klassisches C:L.",
+     "pitfall": "Lehrbuch-C:L: begrenzter Umfang, kein direkter Zugriff. Dass die Information Brute-Force erleichtert, ist Folgeschaden und macht daraus kein H."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "C": "Ein Sekundärvektor (Distributor/ADP) vergab AC:H und C:H. C:H für eine Benutzernamen-Aufzählung passt nicht zur Spezifikation."
+   },
+   "context_de": "Nicht in KEV, aber EPSS 0,99: Jeder Scanner probiert das. Hohe Wahrscheinlichkeit, minimale Auswirkung; ein Beispiel dafür, dass EPSS Ausnutzungswahrscheinlichkeit misst, nicht Schaden."
+  },
+  "CVE-2023-26083": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Ein Speicherleck im Mali-GPU-Kerneltreiber gibt einem unprivilegierten Nutzer über gültige GPU-Operationen sensible Kernel-Metadaten preis.",
+   "metrics": {
+    "AV": {
+     "why": "Lokale GPU-Aufrufe, kein Netz."
+    },
+    "AC": {
+     "why": "Gültige GPU-Operationen, keine Race-Bedingung."
+    },
+    "PR": {
+     "why": "Ein unprivilegierter Prozess mit GPU-Zugriff reicht."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Alles innerhalb desselben Geräts."
+    },
+    "C": {
+     "why": "Nur Kernel-Metadaten (z. B. Adressen), kein Zugriff auf Nutzerdaten. Umfang und Kontrolle begrenzt.",
+     "pitfall": "Kernel-Adressen sind für sich wertlos, aber der Schlüssel zum Umgehen von KASLR im nächsten Schritt. Trotzdem C:L, denn bewertet wird diese Lücke allein."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Ein Speicherleck allein wird hier nicht als DoS bewertet."
+    }
+   },
+   "context_de": "Score 3,3 und KEV: In Samsung-Browser-Exploit-Ketten diente die Lücke dem KASLR-Bypass. Einzelbewertung und Kettenrelevanz klaffen hier maximal auseinander."
+  },
+  "CVE-2020-3153": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:N/I:H/A:N",
+   "summary_de": "Der Installer von Cisco AnyConnect für Windows kopiert vom Nutzer gelieferte Dateien mit SYSTEM-Rechten in Systemverzeichnisse, was DLL-Hijacking und damit Rechteausweitung ermöglicht.",
+   "metrics": {
+    "AV": {
+     "why": "Ein lokal angemeldeter Nutzer nutzt den Installer."
+    },
+    "AC": {
+     "why": "Datei anlegen und Kopiervorgang auslösen, keine Race nötig."
+    },
+    "PR": {
+     "why": "Ein normales lokales Konto reicht."
+    },
+    "UI": {
+     "why": "Keine Mitwirkung anderer nötig."
+    },
+    "S": {
+     "why": "NVD: Verwundbar ist die Nutzer-seitige Installer-Komponente, betroffen sind Systemverzeichnisse unter SYSTEM-Rechten, also eine höhere Autoritätsdomäne.",
+     "pitfall": "Lokale Rechteausweitungen bewertet NVD meist mit S:U (7,8). Hier S:C, weil der SYSTEM-Dienst als getrennte Komponente gesehen wurde. Beides ist in der NVD zu finden; erwarte keine Konsistenz."
+    },
+    "C": {
+     "why": "Bewertet wird nur das Kopieren, kein Lesen."
+    },
+    "I": {
+     "why": "Schreiben in Systemverzeichnisse mit SYSTEM-Rechten ist voller Integritätsverlust."
+    },
+    "A": {
+     "why": "Nicht bewertet, obwohl überschriebene Systemdateien das System stören könnten."
+    }
+   },
+   "dissent": {
+    "C": "NVD bewertet die Primitive (Datei kopieren), nicht die Folge (DLL-Hijacking, Code als SYSTEM). Als Kette wäre es C:H/I:H/A:H, 7,8 oder 8,8."
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,28: Klassische Post-Exploitation-Rechteausweitung nach Phishing. Die Wahrscheinlichkeit ist hoch, sobald ein Angreifer als Nutzer auf dem Client ist."
+  },
+  "CVE-2025-25181": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Advantive VeraCore hat in timeoutWarning.asp eine SQL-Injection über den Parameter PmSess1, mit der Angreifer ohne Anmeldung beliebige SQL-Befehle ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung, HTTP-Parameter."
+    },
+    "AC": {
+     "why": "Präparierter Parameter reicht."
+    },
+    "PR": {
+     "why": "Die Seite ist vor der Anmeldung erreichbar (Session-Timeout-Warnung)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Anwendung samt ihrer Datenbank.",
+     "pitfall": "Die Datenbank ist Teil der Anwendung, kein zweiter Scope. Der CNA vergab S:C, das ist ein häufiger Fehler bei SQLi."
+    },
+    "C": {
+     "why": "NVD: Beliebige SQL-Befehle lesen die ganze Datenbank."
+    },
+    "I": {
+     "why": "NVD vergab I:N, obwohl SQLi meist auch Schreiben erlaubt; bewertet wurde nur das belegte Auslesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung bewertet."
+    }
+   },
+   "dissent": {
+    "S": "CNA: S:C, C:L (5,8). Beide Seiten haben Schwächen: Der CNA setzt S:C falsch, NVD lässt I:N trotz 'arbitrary SQL commands'."
+   },
+   "context_de": "KEV, EPSS 0,57: Zusammen mit dem Upload CVE-2024-57968 von einer chinesischen Gruppe als Kette gegen Lieferketten-Software genutzt. Score 7,5 unterschätzt die Kettenwirkung."
+  },
+  "CVE-2021-22175": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "GitLab erlaubt über Webhooks Server-Side Request Forgery ins interne Netz, für unauthentifizierte Angreifer sogar bei deaktivierter Registrierung, wenn interne Webhook-Ziele erlaubt sind.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung übers Netz."
+    },
+    "AC": {
+     "why": "NVD: keine Sonderbedingung; der CNA sah AC:H wegen der Konfiguration 'interne Webhooks erlaubt'."
+    },
+    "PR": {
+     "why": "Die Beschreibung sagt ausdrücklich unauthenticated, selbst ohne Registrierung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U, obwohl die Anfragen andere interne Systeme treffen.",
+     "pitfall": "SSRF ist der Musterfall für S:C: Verwundbar ist GitLab, betroffen sind interne Dienste. Der CNA vergab folgerichtig S:C; NVDs S:U ist hier die schwächere Wahl."
+    },
+    "C": {
+     "why": "NVD: Zugriff auf interne Dienste (Metadaten-Endpunkte, Admin-APIs) wertet NVD als Vollzugriff."
+    },
+    "I": {
+     "why": "NVD: Anfragen an interne Dienste können Zustände ändern."
+    },
+    "A": {
+     "why": "NVD: A:H; der CNA sah keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "S": "CNA (GitLab): AC:H, S:C, C:H, I:N, A:N (6,8). Für SSRF ist der CNA-Vektor spezifikationsnäher. NVDs 9,8 nimmt die volle Kette (SSRF zu interner RCE) vorweg."
+   },
+   "context_de": "KEV, EPSS 0,53. SSRF ist nur so gefährlich wie das interne Netz dahinter: Cloud-Metadaten-Endpunkte machen daraus Credential-Diebstahl. Segmentierung senkt hier die Auswirkung."
+  },
+  "CVE-2024-7971": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion in Chromes JavaScript-Engine V8 erlaubt Heap-Korruption über eine präparierte HTML-Seite.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht, der Exploit lief in freier Wildbahn."
+    },
+    "PR": {
+     "why": "Keine Rechte, das Opfer surft."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "NVD vergab S:C, obwohl die Beschreibung nur Heap-Korruption im Renderer nennt.",
+     "pitfall": "Vergleiche Mojo CVE-2022-3075 und Skia CVE-2023-2136: Dort steht 'sandbox escape' in der Beschreibung, S:C ist begründet. Hier nicht, der CNA (Google) vergab S:U (8,8). Ohne Ausbruch bleibt der Code in der Sandbox."
+    },
+    "C": {
+     "why": "NVD: Codeausführung mit Nutzerrechten angenommen."
+    },
+    "I": {
+     "why": "NVD: Codeausführung mit Nutzerrechten angenommen."
+    },
+    "A": {
+     "why": "NVD: Codeausführung mit Nutzerrechten angenommen."
+    }
+   },
+   "dissent": {
+    "S": "CNA (Google): S:U (8,8). Für einen reinen Renderer-Bug ist S:U korrekt; NVD hat vermutlich die reale Kette (mit Sandbox-Escape) mitbewertet."
+   },
+   "context_de": "KEV, EPSS 0,21: Von einer nordkoreanischen Gruppe als Zero-Day gegen Kryptobörsen eingesetzt, in Kette mit einem Windows-Kernel-Bug. Renderer-Bug plus Sandbox-Escape plus Kernel-EoP: drei CVEs, eine Kette."
+  },
+  "CVE-2021-22600": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Double Free in packet_set_ring() des Linux-Kernels (AF_PACKET) lässt sich durch präparierte Systemaufrufe eines lokalen Nutzers zur Rechteausweitung oder zum Absturz nutzen.",
+   "metrics": {
+    "AV": {
+     "why": "Lokale Systemaufrufe."
+    },
+    "AC": {
+     "why": "Double-Free-Ausnutzung braucht Heap-Manipulation und Timing, also Bedingungen außerhalb der Kontrolle des Angreifers.",
+     "pitfall": "Vergleiche CVE-2021-22555 (AC:L, stabiler Exploit). Bei Kernel-Speicherfehlern entscheidet NVD AC nach Exploit-Zuverlässigkeit, nicht nach Bugklasse."
+    },
+    "PR": {
+     "why": "AF_PACKET-Sockets brauchen CAP_NET_RAW, was per User-Namespace ein normaler Nutzer bekommt."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Kernel-EoP vom lokalen Nutzer: NVD-Konvention S:U."
+    },
+    "C": {
+     "why": "root liest alles."
+    },
+    "I": {
+     "why": "root schreibt alles."
+    },
+    "A": {
+     "why": "root oder Absturz: voller Verfügbarkeitsverlust."
+    }
+   },
+   "dissent": {
+    "S": "Sekundärvektor (NetApp für Appliances): UI:R, S:C, C:L, I:L. Ein Appliance-Vektor, der die Kernel-Lücke nicht beschreibt."
+   },
+   "context_de": "KEV, EPSS 0,06: Als Android-Kernel-Exploit in Spyware-Ketten. Auf Servern ist die Wahrscheinlichkeit gering, solange keine Fremden lokal Code ausführen; in Container-Umgebungen sieht das anders aus."
+  },
+  "CVE-2021-38000": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Chrome für Android validiert Intent-Eingaben unzureichend, sodass eine präparierte Seite den Browser auf beliebige URLs umleiten kann.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Der Angreifer braucht keine Rechte, das Opfer surft nur."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite öffnen."
+    },
+    "S": {
+     "why": "NVD nutzt den XSS-Standardvektor: Verwundbar ist Chrome, betroffen ist, wohin die Umleitung führt (andere Apps über Intents).",
+     "pitfall": "Open Redirect bekommt bei NVD fast immer den XSS-Vektor (6,1) mit S:C, obwohl die Begründung dünner ist als bei XSS."
+    },
+    "C": {
+     "why": "Umleitung erlaubt Phishing und Token-Abgriff, aber keinen direkten Datenzugriff: L."
+    },
+    "I": {
+     "why": "Begrenzte Beeinflussung des Nutzers, keine Datenänderung: L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,05: Als Teil einer Spyware-Kette ausgenutzt, um über Intents andere Apps zu erreichen. Ein 6,1 kann Kettenglied sein; einzeln betrachtet ist das Risiko gering."
+  },
+  "CVE-2025-2775": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "SysAid On-Prem verarbeitet im Checkin-Endpunkt XML mit externen Entitäten, sodass unauthentifizierte Angreifer Dateien lesen und darüber Administratorkonten übernehmen können.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP-Endpunkt im Netz."
+    },
+    "AC": {
+     "why": "Präpariertes XML reicht."
+    },
+    "PR": {
+     "why": "Die Beschreibung sagt unauthenticated."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der SysAid-Server selbst.",
+     "pitfall": "Der CNA vergab S:C wegen der Kontoübernahme. Kontoübernahme in derselben Anwendung ist kein Scope-Wechsel."
+    },
+    "C": {
+     "why": "Beliebige Dateien lesen, darunter Konfigurationsdateien mit Zugangsdaten: gezielt wählbar und hochwertig, H."
+    },
+    "I": {
+     "why": "XXE selbst schreibt nichts; die Kontoübernahme ist Folgeschaden."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung bewertet."
+    }
+   },
+   "dissent": {
+    "S": "CNA: S:C, A:L (9,3). NVD 7,5 bewertet die Primitive (Datei lesen), der CNA die Folge (Admin-Übernahme)."
+   },
+   "context_de": "KEV, EPSS 0,43: Helpdesk-Software mit AD-Anbindung, Kette zu RCE über weitere CVEs. Die Auswirkung ist die Domäne, nicht der Helpdesk."
+  },
+  "CVE-2020-1472": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Zerologon: Ein Fehler im Netlogon-Protokoll (MS-NRPC) erlaubt einem unauthentifizierten Angreifer im Netz, sich als Domänencontroller auszugeben und Domänen-Admin-Rechte zu erlangen.",
+   "metrics": {
+    "AV": {
+     "why": "Netlogon-RPC über das Netz zum Domänencontroller."
+    },
+    "AC": {
+     "why": "Der kryptografische Fehler (AES-CFB8 mit Null-IV) lässt sich in wenigen Versuchen zuverlässig ausnutzen."
+    },
+    "PR": {
+     "why": "Die Beschreibung sagt: unauthentifizierter Angreifer mit Netzzugriff zum DC.",
+     "pitfall": "Microsoft bewertete ursprünglich AV:L/PR:L. Lies die Beschreibung: 'unauthenticated attacker ... connect to a domain controller' ist PR:N und AV:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Verwundbar ist der Netlogon-Dienst eines DC, betroffen ist die gesamte Domäne mit allen Mitgliedssystemen: Grenzübertritt.",
+     "pitfall": "S:C, weil Domänen-Admin-Rechte alle anderen Systeme der Domäne erfassen, nicht weil der Schaden maximal ist. Maximaler Schaden auf einem einzelnen Server wäre S:U."
+    },
+    "C": {
+     "why": "Domänen-Admin liest alles."
+    },
+    "I": {
+     "why": "Domänen-Admin ändert alles."
+    },
+    "A": {
+     "why": "Domänen-Admin kann alles abschalten."
+    }
+   },
+   "dissent": {
+    "AV": "CNA (Microsoft) zum Zeitpunkt der Veröffentlichung: AV:L/PR:L/S:U/C:H/I:N/A:N (5,5). Nach Secura's Analyse wurde klar, dass es unauthentifizierte Domänenübernahme ist. Historisches Beispiel dafür, wie Vektoren sich mit dem Verständnis ändern."
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99. Keine CWE in NVD (noinfo), obwohl es ein Kryptografie-Fehler (CWE-330/CWE-287) ist. Segmentierung des DC-Zugangs senkt die Wahrscheinlichkeit, Offline-Backups die Auswirkung eines Domänenverlusts."
+  },
+  "CVE-2022-24990": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "TerraMaster NAS liefert über die API webNasIPS bei gesetztem User-Agent 'TNAS' das Administratorpasswort im Feld PWD zurück.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP-API im Netz."
+    },
+    "AC": {
+     "why": "Ein Header setzen, eine URL aufrufen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig; der User-Agent ist keine Authentifizierung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist das NAS selbst."
+    },
+    "C": {
+     "why": "Das Admin-Passwort ist ein einzelnes Datum, aber das wertvollste im System und garantiert enthalten: H.",
+     "pitfall": "Kleiner Umfang, maximaler Wert, garantierte Kontrolle: das ist C:H. Vergleiche OpenSSH CVE-2018-15473 (nur Existenz eines Nutzernamens): C:L."
+    },
+    "I": {
+     "why": "NVD bewertet nur das Auslesen; die Admin-Anmeldung danach ist Folgeschaden."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung bewertet."
+    }
+   },
+   "dissent": {
+    "I": "CNA: I:H, A:H (9,8) mit eingerechnetem Folgeschaden. Für die Priorisierung ist 9,8 die ehrlichere Zahl, nach Spezifikation ist 7,5 korrekt."
+   },
+   "context_de": "KEV mit Ransomware-Bezug (Deadbolt), EPSS 0,84. NAS-Geräte am Internet mit Klartext-Passwort-API: hohe Wahrscheinlichkeit, und die Auswirkung ist Verschlüsselung aller Daten. Offline-Backups senken genau diese Auswirkung."
+  },
+  "CVE-2024-3273": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Nicht mehr unterstützte D-Link-NAS-Modelle haben in nas_sharing.cgi eine Command Injection über den Parameter system, kombiniert mit einem fest eingebauten Backdoor-Konto.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP-CGI im Netz."
+    },
+    "AC": {
+     "why": "Öffentlicher Exploit, ein GET-Request."
+    },
+    "PR": {
+     "why": "Der Endpunkt akzeptiert ein fest eingebautes Konto ohne Passwort, faktisch keine Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle laufen auf dem NAS selbst."
+    },
+    "C": {
+     "why": "Root-Shell auf dem NAS: alle Daten."
+    },
+    "I": {
+     "why": "Root-Shell: alles änderbar."
+    },
+    "A": {
+     "why": "Root-Shell: Gerät abschaltbar."
+    }
+   },
+   "dissent": {
+    "C": "CNA (VulDB): C:L/I:L/A:L (7,3). VulDBs schematische L/L/L-Bewertung bei Command Injection auf einem Root-System ist zu niedrig."
+   },
+   "context_de": "KEV, EPSS 0,99997, kein Patch (End of Life). Wenn es keinen Patch gibt, bleibt nur Auswirkung senken (vom Netz nehmen) oder Wahrscheinlichkeit senken (nicht aus dem Internet erreichbar)."
+  },
+  "CVE-2024-4040": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "CrushFTP hat eine Server-Side-Template-Injection, mit der unauthentifizierte Angreifer Dateien außerhalb der VFS-Sandbox lesen, die Authentifizierung umgehen und Code ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "Webinterface im Netz."
+    },
+    "AC": {
+     "why": "Präparierte Template-Ausdrücke reichen."
+    },
+    "PR": {
+     "why": "Die Beschreibung sagt unauthenticated."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: Der Ausbruch aus der VFS-Sandbox auf das Dateisystem des Hosts wird als Grenzübertritt gewertet.",
+     "pitfall": "Der CNA vergab S:U (9,8): Die VFS-Sandbox ist eine Anwendungsfunktion, kein eigener Sicherheitsmechanismus wie eine Browser-Sandbox. Beide Lesarten sind vertretbar; frag dich, ob die 'Sandbox' eine echte Autoritätsgrenze ist."
+    },
+    "C": {
+     "why": "Dateien des Hosts lesen und Code ausführen: alles."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA: S:U (9,8) gegen NVD S:C (10,0). Der Unterschied ist die Frage, ob eine Anwendungs-Sandbox ein eigener Scope ist."
+   },
+   "context_de": "KEV, EPSS 0,995, als Zero-Day gegen US-Organisationen. Dateitransfer-Server sind seit MOVEit ein Lieblingsziel; internetexponiert ist die Wahrscheinlichkeit nahe 1."
+  },
+  "CVE-2020-2021": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "PAN-OS prüft SAML-Signaturen unzureichend, wenn die Validierung des IdP-Zertifikats deaktiviert ist, sodass unauthentifizierte Angreifer geschützte Ressourcen erreichen.",
+   "metrics": {
+    "AV": {
+     "why": "SAML-Login über das Netz."
+    },
+    "AC": {
+     "why": "NVD: Die Konfiguration (Zertifikatsvalidierung aus) ist eine Voraussetzung, wird aber nicht als AC:H gewertet, da sie in vielen Anleitungen so empfohlen wurde.",
+     "pitfall": "Konfigurationsvoraussetzungen beim Opfer sind für NVD meist kein AC:H. AC:H beschreibt Hürden des Angreifers, nicht Bedingungen des Ziels."
+    },
+    "PR": {
+     "why": "Die Signaturprüfung wird umgangen, kein Konto nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Verwundbar ist die SAML-Authentifizierung der Firewall, betroffen sind alle dahinter geschützten Ressourcen (VPN, Web-UI, Captive Portal): Grenzübertritt.",
+     "pitfall": "S:C wegen der Ressourcen hinter der Firewall, nicht weil der Score 10 ist."
+    },
+    "C": {
+     "why": "Zugang zu geschützten Netzen und zur Firewall-Verwaltung."
+    },
+    "I": {
+     "why": "Als Admin alles änderbar."
+    },
+    "A": {
+     "why": "Als Admin alles abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS nur 0,04: Ausnutzung setzt eine bestimmte Konfiguration voraus, die EPSS nicht sieht. Ein Beispiel dafür, dass EPSS bei konfigurationsabhängigen Lücken niedrig bleibt, obwohl KEV sie listet."
+  },
+  "CVE-2016-6277": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Zahlreiche NETGEAR-Router führen Shell-Metazeichen im Pfad von cgi-bin/ als Befehle aus; ein Link genügt, damit der Browser eines Nutzers im LAN den Befehl auslöst.",
+   "metrics": {
+    "AV": {
+     "why": "Der Link kommt aus dem Internet; die Anfrage geht an das Router-Webinterface."
+    },
+    "AC": {
+     "why": "Ein präparierter Link."
+    },
+    "PR": {
+     "why": "Der Angreifer braucht kein Router-Konto; die Anfrage kommt über den Browser eines LAN-Nutzers, der nicht einmal angemeldet sein muss."
+    },
+    "UI": {
+     "why": "Ein Nutzer im LAN muss den Link öffnen. Deshalb CWE-352 (CSRF-artig), obwohl der Mechanismus Command Injection ist.",
+     "pitfall": "Klassenfrage: Der Fehler ist eine Command Injection (CWE-78), der Angriffsweg CSRF. NVD wählte die Klasse nach dem Angriffsweg."
+    },
+    "S": {
+     "why": "Befehle laufen auf dem Router selbst."
+    },
+    "C": {
+     "why": "Root-Shell auf dem Router."
+    },
+    "I": {
+     "why": "Root-Shell auf dem Router."
+    },
+    "A": {
+     "why": "Root-Shell auf dem Router."
+    }
+   },
+   "context_de": "KEV, EPSS 0,998: Über Jahre in Router-Botnetzen. Bei Heimroutern gibt es kein Vulnerability Management; im Unternehmen stehen solche Geräte oft in Außenstellen ohne Inventar."
+  },
+  "CVE-2023-46604": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der OpenWire-Marshaller von Apache ActiveMQ instanziiert beliebige Klassen vom Classpath anhand manipulierter serialisierter Typangaben, was Broker und Clients für RCE öffnet.",
+   "metrics": {
+    "AV": {
+     "why": "OpenWire-Port (61616) im Netz."
+    },
+    "AC": {
+     "why": "Ein präpariertes OpenWire-Paket, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Der Broker akzeptiert die Nachricht vor jeder Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code läuft im Broker-Prozess, dieselbe Domäne.",
+     "pitfall": "Der CNA vergab S:C, vermutlich weil auch Clients betroffen sein können. Dass mehrere Komponenten dieselbe Lücke haben, ist kein Scope-Wechsel."
+    },
+    "C": {
+     "why": "RCE im Broker: alle Nachrichten und Zugangsdaten."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (Apache): S:C, C:L (9,4). Dass der Broker Nachrichten weiterleitet, macht ihn nicht zu einem zweiten Scope; C:L bei RCE ist nicht nachvollziehbar."
+   },
+   "context_de": "KEV mit Ransomware-Bezug (HelloKitty, TellYouThePass), EPSS 0,997. Message Broker stehen selten absichtlich im Internet, aber oft versehentlich; Segmentierung senkt die Wahrscheinlichkeit drastisch."
+  },
+  "CVE-2024-57968": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Advantive VeraCore erlaubt angemeldeten Nutzern über upload.aspx das Ablegen von Dateien in Ordnern, die per Web erreichbar sind, also das Platzieren einer Webshell.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung, der Upload läuft über HTTP aus dem Netz."
+    },
+    "AC": {
+     "why": "Ein Upload-Request."
+    },
+    "PR": {
+     "why": "Die Beschreibung sagt 'remote authenticated users'."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Webserver der Anwendung selbst.",
+     "pitfall": "Der CNA vergab S:C. Eine Webshell im selben IIS-Prozess ist kein Scope-Wechsel."
+    },
+    "C": {
+     "why": "NVD bewertet die Webshell als Folge: Vollzugriff auf Server-Daten.",
+     "pitfall": "Vergleiche ManageEngine CVE-2019-8394: Dort bewertete NVD nur I:H. Zwei Upload-Lücken, zwei Lesarten."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst störbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA: S:C (9,9). Nicht begründbar; NVD 8,8 passt."
+   },
+   "context_de": "KEV, EPSS 0,32: In Kette mit der SQLi CVE-2025-25181 (die die Anmeldung liefert) zu unauthentifizierter RCE. PR:L einzeln, PR:N als Kette."
+  },
+  "CVE-2018-0175": {
+   "vector_basis": "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Format-String-Fehler im LLDP-Subsystem von Cisco IOS/IOS XE/IOS XR erlaubt einem Angreifer im selben Netzsegment DoS oder Codeausführung mit erhöhten Rechten.",
+   "metrics": {
+    "AV": {
+     "why": "LLDP ist ein Layer-2-Protokoll; der Angreifer muss im selben Segment sein: Adjacent.",
+     "pitfall": "Layer-2-Protokolle (LLDP, CDP, ARP, DHCP-Discovery) sind der Musterfall für AV:A, nicht AV:N."
+    },
+    "AC": {
+     "why": "Ein präpariertes LLDP-Paket."
+    },
+    "PR": {
+     "why": "Die Beschreibung sagt unauthenticated."
+    },
+    "UI": {
+     "why": "NVD vergab UI:R, was durch nichts in der Beschreibung gedeckt ist.",
+     "pitfall": "Ein LLDP-Paket braucht keinen klickenden Nutzer. Ciscos eigener Vektor hatte UI:N (8,8). Wenn du UI:N gesetzt hast, lagst du inhaltlich richtig."
+    },
+    "S": {
+     "why": "Betroffen ist das Gerät selbst."
+    },
+    "C": {
+     "why": "Code mit erhöhten Rechten auf dem Switch/Router."
+    },
+    "I": {
+     "why": "Code mit erhöhten Rechten: Konfiguration änderbar."
+    },
+    "A": {
+     "why": "DoS oder Code: Gerät abschaltbar."
+    }
+   },
+   "dissent": {
+    "UI": "Ciscos Advisory: AV:A/AC:L/PR:N/UI:N (8,8). Das UI:R der NVD ist ein Fehler."
+   },
+   "context_de": "KEV, EPSS 0,03: Ausnutzung braucht Layer-2-Zugang, also physische oder bereits interne Position. Port-Security und LLDP nur auf Uplinks senken die Wahrscheinlichkeit."
+  }
+ }
+}

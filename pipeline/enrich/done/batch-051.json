@@ -1,0 +1,692 @@
+{
+ "batch": "batch-051",
+ "items": {
+  "CVE-2022-43473": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N",
+   "summary_de": "In ManageEngine OpManager 12.6.168 erlaubt eine Blind-XXE in der „Add UCS Device“-Funktion eine SSRF über eine präparierte XML-Datei.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per präparierter XML."
+    },
+    "AC": {
+     "why": "NVD wertet die Bedingungen als nicht erschwerend: AC:L."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R."
+    },
+    "UI": {
+     "why": "Ein Opfer muss die präparierte XML einbringen/auslösen: UI:R."
+    },
+    "S": {
+     "why": "NVD wertet keinen Scope-Wechsel: die Wirkung bleibt in OpManager: S:U.",
+     "pitfall": "Anders als bei vielen SSRF setzt NVD hier S:U — der CNA sah S:C. Die Scope-Entscheidung ist der Knackpunkt."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Der CNA sah AC:H/S:C/A:L — NVD AC:L/S:U/A:N. Gutes Übungsstück, dass SSRF/XXE nicht zwingend einen Scope-Wechsel hat.",
+   "dissent": {
+    "AC": "CNA AC:H, NVD AC:L.",
+    "S": "CNA S:C, NVD S:U.",
+    "A": "CNA A:L, NVD A:N."
+   }
+  },
+  "CVE-2022-38705": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "IBM CICS TX 11.1 erlaubt über Reverse Tabnabbing das Umleiten eines Opfers auf eine Phishing-Seite.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per präpariertem Link."
+    },
+    "AC": {
+     "why": "NVD wertet die Bedingungen als nicht erschwerend: AC:L."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R."
+    },
+    "UI": {
+     "why": "Das Opfer muss dem Link folgen: UI:R."
+    },
+    "S": {
+     "why": "Die Umleitung führt in eine fremde Zone: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Der CNA sah AC:H/S:U/C:N/I:H — NVD wertet Reverse Tabnabbing als Scope-Wechsel mit begrenzten Impakten. Vier Metriken weichen ab.",
+   "dissent": {
+    "AC": "CNA AC:H, NVD AC:L.",
+    "S": "CNA S:U, NVD S:C.",
+    "C": "CNA C:N, NVD C:L.",
+    "I": "CNA I:H, NVD I:L."
+   }
+  },
+  "CVE-2019-16243": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Auf TCL/Alcatel-Flip-Geräten erlaubt eine undokumentierte Web-API unprivilegiertem JavaScript, die Firmware-Update-Einstellungen einzusehen und zu ändern.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz/den Browser."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig; unprivilegiertes JavaScript genügt.",
+     "pitfall": "PR:N — die API ist ohne Rechte erreichbar."
+    },
+    "UI": {
+     "why": "Ein Opfer muss die präparierte Seite öffnen: UI:R."
+    },
+    "S": {
+     "why": "Zugriff auf Firmware-Update-Einstellungen außerhalb der Browserkomponente: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung durch Änderung der Einstellungen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Der Scope-Wechsel entsteht, weil Browser-JavaScript Geräteeinstellungen erreicht."
+  },
+  "CVE-2022-21718": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+   "summary_de": "In Electron können Renderer ohne konfigurierten select-bluetooth-device-Handler über die Web-Bluetooth-API Zugriff auf ein Bluetooth-Gerät erhalten.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz/den Renderer-Inhalt."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "NVD setzt niedrige Rechte an: PR:L.",
+     "pitfall": "Der CNA sah PR:H — NVD wertet PR:L."
+    },
+    "UI": {
+     "why": "NVD sieht keine Opferaktion: UI:N."
+    },
+    "S": {
+     "why": "Zugriff auf ein Bluetooth-Gerät außerhalb der App-Zone: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust über das Gerät: C:L."
+    },
+    "I": {
+     "why": "NVD sieht keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Der CNA sah PR:H/UI:R — NVD PR:L/UI:N. Übe PR- und UI-Entscheidung. Zugriff auf ein Peripheriegerät begründet den Scope-Wechsel.",
+   "dissent": {
+    "PR": "CNA PR:H, NVD PR:L.",
+    "UI": "CNA UI:R, NVD UI:N."
+   }
+  },
+  "CVE-2020-11084": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N",
+   "summary_de": "In iPear kann die manuelle Ausführung von eval() zu Command Injection führen; betroffen sind nur PCs, auf denen Befehle über „For Developers“ ausgeführt werden.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert niedrige Rechte: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "NVD wertet keinen Scope-Wechsel: die Wirkung bleibt in der Anwendung: S:U.",
+     "pitfall": "Nur S unterscheidet NVD (S:U) vom CNA (S:C)."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (S). Übe die Scope-Entscheidung bei Command Injection — NVD entschied S:U.",
+   "dissent": {
+    "S": "CNA S:C, NVD S:U."
+   }
+  },
+  "CVE-2022-21169": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "express-xss-sanitizer vor 1.1.3 ist über das allowedTags-Attribut für Prototype Pollution anfällig, wodurch sich die XSS-Säuberung umgehen lässt.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per präparierter Eingabe."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R."
+    },
+    "UI": {
+     "why": "Das umgangene XSS zündet erst beim Opfer: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Opferbrowser außerhalb der Bibliothek: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Der CNA sah UI:N/S:U/A:L — NVD wertet die XSS-typische Opferaktion und den Scope-Wechsel. Drei Metriken weichen ab.",
+   "dissent": {
+    "UI": "CNA UI:N, NVD UI:R.",
+    "S": "CNA S:U, NVD S:C.",
+    "A": "CNA A:L, NVD A:N."
+   }
+  },
+  "CVE-2023-2639": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:N",
+   "summary_de": "Rockwell FactoryTalk System Services prüft die Herkunft nicht, sodass eine präparierte Website über den lokalen WebSocket-Endpunkt als gültiges Client-Gerät auftreten kann.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per präparierter Website."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N — der CNA setzte PR:L; NVD sieht keine Vorabrechte."
+    },
+    "UI": {
+     "why": "Das Opfer muss die präparierte Website besuchen: UI:R."
+    },
+    "S": {
+     "why": "Zugriff auf den lokalen WebSocket-Dienst außerhalb der Browserzone: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe über den WebSocket: C:L."
+    },
+    "I": {
+     "why": "NVD sieht keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Nur PR weicht vom CNA ab. Übe die PR-Entscheidung: die präparierte Website braucht kein Konto.",
+   "dissent": {
+    "PR": "CNA PR:L, NVD PR:N."
+   }
+  },
+  "CVE-2022-29413": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Das WordPress-Plugin Hermit ≤ 3.1.6 hat eine CSRF, die über den &title-Parameter zu Stored XSS führt.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per präpariertem Request."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto des Angreifers nötig; die Rechte liefert das Opfer.",
+     "pitfall": "CSRF → PR:N."
+    },
+    "UI": {
+     "why": "Ein Opfer muss den präparierten Request auslösen: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Opferbrowser: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Nur C weicht vom CNA ab. CSRF→XSS als PR:N/UI:R mit Scope-Wechsel.",
+   "dissent": {
+    "C": "CNA C:N, NVD C:L."
+   }
+  },
+  "CVE-2020-4271": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+   "summary_de": "IBM QRadar 7.3.x erlaubt einem authentifizierten Nutzer, einen präparierten Befehl zu senden, der als niedriger privilegierter Nutzer ausgeführt wird.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert ein authentifiziertes Konto: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Ausführung bleibt in derselben Anwendungszone: S:U."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Begrenzte Verfügbarkeitswirkung: A:L."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Sauberes S:U-Beispiel (Ausführung als niedriger Nutzer, kein Zonenübertritt) als Kontrast zu den S:C-Fällen."
+  },
+  "CVE-2023-23707": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Das WordPress-Plugin „Embed Any Document“ ≤ 2.7.1 erlaubt Stored XSS über den Upload von SVG-/HTML-Dateien.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per hochgeladener Datei."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "NVD setzt niedrige Rechte an: PR:L.",
+     "pitfall": "Der CNA sah PR:H — NVD wertet PR:L."
+    },
+    "UI": {
+     "why": "Das Skript zündet beim Betrachten durch ein Opfer: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Opferbrowser: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Der CNA sah PR:H und A:L — NVD PR:L/A:N. Übe die PR-Entscheidung bei Datei-Upload-XSS.",
+   "dissent": {
+    "PR": "CNA PR:H, NVD PR:L.",
+    "A": "CNA A:L, NVD A:N."
+   }
+  },
+  "CVE-2019-13318": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+   "summary_de": "Foxit Reader 9.5.0 gibt über util.printf im Format-String das %p-Argument aus und kann so Heap-Adressen an das Skript zurückgeben (Informationspreisgabe).",
+   "metrics": {
+    "AV": {
+     "why": "Ausnutzung über eine lokal geöffnete Datei: AV:L."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N — die Datei/Seite wird an das Opfer verteilt."
+    },
+    "UI": {
+     "why": "Das Opfer muss die schädliche Seite/Datei öffnen: UI:R."
+    },
+    "S": {
+     "why": "Wirkung bleibt im Reader-Prozess: S:U."
+    },
+    "C": {
+     "why": "Preisgabe von Heap-Adressen ist ein hoher Vertraulichkeitsverlust im Prozesskontext: C:H.",
+     "pitfall": "C:H trotz S:U — der Umfang der lesbaren Information (Speicher) ist hoch, unabhängig vom Scope (c_high_scoped)."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Wichtiger Kontrast: begrenzter Scope (S:U) bei hohem C-Impact (C:H)."
+  },
+  "CVE-2019-10963": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+   "summary_de": "Moxa EDR 810 erlaubt einem unauthentifizierten Angreifer, zuvor exportierte Log-Dateien abzurufen, was zu Informationspreisgabe führt.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Keine Authentifizierung nötig.",
+     "pitfall": "PR:N — die Log-Dateien sind ohne Rechte abrufbar."
+    },
+    "UI": {
+     "why": "Setzt voraus, dass ein legitimer Nutzer die Logs zuvor exportiert hat: UI:R."
+    },
+    "S": {
+     "why": "Zugriff bleibt in der Gerätekomponente: S:U."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe der Log-Dateien: C:L."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. PR:N mit UI:R (Abhängigkeit von einer Vorbedingung durch legitimen Nutzer), ohne Scope-Wechsel."
+  },
+  "CVE-2020-11013": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+   "summary_de": "In Helm 3.1.0 bis vor 3.2.0 kann die lookup-Template-Funktion entgegen der Dokumentation Cluster-Ressourcen abfragen und so Informationen preisgeben.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz/den Cluster."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert niedrige Rechte: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Zugriff auf Cluster-Ressourcen außerhalb der lokalen Komponente: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe von Ressourcendetails: C:L."
+    },
+    "I": {
+     "why": "NVD sieht keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Der CNA sah C:H/I:L — NVD C:L/I:N. Übe C:L gegen C:H: der abgefragte Umfang ist begrenzt.",
+   "dissent": {
+    "C": "CNA C:H, NVD C:L.",
+    "I": "CNA I:L, NVD I:N."
+   }
+  },
+  "CVE-2022-23603": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "iTunesRPC-Remastered säubert Nutzereingaben vor einem bestimmten Commit nicht, wodurch Code Injection möglich ist.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per präparierter Eingabe."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R — der CNA sah UI:N."
+    },
+    "UI": {
+     "why": "NVD wertet eine Opferaktion ein: UI:R."
+    },
+    "S": {
+     "why": "Ausführung außerhalb der verwundbaren Komponente: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Der CNA sah UI:N/C:H/A:L — NVD UI:R/C:L/A:N. Drei Metriken weichen ab; Übe UI und C:L vs. C:H.",
+   "dissent": {
+    "UI": "CNA UI:N, NVD UI:R.",
+    "C": "CNA C:H, NVD C:L.",
+    "A": "CNA A:L, NVD A:N."
+   }
+  },
+  "CVE-2021-39186": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Die MediaWiki-Erweiterung GlobalNewFiles hat in der Username-Spalte der Spezialseite ein Stored XSS.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per gespeichertem Namen."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R."
+    },
+    "UI": {
+     "why": "Das Skript zündet beim Betrachten der Spezialseite: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Opferbrowser: Scope-Wechsel C.",
+     "pitfall": "Der CNA sah S:U; NVD wertet den XSS-Scope-Wechsel."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Der CNA sah S:U/C:N — NVD S:C/C:L. Übe die Scope-Entscheidung bei Stored XSS.",
+   "dissent": {
+    "S": "CNA S:U, NVD S:C.",
+    "C": "CNA C:N, NVD C:L."
+   }
+  },
+  "CVE-2022-28197": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:C/C:L/I:L/A:L",
+   "summary_de": "Das NVIDIA Jetson Linux Driver Package hat in Cboots ext4_mount eine unzureichende Validierung, die einen Integer-Overflow und weitergehende Folgen erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer agiert lokal: AV:L."
+    },
+    "AC": {
+     "why": "Als „difficult-to-exploit“ beschrieben: AC:H."
+    },
+    "PR": {
+     "why": "Erfordert hohe lokale Rechte: PR:H."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig."
+    },
+    "S": {
+     "why": "Laut Beschreibung kann die Wirkung andere Komponenten erreichen: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Begrenzte Verfügbarkeitswirkung: A:L."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. „scope of impact can extend to other components“ begründet direkt S:C."
+  },
+  "CVE-2020-11947": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+   "summary_de": "iscsi_aio_ioctl_cb in QEMU 4.1.0 hat einen heap-basierten Over-Read, der unbeteiligte Informationen aus dem Prozessspeicher preisgeben kann.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer agiert lokal aus dem Gast: AV:L."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "Erfordert niedrige Gastrechte: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig."
+    },
+    "S": {
+     "why": "Preisgabe von Host-Prozessspeicher aus dem Gast: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe: C:L."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Reiner Confidentiality-Over-Read mit Scope-Wechsel (Gast→Host)."
+  },
+  "CVE-2020-25085": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:C/C:L/I:L/A:L",
+   "summary_de": "QEMU 5.0.0 hat in flatview_read_continue einen heap-basierten Pufferüberlauf, weil sdhci.c eine Schreiboperation im SDHC_BLKSIZE-Fall falsch behandelt.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer agiert lokal aus dem Gast: AV:L."
+    },
+    "AC": {
+     "why": "Die Ausnutzung ist von Zuständen abhängig: AC:H."
+    },
+    "PR": {
+     "why": "Erfordert hohe Gastrechte: PR:H."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig."
+    },
+    "S": {
+     "why": "Wirkung vom Gast auf den Host-QEMU-Prozess: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Begrenzte Verfügbarkeitswirkung: A:L."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. VM-Ausbruch (S:C) mit AC:H/PR:H und begrenzten Impakten."
+  },
+  "CVE-2021-3594": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+   "summary_de": "Eine fehlerhafte Zeigerinitialisierung in QEMUs SLiRP (udp_input) kann zu Out-of-bounds-Read oder indirekter Preisgabe von Host-Speicher an den Gast führen.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer agiert lokal aus dem Gast: AV:L."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "Erfordert niedrige Gastrechte: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig."
+    },
+    "S": {
+     "why": "Preisgabe von Host-Speicher aus dem Gast: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe: C:L.",
+     "pitfall": "Klar begrenzter Leak → C:L, nicht C:H."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Parallelfall zu CVE-2021-3592/3593. Reiner Confidentiality-Leak mit Scope-Wechsel, sonst N. Kein CNA-Zweitvektor."
+  },
+  "CVE-2020-1735": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:L/I:L/A:N",
+   "summary_de": "Ein Fehler im fetch-Modul von Ansible Engine erlaubt einem Angreifer, einen neuen Zielpfad auf dem Controller-Knoten einzuschleusen.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer agiert lokal im Ausführungskontext: AV:L."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "Erfordert hohe Rechte: PR:H."
+    },
+    "UI": {
+     "why": "NVD sieht keine Opferaktion: UI:N.",
+     "pitfall": "Der CNA sah UI:R — NVD wertet UI:N."
+    },
+    "S": {
+     "why": "Wirkung erreicht den Controller-Knoten außerhalb der Zielkomponente: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung durch Pfadmanipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (UI). Der Scope-Wechsel entsteht, weil die Manipulation auf den Controller wirkt.",
+   "dissent": {
+    "UI": "CNA UI:R, NVD UI:N."
+   }
+  }
+ }
+}

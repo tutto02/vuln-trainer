@@ -1,0 +1,584 @@
+{
+ "batch": "batch-022",
+ "items": {
+  "CVE-2020-35951": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:H",
+   "summary_de": "Das WordPress-Plugin Quiz and Survey Master erlaubt unauthentifizierten Nutzern über qsm_remove_file_fd_question das Löschen beliebiger Dateien wie wp-config.php.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Der Löschpfad steht ohne Anmeldung offen; „users“ meint hier jeden Aufrufer: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:C, das Löschen von wp-config.php ermöglicht die Neuinstallation unter Angreiferkontrolle (andere Sicherheitsdomäne)."
+    },
+    "C": {
+     "why": "Begrenzter Informationsgewinn: C:L."
+    },
+    "I": {
+     "why": "Dateien löschen, begrenzt: I:L."
+    },
+    "A": {
+     "why": "Löschen von wp-config.php nimmt die Site offline: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,76. Ein arbiträres Datei-Löschen (CWE-306) mit einem klugen Twist: wp-config.php löschen setzt WordPress in den Installationsmodus zurück, den der Angreifer dann übernimmt. Löschen als Weg zur Übernahme."
+  },
+  "CVE-2019-1653": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Das Web-Interface der Cisco RV320/RV325-Router erlaubt unauthentifizierten Angreifern über unzureichende Zugriffskontrolle das Auslesen sensibler Informationen (Konfiguration mit Passwort-Hashes).",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des Routers über HTTP."
+    },
+    "AC": {
+     "why": "Eine URL aufrufen (/cgi-bin/config.exp)."
+    },
+    "PR": {
+     "why": "Die Router-URLs geben die Konfiguration ohne Anmeldung preis; „unauthenticated, remote attacker“: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Router."
+    },
+    "C": {
+     "why": "Die komplette Konfiguration inklusive Hashes: gezielt, hochwertig, H.",
+     "pitfall": "'Retrieve sensitive information' könnte C:L nahelegen. Hier ist es die ganze Konfiguration mit Zugangsdaten, daher C:H. Der Umfang ist eine Datei, ihr Wert maximal."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,999: In Kette mit CVE-2019-1652 (Command Injection). Die Konfiguration liefert die Admin-Hashes, die zweite Lücke die RCE. Ein 7,5-Info-Leck als erster Schritt zur Übernahme."
+  },
+  "CVE-2018-11138": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Skript download_agent_installer.php der Quest KACE System Management Appliance ist für anonyme Nutzer erreichbar und erlaubt die Ausführung beliebiger Befehle.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Accessible by anonymous users' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf der Appliance."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Appliance abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,92: KACE verwaltet Endpunkte (wie Kaseya VSA). Ein unauthentifizierter Command-Injection-Endpunkt (CWE-78) auf einem Verwaltungsserver ist ein Sprungbrett zu allen verwalteten Systemen."
+  },
+  "CVE-2023-35150": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "XWiki erlaubt jedem Nutzer mit View-Recht die Ausführung von Code mit Programmierrechten über eine präparierte URL, was zu Remote Code Execution führt.",
+   "metrics": {
+    "AV": {
+     "why": "Wiki-Weboberfläche über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL."
+    },
+    "PR": {
+     "why": "'View rights on any document': PR:L."
+    },
+    "UI": {
+     "why": "NVD setzt UI:R: Ein Nutzer muss das präparierte Dokument aufrufen bzw. rendern lassen; der CNA (XWiki) sah UI:N — Provenienz-Dissens.",
+     "pitfall": "NVD nahm an, ein Opfer muss die präparierte URL öffnen; der CNA sah den Angreifer selbst als Auslöser (UI:N). Wie bei allen URL-basierten XWiki-RCEs."
+    },
+    "S": {
+     "why": "NVD: S:U; der CNA S:C.",
+     "pitfall": "Der übliche XWiki-Scope-Streit; RCE im selben Prozess ist S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (XWiki): UI:N, S:C, A:L (8,x). Fünfte XWiki-Makro-RCE im Korpus; das Produkt hat eine ganze Klasse dieser Lücken."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,78. XWiki-Makro-RCE Nummer fünf. Bei einem Produkt mit so vielen gleichartigen CVEs ist die Konsequenz: Programmierrechte streng trennen, nicht jede CVE einzeln jagen."
+  },
+  "CVE-2025-47827": {
+   "vector_basis": "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "In IGEL OS vor 11 lässt sich Secure Boot umgehen, weil das igel-flash-driver-Modul eine Signatur unzureichend prüft, sodass ein präpariertes SquashFS-Root-Dateisystem gemountet wird.",
+   "metrics": {
+    "AV": {
+     "why": "Physischer Zugriff auf das Gerät nötig: AV:P.",
+     "pitfall": "Secure-Boot-Umgehungen brauchen meist physischen Zugriff (Boot-Medium), daher AV:P, nicht AV:L. Das ist der niedrigste Angriffsvektor."
+    },
+    "AC": {
+     "why": "Präpariertes SquashFS-Image, kein Timing."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig (vor dem Boot)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist das Gerät selbst."
+    },
+    "C": {
+     "why": "NVD: C:N; die Signaturumgehung liest zunächst nichts."
+    },
+    "I": {
+     "why": "Integrität: NVD: I:N."
+    },
+    "A": {
+     "why": "Manipuliertes Root-Dateisystem: A:H (Kontrolle über den Boot)."
+    }
+   },
+   "context_de": "KEV, EPSS 0,05, nur CNA-Vektor. Secure Boot ist eine Vertrauenskette; ihre Umgehung (CWE-347) erlaubt ein untergeschobenes Betriebssystem. Physischer Zugriff (AV:P) und trotzdem KEV: Thin Clients in unbeaufsichtigten Bereichen."
+  },
+  "CVE-2021-29505": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "XStream vor 1.4.17 erlaubt einem Angreifer mit ausreichenden Rechten über einen manipulierten Eingabestrom die Ausführung von Befehlen auf dem Host.",
+   "metrics": {
+    "AV": {
+     "why": "Eingabestrom über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:L; der CNA vergab AC:H (Gadget-Abhängigkeit).",
+     "pitfall": "Die XStream-Serie 2021 hat Dutzende fast identischer CVEs mit wechselnden AC-Werten. Hier NVD AC:L, CNA AC:H."
+    },
+    "PR": {
+     "why": "'Has sufficient rights': PR:L."
+    },
+    "UI": {
+     "why": "Automatisch."
+    },
+    "S": {
+     "why": "Bibliothek zu Host, S:U (bei dieser CVE)."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "AC": "CNA (XStream): AC:H (7,5). Die Serie 2021 zeigt, wie uneinheitlich dieselbe Bibliothekslücke bewertet wird."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,77. Teil der großen XStream-CVE-Serie; im Scanner sind es zwanzig Zeilen, in der Realität eine Maßnahme: Typ-Whitelist konfigurieren. Wer die Empfehlung befolgt hat, ist von keiner betroffen."
+  },
+  "CVE-2021-21346": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "XStream vor 1.4.16 erlaubt über einen manipulierten Eingabestrom das Laden und Ausführen von Code von einem entfernten Host.",
+   "metrics": {
+    "AV": {
+     "why": "Eingabestrom über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:L; der CNA vergab AC:H."
+    },
+    "PR": {
+     "why": "Wie CVE-2021-21344: Manipulation des Eingabestroms genügt, kein Konto nötig: PR:N.",
+     "pitfall": "Vergleiche CVE-2021-21351 (PR:H) und CVE-2021-29505 (PR:L): drei XStream-CVEs, drei PR-Werte, fast gleiche Beschreibung. NVD hat die Serie nicht konsistent bewertet."
+    },
+    "UI": {
+     "why": "NVD: UI:N; der CNA UI:R."
+    },
+    "S": {
+     "why": "NVD: S:U; der CNA S:C."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "UI": "CNA (XStream): AC:H, UI:R, S:C, C:N (5,x). Fünf Metriken Unterschied bei einer Beschreibung, die kaum von den Schwester-CVEs abweicht."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,76. Ein Musterbeispiel für Vektor-Inkonsistenz: dieselbe Bibliothek, dieselbe Woche, verschiedene Analysten, völlig verschiedene Vektoren. Für dein Fehlerbild-Training: Provenienz und Konsistenz sind zwei getrennte Probleme."
+  },
+  "CVE-2019-15976": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Cisco Data Center Network Manager (DCNM) hat mehrere Authentifizierungslücken, über die unauthentifizierte Angreifer administrative Aktionen ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Bypass authentication' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist DCNM."
+    },
+    "C": {
+     "why": "Admin-Aktionen: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Admin: alles änderbar."
+    },
+    "A": {
+     "why": "Admin: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,93: Eine von mehreren gleichzeitig veröffentlichten DCNM-Auth-Bypass-Lücken (mit CVE-2019-15975/1619). Cisco veröffentlichte oft Bündel; die fest kodierten Schlüssel (CWE-798) waren die gemeinsame Ursache."
+  },
+  "CVE-2020-14181": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Der /ViewUserHover.jspa-Endpunkt in Atlassian Jira erlaubt unauthentifizierten Nutzern das Aufzählen von Benutzernamen.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Eine URL aufrufen."
+    },
+    "PR": {
+     "why": "ViewUserHover.jspa erlaubt die Nutzer-Enumeration ohne Anmeldung: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Jira."
+    },
+    "C": {
+     "why": "Nur Benutzernamen: begrenzter Umfang, C:L."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,996: Der dritte Jira-Enumerationsendpunkt im Korpus (nach CVE-2019-8449, CVE-2020-36289). Drei Wege zum selben Ziel (Nutzernamen); Aufklärung für Password-Spraying, allein ein Medium."
+  },
+  "CVE-2023-22621": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Strapi erlaubt einem authentifizierten Angreifer mit Zugriff auf das Admin-Panel Server-Side Template Injection über eine E-Mail-Vorlage, die die Validierung umgeht.",
+   "metrics": {
+    "AV": {
+     "why": "Admin-Panel über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte E-Mail-Vorlage."
+    },
+    "PR": {
+     "why": "NVD: PR:H (Admin-Panel-Zugriff); der CNA vergab PR:N.",
+     "pitfall": "NVD verlangt Admin-Rechte (PR:H), der CNA sah den Weg über andere Lücken (PR:N). SSTI in einer Template-Engine, die eigentlich validieren sollte."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U; der CNA S:C."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "PR": "CNA (Strapi): PR:N, S:C (9,8). NVD PR:H (7,2). Die reale Voraussetzung hängt davon ab, wie leicht das Admin-Panel erreichbar ist."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,77. SSTI (CWE-74/CWE-1336) in einer E-Mail-Vorlage; die Validierung, die genau das verhindern sollte, ließ sich umgehen. Template-Engines mit Nutzereingaben sind ein RCE-Dauerthema (Headless-CMS)."
+  },
+  "CVE-2021-35247": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+   "summary_de": "Der Serv-U-Login-Bildschirm reicht bei LDAP-Authentifizierung unzureichend gefilterte Zeichen weiter, was zu LDAP-Injection führen kann.",
+   "metrics": {
+    "AV": {
+     "why": "Login-Bildschirm über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Eingabe."
+    },
+    "PR": {
+     "why": "Die Eingabe auf der Serv-U-Login-Maske geht VOR der Authentifizierung an LDAP; ein Konto ist nicht nötig: PR:N.",
+     "pitfall": "Login-Screen ≠ Login nötig — der Fehler liegt vor der Anmeldung."
+    },
+    "UI": {
+     "why": "NVD: UI:N; der CNA UI:R."
+    },
+    "S": {
+     "why": "Betroffen ist Serv-U."
+    },
+    "C": {
+     "why": "NVD: C:N; die LDAP-Server ignorierten die Zeichen (kein Downstream-Effekt)."
+    },
+    "I": {
+     "why": "Begrenzte Injection: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,03: In KEV, weil chinesische Gruppen es scannten, obwohl der reale Effekt gering war (LDAP-Server ignorierten die Zeichen). Ein Beispiel für einen KEV-Eintrag mit niedriger tatsächlicher Auswirkung; SolarWinds-Produkte standen 2021 unter Dauerbeobachtung."
+  },
+  "CVE-2020-36221": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Ein Integer-Underflow in OpenLDAP führt bei der Certificate-Exact-Assertion-Verarbeitung zum Absturz von slapd (Denial of Service).",
+   "metrics": {
+    "AV": {
+     "why": "LDAP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Assertion."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der LDAP-Dienst."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "slapd-Absturz: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,84: Eine von mehreren OpenLDAP-DoS-Lücken 2020 (mit CVE-2020-36228). Integer-Underflow (CWE-191); LDAP ist die Authentifizierungsschicht, sein Ausfall trifft alle abhängigen Dienste."
+  },
+  "CVE-2026-3055": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "NetScaler ADC und Gateway als SAML-IdP konfiguriert haben durch unzureichende Eingabevalidierung eine Memory-Overread-Lücke.",
+   "metrics": {
+    "AV": {
+     "why": "SAML-Endpunkt über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Appliance."
+    },
+    "C": {
+     "why": "Speicher-Overread mit Session-Daten: gezielt, hochwertig, H.",
+     "pitfall": "Wie CitrixBleed 1 und 2 (CVE-2023-4966, CVE-2025-5777): ein Memory-Overread (CWE-125), dessen Wert an den lesbaren Session-Tokens hängt. Der dritte CitrixBleed."
+    },
+    "I": {
+     "why": "NVD wertet die Folge (Session-Übernahme) mit."
+    },
+    "A": {
+     "why": "Verfügbarkeit: NVD: A:H."
+    }
+   },
+   "context_de": "KEV, EPSS 0,87: NetScaler-Memory-Overread zum dritten Mal (CitrixBleed-Familie). Ein Produkt mit einer wiederkehrenden Klasse (Puffer-Overread in der Gateway-Verarbeitung); nach dem Patch immer Sessions invalidieren."
+  },
+  "CVE-2009-3953": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Die U3D-Implementierung in Adobe Reader/Acrobat erlaubt über fehlerhafte U3D-Daten in einem PDF Codeausführung (Array-Grenzproblem).",
+   "metrics": {
+    "AV": {
+     "why": "PDF über Web oder Mail."
+    },
+    "AC": {
+     "why": "Präpariertes PDF."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss das PDF öffnen."
+    },
+    "S": {
+     "why": "Code im Reader-Prozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,84: 2009 in Kits. U3D (3D-Modelle in PDF) war eine breite Angriffsfläche; ein Out-of-Bounds-Write (CWE-787) beim Parsen. PDF-Parser hatten vor der Sandbox viele solcher Lücken."
+  },
+  "CVE-2021-26086": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Atlassian Jira erlaubt über den /WEB-INF/web.xml-Endpunkt ein Path Traversal zum Lesen bestimmter Dateien.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Jira."
+    },
+    "C": {
+     "why": "Nur bestimmte Dateien (web.xml), begrenzt: C:L."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99999: Höchster EPSS im Korpus, Score nur 5,3. Jeder Scanner testet dieses Path Traversal (CWE-22); der Wert ist gering (nur web.xml), die Scan-Frequenz maximal. EPSS misst Ausnutzungsversuche, nicht Schaden."
+  },
+  "CVE-2016-3715": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N",
+   "summary_de": "Der EPHEMERAL-Coder in ImageMagick erlaubt über ein präpariertes Bild das Löschen beliebiger Dateien (Teil von ImageTragick).",
+   "metrics": {
+    "AV": {
+     "why": "Das Bild wird lokal verarbeitet (Upload-Konvertierung): AV:L."
+    },
+    "AC": {
+     "why": "Präpariertes Bild mit ephemeral:-Pfad."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Ein Prozess oder Nutzer muss das Bild verarbeiten."
+    },
+    "S": {
+     "why": "Betroffen ist der ImageMagick-Prozess."
+    },
+    "C": {
+     "why": "Kein Lesen."
+    },
+    "I": {
+     "why": "Beliebige Dateien löschen: I:H."
+    },
+    "A": {
+     "why": "NVD: A:N (obwohl Löschen Verfügbarkeit trifft)."
+    }
+   },
+   "context_de": "KEV, EPSS 0,75: Teil von ImageTragick (mit CVE-2016-3714 RCE). ImageMagick-Coder verarbeiten Pseudo-Protokolle (ephemeral:, https:) aus Bilddaten; die Delegates waren die Angriffsfläche. Datei-Löschen (CWE-552) als eine von mehreren Primitiven."
+  },
+  "CVE-2020-8655": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Die sudoers-Konfiguration von EyesOfNetwork erlaubt dem apache-Nutzer über ein präpariertes NSE-Skript für nmap die Ausführung beliebiger Befehle als root.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Zugriff (als apache-Nutzer nach Web-Kompromittierung)."
+    },
+    "AC": {
+     "why": "Präpariertes nmap-NSE-Skript."
+    },
+    "PR": {
+     "why": "NVD: PR:N (der apache-Nutzer)."
+    },
+    "UI": {
+     "why": "NVD setzt UI:R: Ein Nutzer bzw. Prozess muss das präparierte NSE-Skript über nmap ausführen, damit die sudoers-Lücke greift."
+    },
+    "S": {
+     "why": "Lokale Rechteausweitung zu root: S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,60: In Kette mit dem API-Key-Leck CVE-2020-8657 im selben Produkt. sudo-Regeln, die nmap-Skripte erlauben, sind ein Rechteausweitungs-Klassiker (CWE-269): nmap kann per NSE beliebigen Lua-Code als root ausführen."
+  },
+  "CVE-2014-0196": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Die n_tty_write-Funktion im Linux-Kernel verwaltet den TTY-Treiberzugriff im LECHO-Fall fehlerhaft, was über eine Race Condition Speicherkorruption oder Rechteausweitung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Zugriff auf ein TTY nötig."
+    },
+    "AC": {
+     "why": "Race Condition zwischen Lese- und Schreiboperationen."
+    },
+    "PR": {
+     "why": "Lokaler Nutzer mit TTY-Zugriff: PR:L."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Kernel-Race, S:U."
+    },
+    "C": {
+     "why": "NVD (CNA-Vektor): C:N."
+    },
+    "I": {
+     "why": "Integrität: CNA: I:N."
+    },
+    "A": {
+     "why": "Speicherkorruption/Absturz: A:H (Rechteausweitung möglich)."
+    }
+   },
+   "context_de": "KEV, EPSS 0,22, nur CNA-Vektor mit A:H. Eine TTY-Race-Condition (CWE-362); der Vektor bewertet nur den DoS, obwohl Rechteausweitung möglich war. Lokale Kernel-Races sind ein häufiger EoP-Weg."
+  }
+ }
+}

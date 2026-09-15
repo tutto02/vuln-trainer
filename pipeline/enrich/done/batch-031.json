@@ -1,0 +1,634 @@
+{
+ "batch": "batch-031",
+ "items": {
+  "CVE-2020-3952": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der vmdir-Verzeichnisdienst des VMware vCenter Server (Platform Services Controller) implementiert Zugriffskontrollen unter bestimmten Bedingungen fehlerhaft, was Auslesen und Ändern der Verzeichnisdaten erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "vmdir (LDAP) über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte LDAP-Anfrage."
+    },
+    "PR": {
+     "why": "Fehlende Zugriffskontrolle: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist vCenter, S:U."
+    },
+    "C": {
+     "why": "Verzeichnisdaten (Zugangsdaten aller vCenter-Nutzer): alle Daten lesbar."
+    },
+    "I": {
+     "why": "Verzeichnis änderbar: alles änderbar."
+    },
+    "A": {
+     "why": "Verzeichnis manipulierbar: Dienst störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,90: vmdir ist das Identitäts-Backend von vCenter; wer es liest, hat alle Zugangsdaten der Virtualisierung. Fehlende Zugriffskontrolle (CWE-306) im LDAP-Dienst. vCenter ist im Korpus mehrfach vertreten; die Kontrollebene der Virtualisierung ist ein Kronjuwel."
+  },
+  "CVE-2019-11248": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:L",
+   "summary_de": "Der Debugging-Endpunkt /debug/pprof ist über den unauthentifizierten Kubelet-healthz-Port exponiert und leakt interne Kubelet-Speicheradressen und Konfiguration.",
+   "metrics": {
+    "AV": {
+     "why": "healthz-Port über das Netz."
+    },
+    "AC": {
+     "why": "Eine URL aufrufen."
+    },
+    "PR": {
+     "why": "Der healthz-Port ist unauthentifiziert: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist das Kubelet."
+    },
+    "C": {
+     "why": "Speicheradressen und Konfiguration: gezielt, hochwertig (ASLR-Bypass, Secrets), H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "pprof kann das Kubelet belasten: A:L."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,75: Ein exponierter Debug-Endpunkt (CWE-862), wie TeleMessage /heapdump und Spring Actuator. pprof (Go-Profiling) leakt Speicher und Konfiguration; das Kubelet steuert die Container eines Nodes. Debug-Endpunkte im Netz sind eine eigene Klasse von Fehlkonfiguration."
+  },
+  "CVE-2019-17621": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der UPnP-Endpunkt /gena.cgi im D-Link DIR-859 erlaubt über eine präparierte HTTP-SUBSCRIBE-Anfrage die Ausführung von Systembefehlen als root.",
+   "metrics": {
+    "AV": {
+     "why": "UPnP-Dienst über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte SUBSCRIBE-Anfrage."
+    },
+    "PR": {
+     "why": "Der UPnP-Endpunkt /gena.cgi führt Befehle als root aus, ohne dass sich der Angreifer anmeldet: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle als root auf dem Router, S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: Router abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,90: UPnP (gena.cgi) als Command-Injection-Vektor (CWE-78). D-Link DIR-859 ist im Korpus mehrfach vertreten (CVE-2024-0769 Traversal, CVE-2019-17621 UPnP). UPnP-Dienste im LAN sind eine unterschätzte Angriffsfläche; hier sogar unauthentifiziert als root."
+  },
+  "CVE-2018-14667": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das RichFaces-Framework 3.x ist über die UserResource-Ressource anfällig für Expression-Language-Injection, die über eine Kette serialisierter Java-Objekte Codeausführung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte serialisierte Objekte."
+    },
+    "PR": {
+     "why": "Die EL-Injection über UserResource ist von einem unauthentifizierten Angreifer erreichbar: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Java-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,74: EL-Injection (CWE-94) in RichFaces, einem alten JSF-Framework. Wie JBoss Seam CVE-2010-1871: Expression Language Injection ist die Java-Variante von SSTI. Alte Frameworks in Alt-Anwendungen bleiben verwundbar, weil niemand sie migriert."
+  },
+  "CVE-2019-18935": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Telerik UI für ASP.NET AJAX hat in RadAsyncUpload eine .NET-Deserialisierungslücke, die bei bekanntem Verschlüsselungsschlüssel (über CVE-2017-11317/11357) Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt mit bekanntem Key."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,997: Die Telerik-Trilogie im Korpus (CVE-2017-11317 schwacher Key, CVE-2017-11357 Upload, CVE-2019-18935 Deserialisierung). Der schwache Key von 2017 ermöglichte die Deserialisierung von 2019; drei CVEs, eine Kette über Jahre. Telerik steckt in vielen ASP.NET-Anwendungen."
+  },
+  "CVE-2020-27386": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "FlexDotnetCMS erlaubt einem authentifizierten Nutzer über den FileManager (Upload als TXT) und FileEditor (Umbenennen zu ASP) die Ausführung beliebiger Dateien.",
+   "metrics": {
+    "AV": {
+     "why": "Web-CMS über HTTP."
+    },
+    "AC": {
+     "why": "Upload plus Umbenennen, zwei Schritte."
+    },
+    "PR": {
+     "why": "Der FileManager steht nur angemeldeten Nutzern offen („authenticated remote attacker“): PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,73: Ein zweistufiger Upload-Bypass (CWE-434): sichere Dateiendung hochladen, dann zu ASP umbenennen. Der Filter prüfte nur beim Upload, nicht beim Umbenennen; eine unvollständige Prüfung an der falschen Stelle."
+  },
+  "CVE-2023-22374": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "iControl SOAP in F5 BIG-IP hat einen Format-String-Fehler, der einem authentifizierten Angreifer den Absturz des Prozesses oder Codeausführung erlaubt (im Appliance-Modus mit Grenzübertritt).",
+   "metrics": {
+    "AV": {
+     "why": "iControl SOAP über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:H (Format-String-Ausnutzung bis RCE)."
+    },
+    "PR": {
+     "why": "'Authenticated attacker': PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:C, im Appliance-Modus überschreitet der Exploit eine Sicherheitsgrenze.",
+     "pitfall": "Die Beschreibung nennt ausdrücklich 'cross a security boundary' im Appliance-Modus: der direkte Beleg für S:C."
+    },
+    "C": {
+     "why": "RCE auf der Appliance: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE oder Absturz: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,73: Format-String (CWE-134) in F5s iControl-SOAP. F5 BIG-IP ist im Korpus ein Dauerthema (CVE-2021-22986, CVE-2022-41622, CVE-2023-46748); der Appliance-Modus soll gerade solche Grenzübertritte verhindern, hier scheiterte er."
+  },
+  "CVE-2016-6210": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "OpenSSH sshd nutzt bei nicht existierendem Nutzernamen eine schnellere Passwort-Hash-Berechnung, was über Timing-Unterschiede die Aufzählung gültiger Nutzernamen erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "SSH über das Netz."
+    },
+    "AC": {
+     "why": "AC:H, viele Messungen für die statistische Timing-Analyse nötig."
+    },
+    "PR": {
+     "why": "Die Timing-Messung passiert VOR jeder erfolgreichen Anmeldung, beim Login-Versuch mit beliebigem Nutzernamen; ein Konto ist nicht nötig: PR:N.",
+     "pitfall": "„Password hashing“ und „login“ meinen den Anmeldevorgang, den der Angreifer missbraucht — nicht ein Recht, das er besitzt."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der SSH-Dienst."
+    },
+    "C": {
+     "why": "Gültige Nutzernamen über einen Timing-Seitenkanal: NVD C:H.",
+     "pitfall": "Eine Nutzeraufzählung wäre normalerweise C:L (wie OpenSSH CVE-2018-15473). Hier vergab NVD C:H; die Bewertung von Aufzählungen schwankt. Der CNA-Vektor ist maßgeblich."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,89: Ein Timing-Seitenkanal (CWE-200) zur Nutzeraufzählung. Vergleiche CVE-2018-15473 (auch OpenSSH-Enumeration, aber C:L): Dieselbe Klasse, verschiedene C-Bewertungen. Aufzählung ist Aufklärung für Brute-Force."
+  },
+  "CVE-2020-0646": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Microsoft .NET Framework validiert Eingaben unzureichend, was Remote Code Execution erlaubt (SharePoint-Workflow-Injection).",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz (SharePoint-Workflows)."
+    },
+    "AC": {
+     "why": "Präparierte Eingabe."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im .NET-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: XSLT-Injection (CWE-91) in .NET-Workflows. Die Microsoft-Beschreibung ist knapp ('fails to validate input'), aber die Klasse (Injection) und 'RCE' geben den Vektor. Massenhaft gegen SharePoint gescannt."
+  },
+  "CVE-2016-2774": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "ISC DHCP beschränkt die Zahl gleichzeitiger TCP-Sitzungen nicht, was über viele Sitzungen einen Denial of Service auslöst.",
+   "metrics": {
+    "AV": {
+     "why": "TCP über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:H (viele Sitzungen aufbauen, spezielle Bedingungen)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Nutzer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der DHCP-Dienst."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Erschöpfung der Sitzungen: DHCP verweigert den Dienst, A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,74: Ressourcenerschöpfung (CWE-20/CWE-400) durch fehlendes Sitzungslimit. DHCP ist eine Infrastrukturkomponente; ihr Ausfall verhindert neue Netzwerkanmeldungen. Ein DoS ohne Speicherfehler, nur durch Mengenerschöpfung."
+  },
+  "CVE-2016-6366": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Buffer Overflow in der SNMP-Verarbeitung von Cisco ASA (EXTRABACON) erlaubt authentifizierten Angreifern über präparierte IPv4-SNMP-Pakete die Ausführung beliebigen Codes.",
+   "metrics": {
+    "AV": {
+     "why": "SNMP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte SNMP-Pakete."
+    },
+    "PR": {
+     "why": "Kenntnis des SNMP-Community-Strings nötig: PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf der Firewall, S:U."
+    },
+    "C": {
+     "why": "RCE auf der Firewall: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Firewall abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,88: EXTRABACON, aus dem Shadow-Brokers-Leak der NSA-Werkzeuge (2016). Ein Buffer Overflow (CWE-120) in Cisco-ASA-SNMP; wie beim Hacking-Team-Leak zeigt der Fall, dass ein Leak von Angriffswerkzeugen ein eigenes Risikoereignis ist."
+  },
+  "CVE-2025-34028": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Das Commvault Command Center erlaubt unauthentifizierten Angreifern das Hochladen von ZIP-Install-Paketen, deren Entpacken Path Traversal und darüber RCE über eine JSP-Datei ermöglicht.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes ZIP-Archiv."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Scope: NVD: S:C.",
+     "pitfall": "Commvault ist Backup-Software mit Zugriff auf alle gesicherten Systeme; NVD wertet den Sprung zu diesen Systemen als S:C. Nach Spezifikation ist RCE im selben Prozess S:U, aber die Backup-Rolle stützt S:C."
+    },
+    "C": {
+     "why": "RCE auf dem Backup-Server: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,98, Score 10,0: Backup-Software (wie Veeam, NAKIVO, Arcserve). ZIP-Entpacken mit Path Traversal (CWE-22, 'Zip Slip'), das eine JSP-Webshell platziert. Backup-Systeme sind das Ziel, das Ransomware die Wiederherstellung nimmt; Commvault steht damit in einer wachsenden KEV-Kategorie."
+  },
+  "CVE-2023-50164": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Apache Struts erlaubt über die Manipulation von Datei-Upload-Parametern Path Traversal, was unter Umständen zum Hochladen einer bösartigen Datei und Remote Code Execution führt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Upload-Parameter."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Struts-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,81: Wieder Struts (CWE-552, Path Traversal beim Upload). Die Struts-Serie im Korpus (2013 OGNL, 2017 Equifax, 2018 Namespace, 2023 Upload) zeigt ein Framework mit einer langen Kette kritischer Lücken; jede neue Version bringt eine neue Angriffsfläche."
+  },
+  "CVE-2020-3243": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die REST-API von Cisco UCS Director erlaubt über mehrere Lücken die Authentifizierungsumgehung und Directory-Traversal-Angriffe.",
+   "metrics": {
+    "AV": {
+     "why": "REST-API über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist UCS Director, S:U."
+    },
+    "C": {
+     "why": "API-Zugriff plus Traversal: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,88: UCS Director verwaltet Rechenzentrums-Infrastruktur (wie CVE-2019-1935 mit dem scpuser-Standardkonto). Auth-Bypass plus Traversal (CWE-269); ein Infrastruktur-Orchestrator ist ein hochwertiges Ziel mit Zugriff auf die gesamte Umgebung."
+  },
+  "CVE-2021-3560": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "polkit lässt sich dazu bringen, die Credential-Prüfung für D-Bus-Anfragen zu umgehen, was einem lokalen Nutzer Root-Rechte gibt (z. B. Anlegen eines Admin-Kontos).",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Zugriff nötig."
+    },
+    "AC": {
+     "why": "Die D-Bus-Anfrage im richtigen Moment abbrechen (Timing, aber zuverlässig)."
+    },
+    "PR": {
+     "why": "Ein lokaler Nutzer: PR:L."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Lokale Rechteausweitung zu root: S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,22: Wie PwnKit (CVE-2021-4034) eine polkit-Rechteausweitung, hier über einen Race in der D-Bus-Behandlung (CWE-754). polkit ist die Autorisierungsschicht für privilegierte Aktionen auf Linux-Desktops; zwei kritische polkit-Lücken im Korpus zeigen ein systemkritisches Bauteil unter der Lupe."
+  },
+  "CVE-2024-29824": {
+   "vector_basis": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine SQL-Injection im Core-Server von Ivanti Endpoint Manager erlaubt einem unauthentifizierten Angreifer im selben Netz die Ausführung beliebigen Codes.",
+   "metrics": {
+    "AV": {
+     "why": "NVD: AV:A ('within the same network').",
+     "pitfall": "'Within the same network' ist der Hinweis auf AV:A (Adjacent), nicht AV:N. Der Angreifer braucht eine Position im lokalen Netz des EPM-Servers."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "SQLi bis RCE im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,9995: EPM verwaltet Endpunkte (wie EPMM, Avalanche). SQLi (CWE-89) zu RCE; die AV:A-Begrenzung senkt die Reichweite, aber ein Endpoint-Manager im internen Netz ist ein Sprungbrett zu allen Clients. Ivanti ist im Korpus das am häufigsten vertretene Herstellerthema."
+  },
+  "CVE-2020-7796": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Zimbra Collaboration erlaubt Server-Side Request Forgery, wenn das WebEx-Zimlet installiert und die Zimlet-JSP aktiviert ist.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U für SSRF (hier mit RCE-Bewertung)."
+    },
+    "C": {
+     "why": "NVD: über die SSRF bis RCE bewertet: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,84: Zimbra ist im Korpus ein Dauerziel (mehrere KEV-Einträge). SSRF (CWE-918), nur bei installiertem WebEx-Zimlet; die Konfiguration (welche Zimlets aktiv sind) entscheidet die Wahrscheinlichkeit. Mailserver sind Spionageziele."
+  },
+  "CVE-2022-1364": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion in V8 Turbofan erlaubt über eine präparierte Seite Heap-Korruption in Chrome.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Renderer-Prozess."
+    },
+    "C": {
+     "why": "Codeausführung im Renderer: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,14: Zero-Day. Type Confusion im JIT-Compiler Turbofan (CWE-843); JIT-Bugs sind eine besonders wertvolle Unterklasse, weil der Compiler Annahmen über Typen trifft, die der Angreifer bricht. Niedriger EPSS trotz KEV: gezielte Ausnutzung."
+  },
+  "CVE-2018-4990": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Double Free in Adobe Acrobat/Reader erlaubt über ein präpariertes PDF Codeausführung im Nutzerkontext.",
+   "metrics": {
+    "AV": {
+     "why": "PDF über Web oder Mail."
+    },
+    "AC": {
+     "why": "Präpariertes PDF."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss das PDF öffnen."
+    },
+    "S": {
+     "why": "Code im Reader-Prozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,36: In Kette mit einer Windows-Kernel-EoP (CVE-2018-8120) zu voller Kompromittierung. Double Free (CWE-415) im PDF-Reader; PDF-RCE plus Kernel-EoP ist das klassische Dokument-Angriffsmuster. Die Adobe-Serie im Korpus (2007 bis 2018) illustriert die PDF-Angriffsfläche."
+  },
+  "CVE-2023-5631": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Roundcube erlaubt gespeichertes XSS über eine HTML-E-Mail mit einem präparierten SVG-Dokument (rcube_washtml.php-Fehler).",
+   "metrics": {
+    "AV": {
+     "why": "E-Mail über das Netz."
+    },
+    "AC": {
+     "why": "Präpariertes SVG in einer HTML-Mail."
+    },
+    "PR": {
+     "why": "NVD: PR:L; der CNA vergab PR:N (der Absender braucht kein Konto).",
+     "pitfall": "Der Angreifer sendet die Mail von außen (PR:N wäre schlüssig), NVD vergab PR:L. Bei Webmail-XSS schwankt die PR-Bewertung."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Mail öffnen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Postfach-Session des Opfers: C:L."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "PR": "CNA (Roundcube): PR:N (6,1). Der Absender braucht kein Zimbra-/Roundcube-Konto; PR:N ist schlüssiger."
+   },
+   "context_de": "KEV, EPSS 0,76: Von der Gruppe Winter Vivern gegen europäische Regierungen genutzt. SVG als XSS-Vektor (CWE-79), wie CVE-2025-68461. Roundcube ist im Korpus ein wiederkehrendes Spionageziel; der HTML-Sanitizer (washtml) ist die Dauerbaustelle."
+  }
+ }
+}

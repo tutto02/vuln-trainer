@@ -1,0 +1,507 @@
+{
+"batch": "batch-051",
+"with_chain": false,
+"items": [
+{
+"id": "CVE-2022-43473",
+"desc": "A blind XML External Entity (XXE) vulnerability exists in the Add UCS Device functionality of ManageEngine OpManager 12.6.168. A specially crafted XML file can lead to SSRF. An attacker can serve \r\na malicious XML payload to trigger this vulnerability.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:L",
+"differs": [
+"AC",
+"S",
+"A"
+],
+"cwe": "CWE-611",
+"class": "xxe",
+"stack": "web",
+"products": [
+"zohocorp:manageengine_opmanager"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.19807,
+"traps": [
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2022-38705",
+"desc": "\nIBM CICS TX 11.1 Standard and Advanced could allow a remote attacker to bypass security restrictions, caused by a reverse tabnabbing flaw. An attacker could exploit this vulnerability and redirect a victim to a phishing site. IBM X-Force ID: 234172.\n\n",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:H/A:N",
+"differs": [
+"AC",
+"S",
+"C",
+"I"
+],
+"cwe": "NVD-CWE-Other",
+"class": "unclassified",
+"stack": "application",
+"products": [
+"ibm:cics_tx"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00711,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2019-16243",
+"desc": "On TCL Alcatel Cingular Flip 2 B9HUAH1 devices, there is an undocumented web API that allows unprivileged JavaScript, including JavaScript running within the KaiOS browser, to view and edit the device's firmware over-the-air update settings. (This web API is normally used by the system application to trigger firmware updates via OmaService.js.)",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-306",
+"class": "authn",
+"stack": "web",
+"products": [
+"alcatelmobile:cingular_flip_2_firmware",
+"alcatelmobile:cingular_flip_2"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00746,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2022-21718",
+"desc": "Electron is a framework for writing cross-platform desktop applications using JavaScript, HTML and CSS. A vulnerability in versions prior to `17.0.0-alpha.6`, `16.0.6`, `15.3.5`, `14.2.4`, and `13.6.6` allows renderers to obtain access to a bluetooth device via the web bluetooth API if the app has not configured a custom `select-bluetooth-device` event handler. This has been patched and Electron versions `17.0.0-alpha.6`, `16.0.6`, `15.3.5`, `14.2.4`, and `13.6.6` contain the fix. Code from the GitHub Security Advisory can be added to the app to work around the issue.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+"score": 5.0,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:L/I:N/A:N",
+"differs": [
+"PR",
+"UI"
+],
+"cwe": "CWE-862",
+"class": "authz",
+"stack": "web",
+"products": [
+"electronjs:electron"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00946,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2020-11084",
+"desc": "In iPear, the manual execution of the eval() function can lead to command injection. Only PCs where commands are manually executed via \"For Developers\" are affected. This function allows executing any PHP code within iPear which may change, damage, or steal data (files) from the PC.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N",
+"differs": [
+"S"
+],
+"cwe": "CWE-77",
+"class": "cmd-injection",
+"stack": "web",
+"products": [
+"ipear_project:ipear"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01429,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2022-21169",
+"desc": "The package express-xss-sanitizer before 1.1.3 are vulnerable to Prototype Pollution via the allowedTags attribute, allowing the attacker to bypass xss sanitization.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+"differs": [
+"UI",
+"S",
+"A"
+],
+"cwe": "CWE-1321",
+"class": "code-injection",
+"stack": "library",
+"products": [
+"express_xss_sanitizer_project:express_xss_sanitizer"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00794,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2023-2639",
+"desc": "The underlying feedback mechanism of \n\nRockwell Automation's FactoryTalk System Services that transfers the FactoryTalk Policy Manager rules to relevant devices on the network does not verify that the origin of the communication is from a legitimate local client device.  This may allow a threat actor to craft a malicious website that, when visited, will send a malicious script that can connect to the local WebSocket endpoint and wait for events as if it was a valid client device. If successfully exploited, this would allow a threat actor to receive information including whether FactoryTalk Policy Manager is installed and potentially the entire security policy. \n\n\n",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:N",
+"score": 4.7,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:N/A:N",
+"differs": [
+"PR"
+],
+"cwe": "CWE-346",
+"class": "crypto",
+"stack": "ics-iot",
+"products": [
+"rockwellautomation:factorytalk_policy_manager",
+"rockwellautomation:factorytalk_system_services"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00384,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2022-29413",
+"desc": "Cross-Site Request Forgery (CSRF) leading to Stored Cross-Site Scripting (XSS) in Mufeng's Hermit 音乐播放器 plugin <= 3.1.6 on WordPress via &title parameter.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:N/I:L/A:N",
+"differs": [
+"C"
+],
+"cwe": "CWE-352",
+"class": "csrf",
+"stack": "web",
+"products": [
+"hermit_project:hermit"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00382,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2020-4271",
+"desc": "IBM QRadar 7.3.0 to 7.3.3 Patch 2 could allow an authenticated user to send a specially crafted command which would be executed as a lower privileged user. IBM X-ForceID: 175897.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"score": 6.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-502",
+"class": "deserialization",
+"stack": "linux",
+"products": [
+"ibm:qradar_security_information_and_event_manager",
+"linux:linux_kernel"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01732,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2023-23707",
+"desc": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'), Unrestricted Upload of File with Dangerous Type vulnerability in Awsm Innovations Embed Any Document – Embed PDF, Word, PowerPoint and Excel Files allows Stored XSS via upload of SVG and HTML files. This issue affects Embed Any Document – Embed PDF, Word, PowerPoint and Excel Files plugin <= 2.7.1 versions.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:L",
+"differs": [
+"PR",
+"A"
+],
+"cwe": "CWE-434",
+"class": "file-upload",
+"stack": "web",
+"products": [
+"awsm:embed_any_document"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00384,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2019-13318",
+"desc": "This vulnerability allows remote attackers to disclose sensitive information on affected installations of Foxit Reader 9.5.0.20723. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The specific flaw exists within the processing of the util.printf Javascript method. The application processes the %p parameter in the format string, allowing heap addresses to be returned to the script. An attacker can leverage this in conjunction with other vulnerabilities to execute code in the context of the current process. Was ZDI-CAN-8544.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+"score": 5.5,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-134",
+"class": "format-string",
+"stack": "windows",
+"products": [
+"foxitsoftware:reader",
+"microsoft:windows",
+"foxitsoftware:phantompdf"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.05834,
+"traps": [
+"c_high_scoped"
+]
+},
+{
+"id": "CVE-2019-10963",
+"desc": "Moxa EDR 810, all versions 5.1 and prior, allows an unauthenticated attacker to be able to retrieve some log files from the device, which may allow sensitive information disclosure. Log files must have previously been exported by a legitimate user.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+"score": 4.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-321",
+"class": "hardcoded-creds",
+"stack": "network",
+"products": [
+"moxa:edr-810_firmware",
+"moxa:edr-810"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.06499,
+"traps": [
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2020-11013",
+"desc": "Their is an information disclosure vulnerability in Helm from version 3.1.0 and before version 3.2.0. `lookup` is a Helm template function introduced in Helm v3. It is able to lookup resources in the cluster to check for the existence of specific resources and get details about them. This can be used as part of the process to render templates. The documented behavior of `helm template` states that it does not attach to a remote cluster. However, a the recently added `lookup` template function circumvents this restriction and connects to the cluster even during `helm template` and `helm install|update|delete|rollback --dry-run`. The user is not notified of this behavior. Running `helm template` should not make calls to a cluster. This is different from `install`, which is presumed to have access to a cluster in order to load resources into Kubernetes. Helm 2 is unaffected by this vulnerability. A malicious chart author could inject a `lookup` into a chart that, when rendered through `helm template`, performs unannounced lookups against the cluster a user&#39;s `KUBECONFIG` file points to. This information can then be disclosed via the output of `helm template`. This issue has been fixed in Helm 3.2.0",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+"score": 5.0,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:L/A:N",
+"differs": [
+"C",
+"I"
+],
+"cwe": "CWE-200",
+"class": "info-exposure",
+"stack": "application",
+"products": [
+"helm:helm"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.0126,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2022-23603",
+"desc": "iTunesRPC-Remastered is a discord rich presence application for use with iTunes & Apple Music. In code before commit 24f43aa user input is not properly sanitized and code injection is possible. Users are advised to upgrade as soon as is possible. There are no known workarounds for this issue.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:L",
+"differs": [
+"UI",
+"C",
+"A"
+],
+"cwe": "CWE-116",
+"class": "injection-other",
+"stack": "application",
+"products": [
+"itunesrpc-remastered_project:itunesrpc-remastered"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00994,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-39186",
+"desc": "GlobalNewFiles is a MediaWiki extension maintained by Miraheze. Prior to commit number cee254e1b158cdb0ddbea716b1d3edc31fa4fb5d, the username column of the GlobalNewFiles special page is vulnerable to a stored XSS. Commit number cee254e1b158cdb0ddbea716b1d3edc31fa4fb5d contains a patch. As a workaround, one may disallow <,> (or other characters required to insert html/js) from being used in account names so an XSS is not possible.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N",
+"differs": [
+"S",
+"C"
+],
+"cwe": "CWE-20",
+"class": "input-validation",
+"stack": "application",
+"products": [
+"miraheze:globalnewfiles"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01006,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2022-28197",
+"desc": "NVIDIA Jetson Linux Driver Package contains a vulnerability in the Cboot ext4_mount function, where Insufficient validation of untrusted data may allow a highly privileged local attacker to cause an integer overflow. This difficult-to-exploit vulnerability may lead to code execution, escalation of privileges, limited denial of service, and some impact to confidentiality and integrity. The scope of impact can extend to other components.",
+"vector": "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:C/C:L/I:L/A:L",
+"score": 5.0,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-190",
+"class": "integer-overflow",
+"stack": "library",
+"products": [
+"nvidia:jetson_linux",
+"nvidia:jetson_agx_xavier",
+"nvidia:jetson_xavier_nx"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00202,
+"traps": [
+"scope_c",
+"c_low",
+"ac_h"
+]
+},
+{
+"id": "CVE-2020-11947",
+"desc": "iscsi_aio_ioctl_cb in block/iscsi.c in QEMU 4.1.0 has a heap-based buffer over-read that may disclose unrelated information from process memory to an attacker.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+"score": 3.8,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-125",
+"class": "memory-read",
+"stack": "application",
+"products": [
+"qemu:qemu"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00467,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2020-25085",
+"desc": "QEMU 5.0.0 has a heap-based Buffer Overflow in flatview_read_continue in exec.c because hw/sd/sdhci.c mishandles a write operation in the SDHC_BLKSIZE case.",
+"vector": "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:C/C:L/I:L/A:L",
+"score": 5.0,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-787",
+"class": "memory-write",
+"stack": "linux",
+"products": [
+"qemu:qemu",
+"debian:debian_linux"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00633,
+"traps": [
+"scope_c",
+"c_low",
+"ac_h"
+]
+},
+{
+"id": "CVE-2021-3594",
+"desc": "An invalid pointer initialization issue was found in the SLiRP networking implementation of QEMU. The flaw exists in the udp_input() function and could occur while processing a udp packet that is smaller than the size of the 'udphdr' structure. This issue may lead to out-of-bounds read access or indirect host memory disclosure to the guest. The highest threat from this vulnerability is to data confidentiality. This flaw affects libslirp versions prior to 4.6.0.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+"score": 3.8,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-824",
+"class": "null-deref-uninit",
+"stack": "linux",
+"products": [
+"libslirp_project:libslirp",
+"redhat:enterprise_linux",
+"debian:debian_linux"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00326,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2020-1735",
+"desc": "A flaw was found in the Ansible Engine when the fetch module is used. An attacker could intercept the module, inject a new path, and then choose a new destination path on the controller node. All versions in 2.7.x, 2.8.x and 2.9.x branches are believed to be vulnerable.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:L/I:L/A:N",
+"score": 4.6,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:L/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:N",
+"differs": [
+"UI"
+],
+"cwe": "CWE-22",
+"class": "path-traversal",
+"stack": "linux",
+"products": [
+"redhat:ansible",
+"redhat:ansible_tower",
+"redhat:cloudforms_management_engine"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00492,
+"traps": [
+"scope_c",
+"c_low"
+]
+}
+]
+}

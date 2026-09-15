@@ -1,0 +1,593 @@
+{
+ "batch": "batch-025",
+ "items": {
+  "CVE-2024-51567": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "CyberPanel prüft die Middleware nur bei POST; über upgrademysqlstatus mit anderen Methoden und Shell-Metazeichen im statusfile lassen sich Authentifizierung umgehen und Befehle ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Methoden-Trick plus Shell-Metazeichen."
+    },
+    "PR": {
+     "why": "Bypass der secMiddleware: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle im Panel-Prozess.",
+     "pitfall": "Der CNA vergab S:C. Wie bei der Schwester CVE-2024-51378: Hosting-Panels laufen als root und verwalten Kundenseiten, aber Code im selben Prozess ist S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: System abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA: S:C (10,0). NVD 9,8."
+   },
+   "context_de": "KEV mit Ransomware-Bezug (PSAUX), EPSS 0,87: Schwester von CVE-2024-51378, gleicher Middleware-nur-für-POST-Fehler, anderer Endpunkt. Zwei CVEs aus demselben Bug-Muster; wer nur eine patchte, blieb verwundbar."
+  },
+  "CVE-2021-36749": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Die HTTP-InputSource von Apache Druid erlaubt authentifizierten Nutzern das Lesen von Daten aus anderen Quellen als vorgesehen, etwa dem lokalen Dateisystem, mit den Rechten des Druid-Prozesses.",
+   "metrics": {
+    "AV": {
+     "why": "Druid-API über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte InputSource."
+    },
+    "PR": {
+     "why": "'Authenticated users': PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Druid-Prozess.",
+     "pitfall": "Die Beschreibung sagt ausdrücklich 'This is not an elevation of privilege': ein Hinweis, dass S:U korrekt ist, kein Scope-Wechsel."
+    },
+    "C": {
+     "why": "Beliebige lokale Dateien mit Prozessrechten: gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,81. Ein SSRF/LFI über eine Datenquellen-Konfiguration (CWE-863); Big-Data-Tools mit HTTP-InputSources sind eine wiederkehrende Angriffsfläche (auch Flink, Spark)."
+  },
+  "CVE-2019-10149": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Exim validiert die Empfängeradresse in deliver_message() unzureichend, was Remote Command Execution als root über eine präparierte Mail erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "SMTP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Empfängeradresse in einer Mail."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig (lokal sofort, remote mit bestimmter Konfiguration)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle als root im Exim-Prozess, S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,9996: Massenausnutzung durch Wurm und Kryptominer (mehrere hunderttausend Server). Exim läuft als root und ist auf Millionen Mailservern; eine Command Injection (CWE-78) im Zustellpfad, die Adresse selbst ist die Nutzlast."
+  },
+  "CVE-2023-29509": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "XWiki Commons erlaubt jedem Nutzer mit View-Recht die Ausführung von Groovy-, Python- oder Velocity-Code über unzureichendes Escaping des documentTree-Makros.",
+   "metrics": {
+    "AV": {
+     "why": "Wiki-Weboberfläche über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Makro-Aufruf."
+    },
+    "PR": {
+     "why": "'View rights on commonly accessible documents': PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im XWiki-Prozess.",
+     "pitfall": "Der CNA vergab S:C. Der übliche XWiki-Scope-Streit; RCE im selben Prozess ist S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (XWiki): S:C (8,8). Siebte XWiki-Makro-RCE im Korpus."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,76. XWiki-Makro-RCE Nummer sieben; das Muster ist so stabil, dass die Merkregel klar ist: Bei XWiki ist Makro-Escaping die Dauerbaustelle, Programmierrechte streng vergeben."
+  },
+  "CVE-2017-3066": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Adobe ColdFusion hat in der Apache-BlazeDS-Bibliothek eine Java-Deserialisierungslücke, die Codeausführung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt (AMF)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im ColdFusion-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,91: ColdFusion ist ein Dauerbrenner im Korpus (CVE-2013-0632, CVE-2023-26360, CVE-2018-15961). Deserialisierung (CWE-502) über BlazeDS/AMF; die eingebettete Flash-Messaging-Bibliothek war die Schwachstelle."
+  },
+  "CVE-2023-4220": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Chamilo LMS erlaubt über die Big-File-Upload-Funktion (bigUpload.php) unauthentifizierten Angreifern das Hochladen einer Webshell und damit RCE.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload."
+    },
+    "PR": {
+     "why": "Der Upload über bigUpload.php ist für unauthentifizierte Angreifer möglich: PR:N."
+    },
+    "UI": {
+     "why": "NVD wählte den XSS-Vektor (UI:R); der CNA den RCE-Vektor (UI:N).",
+     "pitfall": "Die Beschreibung nennt beides (XSS und RCE). NVD bewertete den XSS-Anteil (6,1), der CNA die RCE (C:H/I:H/A:H, 9,8). Wenn du 9,8 gebaut hast, hast du die gefährlichere Lücke bewertet."
+    },
+    "S": {
+     "why": "NVD: XSS-Scope (S:C); der CNA S:U für die RCE."
+    },
+    "C": {
+     "why": "NVD: XSS-Kontext (C:L); real Webshell (C:H)."
+    },
+    "I": {
+     "why": "NVD: XSS (I:L); real Webshell (I:H)."
+    },
+    "A": {
+     "why": "NVD: A:N; real A:H."
+    }
+   },
+   "dissent": {
+    "UI": "CNA (Chamilo): AC:H, S:U, C:H/I:H/A:H (8,1). Zwei völlig verschiedene Vektoren für dieselbe CVE, je nachdem ob man XSS oder RCE bewertet. Ein Musterfall für 'welche der beiden Lücken bewertet der Vektor?'."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,76. Der NVD-Vektor beschreibt den harmloseren Teil (XSS), die reale Ausnutzung war die RCE. Wie bei OFBiz CVE-2020-9496: Bei Doppel-Lücken sagt der Score wenig über die tatsächliche Gefahr."
+  },
+  "CVE-2023-5222": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der Viessmann Vitogate 300 verwendet in isValidUser ein fest kodiertes Passwort, das Zugriff auf das Web-Management-Interface gibt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface über das Netz."
+    },
+    "AC": {
+     "why": "Bekanntes fest kodiertes Passwort."
+    },
+    "PR": {
+     "why": "Fest kodiertes Passwort ist kein eigenes Recht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U (RCE-Bewertung); der CNA (VulDB) vergab AV:A/C:L/I:L/A:L."
+    },
+    "C": {
+     "why": "NVD: Vollzugriff (alle Daten lesbar); der CNA sah begrenzten Zugriff."
+    },
+    "I": {
+     "why": "NVD: alles änderbar."
+    },
+    "A": {
+     "why": "NVD: System abschaltbar."
+    }
+   },
+   "dissent": {
+    "AV": "CNA (VulDB): AV:A, C:L, I:L, A:L (5,x). VulDB bewertet konservativer (Adjacent, begrenzte Auswirkung); NVD nahm AV:N und Vollzugriff. Zwei stark abweichende Vektoren, Provenienz beachten."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,75: Ein Heizungs-Gateway (ICS/IoT) mit fest kodiertem Passwort (CWE-259). Bei automatisch erzeugten VulDB-CVEs weichen die Vektoren oft stark vom NVD-Standard ab; hier fünf Metriken Unterschied."
+  },
+  "CVE-2019-1439": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+   "summary_de": "Die Windows-GDI-Komponente gibt bei fehlerhafter Verarbeitung den Inhalt ihres Speichers preis (Information Disclosure).",
+   "metrics": {
+    "AV": {
+     "why": "Präpariertes Dokument oder Webseite über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Datei öffnen."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Datei öffnen."
+    },
+    "S": {
+     "why": "Bleibt im verarbeitenden Prozess."
+    },
+    "C": {
+     "why": "Speicherinhalte, oft Adressen (KASLR-Bypass): NVD C:H.",
+     "pitfall": "GDI-Speicherlecks werden von NVD als C:H bewertet, weil beliebiger Prozessspeicher lesbar sein kann; als Info-Leak (CWE-200) sind sie das Glied, das die Adressen für den nächsten Exploit liefert."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,75. GDI-Info-Lecks sind das klassische erste Glied von Windows-Exploit-Ketten: Sie durchbrechen ASLR, bevor der eigentliche Speicherfehler zuschlägt. Ein 6,5 als Kettenvorbereitung."
+  },
+  "CVE-2022-36099": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "XWiki Wiki UI (Main Wiki) erlaubt über einen URL-Parameter die Injektion von Wiki-Syntax inklusive Groovy-, Python- und Velocity-Makros.",
+   "metrics": {
+    "AV": {
+     "why": "Wiki-Weboberfläche über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter URL-Parameter."
+    },
+    "PR": {
+     "why": "Ein Konto: PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im XWiki-Prozess.",
+     "pitfall": "Der CNA vergab S:C. Achte XWiki-Makro-RCE; der Scope-Streit wiederholt sich."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (XWiki): S:C (8,8). Achte XWiki-Makro-RCE im Korpus."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,76. XWiki-Makro-RCE Nummer acht. Klasse hier CWE-116 (unzureichendes Escaping); die Wurzel ist immer dieselbe: Nutzerdaten gehen ungeprüft in die Rendering-Engine."
+  },
+  "CVE-2013-6282": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die get_user- und put_user-API-Funktionen im Linux-Kernel auf ARM v6k/v7 validieren bestimmte Adressen nicht, was das Lesen und Schreiben beliebigen Kernelspeichers erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "NVD vergab AV:N, obwohl der Angriff über eine lokal ausgeführte App läuft.",
+     "pitfall": "'Via a crafted application' spricht klar für AV:L (lokale App). NVD setzte trotzdem AV:N (Score 8,8). Eine der NVD-Inkonsistenzen bei App-basierten Android-Kernel-Lücken; wenn du AV:L gesetzt hast, war das inhaltlich richtig."
+    },
+    "AC": {
+     "why": "Präparierte Anwendung, bekannter Exploit."
+    },
+    "PR": {
+     "why": "Eine normale App: PR:L."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Kernel-EoP: S:U."
+    },
+    "C": {
+     "why": "Beliebiger Kernelspeicher lesbar: alle Daten."
+    },
+    "I": {
+     "why": "Beliebiger Kernelspeicher schreibbar: alles änderbar."
+    },
+    "A": {
+     "why": "Kernel-Kontrolle: Gerät abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,40: Der universelle Android-Rooting-Exploit 2013 (VROOT/Towelroot-Vorläufer). Fehlende Adressvalidierung (CWE-20) in den Kernel-Kopierfunktionen; ein Lese/Schreib-Primitiv auf beliebigen Kernelspeicher ist so mächtig wie es klingt."
+  },
+  "CVE-2022-34169": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+   "summary_de": "Die Apache-Xalan-Java-XSLT-Bibliothek hat einen Integer-Truncation-Fehler beim Verarbeiten präparierter XSLT-Stylesheets, der generierte Java-Class-Dateien korrumpiert und beliebigen Java-Bytecode ausführt.",
+   "metrics": {
+    "AV": {
+     "why": "Über eine Anwendung, die XSLT verarbeitet (z. B. XML-Verarbeitung übers Netz)."
+    },
+    "AC": {
+     "why": "Präpariertes XSLT."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Java-Prozess der einbettenden Anwendung, S:U."
+    },
+    "C": {
+     "why": "Vertraulichkeit: NVD: C:N."
+    },
+    "I": {
+     "why": "Bytecode-Ausführung: I:H."
+    },
+    "A": {
+     "why": "Verfügbarkeit: NVD: A:N."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,81: Xalan steckt in vielen Java-Anwendungen (auch der Java-Runtime selbst). Ein Integer-Truncation (CWE-681) beim Kompilieren von XSLT zu Bytecode; die reale Ausnutzbarkeit hängt daran, ob die App unvertrautes XSLT verarbeitet."
+  },
+  "CVE-2016-4657": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "WebKit in iOS vor 9.3.5 erlaubt über eine präparierte Website Codeausführung (Speicherkorruption) - der Browser-Teil der Pegasus-Kette.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss auf einen Link tippen."
+    },
+    "S": {
+     "why": "Code im Browserprozess."
+    },
+    "C": {
+     "why": "Code mit Browserrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,67: Trident/Pegasus, die erste dokumentierte NSO-iPhone-Kette (mit CVE-2016-4655/4656). Der WebKit-Bug (CWE-787) war Stufe eins: ein Link, dann Browser-RCE, dann Kernel-EoP, dann Jailbreak. Drei CVEs, eine SMS."
+  },
+  "CVE-2024-28995": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "SolarWinds Serv-U ist anfällig für Path Traversal, das unauthentifizierten Angreifern das Lesen sensibler Dateien auf dem Host erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL (Windows- und Unix-Traversal-Varianten)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Serv-U.",
+     "pitfall": "Der CNA vergab S:C. Path Traversal auf demselben Host ist S:U; der CNA sah einen Scope-Wechsel."
+    },
+    "C": {
+     "why": "Beliebige Dateien lesen (Konfiguration, Secrets): gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "S": "CNA (SolarWinds): S:C (8,6). NVD 7,5."
+   },
+   "context_de": "KEV, EPSS 0,996: Dateitransfer-Server (wie CVE-2021-35211 bei Serv-U). Path Traversal (CWE-22) mit Massenscans; internetexponierte MFT-Server sind seit MOVEit das Lieblingsziel."
+  },
+  "CVE-2019-15752": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Docker Desktop für Windows erlaubt einem unprivilegierten Nutzer, eine Trojaner-docker-credential-wincred.exe in %PROGRAMDATA% zu platzieren, die dann mit höheren Rechten ausgeführt wird.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Zugriff auf das System nötig."
+    },
+    "AC": {
+     "why": "Datei platzieren, kein Timing."
+    },
+    "PR": {
+     "why": "NVD: PR:N (jeder darf in das Verzeichnis schreiben)."
+    },
+    "UI": {
+     "why": "Ein Admin oder Dienst muss sich bei Docker authentifizieren/Docker neu starten."
+    },
+    "S": {
+     "why": "Lokale Rechteausweitung, S:U."
+    },
+    "C": {
+     "why": "Code mit Admin-Rechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,32: Ein schreibbares Verzeichnis in der Rechte-Reichweite (CWE-732); die Trojaner-Binary wird beim nächsten Docker-Login eines Admins ausgeführt. Wie DLL-Hijacking: Der Angreifer legt die Datei, das Opfer löst sie aus."
+  },
+  "CVE-2024-8068": {
+   "vector_basis": "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Citrix Session Recording erlaubt einem authentifizierten Nutzer in derselben Active-Directory-Domäne wie der Recording-Server die Rechteausweitung zum NetworkService-Konto.",
+   "metrics": {
+    "AV": {
+     "why": "NVD: AV:A, der Angreifer muss in derselben AD-Domäne sein (angrenzendes Netz).",
+     "pitfall": "'Same Windows Active Directory domain' ist der Hinweis auf AV:A: kein beliebiger Netzzugriff, sondern eine Domänen-Position."
+    },
+    "AC": {
+     "why": "Kein besonderer Aufwand."
+    },
+    "PR": {
+     "why": "Ein authentifizierter Domänennutzer: PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Rechteausweitung auf dem Recording-Server, S:U."
+    },
+    "C": {
+     "why": "NetworkService: alle Daten lesbar."
+    },
+    "I": {
+     "why": "NetworkService: alles änderbar."
+    },
+    "A": {
+     "why": "NetworkService: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,01: Die Domänen-Voraussetzung (AV:A) begrenzt die Reichweite; trotzdem in KEV, weil jeder Domänennutzer der Angreifer sein kann. Rechteausweitung (CWE-269) über eine unsichere Deserialisierung im MSMQ-Kanal."
+  },
+  "CVE-2025-38352": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Race Condition zwischen handle_posix_cpu_timers() und posix_cpu_timer_del() im Linux-Kernel erlaubt lokale Rechteausweitung.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Zugriff nötig."
+    },
+    "AC": {
+     "why": "CNA: AC:L (der Exploit gewinnt die Race zuverlässig)."
+    },
+    "PR": {
+     "why": "Ein lokaler Nutzer: PR:L."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Kernel-EoP: S:U."
+    },
+    "C": {
+     "why": "Kernel-Kontrolle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Kernel-Kontrolle: alles änderbar."
+    },
+    "A": {
+     "why": "Kernel-Kontrolle: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,01, nur CNA-Vektor. POSIX-CPU-Timer-Race (CWE-362); Android-Kernel-Lücken landen in KEV, wenn Spyware sie nutzt. AC:L trotz Race, weil die Timer-Race stabil gewinnbar ist, anders als Dirty COW (AC:H)."
+  },
+  "CVE-2018-8120": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der Win32k-Kernel-Treiber verarbeitet Objekte im Speicher fehlerhaft, was lokale Rechteausweitung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Zugriff nötig."
+    },
+    "AC": {
+     "why": "NVD: AC:H (Exploit-Zuverlässigkeit auf bestimmten Windows-Versionen)."
+    },
+    "PR": {
+     "why": "Ein lokaler Nutzer: PR:L."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Kernel-EoP: S:U."
+    },
+    "C": {
+     "why": "SYSTEM: alle Daten lesbar."
+    },
+    "I": {
+     "why": "SYSTEM: alles änderbar."
+    },
+    "A": {
+     "why": "SYSTEM: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,74: Win32k-EoP (CWE-404 bei NVD, real Speicherfehler), von APT-Gruppen als zweites Glied genutzt. Win32k ist die ergiebigste Windows-Kernel-EoP-Quelle; nach dem Phishing-Einbruch der Weg zu SYSTEM."
+  },
+  "CVE-2022-25149": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Das WordPress-Plugin WP Statistics hat über den IP-Parameter eine unauthentifizierte SQL-Injection, die sensible Informationen preisgibt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Parameter."
+    },
+    "PR": {
+     "why": "'Without authentication' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank gehört zur Anwendung."
+    },
+    "C": {
+     "why": "SQLi liest die Datenbank: gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "NVD: nur Lesen; der CNA vergab I:H/A:H."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung bewertet."
+    }
+   },
+   "dissent": {
+    "I": "CNA (WPScan): I:H, A:H (9,8). Schwester von CVE-2022-25148 (anderer Parameter). Blind SQLi liest meist nur; NVDs C:H/I:N/A:N ist realistischer."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,77: Zweite WP-Statistics-SQLi (IP-Parameter statt current_page_id). Zwei fast identische CVEs im selben Plugin; ein Plugin mit systematisch fehlender Parametrisierung (CWE-89)."
+  }
+ }
+}

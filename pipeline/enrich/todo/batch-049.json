@@ -1,0 +1,527 @@
+{
+"batch": "batch-049",
+"with_chain": false,
+"items": [
+{
+"id": "CVE-2021-0247",
+"desc": "A Race Condition (Concurrent Execution using Shared Resource with Improper Synchronization) vulnerability in the firewall process (dfwd) of Juniper Networks Junos OS allows an attacker to bypass the firewall rule sets applied to the input loopback filter on any interfaces of a device. This issue is detectable by reviewing the PFE firewall rules, as well as the firewall counters and seeing if they are incrementing or not. For example: show firewall Filter: __default_bpdu_filter__ Filter: FILTER-INET-01 Counters: Name Bytes Packets output-match-inet 0 0 <<<<<< missing firewall packet count This issue affects: Juniper Networks Junos OS 14.1X53 versions prior to 14.1X53-D53 on QFX Series; 14.1 versions 14.1R1 and later versions prior to 15.1 versions prior to 15.1R7-S6 on QFX Series, PTX Series; 15.1X53 versions prior to 15.1X53-D593 on QFX Series; 16.1 versions prior to 16.1R7-S7 on QFX Series, PTX Series; 16.2 versions prior to 16.2R2-S11, 16.2R3 on QFX Series, PTX Series; 17.1 versions prior to 17.1R2-S11, 17.1R3-S2 on QFX Series, PTX Series; 17.2 versions prior to 17.2R1-S9, 17.2R3-S3 on QFX Series, PTX Series; 17.3 versions prior to 17.3R2-S5, 17.3R3-S7 on QFX Series, PTX Series; 17.4 versions prior to 17.4R2-S9, 17.4R3 on QFX Series, PTX Series; 18.1 versions prior to 18.1R3-S9 on QFX Series, PTX Series; 18.2 versions prior to 18.2R2-S6, 18.2R3-S3 on QFX Series, PTX Series; 18.3 versions prior to 18.3R1-S7, 18.3R2-S3, 18.3R3-S1 on QFX Series, PTX Series; 18.4 versions prior to 18.4R1-S5, 18.4R2-S3, 18.4R2-S7, 18.4R3 on QFX Series, PTX Series; 19.1 versions prior to 19.1R1-S4, 19.1R2-S1, 19.1R3 on QFX Series, PTX Series; 19.2 versions prior to 19.2R1-S3, 19.2R2 on QFX Series, PTX Series.",
+"vector": "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:C/C:L/I:L/A:L",
+"score": 5.5,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:C/C:L/I:L/A:L",
+"differs": [
+"UI"
+],
+"cwe": "CWE-362",
+"class": "race-condition",
+"stack": "network",
+"products": [
+"juniper:junos"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00556,
+"traps": [
+"scope_c",
+"c_low",
+"ac_h"
+]
+},
+{
+"id": "CVE-2021-34421",
+"desc": "The Keybase Client for Android before version 5.8.0 and the Keybase Client for iOS before version 5.8.0 fails to properly remove exploded messages initiated by a user if the receiving user places the chat session in the background while the sending user explodes the messages. This could lead to disclosure of sensitive information which was meant to be deleted from the customer's device.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+"score": 4.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+"differs": [
+"AC",
+"UI"
+],
+"cwe": "CWE-459",
+"class": "resource-exhaustion",
+"stack": "application",
+"products": [
+"keybase:keybase"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00713,
+"traps": [
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-25736",
+"desc": "Kube-proxy\n on Windows can unintentionally forward traffic to local processes \nlistening on the same port (“spec.ports[*].port”) as a LoadBalancer \nService when the LoadBalancer controller\n does not set the “status.loadBalancer.ingress[].ip” field. Clusters \nwhere the LoadBalancer controller sets the \n“status.loadBalancer.ingress[].ip” field are unaffected.",
+"vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:N",
+"score": 6.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:C/C:H/I:N/A:N",
+"differs": [
+"PR"
+],
+"cwe": "CWE-114",
+"class": "search-path",
+"stack": "windows",
+"products": [
+"kubernetes:kubernetes",
+"microsoft:windows"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00915,
+"traps": [
+"scope_c",
+"c_high_scoped",
+"pr_l_authenticated",
+"ac_h"
+]
+},
+{
+"id": "CVE-2023-29459",
+"desc": "The laola.redbull application through 5.1.9-R for Android exposes the exported activity at.redbullsalzburg.android.AppMode.Default.Splash.SplashActivity, which accepts a data: URI. The target of this URI is subsequently loaded into the application's webview, thus allowing the loading of arbitrary content into the context of the application. This can occur via the fcrbs schema or an explicit intent invocation.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-89",
+"class": "sqli",
+"stack": "web",
+"products": [
+"redbull:fc_red_bull_salzburg"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00649,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2023-46729",
+"desc": "sentry-javascript provides Sentry SDKs for JavaScript. An unsanitized input of Next.js SDK tunnel endpoint allows sending HTTP requests to arbitrary URLs and reflecting the response back to the user. This issue only affects users who have Next.js SDK tunneling feature enabled. The problem has been fixed in version 7.77.0.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:N",
+"differs": [
+"C",
+"I"
+],
+"cwe": "CWE-918",
+"class": "ssrf",
+"stack": "web",
+"products": [
+"sentry:sentry_software_development_kit"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00631,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-23472",
+"desc": "This affects versions before 1.19.1 of package bootstrap-table. A type confusion vulnerability can lead to a bypass of input sanitization when the input provided to the escapeHTML function is an array (instead of a string) even if the escape attribute is set.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:N",
+"differs": [
+"AC",
+"S",
+"I"
+],
+"cwe": "CWE-843",
+"class": "type-confusion",
+"stack": "web",
+"products": [
+"bootstrap-table:bootstrap_table"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.02409,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2022-39847",
+"desc": "Use after free vulnerability in set_nft_pid and signal_handler function of NFC driver prior to SMR Oct-2022 Release 1 allows attackers to perform malicious actions.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"score": 5.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L",
+"differs": [
+"AC",
+"PR"
+],
+"cwe": "CWE-416",
+"class": "use-after-free",
+"stack": "android",
+"products": [
+"google:android"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00079,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2021-21337",
+"desc": "Products.PluggableAuthService is a pluggable Zope authentication and authorization framework. In Products.PluggableAuthService before version 2.6.0 there is an open redirect vulnerability. A maliciously crafted link to the login form and login functionality could redirect the browser to a different website. The problem has been fixed in version 2.6.1. Depending on how you have installed Products.PluggableAuthService, you should change the buildout version pin to `2.6.1` and re-run the buildout, or if you used `pip` simply do `pip install \"Products.PluggableAuthService>=2.6.1\".",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:N",
+"differs": [
+"PR",
+"S",
+"C",
+"I"
+],
+"cwe": "CWE-601",
+"class": "web-logic",
+"stack": "library",
+"products": [
+"zope:products.pluggableauthservice"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.08443,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2023-29489",
+"desc": "An issue was discovered in cPanel before 11.109.9999.116. XSS can occur on the cpsrvd error page via an invalid webcall ID, aka SEC-669. The fixed versions are 11.109.9999.116, 11.108.0.13, 11.106.0.18, and 11.102.0.31.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"differs": [
+"AV",
+"PR",
+"UI",
+"S",
+"A"
+],
+"cwe": "CWE-79",
+"class": "xss",
+"stack": "web",
+"products": [
+"cpanel:cpanel"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.65533,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2023-0871",
+"desc": "XXE injection in /rtc/post/ endpoint in OpenMNS Horizon 31.0.8 and versions earlier than 32.0.2 on multiple platforms is vulnerable to XML external entity (XXE) injection, which can be used for instance to force Horizon to make arbitrary HTTP requests to internal and external services. The solution is to upgrade to Meridian 2023.1.6, 2022.1.19, 2021.1.30, 2020.1.38 or Horizon 32.0.2 or newer. Meridian and Horizon installation instructions state that they are intended for installation within an organization's private networks and should not be directly accessible from the Internet. OpenNMS thanks Erik Wynter and Moshe Apelbaum for reporting this issue.\n",
+"vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:L",
+"differs": [
+"PR",
+"I",
+"A"
+],
+"cwe": "CWE-611",
+"class": "xxe",
+"stack": "web",
+"products": [
+"opennms:horizon",
+"opennms:meridian"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00547,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2022-4512",
+"desc": "The Better Font Awesome WordPress plugin before 2.0.4 does not validate and escape some of its shortcode attributes before outputting them back in a page/post where the shortcode is embed, which could allow users with the contributor role and above to perform Stored Cross-Site Scripting attacks.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:U/C:H/I:H/A:H",
+"differs": [
+"PR",
+"S",
+"C",
+"I",
+"A"
+],
+"cwe": null,
+"class": "unclassified",
+"stack": "web",
+"products": [
+"better_font_awesome_project:better_font_awesome"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00762,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2014-2875",
+"desc": "The session.lua library in CGILua 5.2 alpha 1 and 5.2 alpha 2 uses weak session IDs generated based on OS time, which allows remote attackers to hijack arbitrary sessions via a brute force attack. NOTE: CVE-2014-10399 and CVE-2014-10400 were SPLIT from this ID.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-307",
+"class": "authn",
+"stack": "library",
+"products": [
+"keplerproject:cgilua"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01631,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2023-5544",
+"desc": "Wiki comments required additional sanitizing and access restrictions to prevent a stored XSS risk and potential IDOR risk.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+"differs": [
+"PR",
+"UI",
+"S"
+],
+"cwe": "CWE-639",
+"class": "authz",
+"stack": "linux",
+"products": [
+"moodle:moodle",
+"redhat:enterprise_linux",
+"fedoraproject:fedora"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.0051,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2023-49587",
+"desc": "SAP Solution Manager - version 720, allows an authorized attacker to execute certain deprecated function modules which can read or modify data of same or other component without user interaction over the network.\n\n",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N",
+"score": 6.4,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-77",
+"class": "cmd-injection",
+"stack": "web",
+"products": [
+"sap:solution_manager"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00408,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2021-43787",
+"desc": "Nodebb is an open source Node.js based forum software. In affected versions a prototype pollution vulnerability in the uploader module allowed a malicious user to inject arbitrary data (i.e. javascript) into the DOM, theoretically allowing for an account takeover when used in conjunction with a path traversal vulnerability disclosed at the same time as this report. The vulnerability has been patched as of v1.18.5. Users are advised to upgrade as soon as possible.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:H",
+"differs": [
+"PR",
+"C",
+"I",
+"A"
+],
+"cwe": "CWE-1321",
+"class": "code-injection",
+"stack": "web",
+"products": [
+"nodebb:nodebb"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01275,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-43808",
+"desc": "Laravel is a web application framework. Laravel prior to versions 8.75.0, 7.30.6, and 6.20.42 contain a possible cross-site scripting (XSS) vulnerability in the Blade templating engine. A broken HTML element may be clicked and the user taken to another location in their browser due to XSS. This is due to the user being able to guess the parent placeholder SHA-1 hash by trying common names of sections. If the parent template contains an exploitable HTML structure an XSS vulnerability can be exposed. This vulnerability has been patched in versions 8.75.0, 7.30.6, and 6.20.42 by determining the parent placeholder at runtime and using a random hash that is unique to each request.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:H/A:N",
+"differs": [
+"AC",
+"S",
+"C",
+"I"
+],
+"cwe": "CWE-327",
+"class": "crypto",
+"stack": "web",
+"products": [
+"laravel:framework"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00799,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2022-47372",
+"desc": "Stored cross-site scripting vulnerability in the Create event section in Pandora FMS Console v766 and lower. An attacker typically exploits this vulnerability by injecting XSS payloads on popular pages of a site or passing a link to a victim, tricking them into viewing the page that contains the stored XSS payload.\n\n",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:L",
+"differs": [
+"S",
+"C",
+"I",
+"A"
+],
+"cwe": "CWE-352",
+"class": "csrf",
+"stack": "application",
+"products": [
+"pandorafms:pandora_fms"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00234,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2019-2391",
+"desc": "Incorrect parsing of certain JSON input may result in js-bson not correctly serializing BSON. This may cause unexpected application behaviour including data disclosure. This issue affects: MongoDB Inc. js-bson library version 1.1.3 and prior to.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:N",
+"differs": [
+"AC"
+],
+"cwe": "CWE-502",
+"class": "deserialization",
+"stack": "web",
+"products": [
+"mongodb:js-bson"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00882,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2022-39301",
+"desc": "sra-admin is a background rights management system that separates the front and back end. sra-admin version 1.1.1 has a storage cross-site scripting (XSS) vulnerability. After logging into the sra-admin background, an attacker can upload an html page containing xss attack code in \"Personal Center\" - \"Profile Picture Upload\" allowing theft of the user's personal information. This issue has been patched in 1.1.2. There are no known workarounds.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:H/I:L/A:L",
+"differs": [
+"C",
+"A"
+],
+"cwe": "CWE-434",
+"class": "file-upload",
+"stack": "web",
+"products": [
+"sra-admin_project:sra-admin"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00473,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2020-15634",
+"desc": "This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of NETGEAR R6700 routers with firmware 1.0.4.84_10.0.58. Authentication is not required to exploit this vulnerability. The specific flaw exists within the handling of string table file uploads. The issue results from the lack of proper validation of a user-supplied string before using it as a format specifier. An attacker can leverage this vulnerability to execute code in the context of the web server. Was ZDI-CAN-9755.",
+"vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+"score": 6.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-134",
+"class": "format-string",
+"stack": "network",
+"products": [
+"netgear:r6700_firmware",
+"netgear:r6700"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01386,
+"traps": [
+"c_low"
+]
+}
+]
+}

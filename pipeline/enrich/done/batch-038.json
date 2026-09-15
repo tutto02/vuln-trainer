@@ -1,0 +1,629 @@
+{
+ "batch": "batch-038",
+ "items": {
+  "CVE-2018-19953": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "QNAP QTS hat ein Cross-Site-Scripting, über das Angreifer bösartigen Code einschleusen.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des NAS über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Parameter."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Das Opfer (ein Admin) muss die betroffene Seite ansehen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Browserkontext des Opfers: C:L."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,24: XSS (CWE-79) in QNAP QTS. Ungewöhnlich für ein XSS in KEV mit Ransomware-Bezug; es war Teil einer Kette gegen NAS-Geräte. QNAP ist im Korpus ein Ransomware-Dauerziel."
+  },
+  "CVE-2018-20062": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "NoneCms (ThinkPHP) erlaubt über den filter-Parameter die Ausführung beliebigen PHP-Codes (z. B. s=index/\\think\\Request/input&filter=phpinfo).",
+   "metrics": {
+    "AV": {
+     "why": "PHP-Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Ein GET-Request mit dem bekannten Muster."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Wieder ThinkPHP (wie CVE-2019-9082); der filter-Parameter wird als PHP-Funktion aufgerufen (noinfo bei NVD, real Code-Injection). ThinkPHP ist in Asien verbreitet und in Botnetzen ein Dauerziel; das Muster (Framework wertet Parameter als Funktion aus) ist derselbe RCE-Weg."
+  },
+  "CVE-2021-44077": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "ManageEngine ServiceDesk Plus, ServiceDesk Plus MSP und SupportCenter Plus erlauben über /RestAPI-URLs und die ImportTechnicians-Struts-Konfiguration unauthentifizierte Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "REST-API über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload über die REST-API."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig (Auth-Bypass plus Upload)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,93: Von APT-Gruppen gegen Verteidigungs- und Technologiefirmen genutzt (CISA-Warnung). Auth-Bypass plus Upload (CWE-306) in ManageEngine; die Kette machte einen authentifizierten Upload unauthentifiziert. ManageEngine ist im Korpus mehrfach vertreten."
+  },
+  "CVE-2021-22941": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der Citrix ShareFile Storage Zones Controller hat eine fehlerhafte Zugriffskontrolle, die unauthentifizierte Remote-Kompromittierung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Controller, S:U."
+    },
+    "C": {
+     "why": "Kompromittierung: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,54: ShareFile ist ein Dateitransfer-/Sharing-Dienst (wie die anderen MFT-Systeme im Korpus). Fehlerhafte Zugriffskontrolle (CWE-284) zu RCE; Citrix ist im Korpus ein Dauerthema (NetScaler, ShareFile, StoreFront)."
+  },
+  "CVE-2021-36260": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der Webserver einiger Hikvision-Produkte hat eine Command Injection durch unzureichende Eingabevalidierung.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface der Kamera über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Nachricht mit Befehlen."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf der Kamera, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar (Videostream)."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Kamera abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,999: Hikvision-Kameras in Botnetzen (Moobot) und zur Spionage (wie CVE-2017-7921). Command Injection (CWE-78); über 100 Millionen Geräte betroffen. Überwachungskameras sind eine riesige, selten gepatchte Angriffsfläche; die Klasse ist immer dieselbe (CGI-Parameter zur Shell)."
+  },
+  "CVE-2021-44529": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Ivanti EPM Cloud Services Appliance (CSA) hat eine Code-Injection, die unauthentifizierten Nutzern die Ausführung von Code mit eingeschränkten Rechten (nobody) erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Die Code-Injection in der CSA ist für einen unauthentifizierten Nutzer erreichbar: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Prozess (nobody), S:U."
+    },
+    "C": {
+     "why": "Code: alle für nobody lesbaren Daten."
+    },
+    "I": {
+     "why": "Code: änderbar im nobody-Kontext."
+    },
+    "A": {
+     "why": "Code: Dienst störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Die Ivanti CSA ist im Korpus mehrfach vertreten (CVE-2024-8963, CVE-2024-9379). Code-Injection (CWE-94); der nobody-Kontext begrenzt die direkte Auswirkung, aber in Kette mit einer Rechteausweitung wird es root. Ivanti ist das häufigste Herstellerthema im Korpus."
+  },
+  "CVE-2021-35464": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "ForgeRock AM (OpenAM) hat in der jato.pageSession eine Java-Deserialisierungslücke, die über eine einzige /ccversion/*-Anfrage unauthentifizierte Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Ein präparierter Request, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Die Deserialisierung über jato.pageSession erfordert laut Beschreibung keine Authentifizierung; ein einzelner Request genügt: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im AM-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99999: ForgeRock AM ist ein Identity-Provider (wie OpenAM CVE-2021-29156, Oracle Access Manager). Deserialisierung (CWE-502) über die Apache-Commons-Collections-Gadget-Chain; ein IdP-Kompromiss erlaubt das Fälschen von Token für alle angebundenen Anwendungen. Ein Single-Sign-On-Albtraum."
+  },
+  "CVE-2026-56290": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Joomla-Erweiterung Page Builder CK erlaubt einen unauthentifizierten Datei-Upload, der zu vollständiger Remote Code Execution führt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-CMS über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload."
+    },
+    "PR": {
+     "why": "Der Upload in Page Builder CK ist ausdrücklich unauthentifiziert: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,30: Datei-Upload (CWE-434) in einer Joomla-Erweiterung (wie iCagenda CVE-2026-48939). CMS-Erweiterungen sind die größte Upload-Kategorie im Korpus; jede installierte Erweiterung erweitert die Angriffsfläche. Bei Joomla und WordPress ist die Kern-Software selten das Problem, die Erweiterungen sind es."
+  },
+  "CVE-2023-28432": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "MinIO gibt in einer Cluster-Deployment über eine Anfrage alle Umgebungsvariablen zurück, inklusive MINIO_SECRET_KEY und MINIO_ROOT_PASSWORD.",
+   "metrics": {
+    "AV": {
+     "why": "MinIO-API über HTTP."
+    },
+    "AC": {
+     "why": "Eine Anfrage an den Bootstrap-Endpunkt."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist MinIO."
+    },
+    "C": {
+     "why": "MINIO_ROOT_PASSWORD und Secret Key: gezielt, maximal, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,84: Das erste Glied der MinIO-Kette (mit CVE-2023-28434 Privilege Escalation, ebenfalls im Korpus). Ein Info-Leck (CWE-200), das die Admin-Zugangsdaten direkt liefert; die erbeuteten Credentials ermöglichten die zweite Lücke. Objektspeicher hält oft die wertvollsten Daten."
+  },
+  "CVE-2022-42948": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Cobalt Strike escapet HTML-Tags in Swing-Komponenten nicht, sodass eingeschleuster HTML-Code Remote Code Execution in der Cobalt-Strike-UI ermöglicht.",
+   "metrics": {
+    "AV": {
+     "why": "Über die Daten, die der Cobalt-Strike-Server anzeigt."
+    },
+    "AC": {
+     "why": "Präparierter HTML-Code in einem Feld."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig (die Daten kommen von einem Ziel)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt (die UI rendert automatisch)."
+    },
+    "S": {
+     "why": "Code in der Cobalt-Strike-UI, S:U."
+    },
+    "C": {
+     "why": "RCE auf dem Operator-Rechner: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,03: Ein Angriff gegen das Angreifer-Werkzeug: Cobalt Strike ist ein Post-Exploitation-Framework, das Verteidiger übernehmen konnten, um Angreifer zu entlarven. HTML-Injection (CWE-116) in der Java-Swing-UI; niedriger EPSS, weil es ein Nischen-Ziel (Angreifer-Infrastruktur) ist. Ein ungewöhnlicher, lehrreicher Fall."
+  },
+  "CVE-2020-3161": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der Webserver von Cisco IP-Phones hat durch unzureichende Eingabevalidierung eine Lücke, die unauthentifizierte Codeausführung als root oder einen Neustart erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des Telefons über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Der Webserver des IP-Telefons nimmt die HTTP-Requests ohne Anmeldung an: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code als root auf dem Telefon, S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar (Gespräche abhörbar)."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root oder Reload: Telefon abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,84: IP-Telefone sind Netzwerkgeräte mit Mikrofon (CWE-20). Ein übernommenes Telefon kann Gespräche abhören und als Netzwerk-Brückenkopf dienen; VoIP-Geräte werden in der Inventarisierung oft vergessen. Ein root-Zugriff auf ein Telefon ist eine unterschätzte Spionage-Fläche."
+  },
+  "CVE-2016-10174": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der NETGEAR WNR2000v5-Router hat im hidden_lang_avi-Parameter von /apply.cgi einen Buffer Overflow, der unauthentifizierte Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des Routers über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Parameter."
+    },
+    "PR": {
+     "why": "Der Überlauf in /apply.cgi ist ausdrücklich von einem unauthentifizierten Angreifer erreichbar; kein Router-Login nötig: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf dem Router, S:U."
+    },
+    "C": {
+     "why": "Code: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: Router abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,83: NETGEAR-Router in Botnetzen (wie CVE-2016-6277, CVE-2016-1555). Buffer Overflow (CWE-120) in einem CGI-Parameter; Router-Firmware in C mit ungeprüften Parametern ist eine endlose Überlauf-Quelle. NETGEAR ist im Korpus mehrfach vertreten."
+  },
+  "CVE-2024-7399": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Samsung MagicINFO 9 Server hat ein Path Traversal, das einem Angreifer das Schreiben beliebiger Dateien mit Systemrechten erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload-Pfad."
+    },
+    "PR": {
+     "why": "NVD: PR:N; der CNA vergab PR:L.",
+     "pitfall": "NVD las die Lücke als unauthentifiziert (PR:N), Samsung als authentifiziert (PR:L). Bei uneindeutiger Beschreibung schwankt die PR-Bewertung; der reale Exploit war unauthentifiziert."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datei mit Systemrechten schreiben (Webshell), S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Beliebige Datei schreiben: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "PR": "CNA (Samsung): PR:L (8,8). NVD PR:N (9,8). Die reale Ausnutzung war unauthentifiziert; NVD liegt hier näher an der Praxis."
+   },
+   "context_de": "KEV, EPSS 0,92: MagicINFO steuert digitale Beschilderung (Signage-Displays). Path Traversal (CWE-22) zum Datei-Schreiben mit Systemrechten; in Botnetzen genutzt. Digitale Beschilderung ist eine unterschätzte Angriffsfläche (öffentliche Displays, die ins Netz gehen)."
+  },
+  "CVE-2019-11479": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Die im Linux-Kernel fest kodierte minimale MSS von 48 Bytes erlaubt einem entfernten Peer, die TCP-Resend-Queues stark zu fragmentieren und so einen Denial of Service auszulösen.",
+   "metrics": {
+    "AV": {
+     "why": "TCP über das Netz."
+    },
+    "AC": {
+     "why": "Eine Verbindung mit niedriger MSS aufbauen."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Kernel des Zielsystems."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Ressourcenerschöpfung durch übermäßige Fragmentierung: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,92: Teil der 'SACK Panic'-Familie (mit CVE-2019-11477/11478). Ressourcenerschöpfung (CWE-770) durch eine niedrige MSS; jeder internetseitige Linux-Server war betroffen. TCP-Stack-DoS ohne Voraussetzungen, nur durch einen präparierten Verbindungsparameter."
+  },
+  "CVE-2019-20361": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das WordPress-Plugin Email Subscribers & Newsletters hat im hash-Parameter eine blinde SQL-Injection.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter hash-Parameter."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank und Anwendung im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "SQLi: alle Daten lesbar."
+    },
+    "I": {
+     "why": "SQLi: alles änderbar."
+    },
+    "A": {
+     "why": "SQLi: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,85: Zweite Lücke im selben Plugin (mit dem Info-Leck CVE-2019-19985). Blinde SQLi (CWE-89); ein Plugin mit mehreren Lücken derselben Art zeigt fehlende systematische Eingabevalidierung. WordPress-Plugin-SQLi ist im Korpus ein Dauerthema."
+  },
+  "CVE-2023-48022": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Anyscale Ray erlaubt über die Job-Submission-API die Ausführung beliebigen Codes ('ShadowRay').",
+   "metrics": {
+    "AV": {
+     "why": "Ray-Dashboard/API über HTTP."
+    },
+    "AC": {
+     "why": "Einen Job über die API einreichen."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig (Ray hat per Design keine)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf dem Ray-Knoten, S:U."
+    },
+    "C": {
+     "why": "Code: alle Daten (Modelle, Cloud-Credentials)."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: Knoten abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,84: 'ShadowRay', tausende exponierte Ray-Cluster für Kryptominer übernommen. Der Hersteller bestreitet, dass es eine Lücke ist ('Ray gehört nicht ins offene Netz'); die Job-API führt per Design Code aus (CWE-918). Ein Streit über 'Feature oder Lücke', der zeigt: KI-Infrastruktur wird oft ohne Netzabsicherung deployt."
+  },
+  "CVE-2023-32439": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion in WebKit erlaubt über präparierte Webinhalte Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Browserprozess."
+    },
+    "C": {
+     "why": "Codeausführung mit Browserrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,24: Zero-Day gegen iOS. WebKit-Type-Confusion (CWE-843); Teil der laufenden Apple-WebKit-Zero-Day-Serie. Type Confusion ist die häufigste Browser-RCE-Klasse; die Apple- und Chrome-Serien im Korpus machen sie zum Paradebeispiel für CWE-843."
+  },
+  "CVE-2023-28205": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Use-After-Free in WebKit erlaubt über präparierte Webinhalte Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Browserprozess."
+    },
+    "C": {
+     "why": "Codeausführung mit Browserrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,27: Zero-Day, in Kette mit CVE-2023-28204 (Info-Leck, im Korpus) genutzt. Use-After-Free (CWE-416) in WebKit; das Leck lieferte die Adressen, der UAF die Codeausführung. Zwei WebKit-CVEs, eine Kette, wie bei Chrome."
+  },
+  "CVE-2020-3580": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Die Web-Services-Schnittstelle von Cisco ASA/FTD hat ein Cross-Site-Scripting gegen Nutzer der Schnittstelle.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierter Link über das Netz."
+    },
+    "AC": {
+     "why": "Ein präparierter Link genügt."
+    },
+    "PR": {
+     "why": "Das XSS in der Web-Services-Schnittstelle stammt von einem unauthentifizierten Angreifer; die Rechte des Opfers spielen für PR keine Rolle: PR:N."
+    },
+    "UI": {
+     "why": "Das Opfer muss den Link öffnen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Browserkontext des Opfers: C:L."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,86: XSS (CWE-79) in der Cisco-ASA-Web-Schnittstelle, in freier Wildbahn genutzt. XSS gegen VPN-/Firewall-Login-Seiten ist Phishing mit vertrauenswürdiger Domain (wie CVE-2014-2120); das Ziel sind die Zugangsdaten der Admins. Cisco ASA ist im Korpus ein Dauerthema."
+  },
+  "CVE-2019-11580": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Atlassian Crowd hatte das pdkinstall-Development-Plugin in Release-Builds fälschlich aktiviert, was Angreifern die Installation beliebiger Plugins und damit Codeausführung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes Plugin hochladen."
+    },
+    "PR": {
+     "why": "Das pdkinstall-Plugin nimmt auch unauthentifizierte Requests an; ein Crowd-Konto ist nicht nötig: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Crowd-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,95: Ein Development-Plugin, das in Produktion aktiv blieb (noinfo bei NVD, real fehlende Autorisierung). Crowd ist Atlassians Identity-Management (wie Jira Crowd). Ein aktiviertes Debug-/Development-Feature in Produktion ist ein wiederkehrendes Muster (Rails-Dev-Modus, PHPUnit, Actuator, pprof); die Plugin-Installation gab RCE."
+  }
+ }
+}

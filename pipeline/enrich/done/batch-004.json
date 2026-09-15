@@ -1,0 +1,544 @@
+{
+ "batch": "batch-004",
+ "items": {
+  "CVE-2020-8196": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Citrix ADC/Gateway erlauben angemeldeten Nutzern mit geringen Rechten den Zugriff auf begrenzte Informationen, die ihnen nicht zustehen.",
+   "metrics": {
+    "AV": {
+     "why": "Die Verwaltungsoberfläche der Appliance ist netzwerkseitig erreichbar."
+    },
+    "AC": {
+     "why": "Kein besonderer Aufwand genannt."
+    },
+    "PR": {
+     "why": "Die Beschreibung sagt 'low privileged users': ein einfaches Konto ist nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Appliance selbst."
+    },
+    "C": {
+     "why": "'Limited information disclosure': begrenzter Umfang, kein wertvolles Ziel benannt. Lehrbuch-C:L.",
+     "pitfall": "Das Wort 'limited' in der Beschreibung ist der direkte Hinweis auf L. Erst wenn Zugangsdaten oder Vollzugriff belegt sind, wird es H."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Score 4,3 und trotzdem KEV: Teil der Citrix-Lückenserie vom Juli 2020, die in Ketten mit CVE-2020-8193 ausgenutzt wurde. Einzeln harmlos, in der Kette der Weg zur Session-Übernahme."
+  },
+  "CVE-2023-26360": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Adobe ColdFusion hat eine Zugriffskontroll-Lücke, über die Angreifer ohne Anmeldung Code im Kontext des ColdFusion-Dienstes ausführen können.",
+   "metrics": {
+    "AV": {
+     "why": "ColdFusion ist ein Webanwendungsserver, erreichbar über HTTP."
+    },
+    "AC": {
+     "why": "Adobe nennt keine Sonderbedingungen, der Exploit war schnell öffentlich."
+    },
+    "PR": {
+     "why": "Keine Anmeldung genannt, die Zugriffskontrolle selbst ist der Fehler."
+    },
+    "UI": {
+     "why": "Die Beschreibung sagt ausdrücklich: keine Nutzerinteraktion."
+    },
+    "S": {
+     "why": "Der Code läuft im Kontext des ColdFusion-Nutzers auf demselben Server.",
+     "pitfall": "Adobe vergab S:C. 'Im Kontext des aktuellen Nutzers' ist dieselbe Sicherheitsdomäne, also S:U."
+    },
+    "C": {
+     "why": "Codeausführung mit Dienstrechten: alle Daten der Anwendung."
+    },
+    "I": {
+     "why": "Codeausführung: beliebige Änderungen."
+    },
+    "A": {
+     "why": "Codeausführung: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (Adobe): S:C, C:H, I:N, A:N (8,6). Adobe bewertet nur die Zugriffskontrolle als Informationsleck mit Scope-Wechsel, NVD die daraus folgende RCE."
+   },
+   "context_de": "KEV, EPSS 0,97: Als Zero-Day gegen US-Behörden ausgenutzt. ColdFusion-Server sind alt, exponiert und selten inventarisiert; die Wahrscheinlichkeit ist bei Internetexposition hoch."
+  },
+  "CVE-2026-8037": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die API der Progress-LoadMaster-Produkte reicht Eingaben mehrerer Befehlsendpunkte ungefiltert an die Shell weiter, was unauthentifizierte Befehlsausführung auf der Appliance erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "API einer Load-Balancer-Appliance, per Netz erreichbar.",
+     "pitfall": "Der CNA vergab AV:A mit dem Argument, die Management-API sei nur im Management-Netz erreichbar. Netzwerkexponierung des Opfers ist eine Environmental-Frage, nicht AV. AV:N bleibt richtig."
+    },
+    "AC": {
+     "why": "Unsanitisierte Eingabe an mehreren Endpunkten, kein Aufwand."
+    },
+    "PR": {
+     "why": "Die Beschreibung sagt un-authenticated."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Die Befehle laufen auf der Appliance selbst.",
+     "pitfall": "Der CNA vergab S:C, weil ein Load Balancer den Verkehr anderer Systeme steuert. Das ist Folgewirkung, kein Scope-Wechsel."
+    },
+    "C": {
+     "why": "Befehle auf einem Load Balancer: Zertifikate, Konfiguration, Verkehr."
+    },
+    "I": {
+     "why": "Befehlsausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Befehlsausführung: Appliance abschaltbar."
+    }
+   },
+   "dissent": {
+    "AV": "CNA (Progress): AV:A, S:C (9,6). Zwei Abweichungen, beide aus der Netzwerkposition der Appliance abgeleitet, beide gehören in die Environmental-Metriken."
+   },
+   "context_de": "KEV, EPSS 0,996: Load Balancer stehen per Definition am Rand des Netzes. Ob die Management-API vom Internet erreichbar ist, entscheidet die Wahrscheinlichkeit; die Auswirkung ist der gesamte Verkehr dahinter."
+  },
+  "CVE-2019-11358": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "jQuery vor 3.4.0 überträgt bei jQuery.extend(true, ...) eine __proto__-Eigenschaft aus unsicheren Quellobjekten auf Object.prototype (Prototype Pollution).",
+   "metrics": {
+    "AV": {
+     "why": "jQuery läuft im Browser, die manipulierten Daten kommen über das Web."
+    },
+    "AC": {
+     "why": "Ein präpariertes Objekt reicht, wenn die Anwendung unsichere Quellen an extend() gibt."
+    },
+    "PR": {
+     "why": "Der Angreifer liefert nur Daten, keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Ein Nutzer muss die betroffene Seite laden."
+    },
+    "S": {
+     "why": "NVD verwendet den XSS-Standardvektor: verwundbar ist die Bibliothek, betroffen ist der Browser des Nutzers.",
+     "pitfall": "Prototype Pollution wird von NVD wie XSS bewertet (6,1), weil die typische Folge clientseitige Codeausführung ist. Vergleiche jedoch serverseitige Prototype Pollution in Node.js: dort S:U und oft RCE."
+    },
+    "C": {
+     "why": "Nur, was im Browserkontext des Nutzers erreichbar ist."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation der Seite im Browser des Nutzers."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,87, weil jQuery in Millionen Seiten steckt. Die Ausnutzbarkeit hängt komplett davon ab, ob die einbettende Anwendung Nutzerdaten an extend() gibt; der Bibliotheksvektor sagt darüber nichts."
+  },
+  "CVE-2020-1464": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:N",
+   "summary_de": "Windows prüft Dateisignaturen fehlerhaft, sodass ein Angreifer falsch signierte Dateien laden kann, die eigentlich von Sicherheitsmechanismen blockiert würden.",
+   "metrics": {
+    "AV": {
+     "why": "Die Datei muss auf dem System vorliegen und geladen werden, also lokal."
+    },
+    "AC": {
+     "why": "Präparierte Datei mit manipulierter Signatur, kein weiterer Aufwand (GlueBall-Technik)."
+    },
+    "PR": {
+     "why": "Ein lokaler Nutzer, der Dateien ablegen kann, reicht."
+    },
+    "UI": {
+     "why": "NVD: keine Interaktion nötig."
+    },
+    "S": {
+     "why": "Betroffen ist das System selbst."
+    },
+    "C": {
+     "why": "Die Signaturumgehung liest nichts."
+    },
+    "I": {
+     "why": "Sicherheitsmechanismen umgehen und beliebige Dateien als vertrauenswürdig laden: voller Integritätsverlust.",
+     "pitfall": "Bei 'Security Feature Bypass' vergibt NVD oft nur I:H, weil die Umgehung selbst nichts liest oder stört. Die Folge (ausgeführte Malware) rechnet NVD nicht mit; Microsoft tat es (C:H/I:H/A:H)."
+    },
+    "A": {
+     "why": "Keine direkte Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "C": "CNA (Microsoft): C:H, I:H, A:H (7,8). Microsoft bewertet die Kette bis zur Malware-Ausführung, NVD nur die Primitive."
+   },
+   "context_de": "KEV, EPSS 0,39: Zwei Jahre lang von Malware genutzt, bevor Microsoft patchte. Signaturprüfungen sind eine Schutzschicht, ihr Ausfall senkt die Wirksamkeit anderer Kontrollen (AppLocker, SmartScreen), also die Auswirkung anderer Lücken."
+  },
+  "CVE-2025-62593": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Ray schützt seine lokale API nur über eine User-Agent-Prüfung ('Mozilla'); eine Webseite in Firefox oder Safari kann den Header ändern und über den Browser des Entwicklers Code auf dem Ray-Knoten ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "Die präparierte Seite kommt aus dem Web; der Browser des Entwicklers leitet die Anfrage an Ray weiter."
+    },
+    "AC": {
+     "why": "Der Fetch-Standard erlaubt das Setzen des User-Agent, kein Aufwand."
+    },
+    "PR": {
+     "why": "Der Angreifer braucht nichts, der Browser des Opfers hat den Zugang.",
+     "pitfall": "CSRF-Muster: Der Zugang gehört dem Opfer, nicht dem Angreifer. Deshalb PR:N."
+    },
+    "UI": {
+     "why": "Der Entwickler muss die Seite in Firefox oder Safari öffnen."
+    },
+    "S": {
+     "why": "Betroffen ist der Ray-Knoten, der Browser ist nur Bote."
+    },
+    "C": {
+     "why": "RCE auf einem Rechenknoten: Modelle, Daten, Cloud-Credentials."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Knoten abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,17. Ray-Cluster haben Cloud-Zugangsdaten und GPU-Kapazität, beides begehrt. Die Wahrscheinlichkeit hängt daran, ob Entwickler mit laufendem Ray im Browser surfen, also hoch."
+  },
+  "CVE-2025-24016": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:H/A:H",
+   "summary_de": "Wazuh deserialisiert DistributedAPI-Parameter über as_wazuh_object; wer ein manipuliertes Dictionary in eine DAPI-Anfrage einschleust, kann auf Wazuh-Servern Code ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "Die DAPI läuft über das Cluster-Netz und die REST-API."
+    },
+    "AC": {
+     "why": "Ein präpariertes JSON-Dictionary genügt."
+    },
+    "PR": {
+     "why": "Der CNA-Vektor verlangt API-Zugang (einfache Rechte) oder einen kompromittierten Agenten."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "CNA: Vom API-Kontext oder Agenten in den Wazuh-Manager, der andere Systeme steuert.",
+     "pitfall": "Vektor stammt vom CNA (GitHub), NVD hat nicht nachbewertet. S:C ist hier vertretbar, weil ein kompromittierter Agent den Manager erreicht."
+    },
+    "C": {
+     "why": "CNA: C:L, obwohl RCE. Ein Widerspruch im Vektor.",
+     "pitfall": "C:L bei RCE ist nicht schlüssig. Wenn du C:H gesetzt hast, ist das die konsistentere Bewertung. Provenienz: reiner CNA-Vektor ohne NVD-Prüfung."
+    },
+    "I": {
+     "why": "RCE: beliebige Änderungen."
+    },
+    "A": {
+     "why": "RCE: Manager abschaltbar."
+    }
+   },
+   "dissent": {
+    "C": "Der einzige Vektor ist vom CNA; C:L neben I:H/A:H bei RCE ist inkonsistent. Seit 2026 bleiben solche Vektoren häufiger unkorrigiert, weil NVD nicht mehr nachbewertet."
+   },
+   "context_de": "KEV, EPSS 0,94: Ein SIEM-Manager sieht alle Logs und hat Agenten auf allen Systemen. Die Auswirkung reicht weit über den Server hinaus."
+  },
+  "CVE-2023-20073": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Web-Verwaltung der Cisco-RV340/RV345-Router prüft beim Datei-Upload die Autorisierung nicht, sodass unauthentifizierte Angreifer beliebige Dateien auf das Gerät laden können.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Management-Interface über HTTP."
+    },
+    "AC": {
+     "why": "Ein präparierter HTTP-Request."
+    },
+    "PR": {
+     "why": "Die Beschreibung sagt unauthenticated, remote."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Router selbst."
+    },
+    "C": {
+     "why": "NVD bewertet beliebigen Datei-Upload auf einem Router als Weg zur Codeausführung: Vollzugriff.",
+     "pitfall": "Cisco vergab C:N/I:L/A:N (4,3?), also 'nur Datei ablegen'. NVD nimmt die übliche Folge (Webshell) mit. Vergleiche ManageEngine CVE-2019-8394, wo NVD selbst nur I:H vergab: keine Konsistenz bei Upload-Lücken."
+    },
+    "I": {
+     "why": "Beliebige Dateien schreiben: voller Integritätsverlust."
+    },
+    "A": {
+     "why": "NVD: Codeausführung erlaubt Abschalten."
+    }
+   },
+   "dissent": {
+    "C": "CNA (Cisco): C:N, I:L, A:N. Fünf Punkte Unterschied für dieselbe Lücke, je nachdem, ob man die Primitive oder die Folge bewertet."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,90: Die RV-Serie ist End-of-Life ohne Patch. Wenn es keinen Patch gibt, bleibt nur Exposition senken."
+  },
+  "CVE-2024-23113": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der fgfmd-Dienst von FortiOS, FortiProxy, FortiPAM und FortiSwitchManager verwendet einen extern gesteuerten Format-String, sodass präparierte Pakete Codeausführung erlauben.",
+   "metrics": {
+    "AV": {
+     "why": "Der FortiGate-zu-FortiManager-Dienst (fgfmd, Port 541) lauscht auf Netzwerkinterfaces."
+    },
+    "AC": {
+     "why": "NVD: präparierte Pakete genügen, keine Sonderbedingung.",
+     "pitfall": "Vergleiche CVE-2019-1579 (PAN-OS Format-String): dort AC:H wegen Exploit-Zuverlässigkeit. Gleiche Bugklasse, andere AC-Entscheidung; NVD ist hier nicht vorhersagbar."
+    },
+    "PR": {
+     "why": "Die Beschreibung nennt keine Anmeldung, der Dienst ist vor der Authentifizierung erreichbar."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Firewall selbst."
+    },
+    "C": {
+     "why": "Code auf der Firewall: Konfiguration, Zertifikate, VPN."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: Firewall abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,62. fgfmd ist nur exponiert, wenn das Interface FortiManager-Zugriff erlaubt; das ist die Konfigurationsfrage, die die Wahrscheinlichkeit bestimmt. Die Auswirkung ist die Firewall selbst."
+  },
+  "CVE-2026-20316": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Cisco Secure Firewall Management Center enthält statische Zugangsdaten für ein Konto mit geringen Rechten, mit denen sich Angreifer ohne eigenes Konto anmelden und sensible Daten lesen können.",
+   "metrics": {
+    "AV": {
+     "why": "Weboberfläche des FMC über das Netz."
+    },
+    "AC": {
+     "why": "Anmelden mit bekannten Zugangsdaten."
+    },
+    "PR": {
+     "why": "Der Angreifer bringt keine Rechte mit; das fest kodierte Konto zählt nicht als eigene Berechtigung.",
+     "pitfall": "Bei fest kodierten Zugangsdaten ist PR:N richtig: Der Angreifer besitzt sie nicht legitim, er kennt sie nur."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist das FMC selbst."
+    },
+    "C": {
+     "why": "Das Konto hat geringe Rechte, der Datenzugriff ist auf dessen Sicht begrenzt: C:L.",
+     "pitfall": "Die Formulierung 'low-privileged account ... access sensitive data' zeigt: Umfang begrenzt durch die Kontorechte. Erst ein Admin-Konto wäre C:H."
+    },
+    "I": {
+     "why": "Kein Schreibzugriff beschrieben."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, Vektor nur vom CNA (Cisco), NVD hat 2026 nicht nachbewertet. Ein Konto auf der Firewall-Verwaltung ist ein Startpunkt für Rechteausweitung; Score 5,3 unterschätzt die Kette."
+  },
+  "CVE-2017-5753": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:N",
+   "summary_de": "Spectre Variante 1: Prozessoren mit spekulativer Ausführung erlauben über Seitenkanäle das Auslesen von Speicher, auf den der angreifende Prozess keinen Zugriff hat.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer muss Code auf dem System ausführen, also lokal (Browser-JavaScript zählt bei NVD trotzdem als lokal)."
+    },
+    "AC": {
+     "why": "Seitenkanal-Messungen sind aufwendig und unzuverlässig: Bedingungen außerhalb der Kontrolle des Angreifers.",
+     "pitfall": "Musterfall für AC:H: Der Angreifer kann die Erfolgsbedingungen (Cache-Timing, Rauschen) nicht steuern."
+    },
+    "PR": {
+     "why": "Ein normaler Nutzerprozess reicht."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Der Angreifer liest Speicher anderer Prozesse oder des Kernels, also über die eigene Sicherheitsdomäne hinaus.",
+     "pitfall": "S:C bei einem reinen Leseangriff: Die Grenze zwischen Prozessen bzw. zu Kernel oder Hypervisor wird überschritten. Scope hängt nicht am Schaden, sondern an der Grenze."
+    },
+    "C": {
+     "why": "Beliebiger Speicher anderer Domänen: Passwörter, Schlüssel, alles."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,94 (viele PoCs). Praktische Ausnutzung ist selten, die Auswirkung auf Cloud-Mandantentrennung theoretisch enorm. Ein Fall, in dem hoher EPSS nicht 'wird aktiv gegen dich genutzt' bedeutet."
+  },
+  "CVE-2023-46214": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Splunk Enterprise sanitisiert vom Nutzer hochgeladene XSLT-Stylesheets nicht, sodass ein bösartiges XSLT Codeausführung auf der Splunk-Instanz erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Splunk-Weboberfläche über das Netz."
+    },
+    "AC": {
+     "why": "NVD: Ein präpariertes XSLT reicht."
+    },
+    "PR": {
+     "why": "NVD setzt PR:N: Das Hochladen des schädlichen XSLT setzt kein Splunk-Konto voraus; die nötige Nutzeraktion steckt in UI:R.",
+     "pitfall": "Der CNA (Splunk) vergab PR:L, weil der Upload ein Konto braucht. NVDs PR:N mit UI:R beschreibt den Weg über einen angemeldeten Nutzer, der eine präparierte Seite öffnet. Zwei verschiedene Angriffsszenarien, zwei Vektoren."
+    },
+    "UI": {
+     "why": "NVD: Ein angemeldeter Nutzer muss den Upload auslösen."
+    },
+    "S": {
+     "why": "Der Code läuft auf der Splunk-Instanz selbst."
+    },
+    "C": {
+     "why": "RCE auf dem SIEM: alle Logs und Zugangsdaten."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "PR": "CNA: AC:H, PR:L, S:C (8,0). Splunk sieht ein authentifiziertes Szenario mit Hürden; NVD ein CSRF-artiges. Die Beschreibung stützt eher Splunk."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,89 durch öffentlichen Exploit. Ein SIEM ist das Ziel mit den meisten Zugangsdaten im Netz; die Auswirkung ist entsprechend."
+  },
+  "CVE-2023-39265": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+   "summary_de": "Apache Superset akzeptiert SQLite-Verbindungen über alternative Treibernamen oder Datenbank-Importe, was unerwartetes Anlegen von Dateien auf dem Webserver erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Alternativer Treibername reicht."
+    },
+    "PR": {
+     "why": "NVD vergab PR:N.",
+     "pitfall": "Datenbankverbindungen registrieren ist eine Admin-Funktion, der CNA vergab PR:H. NVDs PR:N ist durch die Beschreibung nicht gedeckt."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Superset-Server."
+    },
+    "C": {
+     "why": "Nur bei SQLite-Metadaten mehr, sonst begrenzter Lesezugriff: C:L."
+    },
+    "I": {
+     "why": "Unerwartetes Anlegen von Dateien, aber kein beliebiges Überschreiben belegt: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "PR": "CNA (Apache): PR:H (4,9). Die Beschreibung (Datenbankverbindungen registrieren) spricht klar für Admin-Rechte."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,86: Teil einer Kette mit dem Standard-SECRET_KEY (CVE-2023-27524), der die Admin-Session liefert. Einzeln braucht die Lücke Admin, in der Kette nicht."
+  },
+  "CVE-2021-30663": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Integer-Überlauf in WebKit erlaubt über präparierte Webinhalte Codeausführung in Safari und iOS.",
+   "metrics": {
+    "AV": {
+     "why": "Webinhalte kommen über das Netz."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte, das Opfer surft."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite öffnen."
+    },
+    "S": {
+     "why": "NVD: Codeausführung im Browserprozess, kein Ausbruch beschrieben: S:U."
+    },
+    "C": {
+     "why": "Codeausführung mit den Rechten des Browsers."
+    },
+    "I": {
+     "why": "Codeausführung mit den Rechten des Browsers."
+    },
+    "A": {
+     "why": "Codeausführung mit den Rechten des Browsers."
+    }
+   },
+   "dissent": {
+    "AV": "CNA (Apple): AV:L (7,8). Apple bewertet Web-Content-Lücken regelmäßig als lokal, weil die Datei im Browser verarbeitet wird. NVD sagt AV:N. Eine Konvention pro Hersteller, kein Fehler."
+   },
+   "context_de": "KEV, EPSS 0,03: Zero-Day, gezielt eingesetzt. Apple-Beschreibungen sind bewusst knapp; die Mechanik ('integer overflow', 'web content') reicht für den Vektor, die Auswirkung steht in 'arbitrary code execution'."
+  },
+  "CVE-2023-28204": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+   "summary_de": "Ein Out-of-Bounds-Read in WebKit gibt beim Verarbeiten von Webinhalten sensible Informationen preis.",
+   "metrics": {
+    "AV": {
+     "why": "Webinhalte über das Netz."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite öffnen."
+    },
+    "S": {
+     "why": "Bleibt im Browserprozess."
+    },
+    "C": {
+     "why": "NVD wertet Speicherlecks im Browser als C:H, weil beliebiger Prozessspeicher (Sessions, Passwörter) lesbar sein kann.",
+     "pitfall": "OOB-Read im Browser ist bei NVD fast immer C:H, nicht C:L: Der Angreifer kann wiederholt und gezielt lesen. Anders bei einem einzelnen Bit wie der OpenSSH-Nutzeraufzählung."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Kein Absturz bewertet."
+    }
+   },
+   "context_de": "KEV, EPSS 0,14: Zusammen mit CVE-2023-32373 (UAF) als Exploit-Kette in freier Wildbahn. Das Leck liefert die Adressen, der UAF die Codeausführung. Einzeln 6,5, als Kette Gerätekompromittierung."
+  },
+  "CVE-2024-50302": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Der HID-Core des Linux-Kernels initialisiert den Report-Puffer nicht mit Nullen, sodass ein präpariertes HID-Gerät Kernelspeicher auslesen kann.",
+   "metrics": {
+    "AV": {
+     "why": "Ein HID-Gerät oder eine lokale Schnittstelle liefert den präparierten Report; NVD wertet das als lokal.",
+     "pitfall": "Angriffe über USB-Geräte werden von NVD meist als AV:L bewertet, gelegentlich als AV:P. Hier AV:L, weil auch virtuelle HID-Geräte (uhid) den Pfad erreichen."
+    },
+    "AC": {
+     "why": "Präparierter Report, kein Timing."
+    },
+    "PR": {
+     "why": "Ein lokaler Nutzer mit Zugriff auf HID-Schnittstellen."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Innerhalb desselben Systems."
+    },
+    "C": {
+     "why": "Kernelspeicher ist die höchste Vertraulichkeitsstufe des Systems: H."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Kein Absturz."
+    }
+   },
+   "context_de": "KEV, EPSS 0,008: Cellebrite nutzte die Lücke zum Entsperren beschlagnahmter Android-Geräte, per USB. Ein 5,5 mit physischem Zugriff, gezielt und real; EPSS misst das nicht."
+  }
+ }
+}

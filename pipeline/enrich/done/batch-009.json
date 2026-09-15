@@ -1,0 +1,638 @@
+{
+ "batch": "batch-009",
+ "items": {
+  "CVE-2018-0174": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H",
+   "summary_de": "Cisco IOS/IOS XE validieren Option-82-Daten in DHCPv4-Paketen von Relay-Agents unvollständig; ein präpariertes Paket löst einen Reload aus.",
+   "metrics": {
+    "AV": {
+     "why": "DHCP-Paket über das Netz."
+    },
+    "AC": {
+     "why": "Ein präpariertes Paket."
+    },
+    "PR": {
+     "why": "Präparierte DHCP-Option-82-Pakete lösen den Reload aus, ohne Anmeldung am Gerät: PR:N."
+    },
+    "UI": {
+     "why": "Kein Nutzer beteiligt."
+    },
+    "S": {
+     "why": "NVD-Konvention für Router-Reloads: S:C, weil transportierte Netze betroffen sind."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Reload: Gerät weg."
+    }
+   },
+   "context_de": "KEV, EPSS 0,08. Schwester von CVE-2018-0173 (dort DHCPOFFER vom Server, hier Pakete vom Relay). Gleiche Klasse, gleicher Vektor, andere Angriffsposition."
+  },
+  "CVE-2021-30952": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Integer-Überlauf in WebKit erlaubt über präparierte Webinhalte Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "NVD vergab hier AV:L, bei der baugleichen CVE-2021-30663 AV:N.",
+     "pitfall": "Zwei identische Apple-Beschreibungen, zwei NVD-Vektoren (7,8 und 8,8). Wenn du AV:N gesetzt hast, ist das die übliche NVD-Lesart; hier hat NVD Apples AV:L-Konvention übernommen. Der CNA vergab AV:N."
+    },
+    "AC": {
+     "why": "Seite laden."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Der Integer-Overflow in WebKit wird durch präparierten Webinhalt ausgelöst, den das Opfer in Safari laden muss: UI:R."
+    },
+    "S": {
+     "why": "Im Browserprozess."
+    },
+    "C": {
+     "why": "Codeausführung mit Browserrechten."
+    },
+    "I": {
+     "why": "Codeausführung."
+    },
+    "A": {
+     "why": "Codeausführung."
+    }
+   },
+   "dissent": {
+    "AV": "CNA (Apple): AV:N (8,8). NVD und CNA haben hier die Rollen getauscht im Vergleich zu CVE-2021-30663. Provenienz ist keine Garantie für Konsistenz."
+   },
+   "context_de": "KEV, EPSS 0,07: Zero-Day (Pwn2Own-Kette). Für die Priorisierung ist der AV-Streit egal: Safari-Update einspielen."
+  },
+  "CVE-2017-5030": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "V8 behandelt 'complex species' (Array-Subklassen) falsch, was über eine präparierte Seite Codeausführung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Das präparierte HTML muss vom Opfer in Chrome geladen werden: UI:R."
+    },
+    "S": {
+     "why": "Im Renderer, kein Ausbruch genannt."
+    },
+    "C": {
+     "why": "Codeausführung angenommen."
+    },
+    "I": {
+     "why": "Codeausführung."
+    },
+    "A": {
+     "why": "Codeausführung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,42: Pwn2Own 2017. Klasse laut NVD OOB-Read (CWE-125), Auswirkung RCE: Bei V8-Bugs ist die Klasse selten die ganze Geschichte."
+  },
+  "CVE-2023-4966": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "CitrixBleed: NetScaler ADC/Gateway geben als Gateway oder AAA-Server konfiguriert über einen Pufferüberlauf beim Lesen Speicherinhalte mit Session-Tokens an unauthentifizierte Angreifer zurück.",
+   "metrics": {
+    "AV": {
+     "why": "Gateway-Endpunkt aus dem Internet."
+    },
+    "AC": {
+     "why": "Ein überlanger Host-Header, kein Aufwand."
+    },
+    "PR": {
+     "why": "Vor der Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Appliance."
+    },
+    "C": {
+     "why": "Session-Tokens angemeldeter Nutzer, beliebig oft abrufbar: gezielt und hochwertig, H.",
+     "pitfall": "Die Beschreibung sagt nur 'sensitive information disclosure'. Erst die Kenntnis, dass es Session-Tokens sind, rechtfertigt H. Ohne dieses Wissen wäre C:L eine vertretbare Lesart. Kontext schlägt Text."
+    },
+    "I": {
+     "why": "NVD: nur Lesen; der CNA rechnete die Session-Übernahme ein (I:H)."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung; CNA A:L."
+    }
+   },
+   "dissent": {
+    "I": "CNA (Citrix): C:H, I:H, A:L (9,4). Citrix bewertet die Folge (Session-Hijacking), NVD die Primitive."
+   },
+   "context_de": "KEV mit Ransomware-Bezug (LockBit, Boeing-Vorfall), EPSS 0,99999. Score 7,5, reale Auswirkung: MFA-Umgehung und Domänenübernahme. Nach dem Patch Sessions invalidieren, sonst bleibt die Auswirkung bestehen."
+  },
+  "CVE-2023-32315": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Die Admin-Konsole von Openfire erlaubt per Path Traversal über die Setup-Umgebung unauthentifizierten Zugriff auf Admin-Seiten einer bereits konfigurierten Installation.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Konsole über das Netz."
+    },
+    "AC": {
+     "why": "Präparierter Pfad."
+    },
+    "PR": {
+     "why": "Die Setup-Umgebung ist ohne Anmeldung erreichbar."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Openfire."
+    },
+    "C": {
+     "why": "NVD: Admin-Seiten erreichbar, damit Zugriff auf alle Daten: H."
+    },
+    "I": {
+     "why": "NVD: I:N, obwohl Admin-Seiten Änderungen erlauben.",
+     "pitfall": "Real wurde über die Admin-Seiten ein Admin-Konto angelegt und ein Plugin mit Webshell installiert. NVDs I:N bewertet nur den 'Zugriff auf Seiten', nicht was man dort tut. Der CNA vergab I:L/A:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung bewertet."
+    }
+   },
+   "dissent": {
+    "I": "CNA (igniterealtime): I:L, A:L (8,6). Auch das unterschätzt: Admin-Konsole heißt Vollzugriff. Beide Vektoren sind zu niedrig."
+   },
+   "context_de": "KEV, EPSS 0,99999: Massenausnutzung gegen Tausende Openfire-Server. Ein 7,5 mit realer RCE-Kette; die Klasse Path Traversal führt hier zur Autorisierungsumgehung, nicht zum Dateilesen."
+  },
+  "CVE-2021-23874": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "McAfee Total Protection erlaubt einem lokalen Nutzer, den Selbstschutz zu umgehen und mit erhöhten Rechten beliebige Prozesse zu starten.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Nutzer auf dem Windows-System."
+    },
+    "AC": {
+     "why": "Kein besonderer Aufwand genannt."
+    },
+    "PR": {
+     "why": "'A local user': normales Konto."
+    },
+    "UI": {
+     "why": "NVD: keine Interaktion; der CNA sah UI:R."
+    },
+    "S": {
+     "why": "NVD: lokale EoP, S:U (7,8-Standard); der CNA vergab S:C.",
+     "pitfall": "Sicherheitssoftware mit SYSTEM-Rechten: Der CNA (McAfee) sieht den Sprung Nutzer zu SYSTEM als Scope-Wechsel, NVD nicht. Vergleiche die beiden AnyConnect-CVEs, wo NVD selbst beide Varianten vergab."
+    },
+    "C": {
+     "why": "Erhöhte Rechte: alles."
+    },
+    "I": {
+     "why": "Erhöhte Rechte: alles."
+    },
+    "A": {
+     "why": "Erhöhte Rechte: alles."
+    }
+   },
+   "dissent": {
+    "S": "CNA (McAfee): UI:R, S:C (8,2). Lokale Rechteausweitung mit oder ohne S:C ist die häufigste NVD/CNA-Abweichung im Korpus."
+   },
+   "context_de": "KEV, EPSS 0,01. Endpoint-Schutz mit Lücke ist doppelt schlecht: Er läuft als SYSTEM und Angreifer schalten ihn zuerst ab."
+  },
+  "CVE-2023-35674": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Logikfehler in WindowState.java (Android Framework) erlaubt einer App, eine Hintergrund-Activity zu starten und so lokal Rechte auszuweiten.",
+   "metrics": {
+    "AV": {
+     "why": "Eine installierte App."
+    },
+    "AC": {
+     "why": "Logikfehler, kein Timing."
+    },
+    "PR": {
+     "why": "'No additional execution privileges needed': eine normale App, PR:L."
+    },
+    "UI": {
+     "why": "'User interaction is not needed' wörtlich."
+    },
+    "S": {
+     "why": "NVD: innerhalb des Geräts, S:U; der CNA (Google) vergab S:C.",
+     "pitfall": "Android-Beschreibungen sind Schablonen, aber brauchbare: 'local escalation of privilege' plus 'no additional execution privileges' plus 'user interaction not needed' ergibt direkt AV:L/PR:L/UI:N."
+    },
+    "C": {
+     "why": "EoP: alles."
+    },
+    "I": {
+     "why": "EoP: alles."
+    },
+    "A": {
+     "why": "EoP: alles."
+    }
+   },
+   "dissent": {
+    "S": "CNA (Google): S:C (8,8). Google vergibt bei Framework-EoPs oft S:C (App-Sandbox zu System), NVD S:U."
+   },
+   "context_de": "KEV, EPSS 0,03: Zero-Day, 'limited, targeted exploitation'. Auf Android zählt: Wie lange braucht der Hersteller für den Patch-Level? Das ist die Wahrscheinlichkeitsfrage."
+  },
+  "CVE-2015-3246": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "libuser (userhelper) schreibt /etc/passwd direkt; ein Fehler während der Änderung hinterlässt die Datei inkonsistent, was lokale Nutzer für DoS und in Kombination mit CVE-2015-3245 für Rechteausweitung nutzen können.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Nutzer auf dem Linux-System."
+    },
+    "AC": {
+     "why": "Fehler im richtigen Moment provozieren: Race, Bedingungen außerhalb der Kontrolle."
+    },
+    "PR": {
+     "why": "ADP-Vektor: PR:N, obwohl 'local users' ein Konto impliziert.",
+     "pitfall": "Ein lokaler Nutzer hat PR:L, nicht PR:N. Der einzige Vektor stammt von einem ADP und ist hier unsauber."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Innerhalb des Systems."
+    },
+    "C": {
+     "why": "Nur DoS bewertet."
+    },
+    "I": {
+     "why": "NVD/ADP: keine Integritätsauswirkung, obwohl /etc/passwd beschädigt wird.",
+     "pitfall": "Eine inkonsistente /etc/passwd ist ein Integritätsproblem; der Vektor sieht nur die Verfügbarkeit. Die Kette mit CVE-2015-3245 ergibt root."
+    },
+    "A": {
+     "why": "Kein Login mehr möglich: A:H."
+    }
+   },
+   "dissent": {
+    "PR": "Nur ADP-Vektor (5,1). PR:N für 'local users' und I:N für Dateibeschädigung sind beides fragwürdig."
+   },
+   "context_de": "KEV, EPSS 0,09: 'roothelper'-Exploit, root über die Kette. Zwei Medium-Lücken ergeben zusammen eine Root-Eskalation; das Kettenprinzip in Reinform."
+  },
+  "CVE-2020-3566": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H",
+   "summary_de": "Die DVMRP-Funktion von Cisco IOS XR verwaltet IGMP-Warteschlangen unzureichend; präparierter IGMP-Verkehr erschöpft den Prozessspeicher des Geräts.",
+   "metrics": {
+    "AV": {
+     "why": "IGMP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierter Verkehr."
+    },
+    "PR": {
+     "why": "IGMP-Pakete an das Gerät reichen; der Angreifer ist unauthentifiziert: PR:N."
+    },
+    "UI": {
+     "why": "Kein Nutzer beteiligt."
+    },
+    "S": {
+     "why": "NVD-Konvention: Router-DoS trifft transportierte Netze, S:C."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Speichererschöpfung: Prozesse sterben, Routing fällt aus."
+    }
+   },
+   "context_de": "KEV, EPSS 0,04: Zero-Day gegen Carrier-Router (ASR 9000). Nur bei aktivem Multicast-Routing verwundbar; die Konfiguration bestimmt die Wahrscheinlichkeit."
+  },
+  "CVE-2019-7481": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "SonicWall SMA100 erlaubt unauthentifizierten Nutzern lesenden Zugriff auf nicht autorisierte Ressourcen (real: SQL-Injection, die Zugangsdaten preisgibt).",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface der VPN-Appliance."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Unauthenticated user' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Appliance."
+    },
+    "C": {
+     "why": "NVD: 'read-only access to unauthorized resources' als H, weil die Ressourcen (Datenbank mit Zugangsdaten) hochwertig sind.",
+     "pitfall": "Die Beschreibung ('read-only access') könnte C:L nahelegen. Die CWE (SQLi) verrät den Umfang: ganze Datenbank. Bei vagen Beschreibungen hilft die Klasse."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,999: Auch nach Jahren gegen End-of-Life-Geräte genutzt. Ein 7,5 mit VPN-Zugangsdaten als Beute ist ein Einstieg ins Netz."
+  },
+  "CVE-2021-40438": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "mod_proxy im Apache HTTP Server lässt sich über einen präparierten URI-Pfad dazu bringen, Anfragen an einen vom Angreifer gewählten Ursprungsserver weiterzuleiten (SSRF).",
+   "metrics": {
+    "AV": {
+     "why": "HTTP über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:H, weil eine bestimmte Proxy-Konfiguration (ProxyPass mit Unix-Socket-Syntax) nötig ist.",
+     "pitfall": "Hier wertet NVD die Konfigurationsabhängigkeit als AC:H, bei PHP-FPM CVE-2019-11043 nicht. Keine feste Regel."
+    },
+    "PR": {
+     "why": "Keine Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "SSRF: Der Proxy ist verwundbar, interne Server sind betroffen: S:C."
+    },
+    "C": {
+     "why": "NVD: Zugriff auf interne Dienste als H."
+    },
+    "I": {
+     "why": "NVD: interne Dienste ansprechbar, Änderungen möglich: H."
+    },
+    "A": {
+     "why": "NVD: A:H angenommen."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999. Apache ist überall; die Wahrscheinlichkeit hängt an der seltenen Konfiguration, EPSS sieht nur die Masse an Scans."
+  },
+  "CVE-2021-30633": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H",
+   "summary_de": "Ein Use-After-Free in der Indexed-DB-API von Chrome erlaubt aus einem kompromittierten Renderer heraus den Ausbruch aus der Sandbox.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Vorbedingung Renderer-Kompromittierung liegt beim Angreifer."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Das Opfer muss die präparierte HTML-Seite laden; erst dann greift der Use-after-free in Indexed DB: UI:R."
+    },
+    "S": {
+     "why": "'Sandbox escape' wörtlich: Grenzübertritt in den Browserprozess, S:C begründet."
+    },
+    "C": {
+     "why": "Nach dem Ausbruch Nutzerrechte."
+    },
+    "I": {
+     "why": "Nach dem Ausbruch Nutzerrechte."
+    },
+    "A": {
+     "why": "Nach dem Ausbruch Nutzerrechte."
+    }
+   },
+   "context_de": "KEV, EPSS 0,33: Zero-Day. Zweites Glied einer Chrome-Kette; Indexed DB läuft im Browserprozess, daher ist der UAF dort der Ausbruch."
+  },
+  "CVE-2026-0257": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+   "summary_de": "Authentifizierungsumgehungen im GlobalProtect-Portal und -Gateway von PAN-OS erlauben Angreifern den Aufbau einer unautorisierten VPN-Verbindung.",
+   "metrics": {
+    "AV": {
+     "why": "VPN-Portal aus dem Internet."
+    },
+    "AC": {
+     "why": "NVD: keine Sonderbedingung."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U, obwohl eine VPN-Verbindung Zugang zum internen Netz gibt.",
+     "pitfall": "Vergleiche CVE-2020-2021 (SAML-Bypass auf PAN-OS): dort S:C. Gleicher Effekt (unautorisierter Zugang hinter die Firewall), anderer Scope. NVD ist hier über die Jahre nicht konsistent."
+    },
+    "C": {
+     "why": "VPN-Zugang ins interne Netz: H."
+    },
+    "I": {
+     "why": "NVD: I:H, Zugriff auf interne Systeme."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,95. VPN-Auth-Bypass ist die Lücke, die Ransomware-Gruppen am schnellsten aufgreifen; MFA hilft hier nicht, weil die Prüfung selbst umgangen wird."
+  },
+  "CVE-2020-13965": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Roundcube Webmail zeigt XML-Anhänge in der Vorschau an, sodass ein präparierter Anhang XSS im Browser des Empfängers auslöst.",
+   "metrics": {
+    "AV": {
+     "why": "E-Mail mit Anhang über das Netz."
+    },
+    "AC": {
+     "why": "Präparierter Anhang."
+    },
+    "PR": {
+     "why": "Der Absender braucht kein Konto."
+    },
+    "UI": {
+     "why": "Der Empfänger muss die Vorschau öffnen."
+    },
+    "S": {
+     "why": "XSS: Browser des Opfers, S:C."
+    },
+    "C": {
+     "why": "Postfach-Session des Opfers: L."
+    },
+    "I": {
+     "why": "Aktionen im Postfach: L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "S": "CNA: S:U, A:L. Ein XSS mit S:U ist bei NVD die Ausnahme; hier hat der CNA das XSS-Muster nicht angewendet."
+   },
+   "context_de": "KEV, EPSS 0,77: Von APT28 gegen Regierungsstellen genutzt, um Postfächer zu exfiltrieren. Webmail-XSS ist Spionage-Werkzeug, nicht Massenware; Score 6,1."
+  },
+  "CVE-2016-9563": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Die BPM-Komponente von SAP NetWeaver AS Java erlaubt angemeldeten Nutzern XXE-Angriffe über den bpemuwlconn-Endpunkt.",
+   "metrics": {
+    "AV": {
+     "why": "URI über das Netz."
+    },
+    "AC": {
+     "why": "Präpariertes XML."
+    },
+    "PR": {
+     "why": "'Remote authenticated users': PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der SAP-Server."
+    },
+    "C": {
+     "why": "XXE: Dateien des Servers lesen, gezielt: H."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,24: Von einer chinesischen Gruppe 2021 gegen SAP-Systeme genutzt, fünf Jahre nach dem Patch. Lange Patchzyklen halten die Wahrscheinlichkeit hoch."
+  },
+  "CVE-2016-0162": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+   "summary_de": "Internet Explorer 9 bis 11 lässt über präpariertes JavaScript feststellen, ob bestimmte Dateien auf dem System existieren.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Das Opfer muss die präparierte Website mit dem JavaScript besuchen: UI:R."
+    },
+    "S": {
+     "why": "Im Browser."
+    },
+    "C": {
+     "why": "Nur die Existenz von Dateien, kein Inhalt: minimaler Umfang, C:L.",
+     "pitfall": "Existenz-Orakel sind das C:L-Lehrbuchbeispiel. Wertvoll sind sie als Aufklärung (welche Sicherheitssoftware läuft?) vor dem eigentlichen Exploit."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,22: Von APT-Exploit-Kits genutzt, um Analyse-Umgebungen und Antiviren zu erkennen, bevor der eigentliche Exploit lief. Ein 4,3 als Aufklärungsglied."
+  },
+  "CVE-2024-53704": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die SSL-VPN-Authentifizierung von SonicOS lässt sich umgehen (real: Session-Cookie-Fälschung), sodass Angreifer aktive VPN-Sitzungen übernehmen.",
+   "metrics": {
+    "AV": {
+     "why": "SSL-VPN aus dem Internet."
+    },
+    "AC": {
+     "why": "NVD: keine Sonderbedingung, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Der Fehler liegt im SSLVPN-Authentifizierungsmechanismus selbst; der Angreifer umgeht die Anmeldung, statt sie zu besitzen: PR:N.",
+     "pitfall": "Auth-Bypass = PR:N: Der Angreifer besitzt kein Recht, er umgeht die Prüfung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Firewall."
+    },
+    "C": {
+     "why": "NVD: übernommene VPN-Sitzung gibt Netzzugang: H.",
+     "pitfall": "Der CNA (SonicWall) vergab C:L/I:N/A:H (7,5?), was zu 'bypass authentication' nicht passt. Bei vagen Herstellertexten hilft die Exploit-Analyse (hier: Session-Übernahme)."
+    },
+    "I": {
+     "why": "NVD: Netzzugang als Opfer: H."
+    },
+    "A": {
+     "why": "Beide Quellen: A:H (Sitzungen anderer Nutzer werden getrennt)."
+    }
+   },
+   "dissent": {
+    "C": "CNA (SonicWall): C:L, I:N, A:H. Für einen Authentifizierungs-Bypass am VPN ist das zu niedrig."
+   },
+   "context_de": "KEV mit Ransomware-Bezug (Akira), EPSS 0,95. Ein weiterer VPN-Bypass, der MFA umgeht, weil er nach der Anmeldung ansetzt."
+  },
+  "CVE-2021-21307": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der Lucee-Administrator erlaubt unauthentifizierte Remote Code Execution; als Workaround kann der Zugriff auf den Administrator blockiert werden.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Administrator über das Netz."
+    },
+    "AC": {
+     "why": "Keine Sonderbedingung."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Lucee-Prozess."
+    },
+    "C": {
+     "why": "RCE: alles."
+    },
+    "I": {
+     "why": "RCE: alles."
+    },
+    "A": {
+     "why": "RCE: alles."
+    }
+   },
+   "dissent": {
+    "C": "CNA: S:C, C:N, I:H, A:N (7,7?). C:N bei einer RCE ist nicht schlüssig; der CNA hat vermutlich nur die Datei-Schreib-Primitive bewertet."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,89: Im US-Wahlkampf 2020 gegen Kampagnen-Websites genutzt. Admin-Oberflächen im Internet sind der Fehler, nicht das Framework."
+  },
+  "CVE-2024-1212": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die LoadMaster-Management-Oberfläche erlaubt unauthentifizierten Angreifern Zugriff und beliebige Systembefehle.",
+   "metrics": {
+    "AV": {
+     "why": "Management-Interface über das Netz."
+    },
+    "AC": {
+     "why": "Keine Sonderbedingung."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf der Appliance selbst.",
+     "pitfall": "Der CNA vergab S:C (Load Balancer steuert Verkehr anderer). Vergleiche CVE-2026-8037 im selben Produkt: gleiche Diskussion, NVD bleibt bei S:U."
+    },
+    "C": {
+     "why": "Befehle auf dem Load Balancer: Zertifikate, Verkehr."
+    },
+    "I": {
+     "why": "Befehle: alles."
+    },
+    "A": {
+     "why": "Befehle: abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (Progress): S:C (10,0). NVD 9,8."
+   },
+   "context_de": "KEV, EPSS 0,95. Zwei Jahre später dieselbe Produktfamilie mit CVE-2026-8037: Wiederholungstäter-Produkte verdienen im Vulnerability Management eine eigene Beobachtungsliste."
+  }
+ }
+}

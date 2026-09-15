@@ -1,0 +1,652 @@
+{
+ "batch": "batch-014",
+ "items": {
+  "CVE-2017-18362": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die ConnectWise-ManagedITSync-Integration für Kaseya VSA erlaubt über ManagedIT.asmx unauthentifizierte Befehle mit vollem Zugriff auf die VSA-Datenbank (SQL-Injection).",
+   "metrics": {
+    "AV": {
+     "why": "ASMX-Endpunkt über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U, obwohl VSA alle Endpunkte verwaltet.",
+     "pitfall": "Bei ScreenConnect vergab NVD S:C (RMM-Rolle), hier bei Kaseya VSA S:U. Gleiche Produktrolle, anderer Scope."
+    },
+    "C": {
+     "why": "VSA-Datenbank: alles."
+    },
+    "I": {
+     "why": "Über die Datenbank Skripte auf alle Endpunkte: alles."
+    },
+    "A": {
+     "why": "Ransomware auf alle Endpunkte: alles."
+    }
+   },
+   "dissent": {
+    "S": "Kein CNA-Vektor. Nach der ScreenConnect-Logik wäre S:C (10,0) konsistent."
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,87: GandCrab über MSPs auf alle Kunden, 2019. Der erste große MSP-Supply-Chain-Fall; die Auswirkung ist die Kundenbasis."
+  },
+  "CVE-2020-26258": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N",
+   "summary_de": "XStream vor 1.4.15 lässt sich beim Unmarshalling zu Server-Side Request Forgery bringen, sodass Angreifer interne Ressourcen abfragen.",
+   "metrics": {
+    "AV": {
+     "why": "Eingabestrom über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:L; CNA AC:H."
+    },
+    "PR": {
+     "why": "NVD: einfache Rechte, um Eingaben zu liefern."
+    },
+    "UI": {
+     "why": "Automatisch."
+    },
+    "S": {
+     "why": "SSRF: interne Systeme betroffen, S:C."
+    },
+    "C": {
+     "why": "Interne Ressourcen lesbar: H."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,82. Eine Deserialisierungsbibliothek mit SSRF-Gadget: Die Klasse hängt am gewählten Gadget, nicht an der Bibliothek."
+  },
+  "CVE-2017-11292": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Bytecode-Verifikation von Adobe Flash Player lässt einen unvertrauten Wert in eine Array-Index-Berechnung, was Type Confusion und Codeausführung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Flash-Inhalt über das Web."
+    },
+    "AC": {
+     "why": "Präparierter Inhalt."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Seite oder Dokument öffnen."
+    },
+    "S": {
+     "why": "Im Plugin-Prozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten."
+    },
+    "I": {
+     "why": "Code mit Nutzerrechten."
+    },
+    "A": {
+     "why": "Code mit Nutzerrechten."
+    }
+   },
+   "context_de": "KEV, EPSS 0,12: Zero-Day (BlackOasis, FinSpy) über Office-Dokumente mit eingebettetem Flash. Die Beschreibung erklärt die Mechanik ungewöhnlich gut: Verifier, Index, Type Confusion."
+  },
+  "CVE-2015-5119": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Use-After-Free in der ByteArray-Klasse von Flash Player (AS3) erlaubt über präparierten Flash-Inhalt mit überschriebener valueOf-Funktion Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Flash-Inhalt über das Web."
+    },
+    "AC": {
+     "why": "Präparierter Inhalt."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "NVD vergab UI:N, obwohl der Nutzer die Seite laden muss.",
+     "pitfall": "Flash-Lücken bekamen von NVD oft UI:N (9,8) statt UI:R (8,8), vermutlich weil Flash-Werbung ohne Klick lief. Der CNA (Adobe) vergab AV:L/UI:R (7,8)."
+    },
+    "S": {
+     "why": "Im Plugin-Prozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten."
+    },
+    "I": {
+     "why": "Code mit Nutzerrechten."
+    },
+    "A": {
+     "why": "Code mit Nutzerrechten."
+    }
+   },
+   "dissent": {
+    "UI": "CNA: AV:L, UI:R (7,8) gegen NVD 9,8. Zwei Punkte Differenz allein aus AV und UI."
+   },
+   "context_de": "KEV, EPSS 0,99: Aus dem Hacking-Team-Leak 2015, binnen Stunden in allen Exploit-Kits. Ein Leak von Angriffswerkzeugen ist ein eigenes Risikoereignis."
+  },
+  "CVE-2022-1175": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "GitLab neutralisiert Nutzereingaben in Notizen unzureichend, sodass eingeschleustes HTML als XSS im Browser anderer Nutzer läuft.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung."
+    },
+    "AC": {
+     "why": "HTML in eine Notiz."
+    },
+    "PR": {
+     "why": "NVD: PR:N; CNA PR:L (Notizen brauchen ein Konto).",
+     "pitfall": "Gespeichertes XSS über Notizen verlangt ein Konto: PR:L ist plausibler. NVD hat den reflektierten XSS-Standardvektor angewendet."
+    },
+    "UI": {
+     "why": "Opfer muss die Notiz sehen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Browserkontext: L; CNA C:H."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: L; CNA I:H."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "PR": "CNA (GitLab): PR:L, C:H, I:H (8,7). GitLab bewertet XSS in Entwicklerplattformen konsequent höher als NVD."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,82. In einer Code-Plattform kann XSS zu Repository-Manipulation führen; der 6,1-Standard bildet das nicht ab."
+  },
+  "CVE-2023-45727": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Proself (Enterprise, Gateway, Mail Sanitize) verarbeitet XML mit externen Entitäten, sodass unauthentifizierte Angreifer Dateien mit Kontoinformationen lesen.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP über das Netz."
+    },
+    "AC": {
+     "why": "Präpariertes XML."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Proself."
+    },
+    "C": {
+     "why": "'Arbitrary files containing account information': gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,04: Zero-Day gegen japanische Organisationen (Dateitransfer-Produkt). Niedriger EPSS bei gezielten Angriffen ist normal."
+  },
+  "CVE-2021-22017": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Der Rhttproxy in vCenter Server normalisiert URIs fehlerhaft, sodass Angreifer mit Zugriff auf Port 443 den Proxy umgehen und interne Endpunkte erreichen.",
+   "metrics": {
+    "AV": {
+     "why": "Port 443 über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte URI."
+    },
+    "PR": {
+     "why": "Vor der Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist vCenter."
+    },
+    "C": {
+     "why": "Zugriff auf interne Endpunkte, begrenzt: C:L."
+    },
+    "I": {
+     "why": "Nur Zugriff bewertet."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,49: Als Baustein neben CVE-2021-22005 (Upload-RCE) ausgenutzt. Ein Proxy-Bypass ist selten selbst der Schaden; er öffnet die Tür für die nächste Lücke."
+  },
+  "CVE-2026-20127": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Die Peering-Authentifizierung zwischen Cisco Catalyst SD-WAN Controller, Manager und Validator lässt sich umgehen, sodass unauthentifizierte Angreifer Administratorrechte erlangen.",
+   "metrics": {
+    "AV": {
+     "why": "Peering-Protokoll über das Netz."
+    },
+    "AC": {
+     "why": "NVD: keine Sonderbedingung."
+    },
+    "PR": {
+     "why": "Die Peering-Authentifizierung wird von einem unauthentifizierten Angreifer umgangen; er besitzt kein Recht, er umgeht die Prüfung: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Admin auf dem SD-WAN-Controller steuert alle Edge-Router: S:C begründet."
+    },
+    "C": {
+     "why": "Admin: alles."
+    },
+    "I": {
+     "why": "Admin: alles."
+    },
+    "A": {
+     "why": "Admin: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,88. SD-WAN-Controller sind die Steuerungsebene ganzer Firmennetze; ein Auth-Bypass dort ist eine Netzwerkübernahme."
+  },
+  "CVE-2022-0543": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Debian-Pakete von Redis lassen aus der Lua-Sandbox ausbrechen, weil das Paket die Lua-Bibliothek dynamisch mit exponierten Modulen lädt, was Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Redis-Port über das Netz."
+    },
+    "AC": {
+     "why": "EVAL mit bekanntem Lua-Code."
+    },
+    "PR": {
+     "why": "Redis hat standardmäßig keine Authentifizierung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Sandbox-Ausbruch aus Lua auf den Host: S:C begründet."
+    },
+    "C": {
+     "why": "RCE: alles."
+    },
+    "I": {
+     "why": "RCE: alles."
+    },
+    "A": {
+     "why": "RCE: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Botnetze (Muhstik) binnen Wochen. Eine Distributions-Lücke, kein Upstream-Bug: Der Scanner sagt 'Redis verwundbar', gemeint ist 'Debian-Redis'."
+  },
+  "CVE-2022-36804": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Mehrere API-Endpunkte von Atlassian Bitbucket Server erlauben Angreifern mit Leserecht auf ein öffentliches oder privates Repository Command Injection über präparierte HTTP-Anfragen.",
+   "metrics": {
+    "AV": {
+     "why": "API über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Read permissions to a public or private repository': PR:L.",
+     "pitfall": "Bei öffentlichen Repositories hat jeder Leserecht, dann ist PR:L faktisch PR:N. NVD bewertet formal."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Bitbucket-Server."
+    },
+    "C": {
+     "why": "RCE: alle Repositories."
+    },
+    "I": {
+     "why": "RCE: alles."
+    },
+    "A": {
+     "why": "RCE: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Massenscans nach öffentlichem Exploit. Öffentliche Repositories machen aus PR:L ein PR:N; die Konfiguration entscheidet."
+  },
+  "CVE-2025-68613": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "n8n wertet von angemeldeten Nutzern gelieferte Workflow-Ausdrücke in einem Kontext aus, der Codeausführung auf dem Server erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Weboberfläche."
+    },
+    "AC": {
+     "why": "NVD: 'under certain conditions' nicht als AC:H gewertet."
+    },
+    "PR": {
+     "why": "'Authenticated users' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im n8n-Prozess.",
+     "pitfall": "Der CNA vergab S:C: n8n hält Credentials zu allen angebundenen Diensten. Produktrollen-Argument."
+    },
+    "C": {
+     "why": "RCE plus alle gespeicherten Credentials."
+    },
+    "I": {
+     "why": "RCE: alles."
+    },
+    "A": {
+     "why": "RCE: alles."
+    }
+   },
+   "dissent": {
+    "S": "CNA: S:C (9,9). NVD 8,8."
+   },
+   "context_de": "KEV, EPSS 0,99. Automatisierungsplattformen sind Credential-Tresore; die Auswirkung ist jeder angebundene Dienst."
+  },
+  "CVE-2014-0224": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+   "summary_de": "CCS Injection: OpenSSL akzeptiert ChangeCipherSpec zu früh, sodass ein Man-in-the-Middle bei OpenSSL-zu-OpenSSL-Verbindungen einen leeren Master-Key erzwingt und die Sitzung entschlüsselt oder übernimmt.",
+   "metrics": {
+    "AV": {
+     "why": "Im Netzpfad zwischen Client und Server."
+    },
+    "AC": {
+     "why": "MITM-Position plus beide Seiten OpenSSL: AC:H."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Kein Nutzer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U (anders als bei POODLE, S:C)."
+    },
+    "C": {
+     "why": "Gesamte Sitzung entschlüsselbar: H."
+    },
+    "I": {
+     "why": "Sitzung manipulierbar: H."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,95 (Scanner). MITM-Lücken sind real selten ausgenutzt, in Scannern allgegenwärtig; EPSS misst hier Scanner-Aktivität."
+  },
+  "CVE-2025-24813": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Apache Tomcat behandelt Pfade mit internem Punkt (file.Name) fehlerhaft; bei schreibfähigem Default-Servlet und dateibasierter Session-Persistenz führt das über eine hochgeladene Session-Datei zu Deserialisierung und RCE.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP PUT über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:L, obwohl drei Nicht-Standard-Bedingungen nötig sind (readonly=false, Session-Persistenz, Gadget-Bibliothek).",
+     "pitfall": "Drei Nicht-Standard-Bedingungen und trotzdem AC:L. Nach der Regel 'Nicht-Standard ist eine Hürde' wäre AC:H vertretbar. NVD wertete die Bedingungen als Konfiguration des Opfers, nicht als Hürde des Angreifers."
+    },
+    "PR": {
+     "why": "PUT ohne Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Tomcat-Prozess; CNA S:C."
+    },
+    "C": {
+     "why": "RCE: alles."
+    },
+    "I": {
+     "why": "RCE: alles."
+    },
+    "A": {
+     "why": "RCE: alles."
+    }
+   },
+   "dissent": {
+    "S": "CNA (Apache): S:C (10,0). NVD 9,8."
+   },
+   "context_de": "KEV, EPSS 0,999: Massenscans, aber nur ein Bruchteil der Tomcats hat die Konfiguration. Ein 9,8, dessen Wahrscheinlichkeit an drei Konfigurationsfragen hängt."
+  },
+  "CVE-2017-12615": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Apache Tomcat 7 auf Windows erlaubt bei aktiviertem HTTP PUT (readonly=false) das Hochladen einer JSP-Datei über einen präparierten Pfad, die anschließend ausgeführt wird.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP PUT über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:H wegen der Nicht-Standard-Konfiguration (readonly=false).",
+     "pitfall": "Vergleiche CVE-2025-24813: gleiche Voraussetzung (readonly=false), dort AC:L. Acht Jahre, zwei Analysten, zwei Antworten."
+    },
+    "PR": {
+     "why": "PUT ohne Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Tomcat-Prozess."
+    },
+    "C": {
+     "why": "JSP-Webshell: alles."
+    },
+    "I": {
+     "why": "Webshell: alles."
+    },
+    "A": {
+     "why": "Webshell: abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,996. Score 8,1 mit AC:H, in KEV mit Ransomware: Konfigurationsabhängigkeit senkt den Score, nicht die Ausnutzung bei denen, die die Konfiguration haben."
+  },
+  "CVE-2024-20439": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Cisco Smart Licensing Utility enthält ein undokumentiertes statisches Administratorkonto, mit dem sich Angreifer über das Netz anmelden können.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz, wenn CSLU läuft."
+    },
+    "AC": {
+     "why": "Statische Zugangsdaten."
+    },
+    "PR": {
+     "why": "Statisches Konto ist kein eigenes Recht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist CSLU."
+    },
+    "C": {
+     "why": "Admin-API: alles."
+    },
+    "I": {
+     "why": "Admin: alles."
+    },
+    "A": {
+     "why": "Admin: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,92: Massenscans, sobald das Passwort öffentlich war. Nur verwundbar, während die Utility läuft; die Wahrscheinlichkeit hängt am Prozesszustand."
+  },
+  "CVE-2022-20821": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+   "summary_de": "Das Health-Check-RPM von Cisco IOS XR öffnet bei Aktivierung Port 6379 mit einer Redis-Instanz im NOSi-Container, die ohne Anmeldung erreichbar ist.",
+   "metrics": {
+    "AV": {
+     "why": "TCP 6379 über das Netz."
+    },
+    "AC": {
+     "why": "Redis-Verbindung."
+    },
+    "PR": {
+     "why": "Der Health-Check öffnet Port 6379; die Redis-Instanz ist ohne Authentifizierung erreichbar, also genügt Netzwerkzugriff: PR:N."
+    },
+    "UI": {
+     "why": "Kein Nutzer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U, Container als Teil des Geräts."
+    },
+    "C": {
+     "why": "Redis-Daten im Container, begrenzt: C:L."
+    },
+    "I": {
+     "why": "Redis-Daten schreibbar, begrenzt: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,12: Zero-Day gegen Carrier-Router. Ein unbeabsichtigt offener Port durch ein optionales Paket: Klasse Fehlkonfiguration, Auswirkung begrenzt, trotzdem aktiv genutzt."
+  },
+  "CVE-2022-32214": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+   "summary_de": "Der llhttp-Parser in Node.js trennt HTTP-Anfragen nicht strikt an CRLF, was HTTP Request Smuggling ermöglicht.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U, anders als bei SAP CVE-2022-22536 (Smuggling, S:C)."
+    },
+    "C": {
+     "why": "Begrenzt, abhängig vom Proxy-Setup: C:L."
+    },
+    "I": {
+     "why": "Begrenzt: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,82 wegen Node-Verbreitung. Smuggling wirkt nur hinter einem Proxy, der anders parst; ohne Proxy ist die Lücke bedeutungslos."
+  },
+  "CVE-2026-34910": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "UniFi-OS-Geräte validieren Eingaben unzureichend, sodass ein Angreifer mit Netzzugang Command Injection ausführen kann.",
+   "metrics": {
+    "AV": {
+     "why": "'Access to the network' laut Beschreibung."
+    },
+    "AC": {
+     "why": "CNA: keine Sonderbedingung."
+    },
+    "PR": {
+     "why": "CNA: keine Rechte genannt."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "CNA: Gateway steuert das Netz, S:C."
+    },
+    "C": {
+     "why": "Befehle auf dem Gateway: alles."
+    },
+    "I": {
+     "why": "Vollzugriff: alle Daten änderbar."
+    },
+    "A": {
+     "why": "Vollzugriff: Dienst oder System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,87, nur CNA-Vektor, Beschreibung minimal. Ubiquiti-Texte sind traditionell knapp; der Vektor ist der Herstellerstandard für Gateway-RCE."
+  },
+  "CVE-2021-30860": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "FORCEDENTRY: Ein Integer-Überlauf in CoreGraphics (JBIG2-Dekoder) erlaubt über ein präpariertes PDF Codeausführung, ohne dass der Nutzer etwas anklickt.",
+   "metrics": {
+    "AV": {
+     "why": "NVD: AV:L, Datei-Parser (PDF).",
+     "pitfall": "Das PDF kam per iMessage, ohne Klick (Zero-Click). NVD bewertet den Parser (AV:L/UI:R), die Realität war AV:N/UI:N. Der Vektor 7,8 unterschätzt den berühmtesten Zero-Click-Exploit der letzten Jahre um zwei Punkte."
+    },
+    "AC": {
+     "why": "NVD setzt AC:L: Die präparierte PDF löst den Integer-Overflow zuverlässig aus, ohne Bedingungen außerhalb der Kontrolle des Angreifers (in the wild ausgenutzt)."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "NVD: UI:R, obwohl Zero-Click.",
+     "pitfall": "'Processing a maliciously crafted PDF' liest NVD als 'Nutzer öffnet PDF'. iMessage verarbeitete es automatisch."
+    },
+    "S": {
+     "why": "NVD: S:U, obwohl der Exploit die BlastDoor-Sandbox verließ."
+    },
+    "C": {
+     "why": "Code mit App-Rechten, real Gerätekompromittierung."
+    },
+    "I": {
+     "why": "Codeausführung."
+    },
+    "A": {
+     "why": "Codeausführung."
+    }
+   },
+   "dissent": {
+    "AV": "Kein CNA-Vektor. Nach dem realen Angriffsweg wäre AV:N/UI:N/S:C (10,0) korrekt. Apples Standardtext hat NVD in die Irre geführt."
+   },
+   "context_de": "KEV, EPSS 0,76: NSO Pegasus, Zero-Click über iMessage. Der Fall zeigt, dass ein Vektor aus einer Schablonen-Beschreibung die Realität verfehlen kann."
+  },
+  "CVE-2022-22674": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Ein Out-of-Bounds-Read in macOS (Intel Graphics Driver) gibt einem lokalen Nutzer Kernelspeicher preis.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Nutzer."
+    },
+    "AC": {
+     "why": "Kein Aufwand genannt."
+    },
+    "PR": {
+     "why": "'A local user': PR:L."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Innerhalb des Systems."
+    },
+    "C": {
+     "why": "Kernelspeicher: H."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,01: Zero-Day-Paar mit CVE-2022-22675 (AppleAVD, Codeausführung). Leak plus Kernel-Bug, wieder das Kettenmuster."
+  }
+ }
+}

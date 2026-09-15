@@ -1,0 +1,640 @@
+{
+ "batch": "batch-028",
+ "items": {
+  "CVE-2017-7921": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Hikvision-IP-Kameras haben eine Authentifizierungsumgehung, über die unauthentifizierte Angreifer Zugriff auf das Gerät und die Zugangsdaten erhalten.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface der Kamera über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage (Backdoor-Parameter)."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Kamera."
+    },
+    "C": {
+     "why": "Zugriff plus Zugangsdaten: alle Daten lesbar (Videostream)."
+    },
+    "I": {
+     "why": "Gerätekontrolle: alles änderbar."
+    },
+    "A": {
+     "why": "Gerätekontrolle: Kamera abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99998: Hikvision-Kameras in Botnetzen (Mirai) und zur Spionage. Ein Auth-Bypass (CWE-287) in Überwachungsgeräten; die Auswirkung ist der Videozugriff plus Botnetz-Rekrutierung. IoT-Kameras sind selten inventarisiert oder gepatcht."
+  },
+  "CVE-2023-38205": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Adobe ColdFusion hat eine Zugriffskontroll-Lücke, über die Angreifer die Administrations-CFM- und CFC-Endpunkte erreichen (Umgehung des Fixes für CVE-2023-29298).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL (Pfad-Trick)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist ColdFusion."
+    },
+    "C": {
+     "why": "Zugriff auf Admin-Endpunkte: gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Zugriff bewertet (RCE über gepaarte Lücken)."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung bewertet."
+    }
+   },
+   "context_de": "KEV, EPSS 0,997, nur CNA-Vektor: Die Umgehung des Fixes für CVE-2023-29298. ColdFusion hatte 2023 eine Serie von Access-Control-Bypässen (CWE-284), jeder umging den vorigen Fix. Unvollständige Fixes bei einem Dauerziel."
+  },
+  "CVE-2019-3929": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Mehrere Präsentations-Gateways (Crestron, Barco wePresent, Extron, SHARP) teilen eine Firmware mit einer unauthentifizierten Command Injection.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des Geräts über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Die Firmware der Präsentationsgeräte nimmt die Befehle ohne Anmeldung an; laut Beschreibung „unauthenticated“: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Gerät."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Gerät abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Eine gemeinsame OEM-Firmware (Awind) in Geräten mehrerer Hersteller. Command Injection (CWE-78); eine Lücke, ein Bug, viele Markennamen. Bei OEM-Firmware trifft eine CVE alle Rebrands."
+  },
+  "CVE-2017-7494": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "SambaCry: Samba erlaubt einem Client das Hochladen einer Shared Library auf eine schreibbare Freigabe und bringt den Server dazu, sie zu laden und auszuführen.",
+   "metrics": {
+    "AV": {
+     "why": "SMB über das Netz."
+    },
+    "AC": {
+     "why": "Bibliothek hochladen, dann laden lassen (ein Metasploit-Modul)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung, wenn eine schreibbare Freigabe existiert."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Samba-Prozess, S:U."
+    },
+    "C": {
+     "why": "Code mit Samba-Rechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Der Linux-Gegenstück-Moment zu EternalBlue (2017). Code-Injection (CWE-94) über eine geladene Shared Library; Samba ist auf Millionen Linux-Servern und NAS-Geräten. Eine Zeile Metasploit reichte."
+  },
+  "CVE-2015-2808": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Bar Mitzvah: Der RC4-Algorithmus in TLS/SSL kombiniert State- und Key-Daten in der Initialisierung fehlerhaft, was die Wiederherstellung der ersten Bytes eines Streams durch Mitschneiden erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Netzwerkverkehr mitschneiden."
+    },
+    "AC": {
+     "why": "AC:H, Millionen Verbindungen nötig, um die schwachen Keys auszunutzen."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Verbindung."
+    },
+    "C": {
+     "why": "Nur die ersten Bytes des Streams, gelegentlich: minimaler Umfang, C:L."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,74, Score 3,7: Ein weiterer TLS-Scanner-Klassiker (wie POODLE, Logjam). RC4-Schwäche (CWE-327); praktisch kaum ausnutzbar, in jedem Scan präsent. EPSS spiegelt die Scan-Frequenz, nicht die reale Gefahr."
+  },
+  "CVE-2021-21242": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "OneDev deserialisiert im AttachmentUploadServlet unvertraute Daten aus dem Attachment-Support-Header ohne Authentifizierung, was Pre-Auth Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Header mit serialisiertem Objekt."
+    },
+    "PR": {
+     "why": "Der Servlet prüft keine Authentifizierung: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im OneDev-Prozess.",
+     "pitfall": "Der CNA vergab S:C. RCE im selben Prozess ist S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "NVD: A:H; der CNA A:N."
+    }
+   },
+   "dissent": {
+    "S": "CNA (OneDev): S:C, A:N (9,x). NVD 9,8."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,74: OneDev ist eine DevOps-Plattform (wie GitLab). Deserialisierung (CWE-502) in einem Servlet ohne Auth; DevOps-Plattformen halten Credentials und signieren Artefakte, die Auswirkung ist Supply-Chain."
+  },
+  "CVE-2023-3836": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Dahua Smart Park Management erlaubt über /emap/devicePoint_addImgIco einen unbeschränkten Datei-Upload.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "NVD: Webshell (alle Daten lesbar); der CNA (VulDB) vergab C:L."
+    },
+    "I": {
+     "why": "NVD: alles änderbar; der CNA I:L."
+    },
+    "A": {
+     "why": "NVD: Dienst abschaltbar; der CNA A:L."
+    }
+   },
+   "dissent": {
+    "C": "CNA (VulDB): PR:L, C:L/I:L/A:L (6,x). VulDB bewertet schematisch niedrig; NVD nahm den 9,8-RCE-Standard. Vier Metriken Unterschied, Provenienz beachten."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,74: Ein ICS/Smart-City-Verwaltungssystem. Datei-Upload (CWE-434); bei automatisch erzeugten VulDB-CVEs weichen die Vektoren stark vom NVD-Standard ab, wie bei den D-Link- und Dahua-Einträgen."
+  },
+  "CVE-2020-11854": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Micro Focus Operations Bridge Manager, Application Performance Management und Operations Bridge enthalten fest kodierte Zugangsdaten, die Codeausführung erlauben.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Bekannte Zugangsdaten nutzen."
+    },
+    "PR": {
+     "why": "Fest kodierte Zugangsdaten sind kein eigenes Recht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,74: Monitoring-Plattform mit Zugriff auf die gesamte IT. Fest kodierte Zugangsdaten (CWE-798), wieder das Muster (Shiro, CentreStack, DCNM). Ein Standardkonto mit bekanntem Passwort ist faktisch keine Authentifizierung."
+  },
+  "CVE-2017-5715": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:N",
+   "summary_de": "Spectre Variante 2: Prozessoren mit spekulativer Ausführung und indirekter Branch-Prediction erlauben über Seitenkanäle das Auslesen von Speicher anderer Sicherheitsdomänen.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Codeausführung nötig."
+    },
+    "AC": {
+     "why": "AC:H, aufwendige Seitenkanal-Messung mit Branch-Target-Injection."
+    },
+    "PR": {
+     "why": "Ein normaler Nutzerprozess: PR:L."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Der Angreifer liest Speicher anderer Domänen (Kernel, andere VMs): S:C.",
+     "pitfall": "Wie Spectre v1 (CVE-2017-5753): S:C, weil die Grenze zwischen Prozessen/Domänen überschritten wird. Auch ein reiner Leseangriff kann S:C sein."
+    },
+    "C": {
+     "why": "Beliebiger Speicher anderer Domänen: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,74: Spectre v2, die aufwendigere Variante (Branch-Target-Injection). Die Mitigation (Retpoline, Microcode) kostete Leistung; ein Fall, in dem die Abwehr selbst bewertet werden musste. Cloud-Mandantentrennung ist der Kernwert."
+  },
+  "CVE-2022-36100": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "XWiki Tag Application sanitisiert Nutzereingaben im Tags-Dokument nicht, was die Ausführung von Groovy-, Python- und Velocity-Makros erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Wiki-Weboberfläche über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Tag."
+    },
+    "PR": {
+     "why": "Das Tags-Dokument verarbeitet Eingaben eines angemeldeten XWiki-Nutzers; ein Konto ist nötig: PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im XWiki-Prozess.",
+     "pitfall": "Der CNA vergab S:C. Elfte XWiki-Makro-RCE im Korpus."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (XWiki): S:C (8,8). Elfte XWiki-Makro-RCE im Korpus."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,74. XWiki-Makro-RCE Nummer elf, diesmal über Tags. Ein Produkt mit elf Varianten desselben Grundfehlers; die einzig sinnvolle Konsequenz ist eine grundsätzliche Entscheidung über Makro-Rechte, nicht Einzelpatches."
+  },
+  "CVE-2023-22952": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "SugarCRM erlaubt über EmailTemplates die Einschleusung von PHP-Code (fehlende Eingabevalidierung).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte E-Mail-Vorlage."
+    },
+    "PR": {
+     "why": "Ein Konto: PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im SugarCRM-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,80: PHP-Injection (CWE-20) über E-Mail-Vorlagen, wie Strapi CVE-2023-22621. Template-Engines mit Nutzereingaben sind ein RCE-Dauerthema; CRM-Systeme halten Kundendaten, die Auswirkung ist entsprechend."
+  },
+  "CVE-2021-44142": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Samba-Modul vfs_fruit hat bei der Verarbeitung erweiterter Dateiattribute (xattr) einen Out-of-Bounds-Heap-Read und -Write, der Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "SMB über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte erweiterte Attribute."
+    },
+    "PR": {
+     "why": "Schreibzugriff auf eine Freigabe: PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Samba-Prozess (oft root), S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,74: Nur mit konfiguriertem vfs_fruit (macOS-Kompatibilität) verwundbar. Ein Out-of-Bounds-Heap-Zugriff (CWE-125) in einem optionalen Modul; die Konfiguration entscheidet die Wahrscheinlichkeit. Samba taucht mehrfach im Korpus auf."
+  },
+  "CVE-2021-21220": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Unzureichende Validierung unvertrauter Eingaben in V8 erlaubt über eine präparierte Seite Heap-Korruption in Chrome.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Renderer-Prozess."
+    },
+    "C": {
+     "why": "Codeausführung im Renderer: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,70: Bei Pwn2Own 2021 demonstriert, danach in freier Wildbahn. V8-Speicherfehler (CWE-787); ein Renderer-Bug als Kettenglied. Chrome-CVEs dominieren den Type-Confusion/Memory-Anteil des Korpus."
+  },
+  "CVE-2024-0769": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der D-Link DIR-859 (End of Life) hat in /hedwig.cgi ein Path Traversal über den service-Parameter.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des Routers über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Parameter (../-Sequenz)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Router, S:U."
+    },
+    "C": {
+     "why": "NVD: Vollzugriff (alle Daten lesbar); der CNA (VulDB) vergab C:L."
+    },
+    "I": {
+     "why": "NVD: alles änderbar; der CNA I:N."
+    },
+    "A": {
+     "why": "NVD: Gerät abschaltbar; der CNA A:N."
+    }
+   },
+   "dissent": {
+    "C": "CNA (VulDB): C:L, I:N, A:N (7,3 vs. 9,8). VulDB schematisch niedrig, NVD hoch. Der wiederkehrende NVD-gegen-VulDB-Unterschied bei D-Link-Geräten."
+   },
+   "context_de": "KEV, EPSS 0,83, kein Patch (End of Life). Path Traversal (CWE-22) über hedwig.cgi, dieselbe Datei wie in älteren D-Link-Lücken (CVE-2018-... FatPipe-verwandt). D-Link-CGIs sind im Korpus ein Dauerthema; ohne Patch bleibt nur Austausch."
+  },
+  "CVE-2022-24706": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Apache CouchDB erlaubt in einer unsicher konfigurierten Standardinstallation den unauthentifizierten Zugriff mit Admin-Rechten (über den Erlang-Verteilungsport).",
+   "metrics": {
+    "AV": {
+     "why": "Über den exponierten Erlang-Port im Netz."
+    },
+    "AC": {
+     "why": "Bekanntes Erlang-Cookie oder Standardkonfiguration."
+    },
+    "PR": {
+     "why": "Eine unsicher konfigurierte Standardinstallation lässt sich ohne Authentifizierung mit Admin-Rechten ansprechen: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Admin plus Codeausführung, S:U."
+    },
+    "C": {
+     "why": "Admin: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Admin: alles änderbar."
+    },
+    "A": {
+     "why": "Admin: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,93: Eine unsichere Standardkonfiguration (CWE-1188), wie Airflow CVE-2020-13927. Der Erlang-Cluster-Port war ohne Firewall erreichbar; die Doku warnte, viele ignorierten es. Standardkonfiguration als Angriffsfläche."
+  },
+  "CVE-2026-48172": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das LiteSpeed cPanel-Plugin erlaubt Rechteausweitung (möglicherweise zu root) über die redisAble-Funktion.",
+   "metrics": {
+    "AV": {
+     "why": "Über cPanel im Netz."
+    },
+    "AC": {
+     "why": "Präparierte JSON-API-Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Rechteausweitung im cPanel-Kontext, S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,19: Hosting-Panels (cPanel) verwalten viele Kundenseiten mit hohen Rechten. Rechteausweitung (CWE-266) über ein Plugin; wie CyberPanel ein Fall, in dem die Verwaltungssoftware selbst die Angriffsfläche ist. Die Beschreibung liefert sogar einen Grep-Befehl zur Erkennung."
+  },
+  "CVE-2017-5638": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der Jakarta-Multipart-Parser in Apache Struts 2 wertet bei Fehlern den Content-Type-Header als OGNL-Ausdruck aus, was unauthentifizierte Remote Code Execution erlaubt (Equifax).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Ein präparierter Content-Type-Header, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Struts-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99999: Der Equifax-Einbruch (147 Millionen Datensätze). Klasse laut NVD Fehlerbehandlung (CWE-755), real OGNL-Injection: Der Fehler entstand in der Fehlermeldungs-Generierung, die den Header als OGNL auswertete. Struts-OGNL ist im Korpus mehrfach vertreten."
+  },
+  "CVE-2021-42258": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "BQE BillQuick Web Suite hat über den txtID-Parameter (Username) eine unauthentifizierte SQL-Injection, die zu Remote Code Execution führt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Username-Parameter."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank und RCE im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "SQLi bis RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,74: Im Oktober 2021 für Ransomware genutzt. SQLi (CWE-89) im Login-Feld selbst; Abrechnungssoftware für kleine Firmen, die selten Sicherheitsteams haben. Das Login-Feld als SQLi-Vektor ist ein Klassiker."
+  },
+  "CVE-2023-46262": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Der Ivanti-Avalanche-Remote-Control-Server ist über eine präparierte Web-Anfrage anfällig für unauthentifizierte Server-Side Request Forgery.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Anfrage über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U für SSRF."
+    },
+    "C": {
+     "why": "Interne Ressourcen erreichbar: gezielt, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,83: Avalanche verwaltet Mobilgeräte; eine SSRF (CWE-918), deren Wert im internen Netz liegt. Ivanti-Produkte sind im Korpus ein Dauerthema (EPMM, Connect Secure, EPM, Avalanche)."
+  },
+  "CVE-2021-30551": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion in V8 erlaubt über eine präparierte Seite Heap-Korruption in Chrome.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Renderer-Prozess."
+    },
+    "C": {
+     "why": "Codeausführung im Renderer: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,65: Zero-Day, von einer staatlichen Gruppe (Cytrox/Predator) gegen wenige Ziele genutzt. V8-Type-Confusion (CWE-843); niedriger EPSS trotz KEV, weil gezielte Angriffe keine Massenscans erzeugen."
+  }
+ }
+}

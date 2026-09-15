@@ -1,0 +1,626 @@
+{
+ "batch": "batch-046",
+ "items": {
+  "CVE-2020-29583": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Zyxel USG-Geräte (Firmware 4.60) enthalten ein undokumentiertes Konto (zyfwp) mit einem unveränderbaren, im Klartext in der Firmware stehenden Passwort.",
+   "metrics": {
+    "AV": {
+     "why": "SSH oder Web-Interface über das Netz."
+    },
+    "AC": {
+     "why": "Das bekannte fest kodierte Passwort verwenden."
+    },
+    "PR": {
+     "why": "Fest kodiertes Konto ist kein eigenes Recht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Admin auf der Firewall, S:U."
+    },
+    "C": {
+     "why": "Admin: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Admin: alles änderbar."
+    },
+    "A": {
+     "why": "Admin: Firewall abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,90: Ein Backdoor-Konto (zyfwp) mit Klartext-Passwort in der Firmware (CWE-522/CWE-798), wie die Juniper-ScreenOS-Hintertür CVE-2015-7755. Das Konto war für automatische Firmware-Updates gedacht, aber missbrauchbar. Zyxel ist im Korpus mehrfach vertreten; ein hart kodiertes Admin-Konto ist faktisch keine Authentifizierung."
+  },
+  "CVE-2021-22911": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Rocket.Chat hat durch unzureichende Eingabesanitisierung eine unauthentifizierte NoSQL-Injection, die potenziell zu RCE führt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte NoSQL-Anfrage."
+    },
+    "PR": {
+     "why": "Die NoSQL-Injection ist ausdrücklich unauthentifiziert: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Rocket.Chat, S:U."
+    },
+    "C": {
+     "why": "NoSQL-Injection bis RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,95: NoSQL-Injection (CWE-75) in einer Chat-Plattform. NoSQL-Injection ist die MongoDB-Variante der SQLi; ungeprüfte Objekt-Parameter in einer NoSQL-Query. Chat-Plattformen halten interne Kommunikation; eine Injection kann Passwort-Reset-Token auslesen und zur Übernahme führen."
+  },
+  "CVE-2024-4879": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "ServiceNow (Now Platform) hat eine Eingabevalidierungslücke, die einem unauthentifizierten Nutzer Remote Code Execution im Kontext der Plattform erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage (Jelly-Template-Injection), öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Die Eingabevalidierung versagt für einen unauthentifizierten Nutzer, der Code in der Now Platform ausführt: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im ServiceNow-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,9998: ServiceNow ist eine weit verbreitete Enterprise-Workflow-Plattform. Template-Injection (CWE-1287, Jelly-SSTI); in Kette mit CVE-2024-5217/5178 zu vollem Datenzugriff. Massenhaft ausgenutzt. SSTI in Enterprise-Template-Engines (Jelly, Velocity, Twig, Freemarker) ist im Korpus eine wiederkehrende RCE-Klasse."
+  },
+  "CVE-2023-27997": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Heap-Buffer-Overflow in FortiOS SSL-VPN (XORtigate) erlaubt einem unauthentifizierten Angreifer Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "SSL-VPN aus dem Internet."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf der Firewall, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Firewall abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,86: XORtigate, ein weiterer FortiOS-SSL-VPN-Heap-Overflow (mit CVE-2022-42475). Heap-Overflow (CWE-122); Fortinet ist im Korpus das zweithäufigste Herstellerthema, SSL-VPN-Overflows sind ein wiederkehrendes Muster. VPN-Gateways sind das meistangegriffene Appliance-Segment; jede FortiOS-SSL-VPN-CVE ist ein Prioritätsfall."
+  },
+  "CVE-2021-21972": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein vCenter-Server-Plugin (vROps) des vSphere Client hat über Port 443 einen unauthentifizierten Datei-Upload, der zu Remote Code Execution mit uneingeschränkten Rechten führt.",
+   "metrics": {
+    "AV": {
+     "why": "Port 443 über das Netz."
+    },
+    "AC": {
+     "why": "Präparierter Upload (Path Traversal), öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf dem vCenter-Server, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar (alle VMs)."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: alle VMs abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,999: Massenausnutzung binnen Tagen. Path Traversal (CWE-22) plus Upload zu RCE über ein standardmäßig aktives Plugin; die Schwester CVE-2021-21973 (SSRF) war das Aufklärungsglied. vCenter ist die Kontrollebene der Virtualisierung und im Korpus ein Dauerthema (2020-3952, 2021-21985, 2021-22005, 2023-34048); ein RCE dort trifft alle VMs."
+  },
+  "CVE-2022-30522": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Apache HTTP Server mit mod_sed-Transformationen kann bei sehr großer Eingabe übermäßig große Speicherallokationen vornehmen und abbrechen (Denial of Service).",
+   "metrics": {
+    "AV": {
+     "why": "HTTP über das Netz."
+    },
+    "AC": {
+     "why": "Sehr große Eingabe an mod_sed."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Apache-Prozess."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Übermäßige Allokation, Abbruch: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,90: Ein Speicher-DoS (CWE-770) in mod_sed. Apache ist überall, daher der EPSS; nur mit konfiguriertem mod_sed verwundbar. Ein reiner DoS ohne Speicherfehler, nur durch übermäßige Allokation (wie die Jetty- und OpenSSL-DoS-Lücken im Korpus)."
+  },
+  "CVE-2023-25157": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "GeoServer hat über die OGC-Filter/CQL-Ausdruckssprache im Web Feature Service eine unauthentifizierte SQL-Injection.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter CQL-Filterausdruck."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank und Anwendung im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "SQLi: alle Daten lesbar."
+    },
+    "I": {
+     "why": "SQLi: alles änderbar."
+    },
+    "A": {
+     "why": "SQLi: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,85: GeoServer ist im Korpus mehrfach vertreten (CVE-2024-36401 RCE, CVE-2025-58360 XXE). SQLi (CWE-89) über die CQL-Filtersprache; eine Abfragesprache, die ungeprüft in SQL übersetzt wird. GeoServer-Instanzen sind oft öffentlich (Kartendienste) und mit Datenbanken verbunden."
+  },
+  "CVE-2021-30869": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion im Apple-Kernel (XNU) erlaubt einer bösartigen Anwendung die Ausführung von Code mit Kernel-Rechten.",
+   "metrics": {
+    "AV": {
+     "why": "Eine App auf dem Gerät: AV:L."
+    },
+    "AC": {
+     "why": "Präparierte Eingabe."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "NVD: UI:R (die App wird gestartet)."
+    },
+    "S": {
+     "why": "Kernel-Codeausführung, S:U."
+    },
+    "C": {
+     "why": "Kernel: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Kernel: alles änderbar."
+    },
+    "A": {
+     "why": "Kernel: Gerät abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,04: Zero-Day, in Kette mit einer WebKit-Lücke gegen macOS-Nutzer (von Citizen Lab dokumentiert). Type Confusion (CWE-843) im Kernel; das Kernel-EoP-Glied nach dem Browser-Einbruch. Die Apple-Kernel-Serie im Korpus zeigt Type Confusion als wiederkehrende Kernel-EoP-Klasse."
+  },
+  "CVE-2020-3992": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "OpenSLP in VMware ESXi hat eine Use-After-Free, die ein Angreifer mit Zugriff auf Port 427 zu Remote Code Execution nutzen kann.",
+   "metrics": {
+    "AV": {
+     "why": "OpenSLP-Dienst (Port 427) über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte SLP-Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf dem ESXi-Host, S:U."
+    },
+    "C": {
+     "why": "RCE auf dem Hypervisor: alle VMs."
+    },
+    "I": {
+     "why": "RCE: alle VMs änderbar."
+    },
+    "A": {
+     "why": "RCE: alle VMs abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,83: Eine weitere OpenSLP-ESXi-Lücke (mit CVE-2019-5544), für Ransomware (ESXiArgs) gegen die VMs auf dem Hypervisor genutzt. Use-After-Free (CWE-416); ESXi ist die Virtualisierungs-Kontrollebene. SLP ist ein selten benötigter Dienst, der oft aktiv blieb; VMware empfahl, ihn abzuschalten. Ein RCE auf dem Hypervisor trifft alle VMs."
+  },
+  "CVE-2021-25299": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Nagios XI hat in sshterm.php ein reflektiertes Cross-Site-Scripting durch unzureichende Sanitisierung.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierter Link über das Netz."
+    },
+    "AC": {
+     "why": "Ein präparierter Link genügt."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Ein Admin muss den Link öffnen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Browserkontext des Opfers: C:L."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,98: XSS (CWE-79) in Nagios XI, einem Netzwerk-Monitoring-Tool (wie Cacti, WhatsUp Gold). XSS gegen einen Monitoring-Admin kann über CSRF zu Konfigurationsänderungen führen. Der hohe EPSS spiegelt die Verbreitung; Nagios ist im Korpus mehrfach vertreten."
+  },
+  "CVE-2022-1040": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das User Portal und Webadmin der Sophos Firewall haben eine Authentifizierungsumgehung, die Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface der Firewall über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf der Firewall, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Firewall abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,998: Sophos zum wiederholten Mal (XG, UTM, Cyberoam, Firewall, Web Appliance). Auth-Bypass (noinfo bei NVD) plus RCE, als Zero-Day ausgenutzt. Firewall-Verwaltungsoberflächen am WAN sind das wiederkehrende RCE-Ziel; Sophos-Appliances sind im Korpus ein Dauerthema. Eine Firewall zu übernehmen öffnet das Netz dahinter."
+  },
+  "CVE-2023-36847": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+   "summary_de": "Juniper Junos OS auf EX-Geräten hat eine fehlende Authentifizierung für eine kritische Funktion (installAppPackage.php), die begrenzte Auswirkungen auf die Dateisystem-Integrität erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz (J-Web)."
+    },
+    "AC": {
+     "why": "Eine spezifische Anfrage an installAppPackage.php."
+    },
+    "PR": {
+     "why": "Der Request auf installAppPackage.php verlangt keine Authentifizierung: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist das Gerät."
+    },
+    "C": {
+     "why": "Kein direkter Datenzugriff."
+    },
+    "I": {
+     "why": "Begrenztes Datei-Schreiben (Upload): I:L.",
+     "pitfall": "Einzeln nur ein begrenztes Datei-Schreiben. In Kette mit CVE-2023-36844/36845/36846 (alle im Korpus) wurde daraus unauthentifizierte RCE auf Juniper-Firewalls."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,86: Ein weiteres Junos-Glied (CVE-2023-36844 bis 36847). Fehlende Authentifizierung (CWE-306); installAppPackage.php erlaubt das Hochladen einer Datei, die eine andere Lücke ausführt. Einzeln 5,3, als Kette kritisch. Die vier Junos-Lücken zusammen sind der Musterfall für eine RCE-Kette aus kleinen Bausteinen."
+  },
+  "CVE-2023-22232": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+   "summary_de": "Adobe Connect hat eine fehlerhafte Zugriffskontrolle, die eine Security-Feature-Umgehung mit begrenzter Auswirkung auf die Integrität einer Nebenfunktion erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Adobe Connect."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Begrenzte Beeinflussung einer Nebenfunktion: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,82, nur CNA-Vektor: Eine fehlerhafte Zugriffskontrolle (CWE-284) mit ausdrücklich begrenzter Auswirkung (I:L, 'minor feature'). Ein Beispiel für einen niedrig bewerteten Access-Control-Bypass; nicht jede Autorisierungslücke ist kritisch. Adobe Connect ist eine Webkonferenz-Plattform."
+  },
+  "CVE-2023-25280": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der D-Link DIR-820L hat über den ping_addr-Parameter von ping.ccp eine OS Command Injection, die Rechteausweitung zu root erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des Routers über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter ping_addr-Parameter."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle als root auf dem Router, S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: Router abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,98: Wieder der ping-Diagnose-Parameter als Command Injection (CWE-78), wie CVE-2015-1187, CVE-2018-10562, CVE-2019-16920. D-Link ist im Korpus der Hersteller mit den meisten CGI-Injection-Einträgen; der Ping-Parameter (ping_addr, dest_host) ist der wiederkehrende Verdächtige. Ein Muster, das eine eigene Merkregel verdient."
+  },
+  "CVE-2025-24893": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "XWiki erlaubt jedem Gast über eine Anfrage an SolrSearch die Ausführung beliebigen Codes (unauthentifizierte RCE).",
+   "metrics": {
+    "AV": {
+     "why": "Wiki-Weboberfläche über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte SolrSearch-Anfrage."
+    },
+    "PR": {
+     "why": "'Any guest': keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im XWiki-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,998: XWiki-Makro-RCE über SolrSearch, diesmal für jeden Gast (unauthentifiziert) und aktiv ausgenutzt. XWiki ist im Korpus das Produkt mit den zweitmeisten Einträgen (über ein Dutzend Makro-Injections, CWE-94); ein Produkt mit einer strukturellen Schwäche im Makro-Escaping. Die einzige sinnvolle Konsequenz ist eine grundsätzliche Entscheidung, ob XWiki ins Internet gehört."
+  },
+  "CVE-2024-40711": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Veeam Backup & Replication hat eine Deserialisierungslücke, die unauthentifizierte Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt."
+    },
+    "PR": {
+     "why": "Die Deserialisierung erlaubt laut Beschreibung unauthentifizierte RCE: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf dem Backup-Server, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Backups und Zugangsdaten."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Backups löschbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,90: Von mehreren Ransomware-Gruppen genutzt. Deserialisierung (CWE-502); Veeam ist im Korpus zweimal vertreten (auch CVE-2023-27532). Backup-Systeme sind das Ziel, das Ransomware die Wiederherstellung nimmt; eine RCE dort erlaubt das Löschen der Backups vor der Verschlüsselung. Offline-Backups bleiben die Antwort."
+  },
+  "CVE-2023-5360": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Royal-Elementor-Addons-WordPress-Plugin validiert hochgeladene Dateien nicht, sodass unauthentifizierte Nutzer PHP-Dateien hochladen und RCE erreichen.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload."
+    },
+    "PR": {
+     "why": "Der ungeprüfte Datei-Upload steht unauthentifizierten Nutzern offen: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,82: Datei-Upload (CWE-434) in einem verbreiteten Elementor-Addon (wie Fusion Builder, MasterStudy). WordPress-Plugin-Uploads sind im Korpus die häufigste Web-RCE-Klasse; die Verbreitung des Plugins macht die Reichweite. Elementor-Erweiterungen sind mehrfach im Korpus vertreten."
+  },
+  "CVE-2021-22681": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Rockwell Automation Studio 5000 Logix Designer verwendet einen Schlüssel zur Verifikation der Kommunikation mit Logix-Controllern, der sich aus der Software extrahieren lässt, was die Umgehung der Verifikation erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz zum Controller."
+    },
+    "AC": {
+     "why": "Den extrahierten Schlüssel verwenden."
+    },
+    "PR": {
+     "why": "Der extrahierte Schlüssel ist kein eigenes Recht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Controller, S:U."
+    },
+    "C": {
+     "why": "Kontrolle über den PLC: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Steuerlogik änderbar."
+    },
+    "A": {
+     "why": "Prozess abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,64: Rockwell Logix-Controller steuern industrielle Prozesse (ICS). Ein extrahierbarer Verifikationsschlüssel (CWE-522), wie Stuxnet gegen SPS-Kommunikation. Bei ICS ist die Auswirkung physisch; die Kontrolle über einen PLC kann Produktionsanlagen manipulieren. Ein hart kodierter Schlüssel in der Engineering-Software."
+  },
+  "CVE-2021-33037": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+   "summary_de": "Apache Tomcat parst den HTTP-Transfer-Encoding-Header unter Umständen falsch, was hinter einem Reverse-Proxy zu Request Smuggling führt.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierter Transfer-Encoding-Header."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Tomcat."
+    },
+    "C": {
+     "why": "Kein direkter Datenabfluss."
+    },
+    "I": {
+     "why": "Request Smuggling, begrenzt: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,75: Request Smuggling (CWE-444) in Tomcat, wie die Node.js-llhttp-Lücken. Wirkt nur hinter einem Proxy, der anders parst; ohne Proxy bedeutungslos. Tomcat ist im Korpus mehrfach vertreten; Request Smuggling ist eine wiederkehrende Klasse, deren Ausnutzbarkeit vom Setup abhängt."
+  },
+  "CVE-2021-21978": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "VMware View Planner hat in der logupload-Webanwendung durch fehlerhafte Eingabevalidierung und fehlende Autorisierung einen Datei-Upload, der Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload (Path Traversal)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf der Appliance, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,99: Datei-Upload (CWE-20/CWE-434) über einen logupload-Endpunkt. VMware ist im Korpus stark vertreten (vCenter, ESXi, Aria, View Planner, Workspace ONE); Upload-Endpunkte ohne Autorisierung sind ein wiederkehrendes RCE-Muster. Der hohe EPSS spiegelt Massenscans."
+  }
+ }
+}

@@ -1,0 +1,534 @@
+{
+ "batch": "batch-047",
+ "items": {
+  "CVE-2023-34048": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "vCenter Server hat in der Implementierung des DCERPC-Protokolls einen Out-of-Bounds-Write, der einem Angreifer mit Netzzugriff Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "DCERPC über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte DCERPC-Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf dem vCenter-Server, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar (alle VMs)."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: alle VMs abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Von einer China-nahen Gruppe als Zero-Day gegen vCenter genutzt. Out-of-Bounds-Write (CWE-787) im DCERPC-Protokoll. vCenter ist die Kontrollebene der Virtualisierung und im Korpus ein Dauerthema (2020-3952, 2021-21972, 2021-22005, 2021-21985, 2023-34048); ein RCE dort trifft alle VMs. Ransomware-Gruppen lieben vCenter, weil ein Server alle VMs verschlüsselt."
+  },
+  "CVE-2021-22005": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der Analytics-Dienst von vCenter Server hat über Port 443 einen unauthentifizierten Datei-Upload, der Codeausführung auf dem Server erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Port 443 über das Netz."
+    },
+    "AC": {
+     "why": "Präparierter Upload, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf dem vCenter-Server, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar (alle VMs)."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: alle VMs abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99999: Massenausnutzung binnen Tagen. Path Traversal (CWE-22) plus Upload im Analytics-Dienst (in Kette mit dem Proxy-Bypass CVE-2021-22017, im Korpus). vCenter ist im Korpus ein Dauerthema; die Kontrollebene der Virtualisierung ist ein Kronjuwel. Ein Datei-Upload zu RCE, das wiederkehrende vCenter-Angriffsmuster."
+  },
+  "CVE-2023-28342": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "ManageEngine ADSelfService Plus erlaubt über die Mobile-App-Authentifizierungs-API einen unauthentifizierten Denial of Service.",
+   "metrics": {
+    "AV": {
+     "why": "API über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte API-Anfrage."
+    },
+    "PR": {
+     "why": "Die Mobile-App-Authentifizierungs-API ist für „anyone“ erreichbar; der DoS braucht kein Konto: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist ADSelfService Plus."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Verfügbarkeit: DoS: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,78: Ein DoS (CWE-400) über die Mobile-App-API. ADSelfService Plus verwaltet Passwort-Resets für Active Directory; ein DoS verhindert Passwort-Änderungen. ManageEngine ist im Korpus stark vertreten; nicht jede Lücke ist RCE, dieser DoS hat A:H, aber keinen Datenzugriff."
+  },
+  "CVE-2023-35708": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "MOVEit Transfer hat in der Web-Anwendung eine weitere SQL-Injection, die unauthentifizierten Angreifern Datenzugriff erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Die SQL-Injection in der MOVEit-Web-Anwendung ist für einen unauthentifizierten Angreifer erreichbar: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank und Anwendung im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "SQLi: alle Daten lesbar."
+    },
+    "I": {
+     "why": "SQLi: alles änderbar."
+    },
+    "A": {
+     "why": "SQLi: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,97: Eine weitere MOVEit-SQLi (nach der Clop-Massenausnutzung von CVE-2023-34362, im Korpus), gefunden bei der nachträglichen Code-Prüfung. SQLi (CWE-89) in einem Managed-File-Transfer-Server. Nach einem großen Vorfall findet die Sicherheitsforschung oft weitere Lücken derselben Klasse; MFT-Server sind die Kategorie mit den größten Vorfällen."
+  },
+  "CVE-2020-9715": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Use-After-Free in Adobe Acrobat/Reader erlaubt über ein präpariertes PDF Codeausführung im Nutzerkontext.",
+   "metrics": {
+    "AV": {
+     "why": "PDF über Web oder Mail."
+    },
+    "AC": {
+     "why": "Präpariertes PDF."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss das PDF öffnen."
+    },
+    "S": {
+     "why": "Code im Reader-Prozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,49: Use-After-Free (CWE-416) in Adobe Reader. Die Adobe-PDF-Serie im Korpus reicht von 2007 bis 2021; PDF bleibt ein Phishing-Vektor, weil jeder PDFs öffnet, auch nachdem Reader eine Sandbox bekam. Ein wiederkehrendes Dokument-Angriffsmuster."
+  },
+  "CVE-2021-26812": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Das Jitsi-Meet-Plugin für Moodle (sessionpriv.php) hat ein Cross-Site-Scripting.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierter Link über das Netz."
+    },
+    "AC": {
+     "why": "Ein präparierter Link genügt."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss den Link öffnen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Browserkontext des Opfers: C:L."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,97: XSS (CWE-79) in einem Moodle-Plugin (Lernplattform). Wie bei WordPress und Joomla erweitern Moodle-Plugins die Angriffsfläche; XSS gegen eine Lernplattform kann Lehrer-/Admin-Sessions treffen. Der hohe EPSS spiegelt Massenscans nach dem verbreiteten Plugin."
+  },
+  "CVE-2023-36844": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+   "summary_de": "Juniper Junos OS auf EX-Geräten hat in J-Web eine PHP-External-Variable-Modification-Lücke, über die ein Angreifer bestimmte wichtige Umgebungsvariablen kontrolliert.",
+   "metrics": {
+    "AV": {
+     "why": "J-Web über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Die PHP-Umgebungsvariablen werden per präpariertem Request eines unauthentifizierten, netzbasierten Angreifers geändert: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist das Gerät."
+    },
+    "C": {
+     "why": "Kein direkter Datenzugriff."
+    },
+    "I": {
+     "why": "Umgebungsvariablen setzen, begrenzt: I:L.",
+     "pitfall": "Einzeln nur das Setzen einer Umgebungsvariablen. In Kette mit CVE-2023-36845/36846/36847 (alle im Korpus) wurde daraus unauthentifizierte RCE. Das Setzen von PHPRC/auto_prepend_file lud eine hochgeladene Datei als PHP."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,90: Das vierte Junos-Glied (CVE-2023-36844 bis 36847). PHP-Umgebungsvariablen-Manipulation (noinfo bei NVD); das Setzen von PHPRC in Kombination mit dem Upload aus den Schwester-Lücken ergab RCE. Die vier Junos-Lücken zusammen sind der Musterfall für eine RCE-Kette aus einzeln harmlosen Bausteinen."
+  },
+  "CVE-2023-46747": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "F5 BIG-IP erlaubt über nicht offengelegte Anfragen die Umgehung der Configuration-Utility-Authentifizierung und damit unauthentifizierte Systembefehlsausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Management-Port über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage (Request Smuggling zur Auth-Umgehung), öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf der Appliance, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Appliance abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,97: F5 BIG-IP zum wiederholten Mal (CVE-2020-5902 TMUI, CVE-2021-22986 iControl, CVE-2022-1388 iControl). Request Smuggling zur Auth-Umgehung (CWE-306) plus Command Injection (CVE-2023-46748, SQLi, im Korpus); die beiden ergaben unauthentifizierte RCE. Die Management-API von Netzwerk-Appliances ist das wiederkehrende Ziel."
+  },
+  "CVE-2023-28771": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Zyxel ZyWALL/USG, VPN, USG FLEX und ATP Firewalls haben durch fehlerhafte Fehlermeldungs-Behandlung eine unauthentifizierte OS Command Injection (über IKE-Pakete auf UDP 500).",
+   "metrics": {
+    "AV": {
+     "why": "IKE (UDP 500) über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte IKE-Pakete."
+    },
+    "PR": {
+     "why": "Die fehlerhafte Fehlermeldungs-Verarbeitung erlaubt einem unauthentifizierten Angreifer Codeausführung: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle als root auf der Firewall, S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: Firewall abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Zyxel zum wiederholten Mal (NAS, Router, USG FLEX CVE-2022-30525, ATP). Command Injection (CWE-78) über IKE-Fehlermeldungen; besonders gefährlich, weil IKE (VPN) auf UDP 500 auch bei restriktiver Firewall-Konfiguration erreichbar ist. In Botnetzen (Mirai). Zyxel-Appliances sind im Korpus ein Dauerthema."
+  },
+  "CVE-2023-6553": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Backup-Migration-WordPress-Plugin erlaubt über backup-heart.php Remote Code Execution, weil ein Angreifer die an einen include übergebenen Werte kontrolliert.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage (kontrollierter include-Wert)."
+    },
+    "PR": {
+     "why": "Die Werte für das include in backup-heart.php kontrolliert ein Angreifer ohne Konto: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,98: Code-Injection (CWE-94) über einen kontrollierten PHP-include (Local File Inclusion zu RCE). Ein Backup-Plugin (wie Duplicator CVE-2020-11738); WordPress-Plugin-RCE ist im Korpus ein Dauerthema. Ein include-Statement mit angreiferkontrolliertem Pfad ist ein klassischer PHP-RCE-Weg."
+  },
+  "CVE-2023-27372": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "SPIP erlaubt über Formularwerte im öffentlichen Bereich Remote Code Execution, weil die Serialisierung fehlerhaft behandelt wird.",
+   "metrics": {
+    "AV": {
+     "why": "Web-CMS über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Formularwerte, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im SPIP-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,997: SPIP ist ein französisches CMS. Deserialisierung/Injection (CWE-502) über Formularwerte im öffentlichen Bereich; ein Metasploit-Modul existiert. Kleine CMS mit unsicherer Serialisierung sind im Korpus eine wiederkehrende RCE-Quelle (ThinkPHP, NoneCms, FUEL CMS)."
+  },
+  "CVE-2023-4911": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Looney Tunables: Ein Buffer Overflow im dynamischen Loader (ld.so) der GNU C Library beim Verarbeiten der GLIBC_TUNABLES-Umgebungsvariablen erlaubt einem lokalen Angreifer Rechteausweitung zu root.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Zugriff nötig."
+    },
+    "AC": {
+     "why": "Präparierte GLIBC_TUNABLES-Variable beim Start eines setuid-Binaries, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Ein lokaler Nutzer: PR:L."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Lokale Rechteausweitung zu root: S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,81: Looney Tunables, in fast jeder Linux-Distribution (die glibc ist überall). Buffer Overflow (CWE-787) im dynamischen Loader beim Verarbeiten einer Umgebungsvariablen; wie PwnKit (CVE-2021-4034) und Dirty COW eine universelle Linux-Root-Rechteausweitung. Der Loader läuft bei jedem Programmstart mit erhöhten Rechten für setuid-Binaries."
+  },
+  "CVE-2022-29464": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Mehrere WSO2-Produkte erlauben über den /fileupload-Endpunkt mit einer Content-Disposition-Traversal-Sequenz einen unbeschränkten Datei-Upload und Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload mit Path-Traversal, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99999: Betrifft mehrere WSO2-Produkte (API Manager, Enterprise Integrator, Identity Server), massenhaft ausgenutzt. Path Traversal (CWE-22) beim Upload, der eine JSP-Webshell unter dem Webroot platziert. WSO2 ist eine Integration-/Identity-Plattform; ein Bibliotheks-artiger Bug, der viele Produkte gleichzeitig traf."
+  },
+  "CVE-2023-50387": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "KeyTrap: Bestimmte DNSSEC-Aspekte des DNS-Protokolls erlauben einem entfernten Angreifer über präparierte DNSSEC-Antworten einen Denial of Service durch übermäßigen CPU-Verbrauch.",
+   "metrics": {
+    "AV": {
+     "why": "DNS über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte DNSSEC-Antwort (viele Signaturen/Schlüssel)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der DNS-Resolver."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "CPU-Erschöpfung durch aufwendige Signaturprüfungen: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,99995: KeyTrap, ein Protokoll-Designfehler in DNSSEC selbst (wie NSEC3 CVE-2023-50868, im Korpus, und HTTP/2 Rapid Reset). Ressourcenerschöpfung (CWE-770); eine einzige präparierte Antwort konnte einen Resolver für Minuten lahmlegen. Ein Fehler in der Spezifikation (RFC), den jeder DNS-Anbieter einzeln mildern musste; alle validierenden Resolver waren betroffen."
+  },
+  "CVE-2023-39361": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Cacti hat in graph_view.php eine SQL-Injection, die für Gast-Nutzer (standardmäßig ohne Authentifizierung erreichbar) ausnutzbar ist.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Gast-Zugriff ohne Anmeldung (Standard): PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank und Anwendung im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "SQLi: alle Daten lesbar."
+    },
+    "I": {
+     "why": "SQLi: alles änderbar."
+    },
+    "A": {
+     "why": "SQLi: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,89: Cacti zum zweiten Mal (mit der Command Injection CVE-2022-46169). SQLi (CWE-89) in graph_view.php, das Gast-Nutzer standardmäßig ohne Login erreichen. Monitoring-Server sehen das ganze Netz; die Standard-Gast-Zugänglichkeit macht PR:N. Cacti ist im Korpus ein Dauerthema."
+  },
+  "CVE-2023-25136": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:H",
+   "summary_de": "OpenSSH sshd 9.1 hat bei der Behandlung von options.kex_algorithms eine Double-Free, die ein unauthentifizierter Angreifer in der Standardkonfiguration ausnutzen kann.",
+   "metrics": {
+    "AV": {
+     "why": "SSH über das Netz."
+    },
+    "AC": {
+     "why": "AC:H, die Double-Free-Ausnutzung braucht präzise Heap-Manipulation."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig (vor der Authentifizierung)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der SSH-Dienst."
+    },
+    "C": {
+     "why": "Vertraulichkeit: NVD: C:N."
+    },
+    "I": {
+     "why": "Begrenzte Speichermanipulation: I:L."
+    },
+    "A": {
+     "why": "Absturz/Speicherkorruption: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,90: Eine Double-Free (CWE-415) im Pre-Auth-Codepfad von OpenSSH 9.1 (nur diese eine Version). Praktisch war die Ausnutzung zu RCE wegen moderner Heap-Schutzmechanismen sehr schwer (daher AC:H, nur I:L/A:H); ein Beispiel dafür, dass ein Pre-Auth-Speicherfehler in OpenSSH nicht automatisch RCE bedeutet. Vergleiche regreSSHion (CVE-2024-6387), das ähnlich schwer ausnutzbar war."
+  },
+  "CVE-2023-28341": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "ManageEngine Applications Manager hat auf der Login-Fehlerseite ein gespeichertes Cross-Site-Scripting, das ein unauthentifizierter Nutzer einschleusen kann.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Login-Daten."
+    },
+    "PR": {
+     "why": "Das Stored XSS auf der Seite für fehlerhafte Login-Daten wird von einem unauthentifizierten Nutzer eingeschleust: PR:N.",
+     "pitfall": "Die Login-Fehlerseite ist der Ort des Angriffs, nicht ein Login-Erfordernis."
+    },
+    "UI": {
+     "why": "Ein Admin muss die Fehlerseite ansehen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Browserkontext des Opfers: C:L."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,99: Gespeichertes XSS (CWE-79) auf der Login-Fehlerseite (die fehlgeschlagene Login-Versuche protokolliert); der Angreifer schleust den Payload über den Login ein, das Opfer ist der Admin, der die Fehler ansieht. Wie WP-Statistics und Shield Security: Der Angreifer setzt die Daten, der Admin löst das XSS aus. ManageEngine ist im Korpus stark vertreten; der hohe EPSS spiegelt die breite Basis."
+  }
+ }
+}

@@ -1,0 +1,638 @@
+{
+ "batch": "batch-008",
+ "items": {
+  "CVE-2022-23748": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "mDNSResponder.exe aus der Audinate-Dante-Bibliothek lädt eine DLL ohne feste Pfadangabe, sodass eine bösartige DLL im selben Ordner über die legitime, signierte Datei geladen wird (DLL Sideloading).",
+   "metrics": {
+    "AV": {
+     "why": "Die DLL muss lokal neben der Exe liegen."
+    },
+    "AC": {
+     "why": "DLL ablegen, Exe starten."
+    },
+    "PR": {
+     "why": "NVD: keine Rechte, der Angreifer liefert nur die Dateien (z. B. per Archiv)."
+    },
+    "UI": {
+     "why": "Ein Nutzer muss die Exe aus dem präparierten Ordner starten."
+    },
+    "S": {
+     "why": "Code im Kontext des startenden Nutzers."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten."
+    },
+    "I": {
+     "why": "Code mit Nutzerrechten."
+    },
+    "A": {
+     "why": "Code mit Nutzerrechten."
+    }
+   },
+   "context_de": "KEV, EPSS 0,09: Von Angreifern als Ladeprogramm für Malware genutzt (signierte Exe umgeht Whitelists). DLL-Sideloading ist eine Technik, keine Lücke im klassischen Sinn; der Score 7,8 sagt wenig über die Rolle in Ketten."
+  },
+  "CVE-2026-72898": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Metabase erlaubt über den Endpunkt /reset_password unauthentifizierte SQL-Injection, mit der Angreifer Administratorzugriff auf die Instanz erlangen.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP-Endpunkt."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Passwort-Reset ist vor der Anmeldung erreichbar."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "CNA: S:C, weil Metabase Zugangsdaten zu allen angebundenen Datenbanken hält.",
+     "pitfall": "Reiner CNA-Vektor. Admin in Metabase heißt Zugriff auf angebundene Datenbanken, das ist der S:C-Gedanke. Nach Spezifikation eher Folgeschaden."
+    },
+    "C": {
+     "why": "Admin: alle Daten und Datenbankverbindungen."
+    },
+    "I": {
+     "why": "Admin: alles."
+    },
+    "A": {
+     "why": "Admin: alles."
+    }
+   },
+   "dissent": {
+    "S": "Nur CNA-Vektor (10,0). S:U mit 9,8 wäre die spezifikationsnähere Wahl."
+   },
+   "context_de": "KEV, EPSS 0,94. BI-Tools halten Datenbank-Zugangsdaten; die Auswirkung ist nie nur das Tool. Vergleiche CVE-2021-41277 (Metabase LFI)."
+  },
+  "CVE-2026-64849": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:N",
+   "summary_de": "MLflow validiert Webhook-URLs nur vor dem Redirect; der Test-Endpunkt folgt Weiterleitungen und löst Hostnamen neu auf, sodass Angreifer interne Dienste erreichen (SSRF mit DNS-Rebinding/Redirect).",
+   "metrics": {
+    "AV": {
+     "why": "Unauthentifizierter API-Endpunkt."
+    },
+    "AC": {
+     "why": "Eigener Server mit Redirect, kein besonderer Aufwand."
+    },
+    "PR": {
+     "why": "'Unauthenticated' laut Beschreibung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "SSRF: interne Dienste sind die betroffene Komponente."
+    },
+    "C": {
+     "why": "CNA: Antworten interner Dienste lesbar, inklusive Cloud-Metadaten: H."
+    },
+    "I": {
+     "why": "Begrenzte Zustandsänderungen über interne Anfragen: L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,16, nur CNA-Vektor. Die Validierungslücke (prüfen, dann Redirect folgen) ist ein Muster für alle SSRF-Filter: Validierung und Nutzung müssen dieselbe Adresse sehen."
+  },
+  "CVE-2023-0266": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Im ALSA-PCM-Code des Linux-Kernels fehlen Locks bei SNDRV_CTL_IOCTL_ELEM_READ/WRITE32, was einen Use-After-Free und darüber Rechteausweitung auf Ring 0 erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Lokale ioctl-Aufrufe."
+    },
+    "AC": {
+     "why": "Race zwischen ioctl-Aufrufen: Timing außerhalb der Kontrolle des Angreifers."
+    },
+    "PR": {
+     "why": "'From the system user': ein normales Konto mit Zugriff auf das Audiogerät."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Kernel-EoP: NVD-Konvention S:U."
+    },
+    "C": {
+     "why": "Ring 0: alles."
+    },
+    "I": {
+     "why": "Ring 0: alles."
+    },
+    "A": {
+     "why": "Ring 0: alles."
+    }
+   },
+   "dissent": {
+    "AV": "CNA-Seite (NetApp): AV:A, S:C, C:L. Ein Appliance-Vektor, der die Kernel-Lücke nicht beschreibt."
+   },
+   "context_de": "KEV, EPSS 0,04: Teil einer Android-Spyware-Kette (Samsung). Kernel-UAFs mit Race sind die typische AC:H-Rechteausweitung; auf Servern ohne Fremdcode ist die Wahrscheinlichkeit gering."
+  },
+  "CVE-2026-83548": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Das Work-Place-Interface der SonicWall SMA1000 hat einen unbeabsichtigten alternativen Zugriffspfad, über den unauthentifizierte Angreifer per SSRF sensible Funktionen erreichen und unautorisierte Operationen ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface der VPN-Appliance."
+    },
+    "AC": {
+     "why": "CNA: keine Sonderbedingung."
+    },
+    "PR": {
+     "why": "'Pre-authentication' laut Beschreibung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "CNA: Über den SSRF-Pfad werden interne Funktionen erreicht, die als andere Komponente gelten."
+    },
+    "C": {
+     "why": "CNA: sensible Funktionen, Vollzugriff angenommen."
+    },
+    "I": {
+     "why": "CNA: unautorisierte Operationen."
+    },
+    "A": {
+     "why": "CNA: A:H angenommen."
+    }
+   },
+   "dissent": {
+    "C": "Nur CNA-Vektor (10,0). Die Beschreibung ('sensitive functionality', 'unauthorized operations') ist zu vage für H/H/H; ohne NVD-Zweitmeinung bleibt das stehen."
+   },
+   "context_de": "KEV, EPSS 0,05. SMA-Appliances sind seit Jahren ein Ziel; vage Beschreibung plus 10,0 vom Hersteller bedeutet: Advisory lesen, nicht nur den Score."
+  },
+  "CVE-2020-11023": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "jQuery vor 3.5.0 führt beim Einfügen von HTML mit option-Elementen über .html() oder .append() Code aus, selbst nach Sanitisierung.",
+   "metrics": {
+    "AV": {
+     "why": "jQuery im Browser, Daten aus dem Web."
+    },
+    "AC": {
+     "why": "NVD: keine Sonderbedingung; der CNA sah AC:H, weil die App das HTML erst an jQuery geben muss."
+    },
+    "PR": {
+     "why": "Der Angreifer liefert nur Daten."
+    },
+    "UI": {
+     "why": "Das eingeschleuste <option>-HTML wird beim Laden der Seite durch das Opfer ausgeführt: UI:R."
+    },
+    "S": {
+     "why": "XSS-Standard: Bibliothek verwundbar, Browser des Nutzers betroffen."
+    },
+    "C": {
+     "why": "Browserkontext des Nutzers: L.",
+     "pitfall": "Der CNA vergab C:H. Bei XSS bleibt NVD konsequent bei C:L/I:L, unabhängig davon, wie wertvoll die Session ist."
+    },
+    "I": {
+     "why": "Aktionen im Namen des Nutzers: L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "C": "CNA: AC:H, C:H (6,9). Umfang-gegen-Wert-Diskussion auf Bibliotheksebene."
+   },
+   "context_de": "KEV, EPSS 0,85: Über Drupal und andere Einbettungen ausgenutzt. Jede alte jQuery-Kopie in einer Webanwendung ist ein Findling in Scannerberichten; die reale Ausnutzbarkeit hängt am Aufruf."
+  },
+  "CVE-2021-29447": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Die WordPress-Mediathek parst unter PHP 8 XML unsicher; ein Nutzer mit Upload-Recht (Autor) kann per XXE interne Dateien lesen.",
+   "metrics": {
+    "AV": {
+     "why": "Upload über die Weboberfläche."
+    },
+    "AC": {
+     "why": "NVD: keine Sonderbedingung, obwohl PHP 8 nötig ist."
+    },
+    "PR": {
+     "why": "'Like an Author': ein Konto mit Upload-Recht, PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der WordPress-Server."
+    },
+    "C": {
+     "why": "Interne Dateien lesen (wp-config.php mit Datenbank-Zugangsdaten): gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "NVD: nur Lesen; CNA I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,86. Autor-Konten sind in Redaktionen zahlreich; PR:L ist bei CMS eine niedrige Hürde."
+  },
+  "CVE-2019-2616": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N",
+   "summary_de": "Oracle BI Publisher hat eine leicht ausnutzbare Lücke, über die ein unauthentifizierter Angreifer per HTTP begrenzt Daten lesen und ändern kann; Angriffe können auf weitere Produkte übergreifen (real: XXE).",
+   "metrics": {
+    "AV": {
+     "why": "'Network access via HTTP' steht wörtlich im Text."
+    },
+    "AC": {
+     "why": "'Easily exploitable' ist Oracles Formulierung für AC:L.",
+     "pitfall": "Oracle-Beschreibungen sind der Vektor in Prosa: 'easily exploitable' = AC:L, 'difficult to exploit' = AC:H, 'unauthenticated attacker' = PR:N, 'attacks may significantly impact additional products' = S:C."
+    },
+    "PR": {
+     "why": "'Unauthenticated attacker' wörtlich."
+    },
+    "UI": {
+     "why": "Keine Interaktion genannt (sonst 'requires human interaction')."
+    },
+    "S": {
+     "why": "'Attacks may significantly impact additional products' ist Oracles S:C-Formulierung."
+    },
+    "C": {
+     "why": "'Unauthorized read access to a subset of data' ist Oracles C:L."
+    },
+    "I": {
+     "why": "'Unauthorized update, insert or delete access to some data' ist Oracles I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung genannt."
+    }
+   },
+   "context_de": "KEV, EPSS 0,92, keine CWE bei NVD (real XXE). Oracle-CPU-Texte sind zum Vektor-Üben ideal, weil jedes Wort einer Metrik entspricht; im Job liest du sie quartalsweise."
+  },
+  "CVE-2023-7028": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "GitLab verschickt Passwort-Reset-Mails an unverifizierte E-Mail-Adressen, sodass ein Angreifer den Reset-Link für beliebige Konten an sich selbst senden lassen kann (Account Takeover).",
+   "metrics": {
+    "AV": {
+     "why": "Passwort-Reset-Formular über das Netz."
+    },
+    "AC": {
+     "why": "Zwei E-Mail-Adressen im Reset-Formular, mehr nicht."
+    },
+    "PR": {
+     "why": "Der Angreifer löst den Passwort-Reset für ein fremdes Konto aus, ohne selbst angemeldet zu sein; der Reset-Link wird an eine unverifizierte Adresse zugestellt: PR:N.",
+     "pitfall": "„Password reset“ ist der missbrauchte Vorgang, kein Recht des Angreifers."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt; das Opfer merkt nichts."
+    },
+    "S": {
+     "why": "Betroffen ist GitLab selbst.",
+     "pitfall": "Der CNA vergab S:C. Kontoübernahme innerhalb derselben Anwendung ist kein Scope-Wechsel."
+    },
+    "C": {
+     "why": "Beliebiges Konto, auch Admin: alle Repositories."
+    },
+    "I": {
+     "why": "Admin: alles änderbar, Supply-Chain-Risiko."
+    },
+    "A": {
+     "why": "NVD: A:H; CNA A:N."
+    }
+   },
+   "dissent": {
+    "S": "CNA (GitLab): S:C, A:N (10,0). Beide Abweichungen sind Ermessen; NVD 9,8 ist spezifikationsnäher."
+   },
+   "context_de": "KEV, EPSS 0,95: Massenausnutzung gegen selbstgehostete GitLabs ohne 2FA. Hier senkt 2FA die Wahrscheinlichkeit auf fast null, Patchen bleibt trotzdem Pflicht."
+  },
+  "CVE-2026-20122": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N",
+   "summary_de": "Die API von Cisco Catalyst SD-WAN Manager erlaubt einem Angreifer mit Nur-Lese-Zugangsdaten das Überschreiben beliebiger Dateien auf dem lokalen Dateisystem.",
+   "metrics": {
+    "AV": {
+     "why": "API über das Netz."
+    },
+    "AC": {
+     "why": "Präparierter Upload."
+    },
+    "PR": {
+     "why": "'Valid read-only credentials with API access': PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Manager selbst."
+    },
+    "C": {
+     "why": "NVD: C:L, begrenzter Informationsgewinn durch das Überschreiben."
+    },
+    "I": {
+     "why": "NVD vergab I:L trotz 'overwrite arbitrary files'.",
+     "pitfall": "Beliebige Dateien überschreiben ist nach Spezifikation I:H (vollständiger Integritätsverlust). NVDs I:L ist ein Fehler oder eine sehr enge Lesart."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung, obwohl überschriebene Systemdateien das Gerät stören könnten."
+    }
+   },
+   "dissent": {
+    "I": "Kein CNA-Vektor. 'Overwrite arbitrary files' und I:L passen nicht zusammen; 8,1 (C:L/I:H/A:H) oder 6,5 wären konsistenter."
+   },
+   "context_de": "KEV, EPSS 0,25: Teil der SD-WAN-Manager-Kette 2026, die mit Nur-Lese-Konten begann. Ein 5,4 als Kettenglied."
+  },
+  "CVE-2023-2868": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Barracuda Email Security Gateway validiert Dateinamen in .tar-Anhängen unvollständig, sodass ein per E-Mail zugestelltes Archiv Command Injection mit Gateway-Rechten auslöst.",
+   "metrics": {
+    "AV": {
+     "why": "Die E-Mail mit dem Anhang kommt aus dem Internet."
+    },
+    "AC": {
+     "why": "Ein präpariertes .tar."
+    },
+    "PR": {
+     "why": "Der Absender braucht nichts."
+    },
+    "UI": {
+     "why": "Das Gateway scannt automatisch, kein Nutzer beteiligt.",
+     "pitfall": "Anders als beim Office-Dokument: Hier öffnet niemand den Anhang, das Gateway verarbeitet ihn selbst. UI:N."
+    },
+    "S": {
+     "why": "Befehle laufen auf dem Gateway."
+    },
+    "C": {
+     "why": "Gateway: aller Mailverkehr."
+    },
+    "I": {
+     "why": "Befehlsausführung: alles."
+    },
+    "A": {
+     "why": "NVD: A:H; CNA A:L."
+    }
+   },
+   "context_de": "KEV, EPSS 0,88: Zero-Day einer chinesischen Gruppe, Barracuda empfahl Austausch der Appliances. Eine Mail reicht, keine Interaktion: Wahrscheinlichkeit nahe 1 für jedes exponierte Gerät."
+  },
+  "CVE-2019-10758": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "mongo-express führt über Endpunkte mit toBSON Code in der Node-vm-Umgebung aus, die keine Sandbox ist, was angemeldeten Nutzern Codeausführung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Oberfläche."
+    },
+    "AC": {
+     "why": "Präparierte Eingabe."
+    },
+    "PR": {
+     "why": "Anmeldung an mongo-express (oft Standard-Zugangsdaten admin/pass).",
+     "pitfall": "PR:L ist formal richtig; mit Standard-Zugangsdaten faktisch PR:N. Solche Defaults gehören in die Kontextbetrachtung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: Ausbruch aus der vm-Umgebung auf den Host: S:C.",
+     "pitfall": "Node's vm ist keine Sicherheitsgrenze. NVD hat den 'Sandbox-Ausbruch' dennoch als Scope-Wechsel gewertet."
+    },
+    "C": {
+     "why": "Code auf dem Host: Datenbank und mehr."
+    },
+    "I": {
+     "why": "Code: alles."
+    },
+    "A": {
+     "why": "Code: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,85. Datenbank-Admin-Tools mit Standardpasswort im Internet: Die Wahrscheinlichkeit hängt an der Konfiguration, nicht am Score."
+  },
+  "CVE-2020-0601": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N",
+   "summary_de": "CurveBall: Windows CryptoAPI validiert ECC-Zertifikate fehlerhaft, sodass ein gefälschtes Code-Signing- oder TLS-Zertifikat als vertrauenswürdig gilt.",
+   "metrics": {
+    "AV": {
+     "why": "Gefälschte Signatur kommt über das Netz (Download, TLS-MITM)."
+    },
+    "AC": {
+     "why": "NVD: Zertifikat fälschen ist mit öffentlichen Tools trivial."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Der Nutzer muss die signierte Datei ausführen oder die Seite besuchen."
+    },
+    "S": {
+     "why": "Betroffen ist das System des Nutzers."
+    },
+    "C": {
+     "why": "TLS-MITM und signierte Malware: H."
+    },
+    "I": {
+     "why": "Signierte Malware: H."
+    },
+    "A": {
+     "why": "NVD: A:N, weil die Umgehung selbst nichts stört."
+    }
+   },
+   "context_de": "KEV, EPSS 0,89: Von der NSA gemeldet, PoCs binnen Tagen. Eine Kryptolücke, deren Klasse (CWE-295) harmlos klingt und deren Auswirkung die gesamte Vertrauenskette des Betriebssystems ist."
+  },
+  "CVE-2020-10181": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "goform/formEMR30 im Sumavision Enhanced Multimedia Router legt ohne Anmeldung beliebige Nutzer mit Administratorrechten an.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP-Endpunkt."
+    },
+    "AC": {
+     "why": "Ein Request mit setString-Parameter, wie in der Beschreibung gezeigt."
+    },
+    "PR": {
+     "why": "NVD: keine Anmeldung nötig.",
+     "pitfall": "NVD klassifiziert als CSRF (CWE-352), vergibt aber PR:N/UI:N. Entweder es ist CSRF (dann UI:R) oder fehlende Authentifizierung (dann CWE-306). Der Vektor sagt: fehlende Auth."
+    },
+    "UI": {
+     "why": "NVD: keine Interaktion."
+    },
+    "S": {
+     "why": "Betroffen ist das Gerät."
+    },
+    "C": {
+     "why": "Admin-Konto: alles."
+    },
+    "I": {
+     "why": "Admin: alles."
+    },
+    "A": {
+     "why": "Admin: alles."
+    }
+   },
+   "dissent": {
+    "UI": "Die CWE (352) und der Vektor (UI:N) widersprechen sich. Für die Klassenübung ist die NVD-CWE hier fragwürdig; die Mechanik ist fehlende Authentifizierung."
+   },
+   "context_de": "KEV, EPSS 0,15. IoT-Geräte mit Admin-Anlage ohne Auth sind Botnetz-Futter; das Gerät ist selten inventarisiert."
+  },
+  "CVE-2022-1471": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "SnakeYamls Constructor-Klasse beschränkt die beim Deserialisieren instanziierbaren Typen nicht, sodass angreifergesteuertes YAML zu Codeausführung führt.",
+   "metrics": {
+    "AV": {
+     "why": "NVD: YAML kommt typischerweise über Netzwerkschnittstellen der einbettenden Anwendung.",
+     "pitfall": "Bibliothek: NVD bewertet den typischen Einsatz (Netz), der CNA das Modell 'wer YAML liefern darf, ist angemeldet' (PR:L)."
+    },
+    "AC": {
+     "why": "Bekannte Gadget-Klassen, kein Aufwand."
+    },
+    "PR": {
+     "why": "NVD: keine Rechte; der CNA vergab PR:L."
+    },
+    "UI": {
+     "why": "Automatische Verarbeitung."
+    },
+    "S": {
+     "why": "Code läuft in der einbettenden JVM."
+    },
+    "C": {
+     "why": "RCE: alles."
+    },
+    "I": {
+     "why": "RCE: alles."
+    },
+    "A": {
+     "why": "NVD: A:H; CNA A:L."
+    }
+   },
+   "dissent": {
+    "PR": "CNA: PR:L, A:L (8,3). Bei Bibliotheken ist die PR-Frage 'wer darf Eingaben liefern' kontextabhängig; NVD wählt den schlimmsten Fall."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,996: In tausenden Java-Anwendungen enthalten, Scanner melden es überall. Ausnutzbar nur, wenn die App untrusted YAML mit Constructor() parst; das ist die Frage, die Scanner nicht beantworten."
+  },
+  "CVE-2020-25213": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das WordPress-Plugin File Manager benennt eine unsichere elFinder-Beispieldatei in .php um, sodass unauthentifizierte Angreifer über den elFinder-Connector PHP-Code hochladen und ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP-Endpunkt des Plugins."
+    },
+    "AC": {
+     "why": "Öffentlicher Exploit, ein Upload."
+    },
+    "PR": {
+     "why": "Der Connector prüft keine Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U, PHP-Code läuft im Webserver.",
+     "pitfall": "Vergleiche wpDiscuz CVE-2020-24186: gleiche Konstellation, dort S:C. Der CNA hier vergab ebenfalls S:C. NVD ist bei Plugin-RCEs nicht konsistent; S:U ist spezifikationsnäher."
+    },
+    "C": {
+     "why": "Webshell: alles."
+    },
+    "I": {
+     "why": "Webshell: alles."
+    },
+    "A": {
+     "why": "Webshell: abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA: S:C (10,0). NVD 9,8. Für Code im selben Webserver-Prozess ist S:U richtig."
+   },
+   "context_de": "KEV, EPSS 0,97: 700.000 Installationen, Massenausnutzung im September 2020. Eine Beispieldatei im Auslieferungspaket war die Ursache; Angriffsfläche entsteht auch durch mitgelieferte Demos."
+  },
+  "CVE-2016-4437": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Apache Shiro verwendet ohne konfigurierten Cipher-Key einen fest eingebauten Standardschlüssel für das 'remember me'-Cookie; wer ihn kennt, kann serialisierte Objekte verschlüsseln und per Deserialisierung Code ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "Cookie über HTTP."
+    },
+    "AC": {
+     "why": "Standardschlüssel ist öffentlich, Gadget-Chains bekannt."
+    },
+    "PR": {
+     "why": "Das Cookie wird vor der Anmeldung verarbeitet."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code in der Anwendung."
+    },
+    "C": {
+     "why": "RCE: alles."
+    },
+    "I": {
+     "why": "RCE: alles."
+    },
+    "A": {
+     "why": "RCE: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,93: 'Shiro-550', in China massenhaft ausgenutzt, Klasse CWE-321 (fester Kryptoschlüssel), Auswirkung über CWE-502. Vergleiche CentreStack CVE-2025-30406 und Superset CVE-2023-27524: dasselbe Muster, drei Produkte."
+  },
+  "CVE-2025-47813": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Wing FTP Server gibt in loginok.html bei einem überlangen UID-Cookie den vollständigen Installationspfad preis.",
+   "metrics": {
+    "AV": {
+     "why": "Webinterface."
+    },
+    "AC": {
+     "why": "Langer Cookie-Wert."
+    },
+    "PR": {
+     "why": "CNA: eine Anmeldung ist nötig (loginok)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Server."
+    },
+    "C": {
+     "why": "Nur der Installationspfad: minimaler Umfang, C:L.",
+     "pitfall": "Lehrbuch-C:L: eine einzelne, für sich harmlose Information. Wertvoll wird sie nur als Baustein (Pfad für die RCE CVE-2025-47812)."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Score 4,3 und KEV: Der Pfad wurde in der Kette mit der RCE-Lücke gebraucht. Informationslecks stehen in KEV fast nur als Kettenglieder."
+  },
+  "CVE-2022-2992": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "GitLab erlaubt angemeldeten Nutzern über den 'Import from GitHub'-API-Endpunkt Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "API über das Netz."
+    },
+    "AC": {
+     "why": "NVD: keine Sonderbedingung."
+    },
+    "PR": {
+     "why": "'Authenticated user': PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD vergab S:C ohne erkennbaren Grund in der Beschreibung.",
+     "pitfall": "Kein Grund in der Beschreibung für S:C. NVD bewertet GitLab-RCEs regelmäßig mit S:C (vgl. CVE-2019-1003030 bei Jenkins, wo es begründet war). Hier fehlt die Begründung."
+    },
+    "C": {
+     "why": "RCE auf GitLab: alle Repositories und Secrets."
+    },
+    "I": {
+     "why": "RCE: alles."
+    },
+    "A": {
+     "why": "RCE: alles."
+    }
+   },
+   "dissent": {
+    "S": "Kein CNA-Vektor. S:U mit 8,8 wäre spezifikationsnäher."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,86. Selbstgehostete GitLabs mit offener Registrierung machen PR:L zu PR:N."
+  }
+ }
+}

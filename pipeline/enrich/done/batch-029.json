@@ -1,0 +1,629 @@
+{
+ "batch": "batch-029",
+ "items": {
+  "CVE-2014-0322": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Use-After-Free im Internet Explorer 9/10 erlaubt über präparierten JavaScript-Code (CMarkup, onpropertychange) Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Code im Browserprozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,85: Watering-Hole gegen die US-Veteranen-Website (VFW) 2014. Use-After-Free (CWE-416); die IE-UAF-Serie im Korpus (2010, 2012, 2013, 2014) zeigt, wie lange IE der bevorzugte Browser-Exploit-Vektor war."
+  },
+  "CVE-2019-10098": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Apache HTTP Server erlaubt über kodierte Zeilenumbrüche in mod_rewrite-Redirects die Umleitung auf eine unerwartete URL (Open Redirect).",
+   "metrics": {
+    "AV": {
+     "why": "Präparierter Link über das Netz."
+    },
+    "AC": {
+     "why": "Ein präparierter Link genügt."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss dem Link folgen."
+    },
+    "S": {
+     "why": "XSS-/Redirect-Standardvektor: S:C."
+    },
+    "C": {
+     "why": "Umleitung, Phishing-Risiko: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Beeinflussung: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,74: Open Redirect (CWE-601) über kodierte Newlines. Apache ist überall, daher der EPSS; Open Redirects werden selten allein ausgenutzt, aber gern in Phishing mit vertrauenswürdiger Domain."
+  },
+  "CVE-2023-0992": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Das Shield-Security-Plugin für WordPress ist über den User-Agent-Header anfällig für gespeichertes XSS.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter User-Agent-Header."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig (der Header wird beim Besuch gesetzt)."
+    },
+    "UI": {
+     "why": "NVD: UI:R (ein Admin muss die betroffene Seite ansehen); der CNA UI:N."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Admins, Scope Changed."
+    },
+    "C": {
+     "why": "Admin-Browserkontext: C:L."
+    },
+    "I": {
+     "why": "Aktionen als Admin: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "UI": "CNA (Wordfence): UI:N (6,1). Ob das Ansehen der Log-Seite Interaktion ist, ist die Frage; NVD verlangt es."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,93. Ironie: ein Sicherheits-Plugin mit XSS. Der User-Agent als XSS-Vektor (CWE-79), wie WP-Statistics: Der Angreifer setzt den Header, das Opfer ist der Admin, der die Logs ansieht."
+  },
+  "CVE-2020-27858": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "CA Arcserve D2D erlaubt über die getNews-Methode einen unauthentifizierten XXE-Angriff zum Auslesen sensibler Informationen.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes XML."
+    },
+    "PR": {
+     "why": "'Authentication is not required' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Backup-Server."
+    },
+    "C": {
+     "why": "XXE: Dateien lesen (Konfiguration, Secrets): gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,74: Backup-Software (wie Veeam, Arcserve). XXE (CWE-611) über eine getNews-API; Backup-Systeme halten Zugangsdaten zu allen gesicherten Hosts, die Auswirkung reicht weit."
+  },
+  "CVE-2017-0147": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Der SMBv1-Server in Windows gibt über präparierte Pakete sensible Informationen aus dem Prozessspeicher preis (das Info-Leck der EternalBlue-Familie).",
+   "metrics": {
+    "AV": {
+     "why": "SMB (Port 445) über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Pakete."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der SMB-Dienst."
+    },
+    "C": {
+     "why": "Prozessspeicher lesbar: gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,997: Der Info-Leck-Partner von EternalBlue (CVE-2017-0148). Klasse noinfo bei NVD, real ein Memory-Read; das Leck lieferte die Adressen für die RCE. Ein 7,5, das als Kettenglied den 8,1-RCE ermöglichte."
+  },
+  "CVE-2018-10561": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Dasan GPON Home Router erlauben die Authentifizierungsumgehung, indem an jede geschützte URL '?images' angehängt wird.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des Routers über HTTP."
+    },
+    "AC": {
+     "why": "'?images' an die URL anhängen, trivial."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Router, S:U."
+    },
+    "C": {
+     "why": "Gerätekontrolle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Gerätekontrolle: alles änderbar."
+    },
+    "A": {
+     "why": "Gerätekontrolle: Router abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,93: Der Auth-Bypass, der mit der Command Injection CVE-2018-10562 kombiniert wurde (das GPON-Router-Botnetz). Ein absurd einfacher Bypass (CWE-287): Ein URL-Suffix umging die gesamte Authentifizierung. Bypass plus Injection als Kette."
+  },
+  "CVE-2014-3120": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N",
+   "summary_de": "Die Standardkonfiguration von Elasticsearch vor 1.2 aktiviert dynamisches Scripting, was die Ausführung beliebiger MVEL-Ausdrücke und Java-Code über den source-Parameter erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Elasticsearch-API über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter _search-Request mit MVEL-Ausdruck."
+    },
+    "PR": {
+     "why": "NVD: PR:L (Elasticsearch hatte damals oft keine Auth, faktisch PR:N)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Elasticsearch-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "Verfügbarkeit: NVD: A:N."
+    }
+   },
+   "context_de": "KEV, EPSS 0,89: Dynamisches Scripting per Default (CWE-284), wie CouchDB und Airflow. Elasticsearch war jahrelang ohne Auth im Netz; die Standardkonfiguration erlaubte MVEL/Java-Ausführung. Standardkonfiguration als RCE-Vektor."
+  },
+  "CVE-2020-16846": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Präparierte Web-Anfragen an die Salt-API mit aktiviertem SSH-Client führen zu Shell Injection.",
+   "metrics": {
+    "AV": {
+     "why": "Salt-API über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle im Salt-Master-Prozess, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Salt-Master steuern ganze Server-Flotten. Shell Injection (CWE-78) über die Salt-API; Salt hatte 2020 mehrere kritische Lücken (CVE-2020-11651/11652). Ein Konfigurationsmanagement-Master ist ein Supply-Chain-Ziel."
+  },
+  "CVE-2017-9841": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Util/PHP/eval-stdin.php in PHPUnit erlaubt über HTTP-POST-Daten, die mit '<?php' beginnen, die Ausführung beliebigen PHP-Codes (bei exponiertem vendor-Verzeichnis).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "POST-Anfrage mit PHP-Code."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99999: Eine Test-Bibliothek (PHPUnit) als RCE-Quelle. Code-Injection (CWE-94): Eine Debug-Datei im vendor-Verzeichnis führte POST-Daten als PHP aus. Entwicklungswerkzeuge, die in Produktion landen, sind ein wiederkehrendes Muster; jahrelang massenhaft gescannt."
+  },
+  "CVE-2018-4939": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Adobe ColdFusion hat eine ausnutzbare Deserialisierungslücke, die Codeausführung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im ColdFusion-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,62: ColdFusion-Deserialisierung (CWE-502), wie CVE-2017-3066. ColdFusion ist im Korpus das Produkt mit den meisten Einträgen (mindestens sechs); ein Muster aus Deserialisierung, Access-Control-Bypass und Upload. Eine eigene Beobachtungsliste wert."
+  },
+  "CVE-2020-11108": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der Gravity-Updater in Pi-hole erlaubt einem authentifizierten Angreifer das Hochladen beliebiger Dateien, was über eine PHP-Datei im Web-Verzeichnis zu RCE führt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload."
+    },
+    "PR": {
+     "why": "Der Gravity-Updater ist nur für einen angemeldeten Pi-hole-Nutzer erreichbar („authenticated adversary“): PR:L. Die spätere sudo-Eskalation ist Impact."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,78: Pi-hole (DNS-Filter) läuft in vielen Heimnetzen. Datei-Upload (CWE-434) zu RCE, plus eine sudo-Regel für www-data zur Rechteausweitung: eine Kette innerhalb desselben Systems. Ein Beispiel, dass auch Open-Source-Heimwerkzeuge Angriffsketten enthalten."
+  },
+  "CVE-2015-5317": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Die Fingerprints-Seiten in Jenkins geben über eine direkte Anfrage sensible Job- und Build-Namen preis.",
+   "metrics": {
+    "AV": {
+     "why": "Jenkins-Weboberfläche über HTTP."
+    },
+    "AC": {
+     "why": "Eine direkte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Jenkins."
+    },
+    "C": {
+     "why": "NVD: Job- und Build-Namen (interne Struktur): H nach NVD.",
+     "pitfall": "Job-/Build-Namen könnten als C:L gelten (nur Namen). NVD vergab C:H, weil die interne Projektstruktur eines CI-Servers wertvolle Aufklärung ist."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,22: Ein Info-Leck (CWE-200) über CI-Metadaten. Job-Namen verraten die interne Projektstruktur und Technologien; Aufklärung für gezielte Angriffe auf die Build-Infrastruktur."
+  },
+  "CVE-2019-11581": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Jira Server und Data Center haben in den ContactAdministrators- und SendBulkMail-Aktionen eine Server-Side Template Injection, die Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Vorlage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig (bei aktivierter Kontaktformular-Funktion)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Jira-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,85: SSTI (CWE-74) in Jiras E-Mail-Vorlagen, wie Strapi und SugarCRM. Template-Injection über Admin-Kontaktformulare; die Klasse ist im Korpus so oft vertreten, dass sie eine Merkregel verdient: Nutzergesteuerte Vorlagen sind RCE-Verdächtige."
+  },
+  "CVE-2010-3904": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die rds_page_copy_user-Funktion im Linux-RDS-Protokoll validiert Adressen aus dem Userspace nicht, was lokalen Nutzern Rechteausweitung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Zugriff nötig."
+    },
+    "AC": {
+     "why": "Bekannter Exploit, kein Timing."
+    },
+    "PR": {
+     "why": "Ein lokaler Nutzer: PR:L."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Kernel-EoP: S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,15: Ein universeller Linux-Root-Exploit 2010 (RDS-Protokoll). Fehlende Adressvalidierung (CWE-1284) beim Kopieren aus dem Userspace; das RDS-Modul war oft geladen, aber selten genutzt. Ungenutzte Kernel-Module vergrößern die Angriffsfläche."
+  },
+  "CVE-2022-2294": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Heap-Buffer-Overflow in WebRTC in Chrome erlaubt über eine präparierte Seite Heap-Korruption.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Renderer-Prozess."
+    },
+    "C": {
+     "why": "Codeausführung im Renderer: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,70: Zero-Day, von Candiru gegen Journalisten genutzt. Heap-Overflow (CWE-787) in WebRTC; WebRTC (Echtzeit-Kommunikation) ist eine große Angriffsfläche im Browser, weil es komplexe Medienformate parst."
+  },
+  "CVE-2019-11510": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Pulse Connect Secure erlaubt über eine präparierte URI das Lesen beliebiger Dateien ohne Authentifizierung (inklusive Klartext-Zugangsdaten und Session-Token).",
+   "metrics": {
+    "AV": {
+     "why": "VPN-Gateway aus dem Internet."
+    },
+    "AC": {
+     "why": "Eine präparierte URI, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:C, das Lesen der Zugangsdaten führt zur vollständigen Übernahme und zum Netz dahinter."
+    },
+    "C": {
+     "why": "Beliebige Dateien inklusive Klartext-Credentials und Sessions: gezielt, maximal, H."
+    },
+    "I": {
+     "why": "Über die erbeuteten Sessions volle Kontrolle: I:H."
+    },
+    "A": {
+     "why": "Volle Kontrolle: A:H."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999, Score 10,0: Einer der folgenreichsten VPN-Bugs (2019/2020), monatelang ungepatcht in vielen Organisationen, Grundlage zahlreicher Ransomware-Einbrüche. Ein Path Traversal (CWE-22), das Klartext-Passwörter liefert; die Kombination aus Dateilesen und exponierten Credentials machte es zum 10,0."
+  },
+  "CVE-2020-11532": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Zoho ManageEngine DataSecurity Plus verwendet Standard-Admin-Zugangsdaten zur Kommunikation mit dem DataEngine-Xnode-Server, was die Authentifizierungsumgehung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz zum Xnode-Server."
+    },
+    "AC": {
+     "why": "Bekannte Standard-Zugangsdaten."
+    },
+    "PR": {
+     "why": "Standard-Zugangsdaten sind kein eigenes Recht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Admin-Kontext, S:U."
+    },
+    "C": {
+     "why": "Admin: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Admin: alles änderbar."
+    },
+    "A": {
+     "why": "Admin: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,77: Standard-Admin-Zugangsdaten (CWE-1188/CWE-798), wieder das Muster. ManageEngine-Produkte tauchen mehrfach im Korpus auf; ein internes Standardkonto zwischen Komponenten ist faktisch keine Authentifizierung."
+  },
+  "CVE-2014-1510": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Web-IDL-Implementierung in Firefox erlaubt über ein IDL-Fragment einen window.open-Aufruf, der JavaScript mit Chrome-Privilegien ausführt.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Präpariertes IDL-Fragment."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "NVD vergab UI:N (der Angriff läuft ohne expliziten Klick)."
+    },
+    "S": {
+     "why": "Code mit Chrome-Privilegien im Browser, S:U."
+    },
+    "C": {
+     "why": "Chrome-Privilegien: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Chrome-Privilegien: alles änderbar."
+    },
+    "A": {
+     "why": "Chrome-Privilegien: System störbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,82: Bei Pwn2Own 2014 demonstriert. 'Chrome-Privilegien' meint hier den privilegierten Browser-UI-Kontext von Firefox (nicht Google Chrome); Codeausführung dort umgeht die Sandbox. Rechteverwaltungsfehler (CWE-269) im Browser-Kern."
+  },
+  "CVE-2017-6627": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Ein Fehler in der UDP-Verarbeitung von Cisco IOS lässt die Eingabewarteschlange mit UDP-Paketen volllaufen, was zu einem Interface-Queue-Wedge und Denial of Service führt.",
+   "metrics": {
+    "AV": {
+     "why": "UDP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte UDP-Pakete."
+    },
+    "PR": {
+     "why": "UDP-Pakete an das Gerät genügen; der Angreifer ist ausdrücklich unauthentifiziert: PR:N."
+    },
+    "UI": {
+     "why": "Kein Nutzer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist das Gerät (Interface)."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Interface-Queue-Wedge: das Interface verarbeitet keine Pakete mehr, A:H."
+    }
+   },
+   "context_de": "KEV, EPSS 0,06: Ein Queue-Wedge-DoS (CWE-404); die Warteschlange bleibt voll und das Interface stirbt, bis zum Neustart. Netzwerkgeräte-DoS über Ressourcenerschöpfung ist im Korpus mehrfach vertreten (Cisco DHCP, IGMP, BFD)."
+  },
+  "CVE-2023-34362": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "MOVEit Transfer hat in der Web-Anwendung eine SQL-Injection, über die unauthentifizierte Angreifer Zugriff auf die Datenbank erlangen und Code ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank und Anwendung im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "SQLi bis Datenexfiltration und Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,999: Der MOVEit-Massenangriff durch Clop (2023), einer der größten Datendiebstähle überhaupt (tausende Organisationen). SQLi (CWE-89) in einem Managed-File-Transfer-Server; MFT-Server sind seit MOVEit die Kategorie mit den höchsten Auswirkungen im Korpus."
+  }
+ }
+}

@@ -1,0 +1,633 @@
+{
+ "batch": "batch-001",
+ "items": {
+  "CVE-2023-20867": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:C/C:L/I:L/A:N",
+   "summary_de": "Ein bereits vollständig kompromittierter ESXi-Host kann die Authentifizierung von Host-zu-Gast-Operationen in VMware Tools aushebeln und so in Gast-VMs hineinwirken.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer muss auf dem ESXi-Host selbst agieren; die verwundbare Komponente (Tools-Kanal) ist nicht über das Netzwerk angreifbar.",
+     "pitfall": "Dass die Gäste Netzwerkdienste haben, spielt keine Rolle. Es zählt der Weg zur verwundbaren Komponente."
+    },
+    "AC": {
+     "why": "Voraussetzung ist ein vollständig kompromittierter Host, eine Bedingung, die außerhalb der Schwachstelle selbst liegt und erst hergestellt werden muss."
+    },
+    "PR": {
+     "why": "Auf dem Host sind Root-Rechte nötig, um Host-zu-Gast-Operationen zu erzwingen."
+    },
+    "UI": {
+     "why": "Kein Nutzer in der Gast-VM muss etwas tun."
+    },
+    "S": {
+     "why": "Verwundbar ist die Host-Seite (VMware Tools/Hypervisor-Kanal), betroffen ist die Gast-VM: eine andere Sicherheitsdomäne, also Scope Changed.",
+     "pitfall": "Scope Changed trotz Score 3.9. Scope beschreibt den Grenzübertritt, nicht die Schadenshöhe."
+    },
+    "C": {
+     "why": "Die Auswirkung ist auf das beschränkt, was über den Tools-Kanal erreichbar ist; NVD sah keinen Vollzugriff auf alle Gastdaten.",
+     "pitfall": "Verlockend ist C:H, weil der Host ja schon gefallen ist. Bewertet wird nur der zusätzliche Gewinn durch diese eine Schwachstelle."
+    },
+    "I": {
+     "why": "Analog zur Vertraulichkeit: begrenzte Eingriffe in den Gast, kein belegter Vollzugriff."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung beschrieben."
+    }
+   },
+   "dissent": {
+    "C": "Umstritten: Über den Tools-Kanal lassen sich beliebige Befehle im Gast ausführen, C:H/I:H wäre vertretbar. NVD bewertete nur die Authentifizierungsumgehung als solche."
+   },
+   "context_de": "Trotz Score 3.9 in KEV: UNC3886 nutzte die Lücke, um von kompromittierten Hosts aus Backdoors in Gäste zu bringen. Ein reines Post-Exploitation-Werkzeug; die Wahrscheinlichkeit hängt allein davon ab, ob der Host schon gefallen ist, der Score bildet das nicht ab."
+  },
+  "CVE-2021-39226": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+   "summary_de": "Grafana liefert ohne Anmeldung den Snapshot mit dem niedrigsten Datenbankschlüssel aus und lässt ihn je nach Konfiguration auch löschen.",
+   "metrics": {
+    "AV": {
+     "why": "Die Pfade /dashboard/snapshot/:key und /api/snapshots/:key sind über HTTP aus dem Netz erreichbar."
+    },
+    "AC": {
+     "why": "Ein fester Pfad reicht, keine Race, keine Sonderkonfiguration für das Lesen."
+    },
+    "PR": {
+     "why": "Die Beschreibung nennt ausdrücklich unauthentifizierte Nutzer. Netzwerkzugriff ist die einzige Voraussetzung.",
+     "pitfall": "Dass das Löschen ohne Konto nur mit public_mode geht, ändert nichts: Bewertet wird der schlimmste realistische Pfad, und Lesen geht immer ohne Konto."
+    },
+    "UI": {
+     "why": "Kein Opfer muss mitwirken."
+    },
+    "S": {
+     "why": "Betroffen ist nur Grafana selbst, keine andere Komponente."
+    },
+    "C": {
+     "why": "Nur ein einzelner Snapshot ist lesbar, und zwar der mit dem niedrigsten Schlüssel; der Angreifer wählt nicht, was er bekommt. Umfang und Kontrolle sind begrenzt.",
+     "pitfall": "Genau das C:L-Muster: Umfang begrenzt und keine Kontrolle über den Inhalt. Dass ein Dashboard-Snapshot wertvoll sein kann, macht daraus kein H. Vergleiche ownCloud CVE-2023-49103, wo der Inhalt garantiert Admin-Passwörter enthält."
+    },
+    "I": {
+     "why": "Nur dieser eine Snapshot lässt sich löschen, keine beliebige Datenänderung."
+    },
+    "A": {
+     "why": "Löschen eines Objekts ist ein begrenzter Verfügbarkeitsverlust, kein Ausfall des Dienstes."
+    }
+   },
+   "dissent": {
+    "C": "Der CNA (Grafana) vergab C:H/I:H/A:H (9.8). NVD bewertete den Umfang, der CNA den möglichen Wert. Ein Lehrbuchfall für Vektor-Provenienz."
+   },
+   "context_de": "EPSS 0,999 und KEV: trivial per URL ausnutzbar, Massenscans belegt. Hohe Wahrscheinlichkeit bei begrenzter Auswirkung; EPSS und KEV halten die Priorität hoch, obwohl der Score nur 7,3 ist."
+  },
+  "CVE-2021-21315": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Node.js-Bibliothek systeminformation reicht unsanitisierte Parameter an Shell-Befehle durch, was OS-Command-Injection im Prozess der einbettenden Anwendung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "NVD bewertet die Bibliothek isoliert: Der Angreifer muss Parameter an lokal aufgerufene Funktionen wie si.inetLatency() liefern.",
+     "pitfall": "In einer Web-App, die Nutzereingaben an diese Funktionen durchreicht, ist der reale Vektor AV:N. NVD bewertet die Bibliothek, nicht die Einbettung; im Job musst du das selbst umrechnen."
+    },
+    "AC": {
+     "why": "Eine Zeichenkette mit Shell-Metazeichen genügt, keine weiteren Bedingungen."
+    },
+    "PR": {
+     "why": "Der Angreifer braucht eine Position, aus der er Parameter in den Prozess bringen kann; NVD setzt dafür einfache Rechte an."
+    },
+    "UI": {
+     "why": "Niemand muss etwas bestätigen."
+    },
+    "S": {
+     "why": "Die Befehle laufen mit den Rechten des Node-Prozesses, also innerhalb derselben Sicherheitsdomäne.",
+     "pitfall": "Vollständige Codeausführung ist kein Grund für S:C. Der CNA sah das anders (S:C), weil er die Bibliothek und die App als getrennte Komponenten betrachtete."
+    },
+    "C": {
+     "why": "Beliebige OS-Befehle mit Prozessrechten geben Zugriff auf alles, was der Prozess lesen kann."
+    },
+    "I": {
+     "why": "Beliebige Befehle bedeuten beliebige Änderungen im Prozesskontext."
+    },
+    "A": {
+     "why": "Der Angreifer kann den Prozess oder das System beliebig stören."
+    }
+   },
+   "dissent": {
+    "S": "CNA: AV:L/PR:N/S:C/C:N/I:H/A:N. Zwei völlig verschiedene Lesarten derselben Lücke; die NVD-Lesart entspricht eher der CVSS-Spezifikation (gleiche Sicherheitsdomäne)."
+   },
+   "context_de": "KEV und EPSS 0,91 zeigen: Die Lücke wurde über einbettende Anwendungen massenhaft ausgenutzt. Bei Bibliotheken bestimmt der Einbettungskontext die Wahrscheinlichkeit, nicht der Bibliotheksvektor."
+  },
+  "CVE-2021-22204": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "ExifTool führt beim Parsen eines präparierten DjVu-Bildes eingebettete Daten als Perl-Code aus.",
+   "metrics": {
+    "AV": {
+     "why": "Die verwundbare Komponente ist ein Datei-Parser; der Angriff läuft über eine Datei, die lokal verarbeitet wird.",
+     "pitfall": "Dass die Datei per Upload aus dem Internet kommen kann, macht daraus kein AV:N. NVD bewertet Parser-Bibliotheken konsequent als AV:L (vergleiche aber Office-Dokumente, die NVD als AV:N bewertet)."
+    },
+    "AC": {
+     "why": "Eine präparierte Datei reicht, keine Race, keine Sonderbedingungen."
+    },
+    "PR": {
+     "why": "Wer die Datei liefert, braucht keinerlei Rechte auf dem Zielsystem."
+    },
+    "UI": {
+     "why": "Jemand oder ein Prozess muss die Datei mit ExifTool öffnen; NVD wertet das als Nutzerinteraktion."
+    },
+    "S": {
+     "why": "Der Code läuft im ExifTool-Prozess, in derselben Sicherheitsdomäne."
+    },
+    "C": {
+     "why": "Beliebiger Perl-Code liest alles, was der Prozess lesen darf."
+    },
+    "I": {
+     "why": "Beliebiger Code kann beliebig schreiben."
+    },
+    "A": {
+     "why": "Beliebiger Code kann den Prozess oder das System lahmlegen."
+    }
+   },
+   "dissent": {
+    "UI": "CNA: UI:N, S:C, C:L/I:L/A:L. Der CNA sah die automatisierte Verarbeitung (kein Nutzer nötig) und einen Scope-Wechsel zur einbettenden App."
+   },
+   "context_de": "EPSS 0,9998 und KEV. In GitLab wurde daraus eine unauthentifizierte RCE über Bild-Upload (CVE-2021-22205, Score 10). Kontext entscheidet: Derselbe Parser-Bug ist als Bibliothek 7,8 und als eingebetteter Dienst 10."
+  },
+  "CVE-2008-4128": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+   "summary_de": "Die HTTP-Administration von Cisco IOS auf dem 871-Router hat keinen CSRF-Schutz, sodass eine präparierte Seite im Browser eines angemeldeten Admins IOS-Befehle auslöst.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angriff läuft über das Web-Interface, der Angreifer ist irgendwo im Netz."
+    },
+    "AC": {
+     "why": "Eine präparierte Seite oder ein Link genügt."
+    },
+    "PR": {
+     "why": "Der Angreifer selbst braucht kein Konto; die Rechte des Opfers zählen nicht als Rechte des Angreifers.",
+     "pitfall": "Typischer CSRF-Fehler: Weil das Opfer Admin sein muss, setzt man PR:H. Falsch, PR beschreibt, was der Angreifer mitbringt."
+    },
+    "UI": {
+     "why": "Der angemeldete Admin muss die Seite oder den Link öffnen."
+    },
+    "S": {
+     "why": "Betroffen ist nur der Router selbst."
+    },
+    "C": {
+     "why": "Der offizielle Vektor (ADP, nicht NVD) sieht nur begrenzten Informationsgewinn."
+    },
+    "I": {
+     "why": "Offiziell keine Integritätsauswirkung."
+    },
+    "A": {
+     "why": "Offiziell keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "I": "Die Beschreibung sagt: beliebige Befehle auf Privilege Level 15. Das wäre I:H, C:H und A:H (8,8). Der offizielle Vektor stammt von einer ADP-Nachbewertung, nicht von NVD, und passt nicht zur Beschreibung."
+   },
+   "context_de": "Alte Lücke aus 2008, dennoch 2022 in KEV aufgenommen. Bei Netzwerkgeräten bleibt ungepatchte Firmware jahrelang im Einsatz; die Wahrscheinlichkeit sinkt vor allem durch Beschränkung des Admin-Zugangs auf ein Management-VLAN."
+  },
+  "CVE-2023-40044": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Ad-Hoc-Transfer-Modul von WS_FTP Server deserialisiert .NET-Objekte aus Anfragen und erlaubt so Befehlsausführung auf dem Server.",
+   "metrics": {
+    "AV": {
+     "why": "Das Modul ist ein Webdienst, der Angriff kommt über HTTP aus dem Netz."
+    },
+    "AC": {
+     "why": "Ein präpariertes serialisiertes Objekt genügt, keine Bedingungen."
+    },
+    "PR": {
+     "why": "NVD las 'pre-authenticated' als 'mit einfachem Konto' und vergab PR:L.",
+     "pitfall": "'Pre-authenticated' bedeutet VOR der Authentifizierung, also ohne Konto. Der CNA vergab folgerichtig PR:N. Lies solche Formulierungen genau."
+    },
+    "UI": {
+     "why": "Kein Nutzer muss etwas tun."
+    },
+    "S": {
+     "why": "Die Befehle laufen auf demselben Server unter dem Dienstkonto, keine andere Sicherheitsdomäne.",
+     "pitfall": "Der CNA vergab S:C, weil Befehle 'auf dem Betriebssystem' laufen. Das ist derselbe Autoritätsbereich; NVD liegt hier richtig."
+    },
+    "C": {
+     "why": "Befehlsausführung mit Dienstrechten gibt vollen Lesezugriff."
+    },
+    "I": {
+     "why": "Beliebige Befehle bedeuten beliebige Änderungen."
+    },
+    "A": {
+     "why": "Der Dienst und das System sind vollständig störbar."
+    }
+   },
+   "dissent": {
+    "PR": "CNA: PR:N und S:C (10,0). Bei PR hat der CNA recht, bei S die NVD. Der 'richtige' Vektor wäre 9,8."
+   },
+   "context_de": "KEV mit bekannter Ransomware-Nutzung, EPSS 0,90. Internetexponierte Dateitransfer-Server sind bevorzugte Ziele; hier senkt nur Patchen oder Abschalten des Moduls die Wahrscheinlichkeit."
+  },
+  "CVE-2021-27860": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Web-Verwaltung von FatPipe WARP/IPVPN/MPVPN lässt unauthentifizierte Angreifer Dateien an beliebige Stellen des Dateisystems hochladen.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Management-Interface, aus dem Netz erreichbar."
+    },
+    "AC": {
+     "why": "Ein Upload-Request ohne weitere Bedingungen."
+    },
+    "PR": {
+     "why": "Die Beschreibung nennt ausdrücklich 'remote, unauthenticated'."
+    },
+    "UI": {
+     "why": "NVD vergab UI:R, obwohl die Beschreibung keine Nutzerinteraktion nennt.",
+     "pitfall": "Nichts in der Beschreibung verlangt ein Opfer, das klickt. Der CNA vergab UI:N (9,8). Ein NVD-Fehler, wie er gelegentlich vorkommt."
+    },
+    "S": {
+     "why": "Betroffen ist das Gerät selbst."
+    },
+    "C": {
+     "why": "Schreiben an beliebige Pfade führt praktisch zu Codeausführung, damit Vollzugriff auf Daten."
+    },
+    "I": {
+     "why": "Beliebige Dateien überschreiben heißt beliebige Integritätsverletzung."
+    },
+    "A": {
+     "why": "Systemdateien überschreiben kann das Gerät lahmlegen."
+    }
+   },
+   "dissent": {
+    "UI": "CNA: UI:N (9,8). Die NVD-Bewertung UI:R ist durch nichts in der Beschreibung gedeckt."
+   },
+   "context_de": "KEV: Das FBI meldete Ausnutzung durch APT-Gruppen als Einstiegspunkt ins Netz. Bei Netzwerk-Edge-Geräten ist das Management-Interface aus dem Internet die eigentliche Ursache der hohen Wahrscheinlichkeit."
+  },
+  "CVE-2021-25489": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Der Modem-Treiber in Samsung-Android prüft Eingaben nicht und erlaubt einer App mit Radio-Berechtigung einen Format-String-Fehler, der eine Kernel-Panic auslöst.",
+   "metrics": {
+    "AV": {
+     "why": "Eine App auf dem Gerät spricht den Treiber lokal an."
+    },
+    "AC": {
+     "why": "Die präparierte Eingabe reicht."
+    },
+    "PR": {
+     "why": "Die App braucht die Radio-Berechtigung, also eine erteilte Berechtigung, aber keine System- oder Root-Rechte."
+    },
+    "UI": {
+     "why": "Kein Nutzer muss etwas bestätigen, sobald die App läuft."
+    },
+    "S": {
+     "why": "Kernel und App liegen im selben Gerät; NVD wertet Kernel-Panic durch eine App als S:U."
+    },
+    "C": {
+     "why": "Nur der Absturz ist belegt, kein Informationsabfluss.",
+     "pitfall": "Format-String-Fehler können theoretisch Speicher lesen und schreiben. Bewertet wird aber die belegte Auswirkung, hier nur Panic."
+    },
+    "I": {
+     "why": "Kein belegter Schreibzugriff."
+    },
+    "A": {
+     "why": "Eine Kernel-Panic startet das ganze Gerät neu, das ist vollständiger Verfügbarkeitsverlust."
+    }
+   },
+   "dissent": {
+    "A": "CNA (Samsung): A:L. Ein Neustart ist vorübergehend; ob das 'vollständig' (H) oder 'reduziert' (L) ist, ist Ermessenssache."
+   },
+   "context_de": "EPSS nur 0,005, trotzdem KEV: kommerzielle Spyware nutzte die Lücke in Exploit-Ketten. Niedriger EPSS heißt nicht harmlos, wenn gezielte Angreifer sie einsetzen; hier zählt, wer im Bedrohungsmodell steht."
+  },
+  "CVE-2023-49103": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Die ownCloud-App graphapi liefert über eine mitgelieferte Bibliothek eine phpinfo-Seite aus, die alle Umgebungsvariablen des Webservers inklusive Admin-Passwort und Mail-Zugangsdaten zeigt.",
+   "metrics": {
+    "AV": {
+     "why": "Eine feste URL im Webserver, aus dem Netz abrufbar."
+    },
+    "AC": {
+     "why": "URL aufrufen, fertig."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig, die Seite ist öffentlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Die Daten stammen vom ownCloud-Server selbst; dass sie Zugang zu anderen Systemen geben, ist Folgeschaden, kein Scope-Wechsel.",
+     "pitfall": "Der CNA vergab S:C mit Verweis auf die weiteren Systeme. Folgeangriffe mit erbeuteten Zugangsdaten zählen nicht als Scope-Wechsel."
+    },
+    "C": {
+     "why": "Nur eine Seite, aber ihr Inhalt enthält garantiert das Admin-Passwort und weitere Secrets: direkte, schwere Auswirkung, also H.",
+     "pitfall": "Hier ist der Umfang klein (eine phpinfo-Seite), der Wert aber maximal und der Angreifer bekommt ihn gezielt. Das ist C:H. Vergleiche Grafana CVE-2021-39226: begrenzter Umfang ohne Kontrolle über den Inhalt, C:L."
+    },
+    "I": {
+     "why": "Die Seite selbst ändert nichts; der Folgeschaden über das Passwort wird nicht mitbewertet."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "S": "CNA: S:C, C:H/I:H/A:H (10,0). Der CNA hat den Folgeschaden eingerechnet; nach Spezifikation ist NVDs 7,5 korrekter. Für die Priorisierung ist der CNA-Blick trotzdem nützlich."
+   },
+   "context_de": "KEV und EPSS 0,78, Massenscans innerhalb weniger Tage. Score 7,5 unterschätzt die Praxisrelevanz: Ein Admin-Passwort in Klartext ist die Auswirkung, die Wahrscheinlichkeit ist bei Internetexposition nahezu sicher."
+  },
+  "CVE-2022-24682": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Die Kalenderfunktion von Zimbra escapet HTML in Element-Attributen nicht, sodass eingeschleustes JavaScript im Browser des Opfers läuft (gespeichertes XSS).",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer schickt die Kalendereinladung übers Netz."
+    },
+    "AC": {
+     "why": "Präparierter Inhalt genügt."
+    },
+    "PR": {
+     "why": "Der Angreifer braucht kein Zimbra-Konto, eine E-Mail von außen reicht."
+    },
+    "UI": {
+     "why": "Das Opfer muss den Kalendereintrag im Webclient öffnen."
+    },
+    "S": {
+     "why": "Verwundbar ist der Zimbra-Server, ausgeführt wird der Code im Browser des Opfers: andere Komponente, Scope Changed.",
+     "pitfall": "XSS ist der Standardfall für S:C, obwohl der Schaden begrenzt ist. Scope beschreibt den Grenzübertritt, nicht die Höhe des Schadens."
+    },
+    "C": {
+     "why": "Der Angreifer erreicht, was im Browserkontext des Opfers liegt (Session, Mails des Opfers), nicht den ganzen Server."
+    },
+    "I": {
+     "why": "Aktionen im Namen des Opfers, aber keine beliebige Änderung des Servers."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Score 6,1, aber KEV mit Ransomware-Bezug: Eine Spionagekampagne stahl damit Postfächer europäischer Behörden. Standard-XSS-Score und reale Auswirkung liegen weit auseinander, wenn das Ziel ein Mailsystem ist."
+  },
+  "CVE-2022-3075": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H",
+   "summary_de": "Unzureichende Validierung in Chromes IPC-Schicht Mojo erlaubt einem Angreifer, der bereits den Renderer kontrolliert, den Ausbruch aus der Sandbox.",
+   "metrics": {
+    "AV": {
+     "why": "Auslöser ist eine präparierte Webseite, also Netzwerk."
+    },
+    "AC": {
+     "why": "NVD wertet den bereits kompromittierten Renderer nicht als erschwerende Bedingung.",
+     "pitfall": "Die Vorbedingung 'Renderer kompromittiert' liegt in der Hand des Angreifers, er bringt seinen eigenen Renderer-Exploit mit. AC:H ist für Bedingungen reserviert, die er nicht kontrolliert."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig, das Opfer surft einfach."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Der Renderer läuft in einer Sandbox; der Ausbruch überschreitet diese Sicherheitsgrenze in den Browser-Hauptprozess und damit das Betriebssystem.",
+     "pitfall": "S:C wegen des Grenzübertritts aus der Sandbox, nicht weil der Schaden maximal ist."
+    },
+    "C": {
+     "why": "Außerhalb der Sandbox hat der Angreifer die Rechte des Browser-Nutzers auf dem System."
+    },
+    "I": {
+     "why": "Vollzugriff mit Nutzerrechten auf dem System."
+    },
+    "A": {
+     "why": "Vollzugriff mit Nutzerrechten auf dem System."
+    }
+   },
+   "context_de": "KEV, EPSS nur 0,06: Browser-Sandbox-Escapes werden gezielt in Exploit-Ketten eingesetzt, nicht massenhaft gescannt. Automatische Browser-Updates senken die Wahrscheinlichkeit enorm; die Auswirkung bleibt hoch."
+  },
+  "CVE-2023-2136": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H",
+   "summary_de": "Ein Integer-Überlauf in Chromes Grafikbibliothek Skia erlaubt aus einem kompromittierten Renderer heraus den Ausbruch aus der Sandbox.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte HTML-Seite über das Netz."
+    },
+    "AC": {
+     "why": "Die Vorbedingung 'Renderer kompromittiert' kontrolliert der Angreifer selbst, daher keine erschwerende Bedingung."
+    },
+    "PR": {
+     "why": "Das Opfer muss nur surfen, der Angreifer braucht keine Rechte."
+    },
+    "UI": {
+     "why": "Der Integer-Overflow in Skia wird über eine präparierte HTML-Seite ausgelöst, die das Opfer laden muss: UI:R."
+    },
+    "S": {
+     "why": "Sandbox-Ausbruch: Von der Renderer-Sandbox in den privilegierten Browser-Prozess, also Grenzübertritt.",
+     "pitfall": "Vergleiche einen Renderer-Bug ohne Ausbruch: dort S:U, weil der Code in der Sandbox bleibt."
+    },
+    "C": {
+     "why": "Nach dem Ausbruch Nutzerrechte auf dem System."
+    },
+    "I": {
+     "why": "Nach dem Ausbruch Nutzerrechte auf dem System."
+    },
+    "A": {
+     "why": "Nach dem Ausbruch Nutzerrechte auf dem System."
+    }
+   },
+   "context_de": "KEV, in freier Wildbahn ausgenutzt, EPSS 0,06. Integer-Überläufe in Grafikcode sind ein Dauerbrenner in Browsern; der Klassenname (CWE-190) sagt nichts über die Auswirkung, die kommt aus dem Sandbox-Kontext."
+  },
+  "CVE-2025-22226": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:H/I:N/A:N",
+   "summary_de": "Ein Out-of-Bounds-Read in HGFS (Gast-Dateifreigabe) von ESXi, Workstation und Fusion lässt einen Admin innerhalb einer VM Speicher des vmx-Prozesses auf dem Host auslesen.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angriff kommt aus der VM heraus, also lokal zum Hypervisor."
+    },
+    "AC": {
+     "why": "Aus der VM heraus genügt ein präparierter HGFS-Aufruf, keine weiteren Bedingungen."
+    },
+    "PR": {
+     "why": "NVD: Der Angreifer braucht Administratorrechte in der VM, wie in der Beschreibung genannt."
+    },
+    "UI": {
+     "why": "Kein Nutzer beteiligt."
+    },
+    "S": {
+     "why": "Von der Gast-VM in den vmx-Prozess auf dem Host: Die VM-Grenze wird überschritten.",
+     "pitfall": "Auch reines Lesen kann S:C sein. Scope fragt nach der Grenze, nicht nach der Art des Schadens."
+    },
+    "C": {
+     "why": "Speicher des Host-seitigen vmx-Prozesses kann Secrets und Adressen anderer VMs enthalten, das ist Vollzugriff auf hochwertige Daten."
+    },
+    "I": {
+     "why": "Nur Lesen, kein Schreiben."
+    },
+    "A": {
+     "why": "Kein Absturz beschrieben."
+    }
+   },
+   "dissent": {
+    "PR": "CNA (Broadcom): PR:N (7,1). Broadcom sieht keine Admin-Rechte als nötig an, obwohl die eigene Beschreibung 'administrative privileges' nennt. Provenienz beachten."
+   },
+   "context_de": "KEV: Teil einer Kette mit CVE-2025-22224/22225 zum vollständigen VM-Ausbruch. Einzeln nur Informationsleck, in der Kette der Schlüssel; Angriffsketten erklären, warum ein 6,0 in KEV steht."
+  },
+  "CVE-2018-13383": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+   "summary_de": "Ein Heap-Überlauf im SSL-VPN-Webportal von FortiOS beim Proxying von Webseiten mit JavaScript-href-Daten bringt den SSL-VPN-Dienst zum Absturz.",
+   "metrics": {
+    "AV": {
+     "why": "Das VPN-Portal ist aus dem Internet erreichbar; die Nutzlast kommt über eine proxied Webseite."
+    },
+    "AC": {
+     "why": "Eine präparierte Seite reicht."
+    },
+    "PR": {
+     "why": "NVD: Der Angreifer selbst braucht kein VPN-Konto, er stellt die Seite bereit, die ein angemeldeter Nutzer über das Portal aufruft.",
+     "pitfall": "Der CNA (Fortinet) vergab PR:L/UI:N, weil er den angemeldeten Nutzer als Angreifer sieht. Beide Lesarten sind verbreitet; frag dich, wer die Nutzlast liefert und wer klickt."
+    },
+    "UI": {
+     "why": "Ein angemeldeter Nutzer muss die Seite über das Portal öffnen."
+    },
+    "S": {
+     "why": "Betroffen ist der Fortinet-Dienst selbst."
+    },
+    "C": {
+     "why": "Nur Absturz belegt, kein Informationsabfluss.",
+     "pitfall": "Heap-Überlauf heißt nicht automatisch RCE. Bewertet wird die belegte Auswirkung; die spätere RCE-Kette lief über andere CVEs."
+    },
+    "I": {
+     "why": "Kein belegter Schreibzugriff."
+    },
+    "A": {
+     "why": "Der SSL-VPN-Webdienst stirbt für alle angemeldeten Nutzer: vollständiger Ausfall der Komponente."
+    }
+   },
+   "dissent": {
+    "A": "CNA: A:L, PR:L, UI:N (4,3). NVD 6,5. Der Unterschied liegt in der Lesart, wer der Angreifer ist und ob ein Dienstabsturz 'vollständig' ist."
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,34. Wurde in Fortinet-Exploit-Ketten neben CVE-2018-13379 genutzt. VPN-Gateways sind exponiert; die Wahrscheinlichkeit ist hoch, die eigenständige Auswirkung nur DoS."
+  },
+  "CVE-2015-1770": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Microsoft Office 2013 nutzt beim Öffnen eines präparierten Dokuments uninitialisierten Speicher, was Codeausführung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Das Dokument kommt per Mail oder Web; NVD bewertet Office-Dokument-Exploits als AV:N.",
+     "pitfall": "Vergleiche ExifTool CVE-2021-22204: gleicher Mechanismus (Datei-Parser), dort AV:L. NVD ist hier nicht konsistent; Microsoft-Clientlücken werden meist AV:N bewertet."
+    },
+    "AC": {
+     "why": "Dokument öffnen genügt."
+    },
+    "PR": {
+     "why": "Der Absender braucht keine Rechte."
+    },
+    "UI": {
+     "why": "Das Opfer muss das Dokument öffnen."
+    },
+    "S": {
+     "why": "Der Code läuft im Office-Prozess mit Nutzerrechten, keine andere Domäne.",
+     "pitfall": "Vollständige Übernahme des Nutzerkontexts bleibt S:U. Maximaler Schaden ist kein Scope-Wechsel."
+    },
+    "C": {
+     "why": "Codeausführung mit Nutzerrechten gibt Zugriff auf alle Nutzerdaten."
+    },
+    "I": {
+     "why": "Beliebige Änderungen im Nutzerkontext."
+    },
+    "A": {
+     "why": "Der Angreifer kann das System des Nutzers beliebig stören."
+    }
+   },
+   "context_de": "KEV, EPSS 0,35. Office-Dokumente sind der klassische Phishing-Vektor; Makro- und Dokument-Exploits treffen den Nutzer, nicht den Server. Awareness und Patchstand senken die Wahrscheinlichkeit, EDR die Auswirkung."
+  },
+  "CVE-2019-18187": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Trend Micro OfficeScan entpackt ein hochgeladenes ZIP mit Directory Traversal in einen festen Ordner auf dem Server, was bis zur Codeausführung im Kontext des Webdienstkontos führen kann.",
+   "metrics": {
+    "AV": {
+     "why": "Der Upload läuft über den OfficeScan-Server im Netz."
+    },
+    "AC": {
+     "why": "Ein präpariertes ZIP-Archiv reicht."
+    },
+    "PR": {
+     "why": "NVD vergibt PR:N: Das Entpacken des präparierten ZIP auf dem OfficeScan-Server setzt kein Konto voraus, nur Netzwerkzugriff auf den verwundbaren Prozess.",
+     "pitfall": "Die Beschreibung sagt ausdrücklich 'requires user authentication'. Der CNA vergab PR:L. Wenn du PR:L gesetzt hast, lagst du inhaltlich richtig; der NVD-Vektor widerspricht der eigenen Beschreibung."
+    },
+    "UI": {
+     "why": "Kein Opfer muss klicken."
+    },
+    "S": {
+     "why": "Betroffen ist der OfficeScan-Server selbst."
+    },
+    "C": {
+     "why": "NVD: Dateien lassen sich auf dem Server platzieren und Code ausführen, Vollzugriff auf Daten."
+    },
+    "I": {
+     "why": "NVD vergab I:N, obwohl Dateien geschrieben werden.",
+     "pitfall": "Schreiben beliebiger Dateien ist per Definition Integritätsverlust; I:H wäre logisch. Der CNA vergab I:H/A:H (8,8)."
+    },
+    "A": {
+     "why": "Offiziell keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "PR": "CNA: PR:L, I:H, A:H (8,8). Der NVD-Vektor 7,5 ist in PR und I nicht durch die Beschreibung gedeckt. Merke: Ground Truth ist nicht immer richtig, Provenienz prüfen."
+   },
+   "context_de": "KEV, EPSS 0,25: Ausnutzung durch eine chinesische APT-Gruppe gegen Mitsubishi Electric. Sicherheitsprodukte mit hohen Rechten sind attraktive Ziele; die Auswirkung ist hoch, weil der Agent überall im Netz sitzt."
+  },
+  "CVE-2023-27524": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Apache Superset wird mit einem bekannten Standard-SECRET_KEY ausgeliefert; wer ihn nicht ändert, erlaubt Angreifern das Fälschen von Session-Cookies und damit Admin-Zugang.",
+   "metrics": {
+    "AV": {
+     "why": "Ein gefälschter Cookie wird per HTTP an die Weboberfläche geschickt."
+    },
+    "AC": {
+     "why": "NVD: Der Standard-Key ist die Auslieferungskonfiguration, also der Normalfall, keine Sonderbedingung.",
+     "pitfall": "Der CNA vergab AC:H, weil nur ungeänderte Installationen betroffen sind. Nach Spezifikation ist eine Standardkonfiguration keine erschwerende Bedingung; AC:H verlangt etwas, das der Angreifer nicht kontrolliert und das nicht Standard ist."
+    },
+    "PR": {
+     "why": "Der Angreifer signiert sich selbst eine Admin-Session, kein Konto nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Superset selbst."
+    },
+    "C": {
+     "why": "Admin-Session heißt Zugriff auf alle Daten der Anwendung."
+    },
+    "I": {
+     "why": "Admin kann alles ändern."
+    },
+    "A": {
+     "why": "NVD: Admin kann den Dienst beliebig stören; der CNA sah nur A:L."
+    }
+   },
+   "dissent": {
+    "AC": "CNA: AC:H, S:C, A:L (8,9 als 3.1-Rechnung). Die Frage 'zählt eine Standardkonfiguration als Bedingung?' ist der Kern; NVD sagt nein."
+   },
+   "context_de": "KEV und EPSS 0,97: Tausende Instanzen liefen mit Standard-Key, Massenausnutzung folgte. Wahrscheinlichkeit hängt hier an einem einzigen Konfigurationswert, die Auswirkung ist die volle Anwendung."
+  },
+  "CVE-2024-49035": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine fehlerhafte Zugriffskontrolle im Microsoft Partner Center erlaubte unauthentifizierten Angreifern über das Netz eine Rechteausweitung.",
+   "metrics": {
+    "AV": {
+     "why": "Ein Cloud-Portal, aus dem Internet erreichbar."
+    },
+    "AC": {
+     "why": "NVD nennt keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Die Beschreibung sagt 'unauthenticated attacker'.",
+     "pitfall": "Microsoft selbst vergab PR:L und UI:R. Die Beschreibung ist knapp; NVD hielt sich an den Wortlaut 'unauthenticated'."
+    },
+    "UI": {
+     "why": "NVD: keine Interaktion nötig."
+    },
+    "S": {
+     "why": "Betroffen ist das Portal selbst."
+    },
+    "C": {
+     "why": "NVD: Erhöhte Rechte im Portal, Vollzugriff auf die dort verwalteten Daten."
+    },
+    "I": {
+     "why": "Erhöhte Rechte erlauben beliebige Änderungen."
+    },
+    "A": {
+     "why": "NVD vergab A:H, Microsoft A:N."
+    }
+   },
+   "dissent": {
+    "PR": "CNA (Microsoft): PR:L, UI:R, S:C, A:N (8,7). Vier Metriken Unterschied bei derselben Lücke; Microsofts Vektor stammt aus interner Kenntnis, NVDs aus der dürren Beschreibung."
+   },
+   "context_de": "KEV, EPSS 0,01: eine reine SaaS-Lücke, Microsoft hat sie serverseitig behoben, Kunden konnten nichts tun. Für dein Vulnerability Management ist so etwas ein Informationsfall, kein Patchfall."
+  }
+ }
+}

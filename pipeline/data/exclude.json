@@ -1,0 +1,19 @@
+{
+ "_doc": "CVEs, die als Übung untauglich sind (Beschreibung sagt nichts über die Schwachstelle oder widerspricht dem Vektor). Werden von `select` übersprungen.",
+ "CVE-2013-3900": "Beschreibung ist Microsofts Republishing-Notiz, beschreibt die Schwachstelle nicht.",
+ "CVE-2026-20128": "Beschreibung (unauthentifiziert, remote) widerspricht dem CNA-Vektor (AV:L/PR:H).",
+ "CVE-2022-20703": "Sammel-Advisory (Cisco RV-Router), Beschreibung nennt keine konkrete Schwachstelle.",
+ "CVE-2018-19943": "QNAP-Beschreibung ohne Inhalt (nur Versionsliste).",
+ "CVE-2020-2506": "QNAP-Beschreibung ohne Inhalt.",
+ "CVE-2024-29745": "Android-Beschreibung ohne Produkt- oder Mechanik-Kontext.",
+ "CVE-2026-84869": "ScreenConnect: 'in certain circumstances', kein Mechanismus beschrieben.",
+ "CVE-2020-0618": "SSRS: 'incorrectly handles page requests', kein Mechanismus beschrieben.",
+ "CVE-2024-24919": "Check Point: 'read certain information', Vektor aus Beschreibung nicht ableitbar.",
+ "CVE-2025-20362": "Cisco: Beschreibung ist ein Update-Hinweis zu anderen CVEs, nicht die Schwachstelle selbst.",
+ "CVE-2018-8298": "Microsoft-Schablone 'handles objects in memory', kein Mechanismus.",
+ "CVE-2019-0752": "Microsoft-Schablone 'handles objects in memory', kein Mechanismus.",
+ "CVE-2025-40602": "SonicWall: 'local privilege escalation' widerspricht CNA-Vektor AV:N; kein Mechanismus.",
+ "CVE-2018-16042": "Adobe: 'security bypass ... information disclosure', kein Mechanismus.",
+ "CVE-2024-13160": "Ivanti EPM: Text identisch mit CVE-2024-13159, Dublette für die Übung.",
+ "CVE-2019-1429": "Microsoft-Schablone 'scripting engine handles objects in memory', kein Mechanismus."
+}

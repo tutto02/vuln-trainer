@@ -1,0 +1,518 @@
+{
+"batch": "batch-050",
+"with_chain": false,
+"items": [
+{
+"id": "CVE-2021-0279",
+"desc": "Juniper Networks Contrail Cloud (CC) releases prior to 13.6.0 have RabbitMQ service enabled by default with hardcoded credentials. The messaging services of RabbitMQ are used when coordinating operations and status information among Contrail services. An attacker with access to an administrative service for RabbitMQ (e.g. GUI), can use these hardcoded credentials to cause a Denial of Service (DoS) or have access to unspecified sensitive system information. This issue affects the Juniper Networks Contrail Cloud releases on versions prior to 13.6.0.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:N/A:H",
+"score": 5.5,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:H",
+"differs": [
+"PR",
+"I"
+],
+"cwe": "CWE-798",
+"class": "hardcoded-creds",
+"stack": "network",
+"products": [
+"juniper:contrail_cloud"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00621,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2022-36077",
+"desc": "The Electron framework enables writing cross-platform desktop applications using JavaScript, HTML and CSS. In versions prior to 21.0.0-beta.1, 20.0.1, 19.0.11, and 18.3.7, Electron is vulnerable to Exposure of Sensitive Information. When following a redirect, Electron delays a check for redirecting to file:// URLs from other schemes. The contents of the file is not available to the renderer following the redirect, but if the redirect target is a SMB URL such as `file://some.website.com/`, then in some cases, Windows will connect to that server and attempt NTLM authentication, which can include sending hashed credentials.This issue has been patched in versions: 21.0.0-beta.1, 20.0.1, 19.0.11, and 18.3.7. Users are recommended to upgrade to the latest stable version of Electron. If upgrading isn't possible, this issue can be addressed without upgrading by preventing redirects to file:// URLs in the `WebContents.on('will-redirect')` event, for all WebContents as a workaround.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:L",
+"differs": [
+"UI",
+"I",
+"A"
+],
+"cwe": "CWE-522",
+"class": "info-exposure",
+"stack": "windows",
+"products": [
+"electronjs:electron",
+"microsoft:windows"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00557,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-34630",
+"desc": "In the Pro and Enterprise versions of GTranslate < 2.8.65, the gtranslate_request_uri_var function runs at the top of all pages and echoes out the contents of $_SERVER['REQUEST_URI']. Although this uses addslashes, and most modern browsers automatically URLencode requests, this plugin is still vulnerable to Reflected XSS in older browsers such as Internet Explorer 9 or below, or in cases where an attacker is able to modify the request en route between the client and the server, or in cases where the user is using an atypical browsing solution.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:L",
+"differs": [
+"AC",
+"S",
+"A"
+],
+"cwe": "CWE-116",
+"class": "injection-other",
+"stack": "web",
+"products": [
+"gtranslate:gtranslate"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01572,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-1286",
+"desc": "Multiple vulnerabilities in the web-based management interface of Cisco Data Center Network Manager (DCNM) could allow a remote attacker with network-operator privileges to conduct a cross-site scripting (XSS) attack or a reflected file download (RFD) attack against a user of the interface. For more information about these vulnerabilities, see the Details section of this advisory.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:L",
+"differs": [
+"PR",
+"A"
+],
+"cwe": "CWE-20",
+"class": "input-validation",
+"stack": "network",
+"products": [
+"cisco:data_center_network_manager"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.0094,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-43784",
+"desc": "runc is a CLI tool for spawning and running containers on Linux according to the OCI specification. In runc, netlink is used internally as a serialization system for specifying the relevant container configuration to the `C` portion of the code (responsible for the based namespace setup of containers). In all versions of runc prior to 1.0.3, the encoder did not handle the possibility of an integer overflow in the 16-bit length field for the byte array attribute type, meaning that a large enough malicious byte array attribute could result in the length overflowing and the attribute contents being parsed as netlink messages for container configuration. This vulnerability requires the attacker to have some control over the configuration of the container and would allow the attacker to bypass the namespace restrictions of the container by simply adding their own netlink payload which disables all namespaces. The main users impacted are those who allow untrusted images with untrusted configurations to run on their machines (such as with shared cloud infrastructure). runc version 1.0.3 contains a fix for this bug. As a workaround, one may try disallowing untrusted namespace paths from your container. It should be noted that untrusted namespace paths would allow the attacker to disable namespace protections entirely even in the absence of this bug.",
+"vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"score": 5.0,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:L",
+"differs": [
+"S"
+],
+"cwe": "CWE-190",
+"class": "integer-overflow",
+"stack": "linux",
+"products": [
+"linuxfoundation:runc",
+"debian:debian_linux"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01669,
+"traps": [
+"c_low",
+"pr_l_authenticated",
+"ac_h"
+]
+},
+{
+"id": "CVE-2020-29443",
+"desc": "ide_atapi_cmd_reply_end in hw/ide/atapi.c in QEMU 5.1.0 allows out-of-bounds read access because a buffer index is not validated.",
+"vector": "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:C/C:L/I:N/A:L",
+"score": 3.9,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-125",
+"class": "memory-read",
+"stack": "linux",
+"products": [
+"qemu:qemu",
+"debian:debian_linux"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00372,
+"traps": [
+"scope_c",
+"c_low",
+"ac_h"
+]
+},
+{
+"id": "CVE-2020-15863",
+"desc": "hw/net/xgmac.c in the XGMAC Ethernet controller in QEMU before 07-20-2020 has a buffer overflow. This occurs during packet transmission and affects the highbank and midway emulated machines. A guest user or process could use this flaw to crash the QEMU process on the host, resulting in a denial of service or potential privileged code execution. This was fixed in commit 5519724a13664b43e225ca05351c60b4468e4555.",
+"vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:L",
+"score": 5.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-787",
+"class": "memory-write",
+"stack": "linux",
+"products": [
+"qemu:qemu",
+"debian:debian_linux",
+"canonical:ubuntu_linux"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00458,
+"traps": [
+"scope_c",
+"c_low",
+"ac_h"
+]
+},
+{
+"id": "CVE-2021-3593",
+"desc": "An invalid pointer initialization issue was found in the SLiRP networking implementation of QEMU. The flaw exists in the udp6_input() function and could occur while processing a udp packet that is smaller than the size of the 'udphdr' structure. This issue may lead to out-of-bounds read access or indirect host memory disclosure to the guest. The highest threat from this vulnerability is to data confidentiality. This flaw affects libslirp versions prior to 4.6.0.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+"score": 3.8,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-824",
+"class": "null-deref-uninit",
+"stack": "linux",
+"products": [
+"libslirp_project:libslirp",
+"redhat:enterprise_linux",
+"fedoraproject:fedora"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00326,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2020-15239",
+"desc": "In xmpp-http-upload before version 0.4.0, when the GET method is attacked, attackers can read files which have a `.data` suffix and which are accompanied by a JSON file with the `.meta` suffix. This can lead to Information Disclosure and in some shared-hosting scenarios also to circumvention of authentication or other limitations on the outbound (GET) traffic. For example, in a scenario where a single server has multiple instances of the application running (with separate DATA_ROOT settings), an attacker who has knowledge about the directory structure is able to read files from any other instance to which the process has read access. If instances have individual authentication (for example, HTTP authentication via a reverse proxy, source IP based filtering) or other restrictions (such as quotas), attackers may circumvent those limits in such a scenario by using the Directory Traversal to retrieve data from the other instances. If the associated XMPP server (or anyone knowing the SECRET_KEY) is malicious, they can write files outside the DATA_ROOT. The files which are written are constrained to have the `.meta` and the `.data` suffixes; the `.meta` file will contain the JSON with the Content-Type of the original request and the `.data` file will contain the payload. The issue is patched in version 0.4.0.",
+"vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:L/I:N/A:N",
+"score": 3.5,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-22",
+"class": "path-traversal",
+"stack": "web",
+"products": [
+"xmpp-http-upload_project:xmpp-http-upload"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01873,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated",
+"ac_h"
+]
+},
+{
+"id": "CVE-2022-41874",
+"desc": "Tauri is a framework for building binaries for all major desktop platforms. In versions prior to 1.0.7 and 1.1.2, Tauri is vulnerable to an Incorrectly-Resolved Name. Due to incorrect escaping of special characters in paths selected via the file dialog and drag and drop functionality, it is possible to partially bypass the `fs` scope definition. It is not possible to traverse into arbitrary paths, as the issue is limited to neighboring files and sub folders of already allowed paths. The impact differs on Windows, MacOS and Linux due to different specifications of valid path characters. This bypass depends on the file picker dialog or dragged files, as user selected paths are automatically added to the allow list at runtime. A successful bypass requires the user to select a pre-existing malicious file or directory during the file picker dialog and an adversary controlled logic to access these files. The issue has been patched in versions 1.0.7, 1.1.2 and 1.2.0. As a workaround, disable the dialog and fileDropEnabled component inside the tauri.conf.json.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:N",
+"score": 4.7,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:A/AC:H/PR:L/UI:R/S:C/C:L/I:N/A:N",
+"differs": [
+"AV",
+"AC",
+"PR"
+],
+"cwe": "CWE-668",
+"class": "permissions-config",
+"stack": "library",
+"products": [
+"tauri:tauri"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00449,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-33697",
+"desc": "Under certain conditions, SAP BusinessObjects Business Intelligence Platform (SAPUI5), versions - 420, 430, can allow an unauthenticated attacker to redirect users to a malicious site due to Reverse Tabnabbing vulnerabilities.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-269",
+"class": "privilege-mgmt",
+"stack": "web",
+"products": [
+"sap:businessobjects_business_intelligence"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00581,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2023-33951",
+"desc": "A race condition vulnerability was found in the vmwgfx driver in the Linux kernel. The flaw exists within the handling of GEM objects. The issue results from improper locking when performing operations on an object. This flaw allows a local privileged user to disclose information in the context of the kernel.",
+"vector": "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:C/C:H/I:N/A:N",
+"score": 5.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:H/I:N/A:L",
+"differs": [
+"AC",
+"A"
+],
+"cwe": "CWE-362",
+"class": "race-condition",
+"stack": "linux",
+"products": [
+"linux:linux_kernel",
+"redhat:enterprise_linux",
+"redhat:enterprise_linux_for_real_time"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00343,
+"traps": [
+"scope_c",
+"c_high_scoped",
+"ac_h"
+]
+},
+{
+"id": "CVE-2021-37862",
+"desc": "Mattermost 6.0 and earlier fails to sufficiently validate the email address during registration, which allows attackers to trick users into signing up using attacker-controlled email addresses via crafted invitation token.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:N",
+"differs": [
+"AC",
+"PR"
+],
+"cwe": "CWE-754",
+"class": "resource-exhaustion",
+"stack": "web",
+"products": [
+"mattermost:mattermost_server"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00667,
+"traps": [
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2020-7275",
+"desc": "Accessing, modifying or executing executable files vulnerability in the uninstaller in McAfee Endpoint Security (ENS) for Windows Prior to 10.7.0 April 2020 Update allows local users to execute arbitrary code via a carefully crafted input file.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"score": 5.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:L",
+"differs": [
+"UI"
+],
+"cwe": "CWE-428",
+"class": "search-path",
+"stack": "application",
+"products": [
+"mcafee:endpoint_security"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00307,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2022-43859",
+"desc": "IBM Navigator for i 7.3, 7.4, and 7.5 could allow an authenticated user to obtain sensitive information for an object they are authorized to but not while using this interface. By performing a UNION based SQL injection an attacker could see file permissions through this interface.  IBM X-Force ID:  239304.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+"score": 4.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"differs": [
+"I",
+"A"
+],
+"cwe": "CWE-89",
+"class": "sqli",
+"stack": "other-os",
+"products": [
+"ibm:i"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00579,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2021-34425",
+"desc": "The Zoom Client for Meetings before version 5.7.3 (for Android, iOS, Linux, macOS, and Windows) contain a server side request forgery vulnerability in the chat\\'s \"link preview\" functionality. In versions prior to 5.7.3, if a user were to enable the chat\\'s \"link preview\" feature, a malicious actor could trick the user into potentially sending arbitrary HTTP GET requests to URLs that the actor cannot reach directly.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"differs": [
+"AC"
+],
+"cwe": "CWE-918",
+"class": "ssrf",
+"stack": "windows",
+"products": [
+"zoom:meetings",
+"apple:iphone_os",
+"apple:macos"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00809,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-23443",
+"desc": "This affects the package edge.js before 5.3.2. A type confusion vulnerability can be used to bypass input sanitization when the input to be rendered is an array (instead of a string or a SafeValue), even if {{ }} are used.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N",
+"differs": [
+"S"
+],
+"cwe": "CWE-843",
+"class": "type-confusion",
+"stack": "library",
+"products": [
+"adonisjs:edge"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00906,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2023-5197",
+"desc": "A use-after-free vulnerability in the Linux kernel's netfilter: nf_tables component can be exploited to achieve local privilege escalation.\n\nAddition and removal of rules from chain bindings within the same transaction causes leads to use-after-free.\n\nWe recommend upgrading past commit f15f29fd4779be8a418b66e9d52979bb6d6c2325.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:H",
+"score": 6.6,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+"differs": [
+"C",
+"I"
+],
+"cwe": "CWE-416",
+"class": "use-after-free",
+"stack": "linux",
+"products": [
+"debian:debian_linux",
+"linux:linux_kernel"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.0035,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2021-29622",
+"desc": "Prometheus is an open-source monitoring system and time series database. In 2.23.0, Prometheus changed its default UI to the New ui. To ensure a seamless transition, the URL's prefixed by /new redirect to /. Due to a bug in the code, it is possible for an attacker to craft an URL that can redirect to any other URL, in the /new endpoint. If a user visits a prometheus server with a specially crafted address, they can be redirected to an arbitrary URL. The issue was patched in the 2.26.1 and 2.27.1 releases. In 2.28.0, the /new endpoint will be removed completely. The workaround is to disable access to /new via a reverse proxy in front of Prometheus.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N",
+"differs": [
+"S",
+"C",
+"I"
+],
+"cwe": "CWE-601",
+"class": "web-logic",
+"stack": "web",
+"products": [
+"prometheus:prometheus"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.1956,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2022-21662",
+"desc": "WordPress is a free and open-source content management system written in PHP and paired with a MariaDB database. Low-privileged authenticated users (like author) in WordPress core are able to execute JavaScript/perform stored XSS attack, which can affect high-privileged users. This has been patched in WordPress version 5.8.3. Older affected versions are also fixed via security release, that go back till 3.7.37. We strongly recommend that you keep auto-updates enabled. There are no known workarounds for this issue.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:C/C:H/I:H/A:H",
+"differs": [
+"AC",
+"C",
+"I",
+"A"
+],
+"cwe": "CWE-79",
+"class": "xss",
+"stack": "linux",
+"products": [
+"wordpress:wordpress",
+"debian:debian_linux"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.64529,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+}
+]
+}

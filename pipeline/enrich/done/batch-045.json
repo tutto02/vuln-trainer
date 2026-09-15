@@ -1,0 +1,627 @@
+{
+ "batch": "batch-045",
+ "items": {
+  "CVE-2023-25717": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ruckus Wireless Admin erlaubt über eine unauthentifizierte HTTP-GET-Anfrage (Shell-Metazeichen im password-Parameter von doLogin) Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte GET-Anfrage."
+    },
+    "PR": {
+     "why": "Der GET-Request auf /forms/doLogin trägt die Injection in den Login-Parametern; eine Anmeldung ist dafür nicht nötig: PR:N.",
+     "pitfall": "Die Login-URL ist der Angriffspfad, kein benötigtes Recht."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf dem Gerät, S:U."
+    },
+    "C": {
+     "why": "Code: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: Gerät abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,98: Ruckus-WLAN-Controller in Botnetzen (AndoryuBot). Code-Injection (CWE-94) im Login-Feld selbst, vor jeder Authentifizierung. WLAN-Controller verwalten alle Access Points; das Login-Feld als Injection-Vektor ist ein wiederkehrendes Muster (CWP, Grandstream, BillQuick)."
+  },
+  "CVE-2023-29300": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Adobe ColdFusion hat eine Deserialisierungslücke, die unauthentifizierte Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im ColdFusion-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,9999, nur CNA-Vektor: ColdFusion-Deserialisierung (CWE-502), in Kette mit dem Access-Control-Bypass CVE-2023-29298 (im Korpus). ColdFusion ist im Korpus das Produkt mit den meisten Einträgen (ein Dutzend); die Kette aus Bypass plus Deserialisierung wiederholt sich. Ein Produkt, das eine eigene Beobachtungsliste verdient."
+  },
+  "CVE-2023-46263": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ivanti Avalanche hat einen unbeschränkten Datei-Upload, der zu Remote Code Execution führt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,82: Avalanche zum wiederholten Mal (CVE-2021-42125, CVE-2022-36980, CVE-2023-46262, CVE-2023-46264). Datei-Upload (CWE-434); Avalanche verwaltet Mobilgeräte. Ivanti ist das häufigste Herstellerthema im Korpus; Avalanche allein hat mehrere Upload- und Auth-Lücken. Die Schwester CVE-2023-46264 hat dieselbe Beschreibung."
+  },
+  "CVE-2017-9248": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Telerik UI für ASP.NET AJAX (in Sitefinity) schützt den DialogParametersEncryptionKey oder MachineKey unzureichend, was Angreifern das Brechen der Kryptografie und darüber RCE erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Den Schlüssel über einen Oracle-Angriff ermitteln, dann deserialisieren."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,75: Die Telerik-Serie im Korpus (CVE-2017-11317, 11357, 2017-9248, 2019-18935). Ein schwach geschützter Verschlüsselungsschlüssel (CWE-522), der über einen Padding-Oracle-Angriff ermittelt und dann für die Deserialisierung genutzt wird. Telerik steckt in vielen ASP.NET-Anwendungen; ein Bibliotheks-Bug mit breiter Reichweite."
+  },
+  "CVE-2020-9757": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die SEOmatic-Komponente für Craft CMS erlaubt über fehlerhafte Daten an den metacontainers-Controller Server-Side Template Injection und Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Web-CMS über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Daten (Template-Ausdruck)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Craft-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,73: SSTI (CWE-74) in einer Craft-CMS-Erweiterung (Twig-Template). Craft ist im Korpus mehrfach vertreten (CVE-2023-41892, CVE-2025-32432); SSTI in Template-Engines ist eine wiederkehrende RCE-Klasse. Wie bei WordPress und Joomla erweitern CMS-Plugins die Angriffsfläche."
+  },
+  "CVE-2023-22515": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Confluence Data Center und Server erlauben externen Angreifern das Anlegen unautorisierter Confluence-Administratorkonten (Privilege Escalation).",
+   "metrics": {
+    "AV": {
+     "why": "Web-Wiki über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Confluence, S:U."
+    },
+    "C": {
+     "why": "Admin-Konto: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Admin: alles änderbar."
+    },
+    "A": {
+     "why": "Admin: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Zero-Day, von einer staatlichen Gruppe genutzt. Fehlerhafte Eingabevalidierung (CWE-20), die den Setup-Modus wieder öffnet und ein Admin-Anlegen erlaubt (wie CVE-2023-22518 im selben Produkt). Confluence ist im Korpus fünfmal vertreten; ein Produkt mit einer außergewöhnlich langen Serie kritischer Lücken."
+  },
+  "CVE-2022-42475": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Heap-Buffer-Overflow in FortiOS SSL-VPN erlaubt einem unauthentifizierten Angreifer Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "SSL-VPN aus dem Internet."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Der Heap-Overflow im SSL-VPN wird durch Requests eines „remote unauthenticated attacker“ ausgelöst: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf der Firewall, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Firewall abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99: Zero-Day gegen Regierungsziele. Heap-Overflow (CWE-122) im FortiOS SSL-VPN. Fortinet ist im Korpus das zweithäufigste Herstellerthema; SSL-VPN-Overflows sind ein wiederkehrendes Muster (auch CVE-2023-27997, CVE-2024-21762). VPN-Gateways sind das meistangegriffene Appliance-Segment."
+  },
+  "CVE-2021-20090": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Path Traversal im Web-Interface von Buffalo-Routern (Arcadyan-Firmware) erlaubt unauthentifizierten Angreifern die Umgehung der Authentifizierung.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des Routers über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Pfad (bekannter Trick)."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Router, S:U."
+    },
+    "C": {
+     "why": "Nach dem Bypass: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Router abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,9998: Betrifft Router vieler Hersteller mit Arcadyan-Firmware (wie das Realtek- und Awind-SDK). Path Traversal (CWE-22) zur Auth-Umgehung, in Botnetzen (Mirai) binnen Tagen. Ein OEM-Firmware-Bug mit riesiger Geräte-Reichweite über verschiedene Markennamen."
+  },
+  "CVE-2020-36227": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Ein Fehler in der cancel_extop-Cancel-Operation von OpenLDAP führt zu einer Endlosschleife in slapd (Denial of Service).",
+   "metrics": {
+    "AV": {
+     "why": "LDAP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Cancel-Operation."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der LDAP-Dienst."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Endlosschleife: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,78: Eine weitere OpenLDAP-DoS-Lücke 2020 (mit CVE-2020-36221, 36222, 36228). Endlosschleife (CWE-835); OpenLDAP hatte 2020 ein ganzes Bündel solcher Lücken. LDAP ist die Authentifizierungsschicht; ihr Ausfall trifft alle abhängigen Dienste. Geschwister im selben Release."
+  },
+  "CVE-2023-23488": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Paid-Memberships-Pro-WordPress-Plugin hat über den code-Parameter der /pmpro/v1/order-REST-Route eine unauthentifizierte SQL-Injection.",
+   "metrics": {
+    "AV": {
+     "why": "REST-API über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter code-Parameter."
+    },
+    "PR": {
+     "why": "Die SQL-Injection im code-Parameter der REST-Route ist unauthentifiziert: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank und Anwendung im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "SQLi: alle Daten lesbar."
+    },
+    "I": {
+     "why": "SQLi: alles änderbar."
+    },
+    "A": {
+     "why": "SQLi: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,92: WordPress-Plugin-SQLi (CWE-89) über eine REST-Route. WordPress-Plugin-SQLi ist im Korpus die häufigste Web-Lücken-Klasse; die REST-API brachte neue Routen mit alten Injection-Mustern. Ein Membership-Plugin hält Zahlungs- und Mitgliederdaten."
+  },
+  "CVE-2020-27932": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion im Apple-Kernel erlaubt einer bösartigen Anwendung die Ausführung von Code mit Kernel-Rechten.",
+   "metrics": {
+    "AV": {
+     "why": "Eine App auf dem Gerät: AV:L."
+    },
+    "AC": {
+     "why": "Präparierte Eingabe."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "NVD: UI:R (die App wird gestartet)."
+    },
+    "S": {
+     "why": "Kernel-Codeausführung, S:U."
+    },
+    "C": {
+     "why": "Kernel: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Kernel: alles änderbar."
+    },
+    "A": {
+     "why": "Kernel: Gerät abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,10: Eines von drei gleichzeitig ausgenutzten iOS-Zero-Days 2020 (Kernel-Kette). Type Confusion (CWE-843) im Kernel; die Apple-Kernel-Serie im Korpus zeigt Type Confusion, Use-After-Free und Integer-Overflow als die Kernel-EoP-Klassen. Kernel-EoP ist das zweite Glied nach dem Browser-Einbruch."
+  },
+  "CVE-2019-0708": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "BlueKeep: Remote Desktop Services (RDP) in älteren Windows-Versionen erlaubt einem unauthentifizierten Angreifer über präparierte Anfragen Remote Code Execution (wurmfähig).",
+   "metrics": {
+    "AV": {
+     "why": "RDP (Port 3389) über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte RDP-Anfrage, wurmfähig."
+    },
+    "PR": {
+     "why": "Der Angreifer verbindet sich per RDP und sendet präparierte Requests VOR der Anmeldung; „unauthenticated attacker“: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Kernel-RCE, S:U."
+    },
+    "C": {
+     "why": "Kernel-RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Kernel-RCE: alles änderbar."
+    },
+    "A": {
+     "why": "Kernel-RCE: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99999: BlueKeep, wurmfähig wie EternalBlue (WannaCry); Microsoft veröffentlichte sogar Patches für das End-of-Life-Windows XP. Use-After-Free (CWE-416) im RDP-Dienst. RDP gehört nie ins Internet; die Wahrscheinlichkeit hängt an der Exposition von Port 3389. Trotz der Warnungen blieben Millionen Systeme exponiert."
+  },
+  "CVE-2021-20080": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "ManageEngine ServiceDesk Plus und AssetExplorer haben durch unzureichende Ausgabe-Sanitisierung ein gespeichertes Cross-Site-Scripting über einen hochgeladenen Inhalt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload."
+    },
+    "PR": {
+     "why": "Das Hochladen der präparierten XML-Asset-Datei gelingt ohne Anmeldung („remote, unauthenticated attacker“): PR:N."
+    },
+    "UI": {
+     "why": "Ein Admin muss den Inhalt ansehen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Browserkontext des Opfers: C:L."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,93: Gespeichertes XSS (CWE-79) in ManageEngine-Helpdesk-Produkten. ManageEngine ist im Korpus stark vertreten; XSS gegen ein Helpdesk-System kann über die Admin-Session zu weiteren Angriffen führen. Der hohe EPSS spiegelt die breite Installationsbasis."
+  },
+  "CVE-2021-44515": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "ManageEngine Desktop Central hat eine Authentifizierungsumgehung, die zu Remote Code Execution führt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,999: Desktop Central verwaltet Endpunkte (wie EPM, KACE). Auth-Bypass (noinfo bei NVD) plus RCE, im Dezember 2021 als Zero-Day ausgenutzt. Endpoint-Management-Server sind ein Sprungbrett zu allen verwalteten Clients. ManageEngine ist im Korpus stark vertreten, Desktop Central mehrfach (auch CVE-2020-10189)."
+  },
+  "CVE-2023-36846": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+   "summary_de": "Juniper Junos OS auf SRX-Geräten hat eine fehlende Authentifizierung für eine kritische Funktion (user.php), die begrenzte Auswirkungen auf die Dateisystem-Integrität erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz (J-Web)."
+    },
+    "AC": {
+     "why": "Eine spezifische Anfrage an user.php."
+    },
+    "PR": {
+     "why": "Der Request auf user.php verlangt laut Beschreibung keine Authentifizierung: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist das Gerät."
+    },
+    "C": {
+     "why": "Kein direkter Datenzugriff."
+    },
+    "I": {
+     "why": "Begrenztes Datei-Schreiben: I:L.",
+     "pitfall": "Einzeln nur ein begrenztes Datei-Schreiben (I:L). In Kette mit CVE-2023-36845/36844/36847 (alle im Korpus) wurde daraus unauthentifizierte RCE. Die vier Junos-Lücken zusammen ergaben den vollen Angriff."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,95: Eines von vier Junos-Gliedern (CVE-2023-36844 bis 36847), die zusammen zu unauthentifizierter RCE auf Juniper-SRX-Firewalls führten. Fehlende Authentifizierung (CWE-306); einzeln 5,3, als Kette kritisch. Ein Musterfall, wie vier kleine Lücken zu einer RCE-Kette werden."
+  },
+  "CVE-2022-31704": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "VMware vRealize Log Insight hat eine fehlerhafte Zugriffskontrolle, über die ein unauthentifizierter Angreifer Code in sensible Dateien einschleust und Remote Code Execution erreicht.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Ein unauthentifizierter Angreifer schleust den Code über die fehlerhafte Zugriffskontrolle ein: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf der Appliance, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,81: vRealize Log Insight ist ein Log-Management-Tool (wie EventLog Analyzer, Splunk). Fehlerhafte Zugriffskontrolle (CWE-284) zu RCE, in Kette mit weiteren vRealize-Lücken. Log-Management-Systeme sammeln Zugangsdaten aus Logs; VMware ist im Korpus stark vertreten."
+  },
+  "CVE-2023-20887": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "VMware Aria Operations for Networks hat eine Command Injection, die einem Angreifer mit Netzzugriff Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf der Appliance, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,98: Aria Operations for Networks (früher vRealize Network Insight) überwacht die Netzwerkinfrastruktur. Command Injection (CWE-77), massenhaft ausgenutzt. VMware-Produkte sind im Korpus stark vertreten (vCenter, ESXi, Aria, Workspace ONE); Netzwerk-Monitoring-Systeme sehen das ganze Netz."
+  },
+  "CVE-2023-33246": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Apache RocketMQ (NameServer, Broker, Controller) erlaubt bei Exposition im Internet und fehlender Rechteprüfung Remote Command Execution über die Update-Konfigurationsfunktion.",
+   "metrics": {
+    "AV": {
+     "why": "RocketMQ-Ports über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Konfigurations-Update-Anfrage."
+    },
+    "PR": {
+     "why": "Fehlende Rechteprüfung: keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle im RocketMQ-Prozess, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,97: RocketMQ ist ein Message Broker (wie ActiveMQ CVE-2023-46604). Code-Injection (CWE-94) über die Update-Config-Funktion, die den Broker beliebige Befehle ausführen lässt. Message Broker gehören nicht ins Internet; ihre Exposition plus fehlende Auth ist ein wiederkehrendes RCE-Muster."
+  },
+  "CVE-2023-38203": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Adobe ColdFusion hat eine Deserialisierungslücke, die unauthentifizierte Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im ColdFusion-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,97, nur CNA-Vektor: Die Umgehung des Fixes für CVE-2023-29300 (im Korpus). ColdFusion-Deserialisierung (CWE-502); ColdFusion ist im Korpus das Produkt mit den meisten Einträgen. Jeder Deserialisierungs-Fix wurde von der nächsten Umgehung abgelöst, wie bei WebLogic und Struts. Ein Produkt mit einer strukturellen Schwäche."
+  },
+  "CVE-2023-46264": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ivanti Avalanche hat einen unbeschränkten Datei-Upload, der zu Remote Code Execution führt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,90: Schwester von CVE-2023-46263, gleiche Beschreibung, anderer Endpunkt. Datei-Upload (CWE-434) in Ivanti Avalanche (MDM). Ivanti ist das häufigste Herstellerthema im Korpus; Avalanche hat mehrere Upload-Lücken. Mehrere gleichartige CVEs im selben Produkt zeigen fehlende systematische Upload-Validierung."
+  }
+ }
+}

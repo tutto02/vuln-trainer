@@ -1,0 +1,611 @@
+{
+ "batch": "batch-015",
+ "items": {
+  "CVE-2018-0171": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Smart-Install-Funktion von Cisco IOS/IOS XE validiert Paketdaten unzureichend, sodass unauthentifizierte Angreifer einen Reload auslösen oder Code auf dem Gerät ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "Smart Install (TCP 4786) über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Pakete."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Nutzer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U, obwohl NVD bei Cisco-DoS sonst S:C vergibt.",
+     "pitfall": "Hier RCE auf dem Switch mit S:U, bei reinen Reloads (CVE-2018-0173) S:C. Die Konvention ist nicht einmal innerhalb Ciscos konsistent."
+    },
+    "C": {
+     "why": "NVD: Codeausführung auf dem Switch: alles; CNA sah nur DoS (C:N)."
+    },
+    "I": {
+     "why": "NVD: alles; CNA I:N."
+    },
+    "A": {
+     "why": "Reload oder Code: alles."
+    }
+   },
+   "dissent": {
+    "C": "CNA (Cisco): C:N, I:N, A:H (7,5). Cisco bewertete anfangs nur den DoS; die RCE wurde später bestätigt, NVD hat es eingerechnet."
+   },
+   "context_de": "KEV, EPSS 0,99: 2018 gegen Zehntausende Switches (Iran, Russland), 2025 erneut durch chinesische Gruppen. Smart Install gehört abgeschaltet; die Wahrscheinlichkeit hängt an einem Feature-Flag."
+  },
+  "CVE-2021-44224": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:H",
+   "summary_de": "Eine präparierte URI an Apache httpd als Forward-Proxy verursacht eine NULL-Dereferenzierung (Absturz) oder bei gemischter Forward/Reverse-Konfiguration SSRF zu einem Unix-Domain-Socket.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte URI, Proxy-Konfiguration ist die Voraussetzung."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Scope: NVD: S:U."
+    },
+    "C": {
+     "why": "NVD: C:N, obwohl SSRF genannt wird."
+    },
+    "I": {
+     "why": "SSRF zum Socket, begrenzt: I:L."
+    },
+    "A": {
+     "why": "Absturz: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,82. Zwei Auswirkungen in einer CVE (DoS und SSRF), der Vektor mischt sie. Nur mit ProxyRequests on verwundbar."
+  },
+  "CVE-2022-22948": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "vCenter Server setzt Dateirechte falsch, sodass ein nicht-administrativer Nutzer sensible Informationen (real: Datenbank-Zugangsdaten in postgresdb.properties) lesen kann.",
+   "metrics": {
+    "AV": {
+     "why": "NVD: AV:N, über SSH/Shell-Zugang zum vCenter."
+    },
+    "AC": {
+     "why": "Datei lesen."
+    },
+    "PR": {
+     "why": "'Non-administrative access': PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist vCenter."
+    },
+    "C": {
+     "why": "Datenbank-Zugangsdaten: Wertfall, H."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,13: In Kette (Pentera) von nicht-admin zu vCenter-Admin. 'Sensitive information' war hier das Datenbankpasswort; die Beschreibung untertreibt."
+  },
+  "CVE-2016-0151": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "CSRSS in Windows 8.1, Server 2012 und Windows 10 verwaltet Prozess-Tokens falsch, sodass ein lokaler Nutzer über eine präparierte Anwendung Rechte erlangt.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Zugriff auf das System nötig."
+    },
+    "AC": {
+     "why": "Präparierte Anwendung."
+    },
+    "PR": {
+     "why": "NVD vergab PR:N mit UI:R, untypisch für lokale EoP.",
+     "pitfall": "'Local users ... via a crafted application' ist normalerweise PR:L/UI:N (7,8). NVD hat hier das Muster 'Nutzer führt Datei aus' angewendet (PR:N/UI:R, ebenfalls 7,8). Gleicher Score, andere Lesart."
+    },
+    "UI": {
+     "why": "NVD: Ausführen der Anwendung als Interaktion."
+    },
+    "S": {
+     "why": "Lokale EoP: S:U."
+    },
+    "C": {
+     "why": "SYSTEM: alles."
+    },
+    "I": {
+     "why": "SYSTEM: alles."
+    },
+    "A": {
+     "why": "SYSTEM: alles."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,63: Als Zero-Day mit einer Flash-Lücke in Ransomware-Kampagnen kombiniert. Flash für den Einstieg, CSRSS für SYSTEM."
+  },
+  "CVE-2020-6820": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Race Condition beim Verarbeiten eines ReadableStream in Firefox führt zu einem Use-After-Free; gezielte Angriffe nutzten die Lücke aus.",
+   "metrics": {
+    "AV": {
+     "why": "Webinhalte über das Netz."
+    },
+    "AC": {
+     "why": "Race Condition: AC:H."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "NVD: UI:N (wie bei der Schwester CVE-2020-6819)."
+    },
+    "S": {
+     "why": "Im Browser."
+    },
+    "C": {
+     "why": "Codeausführung angenommen."
+    },
+    "I": {
+     "why": "Codeausführung."
+    },
+    "A": {
+     "why": "Codeausführung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,07: Zweite Hälfte des Zero-Day-Paars. Zwei UAFs in einer Kette ergeben einen Angriff; jede bekommt denselben Vektor."
+  },
+  "CVE-2021-38003": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine fehlerhafte Implementierung in V8 erlaubt über eine präparierte Seite Heap-Korruption.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Die V8-Heap-Korruption zündet erst beim Laden der präparierten Seite durch das Opfer: UI:R."
+    },
+    "S": {
+     "why": "Im Renderer."
+    },
+    "C": {
+     "why": "Codeausführung angenommen."
+    },
+    "I": {
+     "why": "Codeausführung."
+    },
+    "A": {
+     "why": "Codeausführung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,39: Zero-Day (Candiru), in Kette mit CVE-2021-38000. Klasse laut NVD CWE-755 (Fehlerbehandlung), ein für V8 seltener Fall."
+  },
+  "CVE-2018-7841": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Schneider Electric U.motion Builder 1.3.4 hat eine SQL-Injection, die bei präparierten Eingaben zu Codeausführung führen kann.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung."
+    },
+    "AC": {
+     "why": "Präparierte Zeichen."
+    },
+    "PR": {
+     "why": "Keine Anmeldung genannt."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Server."
+    },
+    "C": {
+     "why": "SQLi bis Codeausführung: alles."
+    },
+    "I": {
+     "why": "Vollzugriff: alle Daten änderbar."
+    },
+    "A": {
+     "why": "Vollzugriff: Dienst oder System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,73: Gebäudeautomation (ICS) mit Web-Frontend. Der Text nennt die CWE selbst; NVD hat sie übernommen."
+  },
+  "CVE-2026-20230": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:H/A:N",
+   "summary_de": "Cisco Unified CM validiert bestimmte HTTP-Anfragen unzureichend, sodass unauthentifizierte Angreifer Server-Side Request Forgery über das Gerät ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "SSRF: andere Systeme betroffen, S:C."
+    },
+    "C": {
+     "why": "CNA: C:N, keine Antworten lesbar (Blind SSRF)."
+    },
+    "I": {
+     "why": "CNA: I:H, Anfragen an interne Systeme mit Wirkung.",
+     "pitfall": "SSRF mit C:N/I:H ist ungewöhnlich, aber schlüssig für Blind-SSRF: Der Angreifer sieht nichts, kann aber Aktionen auslösen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,88, nur CNA-Vektor. Ciscos Vektoren sind meist sorgfältig differenziert; C:N/I:H ist ein Beispiel dafür."
+  },
+  "CVE-2017-5070": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion in V8 erlaubt über eine präparierte Seite Codeausführung innerhalb der Chrome-Sandbox.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Die V8-Type-Confusion zündet erst beim Laden der präparierten Seite durch das Opfer: UI:R."
+    },
+    "S": {
+     "why": "'Inside a sandbox' wörtlich: S:U, hier korrekt.",
+     "pitfall": "2017 vergab NVD für 'inside a sandbox' S:U (8,8), 2024 bei identischem Text S:C (9,6). Gleicher Wortlaut, andere Epoche."
+    },
+    "C": {
+     "why": "Codeausführung in der Sandbox."
+    },
+    "I": {
+     "why": "Codeausführung."
+    },
+    "A": {
+     "why": "Codeausführung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,31: Zero-Day 2017. Der Vergleich mit CVE-2024-5274 zeigt, wie sich NVD-Praxis über Jahre verschiebt."
+  },
+  "CVE-2015-5122": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Use-After-Free in der DisplayObject-Klasse von Flash Player (AS3) erlaubt über präparierten Flash-Inhalt Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Flash-Inhalt über das Web."
+    },
+    "AC": {
+     "why": "Präparierter Inhalt."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "NVD: UI:N, wie bei CVE-2015-5119 (Flash-Werbung ohne Klick)."
+    },
+    "S": {
+     "why": "Im Plugin."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten."
+    },
+    "I": {
+     "why": "Code mit Nutzerrechten."
+    },
+    "A": {
+     "why": "Code mit Nutzerrechten."
+    }
+   },
+   "dissent": {
+    "UI": "CNA (Adobe): AV:L, UI:R (7,8). Zweite Lücke aus dem Hacking-Team-Leak, gleicher Streit."
+   },
+   "context_de": "KEV, EPSS 0,94: Aus dem Hacking-Team-Leak, binnen Tagen in Exploit-Kits. Flash-UAFs waren 2015 die Massenware der Kits."
+  },
+  "CVE-2014-2120": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Die WebVPN-Login-Seite von Cisco ASA hat ein reflektiertes XSS über einen nicht näher genannten Parameter.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierter Link."
+    },
+    "AC": {
+     "why": "Link genügt."
+    },
+    "PR": {
+     "why": "NVD: PR:N, Login-Seite ist vor der Anmeldung.",
+     "pitfall": "Der CNA (Cisco) vergab PR:L, was für eine Login-Seite nicht passt."
+    },
+    "UI": {
+     "why": "Reflektiertes XSS: Das Opfer muss den präparierten Link zur WebVPN-Loginseite anklicken, damit das Skript in seinem Browser läuft: UI:R."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Browserkontext: L; auf einer Login-Seite sind Zugangsdaten das Ziel."
+    },
+    "I": {
+     "why": "Login-Formular manipulierbar: L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,19: 2020 aktiv gegen VPN-Portale genutzt, sechs Jahre nach Veröffentlichung. XSS auf VPN-Login-Seiten ist Phishing mit echter Domain."
+  },
+  "CVE-2022-2414": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Dogtag PKI verarbeitet XML mit externen Entitäten, sodass ein Angreifer über präparierte HTTP-Anfragen beliebige Dateien des Servers liest.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP über das Netz."
+    },
+    "AC": {
+     "why": "Präpariertes XML."
+    },
+    "PR": {
+     "why": "Keine Anmeldung genannt."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Dogtag."
+    },
+    "C": {
+     "why": "Beliebige Dateien einer PKI (Schlüsselmaterial): H."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,86. XXE in einer Zertifizierungsstelle: Der Wert der lesbaren Dateien (private CA-Schlüssel) ist maximal, der Vektor sagt 7,5."
+  },
+  "CVE-2021-27877": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Veritas Backup Exec hatte ein veraltetes, aber nicht deaktiviertes SHA-Authentifizierungsschema, über das Angreifer unautorisiert auf den Agent zugreifen und privilegierte Befehle ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "Agent-Port über das Netz."
+    },
+    "AC": {
+     "why": "Altes Schema nutzen."
+    },
+    "PR": {
+     "why": "Unautorisierter Zugang: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Agent."
+    },
+    "C": {
+     "why": "Privilegierte Befehle: alles."
+    },
+    "I": {
+     "why": "NVD: alles; CNA I:L."
+    },
+    "A": {
+     "why": "NVD: alles; CNA A:N."
+    }
+   },
+   "dissent": {
+    "I": "CNA (Veritas): I:L, A:N (8,2). 'Execute privileged commands' passt nicht zu I:L."
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,65: ALPHV/BlackCat gegen Backup-Server, 2023. Backup-Agenten laufen mit hohen Rechten auf jedem Server; ein Auth-Fehler dort ist ein Flächenproblem."
+  },
+  "CVE-2019-8449": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Die Jira-Ressource /rest/api/latest/groupuserpicker erlaubt unauthentifizierten Angreifern das Aufzählen von Benutzernamen.",
+   "metrics": {
+    "AV": {
+     "why": "REST-API über das Netz."
+    },
+    "AC": {
+     "why": "Eine URL aufrufen, kein Aufwand."
+    },
+    "PR": {
+     "why": "Keine Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Jira."
+    },
+    "C": {
+     "why": "Nur Benutzernamen: C:L, Lehrbuchfall."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,85: In jedem Jira-Scan enthalten. Aufzählung ist Aufklärung, kein Schaden; für Password-Spraying aber der erste Schritt."
+  },
+  "CVE-2020-36289": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Der Jira-Endpunkt QueryComponentRendererValue!Default.jspa erlaubt unauthentifizierten Nutzern das Aufzählen von Benutzern.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz."
+    },
+    "AC": {
+     "why": "Eine URL aufrufen, kein Aufwand."
+    },
+    "PR": {
+     "why": "QueryComponentRendererValue!Default.jspa erlaubt unauthentifizierte Nutzer-Enumeration: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Jira."
+    },
+    "C": {
+     "why": "Nur Benutzernamen: C:L."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,99: Der zweite Jira-Enumerationsfall, ein Jahr später. Klasse laut NVD Autorisierung (CWE-863), bei CVE-2019-8449 Authentifizierung (CWE-306): Für dieselbe Mechanik zwei Klassen."
+  },
+  "CVE-2007-3010": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "masterCGI im Unified Maintenance Tool des Alcatel OmniPCX Enterprise Communication Server reicht den user-Parameter der Ping-Aktion an die Shell weiter (Command Injection).",
+   "metrics": {
+    "AV": {
+     "why": "CGI über das Netz."
+    },
+    "AC": {
+     "why": "Shell-Metazeichen im Parameter."
+    },
+    "PR": {
+     "why": "Keine Anmeldung genannt."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Server."
+    },
+    "C": {
+     "why": "Befehle: alles."
+    },
+    "I": {
+     "why": "Befehle: alles."
+    },
+    "A": {
+     "why": "Befehle: abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,97: Eine Lücke aus 2007, 2022 in KEV, weil TK-Anlagen Jahrzehnte laufen. Der Ping-Parameter als Command-Injection-Klassiker."
+  },
+  "CVE-2010-1871": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "JBoss Seam 2 sanitisiert Eingaben für JBoss-Expression-Language nicht, sodass eine präparierte URL Codeausführung erlaubt, sofern der Java Security Manager nicht konfiguriert ist.",
+   "metrics": {
+    "AV": {
+     "why": "URL über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:L; die Security-Manager-Bedingung wurde nicht als AC:H gewertet."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "NVD: UI:R, 'via a crafted URL' als Klick interpretiert.",
+     "pitfall": "Eine präparierte URL kann der Angreifer auch selbst aufrufen; UI:R setzt voraus, dass ein Opfer klickt. NVD hat hier das Phishing-Szenario angenommen. UI:N (9,8) wäre ebenso vertretbar."
+    },
+    "S": {
+     "why": "Code in der JBoss-JVM."
+    },
+    "C": {
+     "why": "RCE: alles."
+    },
+    "I": {
+     "why": "RCE: alles."
+    },
+    "A": {
+     "why": "RCE: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,83: Alte EL-Injection, 2021 noch gegen alte JBoss-Instanzen genutzt. Expression Language Injection (CWE-917) ist die Java-Variante von SSTI."
+  },
+  "CVE-2015-4000": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N",
+   "summary_de": "Logjam: TLS 1.2 und älter signalisieren die Wahl von DHE_EXPORT nicht, sodass ein Man-in-the-Middle die Verbindung auf 512-Bit-Diffie-Hellman herabstufen kann.",
+   "metrics": {
+    "AV": {
+     "why": "Im Netzpfad."
+    },
+    "AC": {
+     "why": "MITM plus Berechnung des diskreten Logarithmus: AC:H."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Kein Nutzer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Verbindung."
+    },
+    "C": {
+     "why": "CNA-Vektor: C:N, obwohl die Herabstufung Entschlüsselung ermöglicht.",
+     "pitfall": "Ein Downgrade-Angriff hat als direkte Wirkung nur die Manipulation des Handshakes (I:L). Die Entschlüsselung danach ist der Folgeschritt (mit erheblichem Rechenaufwand). Der Vektor bewertet nur das Downgrade."
+    },
+    "I": {
+     "why": "Handshake manipuliert: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,9986, Score 3,7: Ein weiterer Scanner-Klassiker. Praktisch nur für Nationalstaaten mit Vorberechnung relevant; EPSS spiegelt die Scans, nicht die Angriffe."
+  },
+  "CVE-2017-9805": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das REST-Plugin von Apache Struts 2 deserialisiert XML-Nutzlasten mit XStream ohne Typfilter, was Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "REST-Endpunkt über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:H, obwohl der Exploit trivial war.",
+     "pitfall": "Struts-Lücken bekamen von NVD häufig AC:H mit dem Argument der Gadget-Abhängigkeit. Der Metasploit-Exploit brauchte einen Request. AC:H sagt nichts über die Praxis."
+    },
+    "PR": {
+     "why": "Keine Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code in der Anwendung."
+    },
+    "C": {
+     "why": "RCE: alles."
+    },
+    "I": {
+     "why": "RCE: alles."
+    },
+    "A": {
+     "why": "RCE: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Wenige Tage nach CVE-2017-5638 (Equifax). Struts 2017 war die Referenz für 'Framework-Lücke mit Massenausnutzung'."
+  }
+ }
+}

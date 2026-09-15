@@ -1,0 +1,482 @@
+{
+"batch": "batch-055",
+"with_chain": false,
+"items": [
+{
+"id": "CVE-2021-43788",
+"desc": "Nodebb is an open source Node.js based forum software. Prior to v1.18.5, a path traversal vulnerability was present that allowed users to access JSON files outside of the expected `languages/` directory. The vulnerability has been patched as of v1.18.5. Users are advised to upgrade as soon as possible.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+"score": 5.0,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-22",
+"class": "path-traversal",
+"stack": "web",
+"products": [
+"nodebb:nodebb"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.25843,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2020-15910",
+"desc": "SolarWinds N-Central version 12.3 GA and lower does not set the JSESSIONID attribute to HTTPOnly. This makes it possible to influence the cookie with javascript. An attacker could send the user to a prepared webpage or by influencing JavaScript to the extract the JESSIONID. This could then be forwarded to the attacker.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:N",
+"score": 4.7,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-732",
+"class": "permissions-config",
+"stack": "web",
+"products": [
+"solarwinds:n-central"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.05591,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2022-39202",
+"desc": "matrix-appservice-irc is an open source Node.js IRC bridge for Matrix. The Internet Relay Chat (IRC) protocol allows you to specify multiple modes in a single mode command. Due to a bug in the underlying matrix-org/node-irc library, affected versions of matrix-appservice-irc perform parsing of such modes incorrectly, potentially resulting in the wrong user being given permissions. Mode commands can only be executed by privileged users, so this can only be abused if an operator is tricked into running the command on behalf of an attacker. The vulnerability has been patched in matrix-appservice-irc 0.35.0. As a workaround users should refrain from entering mode commands suggested by untrusted users. Avoid using multiple modes in a single command.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:L",
+"score": 6.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:U/C:L/I:L/A:L",
+"differs": [
+"PR"
+],
+"cwe": "CWE-269",
+"class": "privilege-mgmt",
+"stack": "library",
+"products": [
+"matrix:matrix_irc_bridge"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00879,
+"traps": [
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2020-10744",
+"desc": "An incomplete fix was found for the fix of the flaw CVE-2020-1733 ansible: insecure temporary directory when running become_user from become directive. The provided fix is insufficient to prevent the race condition on systems using ACLs and FUSE filesystems. Ansible Engine 2.7.18, 2.8.12, and 2.9.9 as well as previous versions are affected and Ansible Tower 3.4.5, 3.5.6 and 3.6.4 as well as previous versions are affected.",
+"vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:L/I:L/A:L",
+"score": 5.0,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-362",
+"class": "race-condition",
+"stack": "linux",
+"products": [
+"redhat:ansible",
+"redhat:ansible_tower"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00255,
+"traps": [
+"scope_c",
+"c_low",
+"ac_h"
+]
+},
+{
+"id": "CVE-2022-30724",
+"desc": "Broadcasting Intent including the BluetoothDevice object without proper restriction of receivers in sendIntentSessionCompleted function of Bluetooth prior to SMR Jun-2022 Release 1 leaks MAC address of the connected Bluetooth device.",
+"vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+"score": 4.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+"differs": [
+"AV"
+],
+"cwe": "CWE-755",
+"class": "resource-exhaustion",
+"stack": "android",
+"products": [
+"google:android"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00109,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2019-1794",
+"desc": "A vulnerability in the search path processing of Cisco Directory Connector could allow an authenticated, local attacker to load a binary of their choosing. The vulnerability is due to uncontrolled search path elements. An attacker could exploit this vulnerability by placing a binary of their choosing earlier in the search path utilized by Cisco Directory Connector to locate and load required resources.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:L/I:H/A:N",
+"score": 5.1,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-427",
+"class": "search-path",
+"stack": "network",
+"products": [
+"cisco:meeting_server"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00383,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2023-43377",
+"desc": "A cross-site scripting (XSS) vulnerability in /hoteldruid/visualizza_contratto.php of Hoteldruid v3.0.5 allows attackers to execute arbitrary web scripts or HTML via a crafted payload injected into the destinatario_email1 parameter.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-89",
+"class": "sqli",
+"stack": "web",
+"products": [
+"digitaldruid:hoteldruid"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00423,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2020-8118",
+"desc": "An authenticated server-side request forgery in Nextcloud server 16.0.1 allowed to detect local and remote services when adding a new subscription in the calendar application.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+"score": 5.0,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-918",
+"class": "ssrf",
+"stack": "linux",
+"products": [
+"nextcloud:nextcloud_server",
+"opensuse:backports_sle",
+"novell:suse_linux_enterprise_server"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01287,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2023-1235",
+"desc": "Type confusion in DevTools in Google Chrome prior to 111.0.5563.64 allowed a remote attacker who had compromised the renderer process to potentially exploit heap corruption via a crafted UI interaction. (Chromium security severity: Low)",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:L",
+"score": 6.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-843",
+"class": "type-confusion",
+"stack": "application",
+"products": [
+"google:chrome"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.0042,
+"traps": [
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2019-8053",
+"desc": "Adobe Acrobat and Reader versions 2019.012.20035 and earlier, 2019.012.20035 and earlier, 2017.011.30142 and earlier, 2017.011.30143 and earlier, 2015.006.30497 and earlier, and 2015.006.30498 and earlier have an use after free vulnerability. Successful exploitation could lead to arbitrary code execution .",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+"score": 4.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-416",
+"class": "use-after-free",
+"stack": "windows",
+"products": [
+"adobe:acrobat_dc",
+"adobe:acrobat_reader_dc",
+"apple:macos"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.03565,
+"traps": [
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2023-32068",
+"desc": "XWiki Platform is a generic wiki platform offering runtime services for applications built on top of it. In versions prior to 14.10.4 it's possible to exploit well known parameters in XWiki URLs to perform redirection to untrusted site. This vulnerability was partially fixed in the past for XWiki 12.10.7 and 13.3RC1 but there is still the possibility to force specific URLs to skip some checks, e.g. using URLs like `http:example.com` in the parameter would allow the redirect.  The issue has now been patched against all patterns that are known for performing redirects. This issue has been patched in XWiki 14.10.4 and 15.0. Users are advised to upgrade. There are no known workarounds for this vulnerability.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:N",
+"differs": [
+"I"
+],
+"cwe": "CWE-601",
+"class": "web-logic",
+"stack": "web",
+"products": [
+"xwiki:xwiki"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.5507,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2022-4830",
+"desc": "The Paid Memberships Pro WordPress plugin before 2.9.9 does not validate and escape some of its shortcode attributes before outputting them back in the page, which could allow users with a role as low as contributor to perform Stored Cross-Site Scripting attacks which could be used against high privilege users such as admins.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"differs": [
+"PR"
+],
+"cwe": "CWE-79",
+"class": "xss",
+"stack": "web",
+"products": [
+"strangerstudios:paid_memberships_pro"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.65006,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2021-45096",
+"desc": "KNIME Analytics Platform before 4.5.0 is vulnerable to XXE (external XML entity injection) via a crafted workflow file (.knwf), aka AP-17730.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+"score": 4.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:N",
+"differs": [
+"S"
+],
+"cwe": "CWE-611",
+"class": "xxe",
+"stack": "application",
+"products": [
+"knime:knime_analytics_platform"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.0107,
+"traps": [
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-35225",
+"desc": "Each authenticated Orion Platform user in a MSP (Managed Service Provider) environment can view and browse all NetPath Services from all that MSP's customers. This can lead to any user having a limited insight into other customer's infrastructure and potential data cross-contamination.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N",
+"score": 6.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+"differs": [
+"I"
+],
+"cwe": "NVD-CWE-noinfo",
+"class": "unclassified",
+"stack": "web",
+"products": [
+"solarwinds:network_performance_monitor"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00844,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2023-29062",
+"desc": "The Operating System hosting the FACSChorus application is configured to allow transmission of hashed user credentials upon user action without adequately validating the identity of the requested resource. This is possible through the use of LLMNR, MBT-NS, or MDNS and will result in NTLMv2 hashes being sent to a malicious entity position on the local network. These hashes can subsequently be attacked through brute force and cracked if a weak password is used. This attack would only apply to domain joined systems.",
+"vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:N",
+"score": 3.8,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-287",
+"class": "authn",
+"stack": "ics-iot",
+"products": [
+"bd:facschorus",
+"hp:hp_z2_tower_g9",
+"hp:hp_z2_tower_g5"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00297,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2020-25160",
+"desc": "Improper access controls in the B. Braun Melsungen AG SpaceCom Version L81/U61 and earlier, and the Data module compactplus Versions A10 and A11 enables attackers to extract and tamper with the devices network configuration.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:L",
+"score": 6.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:L",
+"differs": [
+"PR"
+],
+"cwe": "CWE-284",
+"class": "authz",
+"stack": "library",
+"products": [
+"bbraun:datamodule_compactplus",
+"bbraun:spacecom"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00208,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2023-22815",
+"desc": "Post-authentication remote command injection vulnerability in Western Digital My Cloud OS 5 devices that could allow an attacker to execute code in the context of the root user on vulnerable CGI files. This vulnerability can only be exploited over the network and the attacker must already have admin/root privileges to carry out the exploit. An authentication bypass is required for this exploit, thereby making it more complex. The attack may not require user interaction. Since an attacker must already be authenticated, the confidentiality impact is low while the integrity and availability impact is high. \n\nThis issue affects My Cloud OS 5 devices: before 5.26.300.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:H/A:H",
+"score": 6.7,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:L/I:H/A:H",
+"differs": [
+"AC"
+],
+"cwe": "CWE-77",
+"class": "cmd-injection",
+"stack": "other-os",
+"products": [
+"westerndigital:my_cloud_os",
+"westerndigital:my_cloud",
+"westerndigital:my_cloud_dl2100"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01315,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2019-20635",
+"desc": "codeBeamer before 9.5.0-RC3 does not properly restrict the ability to execute custom Java code and access the Java class loader via computed fields.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-470",
+"class": "code-injection",
+"stack": "application",
+"products": [
+"intland:codebeamer"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00875,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-39249",
+"desc": "Invision Community (aka IPS Community Suite or IP-Board) before 4.6.5.1 allows reflected XSS because the filenames of uploaded files become predictable through a brute-force attack against the PHP mt_rand function.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-330",
+"class": "crypto",
+"stack": "web",
+"products": [
+"invisioncommunity:invision_power_board"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00768,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2023-31230",
+"desc": "Cross-Site Request Forgery (CSRF) vulnerability in Haoqisir Baidu Tongji generator allows Stored XSS.This issue affects Baidu Tongji generator: from n/a through 1.0.2.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:L",
+"differs": [
+"A"
+],
+"cwe": "CWE-352",
+"class": "csrf",
+"stack": "application",
+"products": [
+"baidu-tongji-generator_project:baidu-tongji-generator"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00235,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+}
+]
+}

@@ -1,0 +1,603 @@
+{
+ "batch": "batch-010",
+ "items": {
+  "CVE-2025-4427": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Die API von Ivanti Endpoint Manager Mobile lässt sich ohne gültige Zugangsdaten nutzen, sodass Angreifer geschützte Ressourcen erreichen.",
+   "metrics": {
+    "AV": {
+     "why": "API über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist EPMM selbst."
+    },
+    "C": {
+     "why": "NVD: geschützte Ressourcen eines MDM-Servers (Gerätedaten, Zertifikate): H.",
+     "pitfall": "Der CNA vergab C:L. 'Access protected resources' ist vage; NVD nimmt bei einem MDM das Schlimmste an. In Kette mit CVE-2025-4428 wurde es RCE."
+    },
+    "I": {
+     "why": "Nur Lesen bewertet."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "C": "CNA (Ivanti): C:L (5,3). Ivanti bewertet den Bypass allein, NVD, was dahinter liegt."
+   },
+   "context_de": "KEV, EPSS 0,999: Kette Auth-Bypass plus Code-Injection zu unauthentifizierter RCE, binnen Tagen ausgenutzt. Ein MDM verwaltet alle Mobilgeräte; die Auswirkung reicht bis auf jedes Telefon."
+  },
+  "CVE-2021-37976": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+   "summary_de": "Eine fehlerhafte Implementierung in der Speicherverwaltung von Chrome lässt eine präparierte Seite potenziell sensible Daten aus dem Prozessspeicher lesen.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Das Opfer muss die präparierte HTML-Seite laden, damit Chrome Prozessspeicher preisgibt: UI:R."
+    },
+    "S": {
+     "why": "Im Browser."
+    },
+    "C": {
+     "why": "Prozessspeicher des Browsers: H nach NVD-Konvention für Browser-Leaks."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,20: Zero-Day, Informationsleck als Kettenglied. Klasse laut NVD 'fehlende Autorisierung' (CWE-862), was für einen Speicherfehler ungewöhnlich ist; Chrome-CWEs sind oft grob."
+  },
+  "CVE-2024-45519": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der postjournal-Dienst von Zimbra erlaubt unter bestimmten Umständen unauthentifizierten Nutzern die Ausführung von Befehlen (real: Command Injection über den SMTP-Absender).",
+   "metrics": {
+    "AV": {
+     "why": "Der Dienst nimmt Mails über das Netz an."
+    },
+    "AC": {
+     "why": "NVD: keine Sonderbedingung, obwohl 'sometimes' auf eine Konfiguration (postjournal aktiviert) hinweist."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Mailserver.",
+     "pitfall": "Der CNA vergab S:C. Kein Grund im Text."
+    },
+    "C": {
+     "why": "Befehle auf dem Mailserver: alle Postfächer."
+    },
+    "I": {
+     "why": "Befehle: alles."
+    },
+    "A": {
+     "why": "Befehle: abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (Zimbra): S:C (10,0). NVD 9,8."
+   },
+   "context_de": "KEV, EPSS 0,999: Massenausnutzung per E-Mail mit Shell-Befehlen im Absenderfeld. Eine Mail reicht; wo postjournal aktiv ist, ist die Wahrscheinlichkeit nahe 1."
+  },
+  "CVE-2021-45046": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Der Log4j-2.15.0-Fix für Log4Shell war unvollständig: Mit nicht standardmäßigen Pattern-Layouts (Context Lookup, MDC) bleiben JNDI-Lookups über angreifergesteuerte Thread-Context-Daten möglich.",
+   "metrics": {
+    "AV": {
+     "why": "Geloggte Eingaben kommen über das Netz."
+    },
+    "AC": {
+     "why": "Nur bei nicht standardmäßiger Konfiguration (Pattern Layout mit Context Lookup): AC:H.",
+     "pitfall": "Hier wertet NVD die Nicht-Standard-Konfiguration als AC:H, während die Original-Lücke CVE-2021-44228 (Standardkonfiguration) AC:L bekam. Genau die Regel: Standard ist keine Hürde, Nicht-Standard schon."
+    },
+    "PR": {
+     "why": "Der Angreifer liefert nur Daten, die geloggt werden."
+    },
+    "UI": {
+     "why": "Automatisch."
+    },
+    "S": {
+     "why": "Wie bei Log4Shell: Bibliothek verwundbar, einbettende Anwendung und Host betroffen, S:C."
+    },
+    "C": {
+     "why": "RCE: alles."
+    },
+    "I": {
+     "why": "RCE: alles."
+    },
+    "A": {
+     "why": "RCE: alles."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,9998. Der Score wurde nach Erkenntnis der RCE-Möglichkeit von 3,7 auf 9,0 angehoben; Vektoren sind lebende Dokumente."
+  },
+  "CVE-2018-18325": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "DNN (DotNetNuke) 9.2 bis 9.2.2 schützt Eingabeparameter mit einem schwachen Verschlüsselungsalgorithmus; der Fix für CVE-2018-15811 war unvollständig (real: Cookie-Deserialisierung zu RCE).",
+   "metrics": {
+    "AV": {
+     "why": "Web-CMS, Angriff über HTTP."
+    },
+    "AC": {
+     "why": "Schwacher Algorithmus, kein Aufwand."
+    },
+    "PR": {
+     "why": "Keine Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist DNN."
+    },
+    "C": {
+     "why": "NVD bewertet den Krypto-Fehler als Vertraulichkeitsverlust der geschützten Parameter: H.",
+     "pitfall": "Die Beschreibung sagt nur 'weak encryption'. Real führte das zu RCE über Deserialisierung (9,8). Die Klasse (CWE-326) und der Vektor beschreiben die Primitive, nicht die Kette."
+    },
+    "I": {
+     "why": "Nur Lesen bewertet."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,74: Von einer chinesischen Gruppe für Webshells genutzt. Unvollständige Fixes und Krypto-Klassen: Beides klingt harmlos und ist es nicht."
+  },
+  "CVE-2021-23758": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Alle Versionen des .NET-Pakets ajaxpro.2 deserialisieren beliebige .NET-Klassen aus Nutzereingaben, was Remote Code Execution ermöglicht.",
+   "metrics": {
+    "AV": {
+     "why": "AJAX-Endpunkte über HTTP."
+    },
+    "AC": {
+     "why": "NVD: keine Sonderbedingung; der CNA (Snyk) vergab AC:H."
+    },
+    "PR": {
+     "why": "Keine Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code in der Webanwendung."
+    },
+    "C": {
+     "why": "RCE: alles."
+    },
+    "I": {
+     "why": "RCE: alles."
+    },
+    "A": {
+     "why": "RCE: alles."
+    }
+   },
+   "dissent": {
+    "AC": "CNA (Snyk): AC:H (8,1). Snyk vergibt bei Deserialisierung oft AC:H wegen Gadget-Abhängigkeit."
+   },
+   "context_de": "KEV, EPSS 0,84: Alte Bibliothek in alten .NET-Anwendungen, ohne Wartung. 'Alle Versionen' heißt: Es gibt keinen Patch, nur Ersatz."
+  },
+  "CVE-2020-35489": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Das WordPress-Plugin Contact Form 7 erlaubt über Sonderzeichen im Dateinamen unbeschränkten Datei-Upload und Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Formular-Upload über HTTP."
+    },
+    "AC": {
+     "why": "Dateiname mit Sonderzeichen."
+    },
+    "PR": {
+     "why": "Formulare sind öffentlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:C für Plugin-RCE (vgl. wpDiscuz), inkonsistent mit wp-file-manager (S:U)."
+    },
+    "C": {
+     "why": "Webshell: alles."
+    },
+    "I": {
+     "why": "Webshell: alles."
+    },
+    "A": {
+     "why": "Webshell: abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "Kein CNA-Vektor. S:U (9,8) wäre spezifikationsnäher."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,89: fünf Millionen Installationen. Ausnutzbar nur, wenn das Formular Datei-Uploads erlaubt: Konfigurationsfrage."
+  },
+  "CVE-2020-8657": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "EyesOfNetwork 5.3 verwendet in allen Installationen denselben fest kodierten API-Key, sodass sich das Admin-Token berechnen lässt.",
+   "metrics": {
+    "AV": {
+     "why": "API über das Netz."
+    },
+    "AC": {
+     "why": "Token aus bekanntem Key berechnen."
+    },
+    "PR": {
+     "why": "Ein bekannter Key ist kein eigenes Recht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist EON."
+    },
+    "C": {
+     "why": "Admin-Token: alles."
+    },
+    "I": {
+     "why": "Admin: alles."
+    },
+    "A": {
+     "why": "Admin: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,92: Monitoring-Server sehen das ganze Netz und haben oft SSH-Keys zu allen Hosts. Gleiche Klasse wie Shiro und CentreStack: ein Key für alle."
+  },
+  "CVE-2013-7331": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:L",
+   "summary_de": "Das Microsoft.XMLDOM-ActiveX-Control lässt über Fehlercodes (res://-URLs) feststellen, ob lokale Pfade, UNC-Freigaben, Intranet-Hosts und IP-Adressen existieren.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "ADP-Vektor: UI:N, obwohl ein Seitenbesuch nötig ist (wäre UI:R)."
+    },
+    "S": {
+     "why": "Im Browser."
+    },
+    "C": {
+     "why": "Nur Existenz-Informationen: C:L, Lehrbuchfall."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "ADP: A:L, ohne Begründung im Text."
+    }
+   },
+   "dissent": {
+    "UI": "Nur ADP-Vektor. UI:N und A:L passen nicht zu einem Existenz-Orakel im Browser; korrekt wäre AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N (4,3)."
+   },
+   "context_de": "KEV, EPSS 0,58: 2014 in gezielten Angriffen zur Aufklärung (welche Sicherheitssoftware ist installiert?) genutzt. Wie CVE-2016-0162: Aufklärungsglied vor dem Exploit."
+  },
+  "CVE-2025-20281": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Eine API von Cisco ISE/ISE-PIC validiert Nutzereingaben unzureichend, sodass ein unauthentifizierter Angreifer Code als root auf dem Betriebssystem ausführt.",
+   "metrics": {
+    "AV": {
+     "why": "API über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Does not require any valid credentials' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "CNA: ISE steuert Netzwerkzugang (NAC) für alle Systeme; root auf ISE betrifft das ganze Netz.",
+     "pitfall": "Bei Identity- und NAC-Systemen ist S:C aus der Produktrolle begründbar, ähnlich wie bei RMM-Tools."
+    },
+    "C": {
+     "why": "root: alles."
+    },
+    "I": {
+     "why": "root: alles."
+    },
+    "A": {
+     "why": "root: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,97, nur CNA-Vektor. ISE ist der Türsteher des Netzes; wer ihn kontrolliert, vergibt Zugang. Schwester-CVE 2025-20337 mit identischem Text."
+  },
+  "CVE-2019-11708": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Firefox prüft Parameter der IPC-Nachricht Prompt:Open unzureichend, sodass ein kompromittierter Kindprozess den nicht-sandboxed Elternprozess dazu bringt, beliebige Webinhalte zu öffnen (Sandbox-Escape).",
+   "metrics": {
+    "AV": {
+     "why": "Webinhalte über das Netz."
+    },
+    "AC": {
+     "why": "Vorbedingung 'Kindprozess kompromittiert' liegt beim Angreifer."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "NVD vergab UI:N, obwohl ein Seitenbesuch nötig ist.",
+     "pitfall": "Bei Chrome-Escapes vergibt NVD UI:R (9,6), hier UI:N (10,0). Gleiche Mechanik, anderer Analyst."
+    },
+    "S": {
+     "why": "Sandbox-Escape: Kindprozess zu Elternprozess, S:C."
+    },
+    "C": {
+     "why": "Nach dem Ausbruch Nutzerrechte."
+    },
+    "I": {
+     "why": "Nach dem Ausbruch Nutzerrechte."
+    },
+    "A": {
+     "why": "Nach dem Ausbruch Nutzerrechte."
+    }
+   },
+   "dissent": {
+    "UI": "Kein CNA-Vektor. UI:R (9,6) wäre konsistent mit allen anderen Browser-Escapes im Korpus."
+   },
+   "context_de": "KEV, EPSS 0,56: Mit CVE-2019-11707 als Kette gegen Coinbase-Mitarbeiter. Zwei CVEs, eine Kette: Type Confusion im Kind, IPC-Bug zum Eltern."
+  },
+  "CVE-2020-16040": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+   "summary_de": "Unzureichende Datenvalidierung in V8 erlaubt über eine präparierte Seite Heap-Korruption.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Die fehlerhafte V8-Validierung wird über eine präparierte HTML-Seite ausgelöst, die das Opfer laden muss: UI:R."
+    },
+    "S": {
+     "why": "Im Renderer."
+    },
+    "C": {
+     "why": "NVD vergab C:N.",
+     "pitfall": "Identische Beschreibung wie Dutzende andere V8-Bugs, die NVD mit C:H/I:H/A:H (8,8) bewertet. Hier nur A:H (6,5). Wenn du 8,8 gebaut hast, hast du die NVD-Konvention getroffen; dieser Vektor ist der Ausreißer."
+    },
+    "I": {
+     "why": "Integrität: NVD: I:N."
+    },
+    "A": {
+     "why": "Heap-Korruption: Absturz."
+    }
+   },
+   "dissent": {
+    "C": "Kein CNA-Vektor. Der 6,5-Vektor widerspricht NVDs eigener Praxis für 'potentially exploit heap corruption' (sonst 8,8). Real wurde die Lücke für RCE in Exploit-Ketten genutzt."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,996: Öffentlicher Exploit, in Ketten genutzt. Ein 6,5 mit EPSS 0,996: Der Score ist hier schlicht falsch, EPSS zeigt es."
+  },
+  "CVE-2025-5419": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Out-of-Bounds-Read und -Write in V8 erlaubt über eine präparierte Seite Heap-Korruption.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Der V8-Fehler wird über eine präparierte HTML-Seite ausgelöst, die das Opfer laden muss: UI:R."
+    },
+    "S": {
+     "why": "Im Renderer, CNA-Vektor S:U (Google-Konvention)."
+    },
+    "C": {
+     "why": "Codeausführung angenommen."
+    },
+    "I": {
+     "why": "Codeausführung."
+    },
+    "A": {
+     "why": "Codeausführung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,08, nur CNA-Vektor (2025, keine NVD-Bewertung mehr). Googles eigener 8,8-Standard für Renderer-Bugs; ohne NVD entfällt die S:C-Streitfrage."
+  },
+  "CVE-2021-35211": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "SolarWinds Serv-U hat eine Remote-Memory-Escape-Lücke (Speicherfehler im SSH-Handling), über die Angreifer privilegierten Zugriff auf den Host erlangen.",
+   "metrics": {
+    "AV": {
+     "why": "SSH/FTP-Dienst über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:L; der CNA vergab AC:H (Exploit-Zuverlässigkeit)."
+    },
+    "PR": {
+     "why": "Vor der Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD und CNA: S:C, vermutlich weil Serv-U als SYSTEM läuft und der Host erfasst wird.",
+     "pitfall": "'Privileged access to the machine hosting Serv-U' liest NVD als Wechsel vom Dienst zum Host. Nach Spezifikation ist der Host derselbe Autoritätsbereich."
+    },
+    "C": {
+     "why": "SYSTEM auf dem Host: alles."
+    },
+    "I": {
+     "why": "SYSTEM: alles."
+    },
+    "A": {
+     "why": "SYSTEM: alles."
+    }
+   },
+   "dissent": {
+    "AC": "CNA (SolarWinds): AC:H (9,0). Zero-Day einer chinesischen Gruppe; AC:H trotz aktiver Ausnutzung ist eine Herstellerneigung."
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,91. Dateitransfer-Server als SYSTEM im Internet: die gleiche Geschichte wie MOVEit, GoAnywhere, CrushFTP."
+  },
+  "CVE-2021-40444": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "MSHTML lädt aus einem präparierten Office-Dokument ein bösartiges ActiveX-Control, was Codeausführung mit den Rechten des Nutzers erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "NVD: AV:L, weil das Dokument lokal geöffnet wird.",
+     "pitfall": "Vergleiche CVE-2015-1770 (Office, AV:N). NVD bewertet Office-Dokument-Exploits mal so, mal so. Microsoft vergab hier AV:N. Der CNA-Vektor 8,8 ist die üblichere Lesart."
+    },
+    "AC": {
+     "why": "Dokument öffnen."
+    },
+    "PR": {
+     "why": "Der Absender braucht nichts."
+    },
+    "UI": {
+     "why": "Der Nutzer muss das Dokument öffnen."
+    },
+    "S": {
+     "why": "NVD: Code im Nutzerkontext, S:U; Microsoft S:C (Office zu MSHTML als andere Komponente)."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alles."
+    },
+    "I": {
+     "why": "Code mit Nutzerrechten."
+    },
+    "A": {
+     "why": "Code mit Nutzerrechten."
+    }
+   },
+   "dissent": {
+    "AV": "CNA (Microsoft): AV:N, S:C, C:L, A:L (8,8). Vier Metriken Unterschied; der Kern ist die AV-Konvention für Dokument-Exploits."
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,97: Zero-Day, später in Massen-Phishing. Ein Dokument per Mail; die Wahrscheinlichkeit hängt an der Awareness, die Auswirkung an den Rechten des Nutzers."
+  },
+  "CVE-2023-28434": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "MinIO erlaubt über präparierte PostPolicyBucket-Anfragen die Umgehung der Bucket-Namensprüfung und das Schreiben in beliebige Buckets, inklusive des Metadaten-Buckets (Rechteausweitung zum Admin).",
+   "metrics": {
+    "AV": {
+     "why": "S3-API über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Credentials with arn:aws:s3:::* permission': ein Konto, PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist MinIO."
+    },
+    "C": {
+     "why": "Über den Metadaten-Bucket zum Admin: alle Daten."
+    },
+    "I": {
+     "why": "Admin: alles."
+    },
+    "A": {
+     "why": "Admin: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,08: Zusammen mit CVE-2023-28432 (Info-Leak, das Zugangsdaten preisgab) ausgenutzt. Das Leak lieferte die Credentials für PR:L; die Kette war unauthentifiziert."
+  },
+  "CVE-2020-3569": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H",
+   "summary_de": "Die DVMRP-Funktion von Cisco IOS XR lässt sich über IGMP-Verkehr zum sofortigen Absturz oder zur Speichererschöpfung bringen.",
+   "metrics": {
+    "AV": {
+     "why": "IGMP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierter Verkehr."
+    },
+    "PR": {
+     "why": "Der IGMP-Prozess wird durch Pakete eines unauthentifizierten Angreifers zum Absturz gebracht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Nutzer beteiligt."
+    },
+    "S": {
+     "why": "NVD-Konvention: Router-DoS, S:C."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "IGMP-Prozess stirbt, Multicast-Routing fällt aus."
+    }
+   },
+   "context_de": "KEV, EPSS 0,03: Schwester von CVE-2020-3566, gleicher Zero-Day. Zwei CVEs für eine Angriffswelle: Bei KEV-Einträgen lohnt die Suche nach Geschwistern."
+  },
+  "CVE-2024-9379": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Admin-Webkonsole der Ivanti CSA hat eine SQL-Injection, mit der ein Admin beliebige SQL-Anweisungen ausführt.",
+   "metrics": {
+    "AV": {
+     "why": "Webkonsole über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Eingabe."
+    },
+    "PR": {
+     "why": "'With admin privileges' wörtlich: PR:H.",
+     "pitfall": "PR:H ist für SQLi ungewöhnlich, hier korrekt. In der realen Kette lieferte CVE-2024-8963 (Path Traversal) den Admin-Zugang, also PR:N für die Kette."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die CSA."
+    },
+    "C": {
+     "why": "NVD: SQL als Admin, Datenbank lesbar: H; der CNA vergab C:N."
+    },
+    "I": {
+     "why": "Beliebige SQL: alles änderbar."
+    },
+    "A": {
+     "why": "Beliebige SQL: Daten löschbar."
+    }
+   },
+   "dissent": {
+    "C": "CNA (Ivanti): C:N (6,5). C:N bei SQLi ist nicht schlüssig."
+   },
+   "context_de": "KEV, EPSS 0,44: Teil der CSA-Kette vom September 2024 (Traversal, SQLi, Command Injection). Ein PR:H-Vektor mit aktiver Ausnutzung erklärt sich immer über die Kette."
+  }
+ }
+}

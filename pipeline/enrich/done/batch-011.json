@@ -1,0 +1,626 @@
+{
+ "batch": "batch-011",
+ "items": {
+  "CVE-2021-21973": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Ein vCenter-Plugin des vSphere Client validiert URLs unzureichend, sodass ein POST-Request auf Port 443 zu SSRF und Informationspreisgabe führt.",
+   "metrics": {
+    "AV": {
+     "why": "Port 443 über das Netz."
+    },
+    "AC": {
+     "why": "Ein POST-Request."
+    },
+    "PR": {
+     "why": "Vor der Anmeldung erreichbar."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U für SSRF, wie bei GitLab; nicht die übliche SSRF-Lesart."
+    },
+    "C": {
+     "why": "Nur eingeschränkte Informationen (Erreichbarkeit interner Hosts): C:L."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,88: Schwester der RCE CVE-2021-21972 im selben Plugin, als Aufklärungsglied. Score 5,3 mit KEV-Eintrag, weil beide zusammen gescannt wurden."
+  },
+  "CVE-2011-0611": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Adobe Flash Player, AIR und die Flash-Komponente in Adobe Reader erlauben über präparierte Flash-Inhalte Codeausführung, ausgenutzt über Office-Dokumente mit eingebettetem SWF.",
+   "metrics": {
+    "AV": {
+     "why": "Flash-Inhalt über Web oder Mail-Anhang; NVD: AV:N."
+    },
+    "AC": {
+     "why": "Präparierter Inhalt."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Der Exploit steckt in einer präparierten SWF/PDF-Datei; das Opfer muss die Datei oder Seite öffnen, sonst passiert nichts: UI:R."
+    },
+    "S": {
+     "why": "Code im Nutzerkontext."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten."
+    },
+    "I": {
+     "why": "Code mit Nutzerrechten."
+    },
+    "A": {
+     "why": "Code mit Nutzerrechten."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: 2011 in Spear-Phishing (RSA-Einbruch) genutzt. Historisch, aber das Muster 'Plugin in Dokument in Mail' lebt in anderen Formaten weiter."
+  },
+  "CVE-2021-37973": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H",
+   "summary_de": "Ein Use-After-Free in der Portals-Komponente von Chrome erlaubt aus einem kompromittierten Renderer heraus den Ausbruch aus der Sandbox.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Vorbedingung liegt beim Angreifer."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Der Use-after-free in Portals wird über eine präparierte HTML-Seite ausgelöst, die das Opfer laden muss: UI:R."
+    },
+    "S": {
+     "why": "'Sandbox escape' wörtlich: S:C."
+    },
+    "C": {
+     "why": "Nach dem Ausbruch Nutzerrechte."
+    },
+    "I": {
+     "why": "Nach dem Ausbruch Nutzerrechte."
+    },
+    "A": {
+     "why": "Nach dem Ausbruch Nutzerrechte."
+    }
+   },
+   "context_de": "KEV, EPSS 0,12: Zero-Day. Portals läuft im Browserprozess, daher ist der UAF dort der Ausbruch. Vergleiche Indexed DB CVE-2021-30633, gleiches Muster."
+  },
+  "CVE-2020-11022": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "jQuery 1.12.0 bis 3.5.0 führt beim Einfügen von HTML aus unsicheren Quellen über .html() oder .append() Code aus, selbst nach Sanitisierung.",
+   "metrics": {
+    "AV": {
+     "why": "jQuery im Browser, Daten aus dem Web."
+    },
+    "AC": {
+     "why": "NVD: AC:L; CNA AC:H (App muss HTML durchreichen)."
+    },
+    "PR": {
+     "why": "Nur Daten liefern."
+    },
+    "UI": {
+     "why": "Der untrusted HTML-Code läuft erst, wenn das Opfer die Seite mit der jQuery-DOM-Manipulation lädt: UI:R."
+    },
+    "S": {
+     "why": "XSS-Standard: S:C."
+    },
+    "C": {
+     "why": "Browserkontext: L; CNA C:H."
+    },
+    "I": {
+     "why": "Aktionen im Namen des Nutzers: L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "C": "CNA: AC:H, C:H (6,9). Wie bei CVE-2020-11023, derselbe Streit."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,99: Der Klassiker in jedem Scanner-Report. Praktische Ausnutzbarkeit hängt am Aufrufmuster in der App; der Findling allein ist selten ein Risiko."
+  },
+  "CVE-2021-2401": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Oracle BI Publisher (Komponente E-Business Suite XDO) hat eine leicht ausnutzbare Lücke, über die ein unauthentifizierter Angreifer per HTTP begrenzt Daten lesen kann (XXE).",
+   "metrics": {
+    "AV": {
+     "why": "'Network access via HTTP' wörtlich."
+    },
+    "AC": {
+     "why": "'Easily exploitable' wörtlich."
+    },
+    "PR": {
+     "why": "'Unauthenticated attacker' wörtlich."
+    },
+    "UI": {
+     "why": "Keine Interaktion genannt."
+    },
+    "S": {
+     "why": "Kein 'additional products'-Satz: S:U.",
+     "pitfall": "Vergleiche CVE-2019-2616 im selben Produkt: dort steht der S:C-Satz, hier nicht. Oracle-Texte sind präzise, lies jeden Satz."
+    },
+    "C": {
+     "why": "'Unauthorized read access to a subset of data' ist C:L."
+    },
+    "I": {
+     "why": "Keine Änderung genannt."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung genannt."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,85, nur CNA-Vektor (Oracle bewertet selbst). Oracle-CPU-Texte sind das beste Trainingsmaterial für Vektorlesen; die Klasse (XXE) steht nicht im Text."
+  },
+  "CVE-2017-0059": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+   "summary_de": "Internet Explorer 9 bis 11 lässt eine präparierte Webseite sensible Informationen aus dem Prozessspeicher lesen.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Das Opfer muss die präparierte Website besuchen, damit IE Prozessspeicher preisgibt: UI:R."
+    },
+    "S": {
+     "why": "Im Browser."
+    },
+    "C": {
+     "why": "NVD vergab C:L für Prozessspeicher.",
+     "pitfall": "Vergleiche Chrome CVE-2021-37976 (Prozessspeicher, C:H) und WebKit CVE-2023-28204 (C:H). Bei IE 2017 vergab NVD C:L. Gleiche Primitive, drei Jahre, andere Antwort."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "C": "Kein CNA-Vektor. Nach NVDs späterer Praxis wäre C:H (6,5) zu erwarten."
+   },
+   "context_de": "KEV, EPSS 0,62: In Exploit-Kits als Leak-Glied. Ein 4,3, der die Adressen für den eigentlichen Exploit lieferte."
+  },
+  "CVE-2026-1603": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Ivanti Endpoint Manager erlaubt über einen Authentifizierungs-Bypass unauthentifizierten Angreifern das Auslesen bestimmter gespeicherter Zugangsdaten.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz."
+    },
+    "AC": {
+     "why": "Keine Sonderbedingung."
+    },
+    "PR": {
+     "why": "Der Authentifizierungs-Bypass erlaubt einem unauthentifizierten Angreifer, gespeicherte Zugangsdaten zu leaken: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U; CNA S:C (Zugangsdaten führen zu anderen Systemen)."
+    },
+    "C": {
+     "why": "'Specific stored credential data': gezielt Zugangsdaten, H.",
+     "pitfall": "'Specific' klingt nach begrenztem Umfang (L), aber Zugangsdaten sind der Wertfall: H."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "S": "CNA (Ivanti): S:C (8,6). Folgeschaden ist kein Scope-Wechsel."
+   },
+   "context_de": "KEV, EPSS 0,81. Endpoint-Manager halten Zugangsdaten zu allen Clients; ein Leak dort ist ein Domänenproblem."
+  },
+  "CVE-2021-26085": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Confluence Server erlaubt über den /s/-Endpunkt vor der Autorisierung das Lesen beliebiger Dateien im Webroot (Pre-Authorization Arbitrary File Read).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung."
+    },
+    "AC": {
+     "why": "Präparierte URL."
+    },
+    "PR": {
+     "why": "'Pre-Authorization' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Confluence."
+    },
+    "C": {
+     "why": "Nur Dateien innerhalb des Webroots (JSP-Quellen, keine Secrets): begrenzt, C:L.",
+     "pitfall": "'Arbitrary file read' klingt nach H. Der Umfang (nur Webroot, keine Konfigurationsdateien) macht es zu L. Vergleiche Flink CVE-2020-17519: beliebige Dateien des Systems, H."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,999: Massenscans, aber allein wenig Nutzen. Ein 5,3 in KEV, weil Scanner es als Fingerprint nutzen."
+  },
+  "CVE-2024-50603": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der Aviatrix Controller reicht die Parameter cloud_type und src_cloud_type der API /v1/api ungefiltert an OS-Befehle weiter, was unauthentifizierte Codeausführung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "API über das Netz."
+    },
+    "AC": {
+     "why": "Shell-Metazeichen im Parameter."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Controller.",
+     "pitfall": "Der CNA vergab S:C: Der Controller verwaltet Cloud-Gateways mit hohen IAM-Rechten. Wieder die Produktrollen-Frage."
+    },
+    "C": {
+     "why": "Controller mit Cloud-Credentials: alles."
+    },
+    "I": {
+     "why": "Vollzugriff: alle Daten änderbar."
+    },
+    "A": {
+     "why": "Vollzugriff: Dienst oder System abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA: S:C (10,0). NVD 9,8."
+   },
+   "context_de": "KEV, EPSS 0,99: Binnen Tagen für Kryptominer und Backdoors genutzt. Cloud-Netzwerk-Controller haben IAM-Rechte über ganze Accounts."
+  },
+  "CVE-2021-22205": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "GitLab reicht hochgeladene Bilder ungeprüft an ExifTool weiter, dessen DjVu-Lücke (CVE-2021-22204) so zu unauthentifizierter Remote Code Execution wird.",
+   "metrics": {
+    "AV": {
+     "why": "Bild-Upload über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes Bild."
+    },
+    "PR": {
+     "why": "Der Upload-Endpunkt war ohne Anmeldung erreichbar."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:C, GitLab verwundbar (Weiterreichen), ExifTool/Host betroffen.",
+     "pitfall": "Dieselbe Bibliothekslücke: als ExifTool-CVE AV:L/UI:R (7,8), als GitLab-CVE AV:N/UI:N/S:C (10,0). Der Einbettungskontext macht den Unterschied von 2,2 Punkten."
+    },
+    "C": {
+     "why": "RCE auf GitLab: alle Repositories."
+    },
+    "I": {
+     "why": "Vollzugriff: alle Daten änderbar."
+    },
+    "A": {
+     "why": "Vollzugriff: Dienst oder System abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,997: Tausende GitLabs für Botnetze übernommen. Das Paradebeispiel für 'Bibliotheksvektor ist nicht Produktvektor'."
+  },
+  "CVE-2026-34486": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Der Fix für CVE-2026-29146 in Apache Tomcat erlaubt die Umgehung des EncryptInterceptor, sodass Cluster-Kommunikation unverschlüsselt bleibt.",
+   "metrics": {
+    "AV": {
+     "why": "Cluster-Kommunikation über das Netz."
+    },
+    "AC": {
+     "why": "CNA: keine Sonderbedingung, obwohl eine Netzposition (Mitlesen) nötig wäre.",
+     "pitfall": "Fehlende Verschlüsselung setzt eine MITM- oder Mitlese-Position voraus, klassisch AC:H (vgl. POODLE). Der CNA vergab AC:L."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Tomcat."
+    },
+    "C": {
+     "why": "Session-Daten des Clusters im Klartext: H."
+    },
+    "I": {
+     "why": "Nur Lesen bewertet."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "AC": "Nur CNA-Vektor. AC:H (5,9) wäre für eine Klartext-Lücke üblich."
+   },
+   "context_de": "KEV, EPSS 0,99. Unvollständiger Fix in einer verbreiteten Komponente; EPSS hoch, weil Tomcat überall ist, die reale Ausnutzbarkeit braucht Netzposition."
+  },
+  "CVE-2023-21839": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Oracle WebLogic Server (Core) hat eine leicht ausnutzbare Lücke über T3/IIOP, mit der ein unauthentifizierter Angreifer kritische Daten auslesen kann (real: JNDI-Injection, zu RCE ausgebaut).",
+   "metrics": {
+    "AV": {
+     "why": "'Network access via T3, IIOP' wörtlich."
+    },
+    "AC": {
+     "why": "'Easily exploitable' wörtlich."
+    },
+    "PR": {
+     "why": "'Unauthenticated attacker' wörtlich."
+    },
+    "UI": {
+     "why": "Keine Interaktion genannt."
+    },
+    "S": {
+     "why": "Kein 'additional products'-Satz: S:U."
+    },
+    "C": {
+     "why": "'Unauthorized access to critical data or complete access to all accessible data' ist Oracles C:H.",
+     "pitfall": "Oracle bewertete nur Datenzugriff (7,5). Der öffentliche Exploit lieferte RCE (9,8). Oracle-Vektoren beschreiben, was Oracle bestätigt, nicht was Angreifer erreichen."
+    },
+    "I": {
+     "why": "Keine Änderung genannt."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung genannt."
+    }
+   },
+   "context_de": "KEV, EPSS 0,999: Massenausnutzung mit öffentlichem Exploit. T3/IIOP gehören nicht ins Internet; wo sie es sind, ist die Wahrscheinlichkeit nahe 1."
+  },
+  "CVE-2025-31324": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der Metadata Uploader des SAP NetWeaver Visual Composer prüft die Autorisierung nicht, sodass unauthentifizierte Angreifer ausführbare Dateien hochladen und das System kompromittieren.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP-Endpunkt."
+    },
+    "AC": {
+     "why": "Upload-Request."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U; SAP S:C.",
+     "pitfall": "SAP vergibt bei NetWeaver-RCEs S:C mit Verweis auf die angebundenen Systeme. Vergleiche CVE-2022-22536, wo NVD S:C und SAP S:U vergab: Rollentausch."
+    },
+    "C": {
+     "why": "Webshell auf SAP: alles."
+    },
+    "I": {
+     "why": "Vollzugriff: alle Daten änderbar."
+    },
+    "A": {
+     "why": "Vollzugriff: Dienst oder System abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (SAP): S:C (10,0). NVD 9,8."
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,995: Zero-Day, hunderte SAP-Systeme mit Webshells. Visual Composer ist eine optionale Komponente; ob sie deployed ist, entscheidet die Wahrscheinlichkeit."
+  },
+  "CVE-2022-26138": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die App 'Questions for Confluence' legt das Konto disabledsystemuser mit fest kodiertem Passwort in der Gruppe confluence-users an; wer das Passwort kennt, liest alle für diese Gruppe sichtbaren Inhalte.",
+   "metrics": {
+    "AV": {
+     "why": "Confluence-Login über das Netz."
+    },
+    "AC": {
+     "why": "Passwort war binnen Tagen öffentlich."
+    },
+    "PR": {
+     "why": "Fest kodierte Zugangsdaten sind keine eigenen Rechte: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Confluence."
+    },
+    "C": {
+     "why": "Alles, was confluence-users sehen, typischerweise das ganze Wiki: H."
+    },
+    "I": {
+     "why": "NVD: I:H, obwohl das Konto nur normale Nutzerrechte hat.",
+     "pitfall": "Das Konto ist ein normaler Nutzer, kein Admin. I:H und A:H sind großzügig; C:H ist der Kern. NVD hat den 9,8-Standard vergeben, ohne die Rechte des Kontos zu prüfen."
+    },
+    "A": {
+     "why": "NVD: A:H, ohne Begründung im Text."
+    }
+   },
+   "dissent": {
+    "I": "Kein CNA-Vektor. Für ein Nutzerkonto ohne Admin wäre C:H/I:L/A:N (8,2) angemessener."
+   },
+   "context_de": "KEV, EPSS 0,98: Passwort auf Twitter, danach Massenanmeldungen. Fest kodierte Konten in Add-ons: Die Angriffsfläche eines Produkts umfasst seine Erweiterungen."
+  },
+  "CVE-2016-2388": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Die Universal Worklist Configuration in SAP NetWeaver AS Java gibt über eine präparierte HTTP-Anfrage sensible Nutzerinformationen preis.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung genannt."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist SAP."
+    },
+    "C": {
+     "why": "'Sensitive user information' (Nutzernamen, Rollen): begrenzt, C:L."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,52: Als Aufklärungsglied in SAP-Angriffsketten (Nutzernamen für Brute-Force). Ein 5,3, das die nächste Stufe vorbereitet."
+  },
+  "CVE-2025-20337": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Eine weitere API-Lücke in Cisco ISE/ISE-PIC mit unzureichender Eingabevalidierung erlaubt unauthentifizierten Angreifern Root-Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "API über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Does not require any valid credentials' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "CNA: NAC-System, root betrifft das ganze Netz."
+    },
+    "C": {
+     "why": "root: alles."
+    },
+    "I": {
+     "why": "root: alles."
+    },
+    "A": {
+     "why": "root: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,67, nur CNA-Vektor. Identischer Text zu CVE-2025-20281, zweite Lücke im selben API: Nach dem ersten Patch kam der zweite, beide aktiv ausgenutzt."
+  },
+  "CVE-2020-1350": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "SIGRed: Windows-DNS-Server verarbeiten bestimmte Anfragen (SIG-Records) fehlerhaft, was unauthentifizierte Remote Code Execution mit SYSTEM-Rechten erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "DNS-Anfragen über das Netz, auch indirekt über Rekursion auslösbar."
+    },
+    "AC": {
+     "why": "Präparierte DNS-Antwort, wurmfähig."
+    },
+    "PR": {
+     "why": "DNS braucht keine Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: DNS-Server läuft typischerweise auf Domänencontrollern, SYSTEM dort ist die Domäne: S:C.",
+     "pitfall": "Vergleiche Zerologon: gleiche Logik, DC-Kompromittierung erfasst alle Mitglieder."
+    },
+    "C": {
+     "why": "SYSTEM auf dem DC: alles."
+    },
+    "I": {
+     "why": "Vollzugriff: alle Daten änderbar."
+    },
+    "A": {
+     "why": "Vollzugriff: Dienst oder System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,91: 17 Jahre alte Lücke, wurmfähig. Die Beschreibung von Microsoft ist inhaltsleer; Score und Kontext (DC, wurmfähig) kommen aus der Analyse von Check Point."
+  },
+  "CVE-2011-1823": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der vold-Daemon in Android vertraut Netlink-Nachrichten und prüft einen Index nur nach oben, sodass ein negativer Index Speicherkorruption und Root-Rechte ermöglicht (GingerBreak).",
+   "metrics": {
+    "AV": {
+     "why": "Lokale Netlink-Nachricht."
+    },
+    "AC": {
+     "why": "Bekannter Exploit, kein Timing."
+    },
+    "PR": {
+     "why": "Eine App oder Shell mit normalen Rechten."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Kernel/Root auf demselben Gerät: S:U."
+    },
+    "C": {
+     "why": "root: alles."
+    },
+    "I": {
+     "why": "root: alles."
+    },
+    "A": {
+     "why": "root: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,42: GingerBreak, ein Rooting-Exploit, der von Malware übernommen wurde. Integer-Klasse (nur Maximum geprüft, kein Minimum) als Lehrbuchfall für CWE-190/CWE-129."
+  },
+  "CVE-2026-11645": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Out-of-Bounds-Read und -Write in V8 erlaubt über eine präparierte Seite Codeausführung innerhalb der Chrome-Sandbox.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Der V8-Out-of-bounds-Zugriff zündet erst beim Laden der präparierten HTML-Seite durch das Opfer: UI:R."
+    },
+    "S": {
+     "why": "'Inside a sandbox' wörtlich: S:U, hier korrekt (CNA-Vektor)."
+    },
+    "C": {
+     "why": "Codeausführung in der Sandbox."
+    },
+    "I": {
+     "why": "Codeausführung."
+    },
+    "A": {
+     "why": "Codeausführung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,02, nur CNA-Vektor. Ohne NVD-Nachbewertung verschwindet die S:C-Inkonsistenz von selbst: Google vergibt konsequent S:U für Renderer-Bugs."
+  }
+ }
+}

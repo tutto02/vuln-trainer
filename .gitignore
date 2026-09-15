@@ -1,0 +1,5 @@
+pipeline/cache/
+pipeline/out/
+__pycache__/
+*.pyc
+.env

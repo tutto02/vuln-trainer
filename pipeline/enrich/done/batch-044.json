@@ -1,0 +1,627 @@
+{
+ "batch": "batch-044",
+ "items": {
+  "CVE-2019-2729": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Oracle WebLogic Server (Web Services) erlaubt einem unauthentifizierten Angreifer über das Netz die Kompromittierung (XMLDecoder-Deserialisierung).",
+   "metrics": {
+    "AV": {
+     "why": "'Network access' (Oracle-Formulierung)."
+    },
+    "AC": {
+     "why": "'Easily exploitable' (Oracle-AC:L)."
+    },
+    "PR": {
+     "why": "'Unauthenticated attacker' wörtlich."
+    },
+    "UI": {
+     "why": "Keine Interaktion genannt."
+    },
+    "S": {
+     "why": "Kein 'additional products'-Satz: S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,89: WebLogic-Deserialisierung (CWE-284), die Umgehung des Fixes für CVE-2019-2725. WebLogic ist im Korpus das am häufigsten wiederkehrende Deserialisierungsziel; jeder Fix wird von der nächsten Gadget-Chain umgangen. Ein Produkt mit einer strukturellen Schwäche und einer Serie unvollständiger Fixes, wie Struts und ColdFusion."
+  },
+  "CVE-2022-46169": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Cacti erlaubt über eine Command Injection einem unauthentifizierten Nutzer die Ausführung beliebigen Codes (Umgehung der Authentifizierung über den X-Forwarded-For-Header).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage (gefälschter X-Forwarded-For plus Injection)."
+    },
+    "PR": {
+     "why": "Die Command-Injection in Cacti ist für unauthentifizierte Nutzer erreichbar, sofern eine passende Datenquelle existiert: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle im Cacti-Prozess, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,998: Cacti ist ein Netzwerk-Monitoring-Tool (wie Nagios, WhatsUp Gold). Command Injection (CWE-78) plus IP-Spoofing über den X-Forwarded-For-Header zur Auth-Umgehung. Monitoring-Server sehen das ganze Netz; Cacti ist im Korpus zweimal vertreten (auch CVE-2023-39361 SQLi)."
+  },
+  "CVE-2022-41223": {
+   "vector_basis": "CVSS:3.1/AV:A/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Director-Datenbank-Komponente von Mitel MiVoice Connect erlaubt einem authentifizierten Angreifer eine Code-Injection über präparierte Daten (unzureichende Typ-Beschränkung).",
+   "metrics": {
+    "AV": {
+     "why": "NVD: AV:A (angrenzendes Netz, interne Verwaltung)."
+    },
+    "AC": {
+     "why": "Präparierte Datenbankdaten."
+    },
+    "PR": {
+     "why": "Ein authentifizierter Angreifer: PR:H."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Prozess, S:U."
+    },
+    "C": {
+     "why": "Code: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,11: Mitel MiVoice zum wiederholten Mal (mit CVE-2022-29499). Code-Injection (CWE-94) über einen Datenbank-Datentyp; PR:H und AV:A begrenzen die Reichweite. VoIP-Systeme sind ein unterschätzter Netzwerk-Brückenkopf; niedriger EPSS, weil die Voraussetzungen enger sind."
+  },
+  "CVE-2023-0669": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Fortra GoAnywhere MFT hat im License Response Servlet eine Pre-Auth Command Injection durch Deserialisierung eines angreiferkontrollierten Objekts.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Admin-Interface im Netz."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt."
+    },
+    "PR": {
+     "why": "NVD: PR:H (Zugriff auf die Admin-Konsole nötig).",
+     "pitfall": "Die Beschreibung sagt 'pre-authentication', NVD vergab PR:H. Der Widerspruch: Das License Servlet war ohne Login erreichbar, wenn die Admin-Konsole exponiert war. PR:N wäre für den realen Angriff näher."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im GoAnywhere-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: Von Clop für Massendatendiebstahl genutzt (der Vorläufer des MOVEit-Angriffs). Deserialisierung (CWE-502) in einem Managed-File-Transfer-Server. GoAnywhere ist im Korpus zweimal vertreten (auch CVE-2025-10035); MFT-Server sind die Kategorie mit den größten Ransomware-Vorfällen."
+  },
+  "CVE-2021-3378": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "FortiLogger erlaubt über einen Content-Type-image/png-Header an SaveUploadedHotspotLogoFile einen unbeschränkten Datei-Upload und RCE.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Content-Type image/png setzen, ASP hochladen."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,98: Content-Type-Umgehung (CWE-434), wie CVE-2021-24145: Der Filter prüfte den Header (image/png), nicht den Inhalt. Trotz des Namens ist FortiLogger kein Fortinet-Produkt. Content-Type-basierte Filter sind unzuverlässig, weil der Header angreiferkontrolliert ist."
+  },
+  "CVE-2023-5074": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "D-Link D-View 8 verwendet einen statischen Schlüssel zum Schutz des JWT-Tokens, was eine Authentifizierungsumgehung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Ein Token mit dem bekannten statischen Schlüssel signieren."
+    },
+    "PR": {
+     "why": "Statischer Schlüssel ist kein eigenes Recht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist D-View, S:U."
+    },
+    "C": {
+     "why": "Auth-Bypass: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,68: Ein statischer JWT-Signierschlüssel (CWE-798), wie KubePi CVE-2023-22463 und Superset SECRET_KEY. D-View ist eine Netzwerk-Management-Software. Fest kodierte Signierschlüssel sind im Korpus ein Dauerthema; ein gefälschtes Token umgeht die Authentifizierung vollständig."
+  },
+  "CVE-2023-50719": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Die Solr-basierte Suche in XWiki gibt die Passwort-Hashes aller Nutzer an jeden preis, der Leserecht auf die jeweiligen Nutzerprofile hat.",
+   "metrics": {
+    "AV": {
+     "why": "Wiki-Weboberfläche über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Suchanfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig (Standard-Leserecht)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist XWiki."
+    },
+    "C": {
+     "why": "Passwort-Hashes aller Nutzer: gezielt, maximal wertvoll, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,84: Ein XWiki-Info-Leck (CWE-312, Klartext-Speicherung sensibler Daten in der Suche), wie CVE-2023-48241. Der Solr-Index enthielt die Hashes; die Suche gab sie preis. XWiki ist im Korpus mit über einem Dutzend CVEs vertreten; hier ein Info-Leck statt der üblichen Makro-RCE."
+  },
+  "CVE-2018-16763": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "FUEL CMS erlaubt über den filter- oder data-Parameter PHP-Code-Evaluation, was zu Pre-Auth Remote Code Execution führt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-CMS über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Parameter."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,83: PHP-Code-Evaluation (CWE-74) über einen Filter-Parameter, wie ThinkPHP und NoneCms. Ein CMS, das Parameterwerte als PHP-Code auswertet; ein Metasploit-Modul existiert. Kleine CMS mit eval-artigen Funktionen sind eine wiederkehrende RCE-Quelle."
+  },
+  "CVE-2022-47966": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Mehrere ManageEngine-Produkte erlauben über die veraltete Apache-Santuario-xmlsec-Bibliothek (XSLT-Features) unauthentifizierte Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte SAML-Antwort (nur bei aktiviertem SAML-SSO)."
+    },
+    "PR": {
+     "why": "Die xmlsec-basierte RCE setzt kein Konto voraus; präparierte SAML-Requests genügen: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,998: Betrifft über 20 ManageEngine-Produkte gleichzeitig, wegen einer veralteten Bibliothek (Apache Santuario xmlsec, CWE-20). Wie Log4Shell und jQuery-File-Upload trifft ein Bibliotheks-Bug alle einbettenden Produkte. Nur mit aktiviertem SAML-SSO verwundbar; die Konfiguration entscheidet. ManageEngine ist im Korpus stark vertreten."
+  },
+  "CVE-2021-31755": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der Tenda AC11 hat in /goform/setmac einen Stack-Buffer-Overflow, der über eine präparierte POST-Anfrage Codeausführung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des Routers über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte POST-Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf dem Router, S:U."
+    },
+    "C": {
+     "why": "Code: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: Router abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,87: Tenda-Router in Botnetzen. Stack-Buffer-Overflow (CWE-787) in einem CGI-Handler; Router-Firmware in C mit ungeprüften Parametern ist eine endlose Überlauf-Quelle (wie NETGEAR, D-Link, Tenda). Consumer-Router sind im Korpus ein Dauerthema."
+  },
+  "CVE-2020-5902": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Traffic Management User Interface (TMUI) von F5 BIG-IP hat eine Remote-Code-Execution-Lücke über Path Traversal.",
+   "metrics": {
+    "AV": {
+     "why": "TMUI über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL (..;/-Sequenz), öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf der Appliance, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Appliance abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99999: Massenausnutzung binnen Tagen (Juli 2020). Path Traversal (CWE-22, ..;/-Trick, der die Authentifizierung umging) zu RCE auf dem Load Balancer. F5 BIG-IP ist im Korpus ein Dauerthema (iControl, TMUI); das Management-Interface von Netzwerk-Appliances ist das wiederkehrende Ziel. Eine der folgenreichsten Appliance-Lücken 2020."
+  },
+  "CVE-2020-36222": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Ein Fehler in der saslAuthzTo-Validierung von OpenLDAP führt zu einem Assertion-Failure in slapd (Denial of Service).",
+   "metrics": {
+    "AV": {
+     "why": "LDAP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte SASL-Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der LDAP-Dienst."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "slapd-Absturz: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,78: Eine von mehreren OpenLDAP-Assertion-DoS-Lücken 2020 (mit CVE-2020-36221, 36227, 36228). Assertion-Failure (CWE-617); LDAP ist die Authentifizierungsschicht, ihr Ausfall trifft alle abhängigen Dienste. OpenLDAP hatte 2020 ein ganzes Bündel solcher Lücken, Geschwister im selben Release."
+  },
+  "CVE-2022-40300": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "ManageEngine Password Manager Pro, PAM360 und Access Manager Plus haben mehrere SQL-Injection-Lücken.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Die SQL-Injections in den ManageEngine-Passwortprodukten sind ohne Anmeldung ausnutzbar: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank und Anwendung im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "SQLi auf einem Passwort-Manager: alle Passwörter."
+    },
+    "I": {
+     "why": "SQLi: alles änderbar."
+    },
+    "A": {
+     "why": "SQLi: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,99: SQLi (CWE-89) in einem Privileged-Access-Management-System (wie die RCE CVE-2022-35405 im selben Produkt). PAM-Systeme halten die privilegierten Zugangsdaten der ganzen Organisation; eine SQLi dort ist der GAU. ManageEngine ist im Korpus stark vertreten."
+  },
+  "CVE-2017-8291": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Ghostscript erlaubt über eine Type Confusion (.rsdparams) und '%pipe%' in einem präparierten EPS-Dokument die Umgehung von -dSAFER und Remote Command Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Das Dokument wird lokal verarbeitet (z. B. beim Konvertieren eines Uploads): AV:L."
+    },
+    "AC": {
+     "why": "Präpariertes EPS/PostScript-Dokument."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Ein Prozess oder Nutzer muss das Dokument verarbeiten."
+    },
+    "S": {
+     "why": "Befehle im Ghostscript-Prozess, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,97: Ghostscript verarbeitet PostScript/PDF in vielen Anwendungen (ImageMagick, LibreOffice, Druck-Server). -dSAFER sollte gefährliche Operatoren sperren; die %pipe%-Umgehung führte trotzdem Shell-Befehle aus (CWE-843). Wie ImageTragick: eine Bibliothek, die eingebettete Befehle in Dokumenten ausführt, mit riesiger Reichweite über einbettende Produkte."
+  },
+  "CVE-2018-4878": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Use-After-Free in Adobe Flash Player (Primetime SDK, Listener-Objekte) erlaubt über präparierten Flash-Inhalt Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Flash-Inhalt über Web oder Dokument; NVD: AV:L."
+    },
+    "AC": {
+     "why": "Präparierter Flash-Inhalt."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite oder das Dokument öffnen."
+    },
+    "S": {
+     "why": "Code im Plugin-Prozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,90: Zero-Day, von einer nordkoreanischen Gruppe gegen südkoreanische Ziele genutzt. Use-After-Free (CWE-416); die Flash-Serie im Korpus reicht bis 2018. Flash-Zero-Days waren bis zuletzt ein bevorzugtes Werkzeug staatlicher Gruppen, oft über eingebettete Dokumente."
+  },
+  "CVE-2020-2096": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Das Jenkins Gitlab Hook Plugin escapet Projektnamen im build_now-Endpunkt nicht, was ein reflektiertes Cross-Site-Scripting erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierter Link über das Netz."
+    },
+    "AC": {
+     "why": "Ein präparierter Link genügt."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss den Link öffnen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Browserkontext des Opfers: C:L."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,93: XSS (CWE-79) in einem Jenkins-Plugin. Jenkins-Plugins sind eine große Angriffsfläche (wie die Groovy-Sandbox-Bypässe CVE-2019-1003029/1003030); XSS gegen einen CI-Server kann über CSRF-Token-Diebstahl zu Build-Manipulation führen. Ein XSS mit Supply-Chain-Potenzial."
+  },
+  "CVE-2021-40539": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "ManageEngine ADSelfService Plus hat eine REST-API-Authentifizierungsumgehung, die zu Remote Code Execution führt.",
+   "metrics": {
+    "AV": {
+     "why": "REST-API über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Von APT-Gruppen gegen kritische Infrastruktur genutzt (CISA-Warnung). Auth-Bypass (CWE-706) plus RCE. ADSelfService Plus verwaltet Passwort-Resets für Active Directory; ein Kompromiss gibt Zugriff auf die Domäne. ManageEngine ist im Korpus stark vertreten, ADSelfService Plus mehrfach."
+  },
+  "CVE-2023-35082": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ivanti EPMM (ältere Versionen) hat eine Authentifizierungsumgehung, die unauthentifizierten Zugriff auf eingeschränkte Funktionen erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist EPMM, S:U."
+    },
+    "C": {
+     "why": "Zugriff auf Nutzerdaten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99999: Eine eigenständige Variante von CVE-2023-35078 (im Korpus), die ältere EPMM-Versionen betrifft. Auth-Bypass (CWE-287); EPMM verwaltet alle Mobilgeräte. Ivanti ist das häufigste Herstellerthema im Korpus; oft folgen auf eine CVE weitere Varianten für andere Versionen."
+  },
+  "CVE-2020-8772": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das InfiniteWP-Client-Plugin für WordPress hat in iwp_mmb_set_request eine fehlende Autorisierungsprüfung, sodass jeder Angreifer mit Kenntnis eines Admin-Nutzernamens sich anmelden kann.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage mit dem Admin-Nutzernamen."
+    },
+    "PR": {
+     "why": "Die fehlende Autorisierungsprüfung in iwp_mmb_set_request lässt jeden anmelden, der nur den Admin-Nutzernamen kennt; kein eigenes Konto nötig: PR:N.",
+     "pitfall": "Der Nutzername ist Wissen, kein Recht — PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist WordPress, S:U."
+    },
+    "C": {
+     "why": "Admin-Anmeldung: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Admin: alles änderbar."
+    },
+    "A": {
+     "why": "Admin: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,88: Fehlende Autorisierung (CWE-862): Der Login-Endpunkt prüfte nur den Nutzernamen, kein Passwort. InfiniteWP verwaltet mehrere WordPress-Sites zentral (wie ein RMM für WordPress); ein Kompromiss trifft alle verwalteten Sites. Der Nutzername ist keine Authentifizierung."
+  },
+  "CVE-2023-1671": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der warn-proceed-Handler der Sophos Web Appliance hat eine Pre-Auth Command Injection.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface der Appliance über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf der Appliance, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Appliance abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99999: Sophos zum wiederholten Mal (XG, UTM, Cyberoam, Firewall, Web Appliance). Command Injection (CWE-77) im warn-proceed-Handler (die Seite, die vor gesperrten Websites warnt). Die Web Appliance filtert den Web-Verkehr; ihre Übernahme gibt Einblick in und Kontrolle über den gesamten Datenverkehr. Sophos-Appliances sind im Korpus ein Dauerthema."
+  }
+ }
+}

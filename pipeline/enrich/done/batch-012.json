@@ -1,0 +1,598 @@
+{
+ "batch": "batch-012",
+ "items": {
+  "CVE-2025-0282": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Ein Stack-Überlauf in Ivanti Connect Secure, Policy Secure und Neurons for ZTA erlaubt unauthentifizierten Angreifern Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "VPN-Appliance aus dem Internet."
+    },
+    "AC": {
+     "why": "NVD: AC:H wegen Exploit-Zuverlässigkeit (Versionsabhängigkeit, Speicherlayout).",
+     "pitfall": "Zero-Day mit aktiver Ausnutzung und trotzdem AC:H: NVD bewertet die Technik, nicht die Realität."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:C für VPN-Gateway-RCE (Zugang zum Netz dahinter).",
+     "pitfall": "Vergleiche CVE-2024-21887 (Ivanti, S:C) und CVE-2019-1579 (PAN-OS, S:U). NVD ist bei Gateways nicht konsistent."
+    },
+    "C": {
+     "why": "root auf dem Gateway: alles."
+    },
+    "I": {
+     "why": "Vollzugriff: alle Daten änderbar."
+    },
+    "A": {
+     "why": "Vollzugriff: Dienst oder System abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,9998: Zero-Day einer chinesischen Gruppe, Januar 2025. Ivanti-Gateways stehen in KEV mit einem halben Dutzend Einträgen; Produkthistorie gehört in die Risikobewertung."
+  },
+  "CVE-2023-41266": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+   "summary_de": "Ein Path Traversal in Qlik Sense Enterprise erlaubt unauthentifizierten Angreifern das Erzeugen einer anonymen Session und damit HTTP-Anfragen an nicht autorisierte Endpunkte.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierter Pfad."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Qlik."
+    },
+    "C": {
+     "why": "Anonyme Session, begrenzter Zugriff: C:L.",
+     "pitfall": "Einzeln nur Session-Erzeugung (6,5). In Kette mit CVE-2023-41265 (Tunneling, PR:L) wird daraus unauthentifizierte RCE. Die Kette macht PR:L zu PR:N."
+    },
+    "I": {
+     "why": "Begrenzte Anfragen: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "C": "CNA (Qlik): C:H (8,2). Qlik rechnet den Kettennutzen ein."
+   },
+   "context_de": "KEV mit Ransomware-Bezug (Cactus), EPSS 0,85. Das erste Glied der Qlik-Kette; allein ein Medium, in der Kette der Türöffner."
+  },
+  "CVE-2025-48927": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Der TeleMessage-Dienst exponiert den Spring-Boot-Actuator-Endpunkt /heapdump, über den ein Speicherabbild der Anwendung ohne Anmeldung abrufbar ist.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP-Endpunkt."
+    },
+    "AC": {
+     "why": "URL aufrufen."
+    },
+    "PR": {
+     "why": "Actuator ohne Auth."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Anwendung."
+    },
+    "C": {
+     "why": "Vertraulichkeit: CNA: C:L.",
+     "pitfall": "Ein Heap-Dump enthält alles, was die Anwendung gerade im Speicher hat: Passwörter, Tokens, Nachrichten. C:H wäre die spezifikationsnähere Wahl (Vollzugriff auf Prozessdaten). Der CNA blieb bei L."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "C": "Nur CNA-Vektor (5,3). Real wurden aus dem Heap-Dump Klartext-Nachrichten und Zugangsdaten extrahiert; C:H (7,5)."
+   },
+   "context_de": "KEV, EPSS 0,11: Der Signal-Klon der US-Regierung, Mai 2025. Standard-Endpunkte von Frameworks (Actuator) sind eine eigene Klasse von Fehlkonfiguration (CWE-1188)."
+  },
+  "CVE-2016-5195": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Dirty COW: Eine Race Condition in der Copy-on-Write-Behandlung des Linux-Kernels erlaubt lokalen Nutzern das Schreiben in schreibgeschützte Speicherabbildungen und damit Root-Rechte.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Zugriff auf das System nötig."
+    },
+    "AC": {
+     "why": "Race zwischen zwei Threads: Timing außerhalb der Kontrolle, AC:H.",
+     "pitfall": "Dirty COW gewinnt die Race in der Praxis fast immer, trotzdem AC:H. NVD wertet Race Conditions meist als AC:H, außer bei nachweislich stabilen Exploits (CVE-2021-21166)."
+    },
+    "PR": {
+     "why": "Normaler Nutzer."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Kernel-EoP: S:U."
+    },
+    "C": {
+     "why": "root: alles."
+    },
+    "I": {
+     "why": "root: alles."
+    },
+    "A": {
+     "why": "root: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,84: Jahrelang der Standard-Root-Exploit auf ungepatchten Linux-Systemen und in Containern. Score 7,0 mit AC:H; die Praxis sagt 'jeder Skript-Kiddie schafft es'."
+  },
+  "CVE-2024-20353": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H",
+   "summary_de": "Die Management- und VPN-Webserver von Cisco ASA/FTD prüfen HTTP-Header unvollständig, sodass ein präparierter Request das Gerät neu startet.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierter Header."
+    },
+    "PR": {
+     "why": "Die Management-/VPN-Webserver antworten unauthentifizierten Angreifern; der Reload braucht kein Konto: PR:N."
+    },
+    "UI": {
+     "why": "Kein Nutzer beteiligt."
+    },
+    "S": {
+     "why": "NVD-Konvention: Firewall-Reload trifft alle Netze dahinter, S:C."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Reload: Firewall weg."
+    }
+   },
+   "context_de": "KEV, EPSS 0,71: Teil der ArcaneDoor-Kampagne (mit CVE-2024-20359) gegen Regierungsnetze. Ein DoS als Werkzeug, um Persistenz-Mechanismen nach einem Reload zu aktivieren; DoS-Lücken sind nicht immer nur DoS."
+  },
+  "CVE-2023-46748": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das BIG-IP Configuration Utility hat eine authentifizierte SQL-Injection, über die ein Angreifer mit Zugang zum Management-Port Systembefehle ausführt.",
+   "metrics": {
+    "AV": {
+     "why": "Management-Port oder Self-IP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Eingabe."
+    },
+    "PR": {
+     "why": "'Authenticated attacker' wörtlich: PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf der Appliance."
+    },
+    "C": {
+     "why": "Systembefehle: alles."
+    },
+    "I": {
+     "why": "Vollzugriff: alle Daten änderbar."
+    },
+    "A": {
+     "why": "Vollzugriff: Dienst oder System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,04: In Kette mit dem Auth-Bypass CVE-2023-46747, der die Anmeldung lieferte. PR:L einzeln, PR:N als Kette; EPSS niedrig, weil der Bypass den Traffic auf sich zieht."
+  },
+  "CVE-2026-15409": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Das Work-Place-Interface der SonicWall SMA1000 hat eine SSRF, über die unauthentifizierte Angreifer die Appliance Anfragen an beliebige Ziele stellen lassen.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface."
+    },
+    "AC": {
+     "why": "CNA: keine Sonderbedingung."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "SSRF: andere Systeme betroffen, S:C."
+    },
+    "C": {
+     "why": "CNA: H/H/H für eine SSRF.",
+     "pitfall": "'Make requests to unintended location' ist eine SSRF-Primitive, üblicherweise C:L/I:L. Der CNA vergab 10,0, vermutlich weil intern Admin-Funktionen erreichbar waren. Ohne Details ist das nicht prüfbar."
+    },
+    "I": {
+     "why": "Integrität: CNA: I:H."
+    },
+    "A": {
+     "why": "Verfügbarkeit: CNA: A:H."
+    }
+   },
+   "dissent": {
+    "C": "Nur CNA-Vektor (10,0). Für die beschriebene Primitive wäre 7,2 (C:L/I:L) üblich; die 10,0 setzt Wissen voraus, das nicht im Text steht."
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,85. Schwester von CVE-2026-83548, beide vage beschrieben, beide 10,0: Herstellerangaben ersetzen die eigene Analyse nicht."
+  },
+  "CVE-2016-7201": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Chakra-JavaScript-Engine in Microsoft Edge erlaubt über eine präparierte Webseite Codeausführung oder Absturz (Speicherkorruption).",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Chakra wird über eine präparierte Website ausgelöst, die das Opfer in Edge aufrufen muss: UI:R."
+    },
+    "S": {
+     "why": "Im Browser."
+    },
+    "C": {
+     "why": "Codeausführung mit Nutzerrechten."
+    },
+    "I": {
+     "why": "Codeausführung."
+    },
+    "A": {
+     "why": "Codeausführung oder Absturz."
+    }
+   },
+   "context_de": "KEV, EPSS 0,80: In Exploit-Kits. Microsofts Beschreibungen von 2016 nennen wenigstens 'crafted web site' und 'arbitrary code'; das reicht für den Standardvektor 8,8."
+  },
+  "CVE-2022-26486": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H",
+   "summary_de": "Eine unerwartete Nachricht im WebGPU-IPC-Framework von Firefox führt zu einem Use-After-Free und einem ausnutzbaren Sandbox-Escape.",
+   "metrics": {
+    "AV": {
+     "why": "Webinhalte über das Netz."
+    },
+    "AC": {
+     "why": "Vorbedingung liegt beim Angreifer."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Die unerwartete WebGPU-IPC-Nachricht wird über präparierten Webinhalt ausgelöst, den das Opfer in Firefox laden muss: UI:R."
+    },
+    "S": {
+     "why": "'Sandbox escape' wörtlich: S:C."
+    },
+    "C": {
+     "why": "Nach dem Ausbruch Nutzerrechte."
+    },
+    "I": {
+     "why": "Nach dem Ausbruch Nutzerrechte."
+    },
+    "A": {
+     "why": "Nach dem Ausbruch Nutzerrechte."
+    }
+   },
+   "context_de": "KEV, EPSS 0,02: Zero-Day-Kette (mit CVE-2022-26485) gegen chinesische Nutzer. IPC-Bugs sind der typische Escape-Weg in allen Browsern: Chrome Mojo, Firefox IPC."
+  },
+  "CVE-2021-41174": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Grafana führt über eine präparierte URL JavaScript im Browser eines nicht angemeldeten Besuchers aus (reflektiertes XSS auf der Login-Seite).",
+   "metrics": {
+    "AV": {
+     "why": "Präparierter Link."
+    },
+    "AC": {
+     "why": "NVD: AC:L; CNA AC:H (Opfer muss unangemeldet sein und die Seite bestimmte Elemente enthalten)."
+    },
+    "PR": {
+     "why": "Der Angreifer braucht kein Grafana-Konto; er verleitet nur ein Opfer zum Aufruf der präparierten URL (UI:R): PR:N."
+    },
+    "UI": {
+     "why": "Opfer muss den Link öffnen."
+    },
+    "S": {
+     "why": "Scope: XSS: S:C."
+    },
+    "C": {
+     "why": "Browserkontext: L."
+    },
+    "I": {
+     "why": "NVD: I:L; CNA I:H (Login-Formular manipulierbar, Passwort-Diebstahl)."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "I": "CNA (Grafana): AC:H, I:H (6,8). XSS auf einer Login-Seite ist mehr als Standard-XSS: Das Formular selbst wird zum Phishing-Werkzeug."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,85. XSS auf Login-Seiten ist der Fall, in dem C:L/I:L unterschätzt: Das Ziel sind Zugangsdaten."
+  },
+  "CVE-2019-13608": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Citrix StoreFront Server erlaubt XXE-Angriffe.",
+   "metrics": {
+    "AV": {
+     "why": "StoreFront ist ein Webdienst."
+    },
+    "AC": {
+     "why": "Präpariertes XML."
+    },
+    "PR": {
+     "why": "Keine Anmeldung genannt."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist StoreFront."
+    },
+    "C": {
+     "why": "XXE: Dateien lesen, gezielt: H (NVD-Standard für XXE)."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,30. Die Beschreibung ist ein Satz; der Vektor folgt dem XXE-Standard 7,5. Bei so knappen Texten hilft die Klasse mehr als der Text."
+  },
+  "CVE-2019-1003029": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Die Groovy-Sandbox des Jenkins Script Security Plugin lässt sich umgehen, sodass Nutzer mit Overall/Read-Recht Code auf dem Jenkins-Master ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "Jenkins-Weboberfläche."
+    },
+    "AC": {
+     "why": "Präpariertes Skript."
+    },
+    "PR": {
+     "why": "'Overall/Read permission': das niedrigste Recht, PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Sandbox-Ausbruch auf die Master-JVM: S:C begründet."
+    },
+    "C": {
+     "why": "Master: alle Credentials."
+    },
+    "I": {
+     "why": "Master: alle Builds."
+    },
+    "A": {
+     "why": "Master abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,74: Schwester von CVE-2019-1003030, gleiche Sandbox, anderer Umgehungsweg. NVD ohne CWE (noinfo); die Klasse ist Sandbox-Bypass (CWE-693 bei der Schwester)."
+  },
+  "CVE-2020-6287": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "RECON: Der LM Configuration Wizard von SAP NetWeaver AS Java prüft keine Authentifizierung, sodass Angreifer ohne Anmeldung Konfigurationsaufgaben ausführen und einen Admin-Nutzer anlegen können.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte SOAP-Anfrage."
+    },
+    "PR": {
+     "why": "'Without prior authentication' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: Admin auf dem SAP-Java-System erreicht angebundene Systeme, S:C."
+    },
+    "C": {
+     "why": "Admin: alles."
+    },
+    "I": {
+     "why": "Admin: alles."
+    },
+    "A": {
+     "why": "Admin: alles."
+    }
+   },
+   "context_de": "KEV, EPSS 0,95: 'RECON', Exploit binnen Tagen. Ein Admin-Konto anlegen ist die dauerhafteste Form der Kompromittierung; Patch plus Nutzer-Audit."
+  },
+  "CVE-2023-23752": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Joomla 4.0.0 bis 4.2.7 prüft den Zugriff auf Webservice-Endpunkte unzureichend, sodass die REST-API ohne Anmeldung erreichbar ist (real: Datenbank-Zugangsdaten über /api/index.php/v1/config/application).",
+   "metrics": {
+    "AV": {
+     "why": "REST-API über das Netz."
+    },
+    "AC": {
+     "why": "Eine URL aufrufen, kein Aufwand."
+    },
+    "PR": {
+     "why": "Der Zugriffscheck fehlt."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Joomla."
+    },
+    "C": {
+     "why": "NVD: C:L, 'unauthorized access to webservice endpoints'.",
+     "pitfall": "Der konkrete Endpunkt liefert die Datenbank-Zugangsdaten im Klartext. Das ist C:H nach dem Wert-Kriterium. NVD hat nur den vagen Text bewertet; die Praxis (EPSS 0,998) zeigt, was drin steckt."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "C": "Kein CNA-Vektor. Mit Kenntnis des Endpunkts wäre C:H (7,5) richtig; 5,3 unterschätzt."
+   },
+   "context_de": "KEV, EPSS 0,998: Massenscans, Datenbank-Zugangsdaten als Beute. Ein 5,3 mit einem der höchsten EPSS-Werte: Wenn Score und EPSS so weit auseinanderliegen, ist meist der Score falsch."
+  },
+  "CVE-2024-51378": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "CyberPanel prüft die Middleware nur bei POST-Requests; über GET an /dns/getresetstatus lassen sich die Authentifizierung umgehen und Shell-Befehle über statusfile ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP über das Netz."
+    },
+    "AC": {
+     "why": "GET statt POST, Shell-Metazeichen."
+    },
+    "PR": {
+     "why": "getresetstatus umgeht die secMiddleware, sodass entfernte Angreifer ohne Anmeldung Befehle ausführen: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Panel-Host (root).",
+     "pitfall": "Der CNA vergab S:C. Hosting-Panels laufen als root und verwalten Kundenseiten; die Produktrolle wird wieder als Scope gewertet."
+    },
+    "C": {
+     "why": "root: alles."
+    },
+    "I": {
+     "why": "Vollzugriff: alle Daten änderbar."
+    },
+    "A": {
+     "why": "Vollzugriff: Dienst oder System abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA: S:C (10,0). NVD 9,8."
+   },
+   "context_de": "KEV mit Ransomware-Bezug (PSAUX), EPSS 0,95: Tausende Server binnen Tagen verschlüsselt. Ein Logikfehler (Middleware nur für POST) als Klassenfrage: CWE-78 sagt Command Injection, die Ursache war die Auth-Umgehung."
+  },
+  "CVE-2022-22947": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Spring Cloud Gateway erlaubt bei aktiviertem, ungesichertem Gateway-Actuator-Endpunkt Code-Injection über SpEL-Ausdrücke in Routen-Definitionen.",
+   "metrics": {
+    "AV": {
+     "why": "Actuator über HTTP."
+    },
+    "AC": {
+     "why": "NVD: AC:L trotz Konfigurationsvoraussetzung (Actuator exponiert)."
+    },
+    "PR": {
+     "why": "'Unsecured' laut Beschreibung: keine Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: Gateway steuert Verkehr zu Backend-Diensten, S:C."
+    },
+    "C": {
+     "why": "RCE auf dem Gateway: alles."
+    },
+    "I": {
+     "why": "Vollzugriff: alle Daten änderbar."
+    },
+    "A": {
+     "why": "Vollzugriff: Dienst oder System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,98: Massenscans. Wie TeleMessage: Actuator-Endpunkte im Netz sind die Wahrscheinlichkeitsfrage, nicht der Bug."
+  },
+  "CVE-2025-34291": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Langflow kombiniert eine zu offene CORS-Konfiguration (allow_origins='*' mit Credentials) mit einem SameSite=None-Refresh-Token-Cookie, sodass eine fremde Webseite mit Credentials Anfragen stellt, Konten übernimmt und Code ausführt.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite, Anfragen an Langflow."
+    },
+    "AC": {
+     "why": "CORS-Fehlkonfiguration im Standard, kein Aufwand."
+    },
+    "PR": {
+     "why": "NVD: PR:L, weil ein angemeldeter Nutzer die fremde Seite besuchen muss und dessen Session genutzt wird.",
+     "pitfall": "CSRF-artiges Muster, aber NVD vergab PR:L statt PR:N/UI:R. Die Rechte des Opfers wurden hier dem Angreifer zugeschlagen, entgegen der CSRF-Regel."
+    },
+    "UI": {
+     "why": "NVD: UI:N, obwohl ein Seitenbesuch nötig ist."
+    },
+    "S": {
+     "why": "Betroffen ist Langflow."
+    },
+    "C": {
+     "why": "Kontoübernahme plus RCE: alles."
+    },
+    "I": {
+     "why": "Vollzugriff: alle Daten änderbar."
+    },
+    "A": {
+     "why": "Vollzugriff: Dienst oder System abschaltbar."
+    }
+   },
+   "dissent": {
+    "PR": "Kein CNA-Vektor. Nach CSRF-Logik wäre AV:N/AC:L/PR:N/UI:R (8,8) korrekt."
+   },
+   "context_de": "KEV, EPSS 0,84. KI-Tooling mit Web-UI ist die neue Klasse exponierter Entwicklerwerkzeuge; die Klasse (CWE-346, Origin-Validierung) ist alt."
+  },
+  "CVE-2025-10035": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das License Servlet von Fortra GoAnywhere MFT deserialisiert eine gefälschte Lizenzantwort, wenn deren Signatur mit einem bekannten Schlüssel gefälscht wurde, was Command Injection erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP-Servlet über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:L; die Frage, wie der Angreifer an den privaten Schlüssel kam, ist ungeklärt.",
+     "pitfall": "Die Ausnutzung setzt eine gültige Signatur voraus. Wenn der Schlüssel geleakt ist, ist AC:L; wenn nicht, wäre es kaum ausnutzbar. Aktive Ausnutzung belegt: Der Schlüssel war da."
+    },
+    "PR": {
+     "why": "Vor der Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im MFT-Prozess.",
+     "pitfall": "Der CNA vergab S:C. Kein Grund im Text."
+    },
+    "C": {
+     "why": "RCE auf dem Dateitransfer-Server: alles."
+    },
+    "I": {
+     "why": "Vollzugriff: alle Daten änderbar."
+    },
+    "A": {
+     "why": "Vollzugriff: Dienst oder System abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (Fortra): S:C (10,0). NVD 9,8."
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,998: Zero-Day, GoAnywhere zum zweiten Mal (2023: CVE-2023-0669, Clop). Produkte mit KEV-Historie verdienen eine engere Überwachung."
+  }
+ }
+}

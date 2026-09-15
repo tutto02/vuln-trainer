@@ -1,0 +1,476 @@
+{
+"batch": "batch-056",
+"with_chain": false,
+"items": [
+{
+"id": "CVE-2021-1415",
+"desc": "Multiple vulnerabilities in the web-based management interface of Cisco RV340, RV340W, RV345, and RV345P Dual WAN Gigabit VPN Routers could allow an authenticated, remote attacker to execute arbitrary code with elevated privileges equivalent to the web service process on an affected device. These vulnerabilities exist because HTTP requests are not properly validated. An attacker could exploit these vulnerabilities by sending a crafted HTTP request to the web-based management interface of an affected device. A successful exploit could allow the attacker to remotely execute arbitrary code on the device.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"score": 6.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-502",
+"class": "deserialization",
+"stack": "network",
+"products": [
+"cisco:rv340_firmware",
+"cisco:rv340",
+"cisco:rv340w_firmware"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01612,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2019-19493",
+"desc": "Kentico before 12.0.50 allows file uploads in which the Content-Type header is inconsistent with the file extension, leading to XSS.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-434",
+"class": "file-upload",
+"stack": "web",
+"products": [
+"kentico:xperience"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.02023,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2020-12039",
+"desc": "Baxter Sigma Spectrum Infusion Pumps Sigma Spectrum Infusion System v's6.x model 35700BAX & Baxter Spectrum Infusion System v's8.x model 35700BAX2 contain hardcoded passwords when physically entered on the keypad provide access to biomedical menus including device settings, view calibration values, network configuration of Sigma Spectrum WBM if installed.",
+"vector": "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+"score": 2.4,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-798",
+"class": "hardcoded-creds",
+"stack": "library",
+"products": [
+"baxter:sigma_spectrum_infusion_system_firmware",
+"baxter:sigma_spectrum_infusion_system"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00333,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2020-2103",
+"desc": "Jenkins 2.218 and earlier, LTS 2.204.1 and earlier exposed session identifiers on a user's detail object in the whoAmI diagnostic page.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-200",
+"class": "info-exposure",
+"stack": "web",
+"products": [
+"jenkins:jenkins"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.07044,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2020-26298",
+"desc": "Redcarpet is a Ruby library for Markdown processing. In Redcarpet before version 3.5.1, there is an injection vulnerability which can enable a cross-site scripting attack. In affected versions no HTML escaping was being performed when processing quotes. This applies even when the `:escape_html` option was being used. This is fixed in version 3.5.1 by the referenced commit.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:N/I:H/A:N",
+"differs": [
+"C",
+"I"
+],
+"cwe": "CWE-74",
+"class": "injection-other",
+"stack": "linux",
+"products": [
+"redcarpet_project:redcarpet",
+"debian:debian_linux"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.0157,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2022-4032",
+"desc": "The Quiz and Survey Master plugin for WordPress is vulnerable to iFrame Injection via the 'question[id]' parameter in versions up to, and including, 8.0.4 due to insufficient input sanitization and output escaping that allowed iframe tags to be injected. This makes it possible for unauthenticated attackers to inject iFrames in pages that will execute whenever a user accesses an injected page.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N",
+"differs": [
+"UI"
+],
+"cwe": "CWE-20",
+"class": "input-validation",
+"stack": "web",
+"products": [
+"expresstech:quiz_and_survey_master"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00757,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2020-6569",
+"desc": "Integer overflow in WebUSB in Google Chrome prior to 85.0.4183.83 allowed a remote attacker who had compromised the renderer process to potentially exploit heap corruption via a crafted HTML page.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:L",
+"score": 6.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-190",
+"class": "integer-overflow",
+"stack": "linux",
+"products": [
+"google:chrome",
+"opensuse:backports_sle",
+"debian:debian_linux"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01272,
+"traps": [
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-27260",
+"desc": "This vulnerability allows local attackers to disclose sensitive information on affected installations of Parallels Desktop 16.0.1-48919. An attacker must first obtain the ability to execute high-privileged code on the target guest system in order to exploit this vulnerability. The specific flaw exists within the Toolgate component. The issue results from the lack of proper validation of user-supplied data, which can result in a read past the end of an allocated buffer. An attacker can leverage this in conjunction with other vulnerabilities to escalate privileges and execute arbitrary code in the context of the hypervisor. Was ZDI-CAN-12068.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:L/I:N/A:N",
+"score": 3.2,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-125",
+"class": "memory-read",
+"stack": "application",
+"products": [
+"parallels:parallels_desktop"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.0049,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2021-3409",
+"desc": "The patch for CVE-2020-17380/CVE-2020-25085 was found to be ineffective, thus making QEMU vulnerable to the out-of-bounds read/write access issues previously found in the SDHCI controller emulation code. This flaw allows a malicious privileged guest to crash the QEMU process on the host, resulting in a denial of service or potential code execution. QEMU up to (including) 5.2.0 is affected by this.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:L/I:L/A:L",
+"score": 5.7,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-119",
+"class": "memory-write",
+"stack": "linux",
+"products": [
+"qemu:qemu",
+"redhat:enterprise_linux",
+"fedoraproject:fedora"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00489,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2020-26266",
+"desc": "In affected versions of TensorFlow under certain cases a saved model can trigger use of uninitialized values during code execution. This is caused by having tensor buffers be filled with the default value of the type but forgetting to default initialize the quantized floating point types in Eigen. This is fixed in versions 1.15.5, 2.0.4, 2.1.3, 2.2.2, 2.3.2, and 2.4.0.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"score": 5.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:L",
+"differs": [
+"C"
+],
+"cwe": "CWE-908",
+"class": "null-deref-uninit",
+"stack": "application",
+"products": [
+"google:tensorflow"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00261,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2019-3828",
+"desc": "Ansible fetch module before versions 2.5.15, 2.6.14, 2.7.8 has a path traversal vulnerability which allows copying and overwriting files outside of the specified destination in the local ansible controller host, by not restricting an absolute path.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:N",
+"score": 4.2,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-22",
+"class": "path-traversal",
+"stack": "linux",
+"products": [
+"redhat:ansible"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00526,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2021-41091",
+"desc": "Moby is an open-source project created by Docker to enable software containerization. A bug was found in Moby (Docker Engine) where the data directory (typically `/var/lib/docker`) contained subdirectories with insufficiently restricted permissions, allowing otherwise unprivileged Linux users to traverse directory contents and execute programs. When containers included executable programs with extended permission bits (such as `setuid`), unprivileged Linux users could discover and execute those programs. When the UID of an unprivileged Linux user on the host collided with the file owner or group inside a container, the unprivileged Linux user on the host could discover, read, and modify those files. This bug has been fixed in Moby (Docker Engine) 20.10.9. Users should update to this version as soon as possible. Running containers should be stopped and restarted for the permissions to be fixed. For users unable to upgrade limit access to the host to trusted users. Limit access to host volumes to trusted containers.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:L",
+"score": 6.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-732",
+"class": "permissions-config",
+"stack": "linux",
+"products": [
+"mobyproject:moby",
+"fedoraproject:fedora"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.02848,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2021-1416",
+"desc": "Multiple vulnerabilities in the Admin portal of Cisco Identity Services Engine (ISE) could allow an authenticated, remote attacker to obtain sensitive information. These vulnerabilities are due to improper enforcement of administrator privilege levels for sensitive data. An attacker with read-only administrator access to the Admin portal could exploit these vulnerabilities by browsing to one of the pages that contains sensitive data. A successful exploit could allow the attacker to collect sensitive information regarding the configuration of the system. For more information about these vulnerabilities, see the Details section of this advisory.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+"score": 4.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+"differs": [
+"C"
+],
+"cwe": "CWE-269",
+"class": "privilege-mgmt",
+"stack": "network",
+"products": [
+"cisco:identity_services_engine"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.0092,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2020-1733",
+"desc": "A race condition flaw was found in Ansible Engine 2.7.17 and prior, 2.8.9 and prior, 2.9.6 and prior when running a playbook with an unprivileged become user. When Ansible needs to run a module with become user, the temporary directory is created in /var/tmp. This directory is created with \"umask 77 && mkdir -p <dir>\"; this operation does not fail if the directory already exists and is owned by another user. An attacker could take advantage to gain control of the become user as the target directory can be retrieved by iterating '/proc/<pid>/cmdline'.",
+"vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:L/I:L/A:L",
+"score": 5.0,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-362",
+"class": "race-condition",
+"stack": "linux",
+"products": [
+"redhat:ansible",
+"redhat:ansible_tower",
+"redhat:cloudforms_management_engine"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00403,
+"traps": [
+"scope_c",
+"c_low",
+"ac_h"
+]
+},
+{
+"id": "CVE-2022-30725",
+"desc": "Broadcasting Intent including the BluetoothDevice object without proper restriction of receivers in sendIntentSessionError function of Bluetooth prior to SMR Jun-2022 Release 1 leaks MAC address of the connected Bluetooth device.",
+"vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+"score": 4.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+"differs": [
+"AV"
+],
+"cwe": "CWE-755",
+"class": "resource-exhaustion",
+"stack": "android",
+"products": [
+"google:android"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00109,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2020-5147",
+"desc": "SonicWall NetExtender Windows client vulnerable to unquoted service path vulnerability, this allows a local attacker to gain elevated privileges in the host operating system. This vulnerability impact SonicWall NetExtender Windows client version 10.2.300 and earlier.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"score": 5.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-428",
+"class": "search-path",
+"stack": "network",
+"products": [
+"sonicwall:netextender"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01658,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2020-15226",
+"desc": "In GLPI before version 9.5.2, there is a SQL Injection in the API's search function. Not only is it possible to break the SQL syntax, but it is also possible to utilise a UNION SELECT query to reflect sensitive information such as the current database version, or database user. The most likely scenario for this vulnerability is with someone who has an API account to the system. The issue is patched in version 9.5.2. A proof-of-concept with technical details is available in the linked advisory.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+"score": 4.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+"differs": [
+"S"
+],
+"cwe": "CWE-89",
+"class": "sqli",
+"stack": "application",
+"products": [
+"glpi-project:glpi"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01036,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2021-22178",
+"desc": "An issue has been discovered in GitLab affecting all versions starting from 13.2. Gitlab was vulnerable to SRRF attack through the Prometheus integration.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+"score": 5.0,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-918",
+"class": "ssrf",
+"stack": "web",
+"products": [
+"gitlab:gitlab"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01114,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2021-23566",
+"desc": "The package nanoid from 3.0.0 and before 3.1.31 are vulnerable to Information Exposure via the valueOf() function which allows to reproduce the last id generated.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+"score": 5.5,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+"differs": [
+"PR",
+"C"
+],
+"cwe": "CWE-704",
+"class": "type-confusion",
+"stack": "library",
+"products": [
+"nanoid_project:nanoid"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.0044,
+"traps": [
+"c_high_scoped"
+]
+},
+{
+"id": "CVE-2019-8054",
+"desc": "Adobe Acrobat and Reader versions 2019.012.20035 and earlier, 2019.012.20035 and earlier, 2017.011.30142 and earlier, 2017.011.30143 and earlier, 2015.006.30497 and earlier, and 2015.006.30498 and earlier have an use after free vulnerability. Successful exploitation could lead to arbitrary code execution .",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+"score": 4.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-416",
+"class": "use-after-free",
+"stack": "windows",
+"products": [
+"adobe:acrobat_dc",
+"adobe:acrobat_reader_dc",
+"apple:macos"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.03565,
+"traps": [
+"c_low",
+"pr_n_but_ui_r"
+]
+}
+]
+}

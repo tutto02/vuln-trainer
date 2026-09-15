@@ -1,0 +1,469 @@
+{
+"batch": "batch-057",
+"with_chain": false,
+"items": [
+{
+"id": "CVE-2021-28125",
+"desc": "Apache Superset up to and including 1.0.1 allowed for the creation of an external URL that could be malicious. By not checking user input for open redirects the URL shortener functionality would allow for a malicious user to create a short URL for a dashboard that could convince the user to click the link.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-601",
+"class": "web-logic",
+"stack": "web",
+"products": [
+"apache:superset"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.64016,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-23174",
+"desc": "Authenticated (admin+) Persistent Cross-Site Scripting (XSS) vulnerability discovered in Download Monitor WordPress plugin (versions <= 4.4.6) Vulnerable parameters: &post_title, &downloadable_file_version[0].",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:N",
+"score": 4.8,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:N/I:L/A:N",
+"differs": [
+"C"
+],
+"cwe": "CWE-79",
+"class": "xss",
+"stack": "web",
+"products": [
+"wpchill:download_monitor"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.83853,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2020-25817",
+"desc": "SilverStripe through 4.6.0-rc1 has an XXE Vulnerability in CSSContentParser. A developer utility meant for parsing HTML within unit tests can be vulnerable to XML External Entity (XXE) attacks. When this developer utility is misused for purposes involving external or user submitted data in custom project code, it can lead to vulnerabilities such as XSS on HTML output rendered through this custom code. This is now mitigated by disabling external entities during parsing. (The correct CVE ID year is 2020 [CVE-2020-25817, not CVE-2021-25817]).",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:N",
+"score": 4.8,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-611",
+"class": "xxe",
+"stack": "web",
+"products": [
+"silverstripe:silverstripe"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.0082,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2022-2497",
+"desc": "An issue has been discovered in GitLab CE/EE affecting all versions starting from 12.6 before 15.0.5, all versions starting from 15.1 before 15.1.4, all versions starting from 15.2 before 15.2.1. A malicious developer could exfiltrate an integration's access token by modifying the integration URL such that authenticated requests are sent to an attacker controlled server.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N",
+"score": 6.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:L/A:N",
+"differs": [
+"C"
+],
+"cwe": "NVD-CWE-noinfo",
+"class": "unclassified",
+"stack": "web",
+"products": [
+"gitlab:gitlab"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01171,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2018-11770",
+"desc": "From version 1.3.0 onward, Apache Spark's standalone master exposes a REST API for job submission, in addition to the submission mechanism used by spark-submit. In standalone, the config property 'spark.authenticate.secret' establishes a shared secret for authenticating requests to submit jobs via spark-submit. However, the REST API does not use this or any other authentication mechanism, and this is not adequately documented. In this case, a user would be able to run a driver program without authenticating, but not launch executors, using the REST API. This REST API is also used by Mesos, when set up to run in cluster mode (i.e., when also running MesosClusterDispatcher), for job submission. Future versions of Spark will improve documentation on these points, and prohibit setting 'spark.authenticate.secret' when running the REST APIs, to make this clear. Future versions will also disable the REST API by default in the standalone master by changing the default value of 'spark.master.rest.enabled' to 'false'.",
+"vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:N",
+"score": 4.2,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-287",
+"class": "authn",
+"stack": "web",
+"products": [
+"apache:spark"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.6583,
+"traps": [
+"c_low",
+"pr_l_authenticated",
+"ac_h"
+]
+},
+{
+"id": "CVE-2023-5056",
+"desc": "A flaw was found in the Skupper operator, which may permit a certain configuration to create a service account that would allow an authenticated attacker in the adjacent cluster to view deployments in all namespaces in the cluster. This issue permits unauthorized viewing of information outside of the user's purview.",
+"vector": "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+"score": 4.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N",
+"differs": [
+"C"
+],
+"cwe": "CWE-862",
+"class": "authz",
+"stack": "linux",
+"products": [
+"redhat:service_interconnect",
+"redhat:enterprise_linux"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00273,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2023-22665",
+"desc": "There is insufficient checking of user queries in Apache Jena versions 4.7.0 and earlier, when invoking custom scripts. It allows a remote user to execute arbitrary javascript via a SPARQL query.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-917",
+"class": "code-injection",
+"stack": "application",
+"products": [
+"apache:jena"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01335,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2023-40335",
+"desc": "Cross-Site Request Forgery (CSRF) vulnerability in Jeremy O'Connell Cleverwise Daily Quotes allows Stored XSS.This issue affects Cleverwise Daily Quotes: from n/a through 3.2.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:L",
+"differs": [
+"A"
+],
+"cwe": "CWE-352",
+"class": "csrf",
+"stack": "application",
+"products": [
+"cyberws:cleverwise_daily_quotes"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.0024,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2018-15425",
+"desc": "A vulnerability in the web-based management interface of Cisco Identity Services Engine (ISE) could allow an authenticated, remote attacker to execute arbitrary commands on the underlying operating system of an affected device with the privileges of the web server.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:L",
+"score": 4.7,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-502",
+"class": "deserialization",
+"stack": "network",
+"products": [
+"cisco:identity_services_engine"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01589,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2021-46078",
+"desc": "An Unrestricted File Upload vulnerability exists in Sourcecodester Vehicle Service Management System 1.0. A remote attacker can upload malicious files leading to a Stored Cross-Site Scripting vulnerability.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:N",
+"score": 4.8,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-434",
+"class": "file-upload",
+"stack": "library",
+"products": [
+"vehicle_service_management_system_project:vehicle_service_management_system"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01261,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2020-25688",
+"desc": "A flaw was found in rhacm versions before 2.0.5 and before 2.1.0. Two internal service APIs were incorrectly provisioned using a test certificate from the source repository. This would result in all installations using the same certificates. If an attacker could observe network traffic internal to a cluster, they could use the private key to decode API requests that should be protected by TLS sessions, potentially obtaining information they would not otherwise be able to. These certificates are not used for service authentication, so no opportunity for impersonation or active MITM attacks were made possible.",
+"vector": "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+"score": 3.5,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-798",
+"class": "hardcoded-creds",
+"stack": "linux",
+"products": [
+"redhat:advanced_cluster_management_for_kubernetes"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00251,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2022-31109",
+"desc": "laminas-diactoros is a PHP package containing implementations of the PSR-7 HTTP message interfaces and PSR-17 HTTP message factory interfaces. Applications that use Diactoros, and are either not behind a proxy, or can be accessed via untrusted proxies, can potentially have the host, protocol, and/or port of a `Laminas\\Diactoros\\Uri` instance associated with the incoming server request modified to reflect values from `X-Forwarded-*` headers. Such changes can potentially lead to XSS attacks (if a fully-qualified URL is used in links) and/or URL poisoning. Since the `X-Forwarded-*` headers do have valid use cases, particularly in clustered environments using a load balancer, the library offers mitigation measures only in the v2 releases, as doing otherwise would break these use cases immediately. Users of v2 releases from 2.11.1 can provide an additional argument to `Laminas\\Diactoros\\ServerRequestFactory::fromGlobals()` in the form of a `Laminas\\Diactoros\\RequestFilter\\RequestFilterInterface` instance, including the shipped `Laminas\\Diactoros\\RequestFilter\\NoOpRequestFilter` implementation which ignores the `X-Forwarded-*` headers. Starting in version 3.0, the library will reverse behavior to use the `NoOpRequestFilter` by default, and require users to opt-in to `X-Forwarded-*` header usage via a configured `Laminas\\Diactoros\\RequestFilter\\LegacyXForwardedHeaderFilter` instance. Users are advised to upgrade to version 2.11.1 or later to resolve this issue. Users unable to upgrade may configure web servers to reject `X-Forwarded-*` headers at the web server level.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N",
+"differs": [
+"UI"
+],
+"cwe": "CWE-444",
+"class": "injection-other",
+"stack": "web",
+"products": [
+"getlaminas:laminas-diactoros"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00757,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2020-17482",
+"desc": "An issue has been found in PowerDNS Authoritative Server before 4.3.1 where an authorized user with the ability to insert crafted records into a zone might be able to leak the content of uninitialized memory.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+"score": 4.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-908",
+"class": "null-deref-uninit",
+"stack": "library",
+"products": [
+"powerdns:authoritative"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.02592,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2023-32985",
+"desc": "Jenkins Sidebar Link Plugin 2.2.1 and earlier does not restrict the path of files in a method implementing form validation, allowing attackers with Overall/Read permission to check for the existence of an attacker-specified file path on the Jenkins controller file system.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+"score": 4.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-22",
+"class": "path-traversal",
+"stack": "web",
+"products": [
+"jenkins:sidebar_link"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.72358,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2019-11761",
+"desc": "By using a form with a data URI it was possible to gain access to the privileged JSONView object that had been cloned into content. Impact from exposing this object appears to be minimal, however it was a bypass of existing defense in depth mechanisms. This vulnerability affects Firefox < 70, Thunderbird < 68.2, and Firefox ESR < 68.2.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-362",
+"class": "race-condition",
+"stack": "linux",
+"products": [
+"mozilla:firefox",
+"mozilla:firefox_esr",
+"mozilla:thunderbird"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00791,
+"traps": [
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2023-0528",
+"desc": "A vulnerability was found in SourceCodester Online Tours & Travels Management System 1.0. It has been classified as critical. This affects an unknown part of the file admin/abc.php. The manipulation of the argument id leads to sql injection. It is possible to initiate the attack remotely. The exploit has been disclosed to the public and may be used. The identifier VDB-219597 was assigned to this vulnerability.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"score": 6.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:L",
+"differs": [
+"PR"
+],
+"cwe": "CWE-89",
+"class": "sqli",
+"stack": "web",
+"products": [
+"online_tours_\\&_travels_management_system_project:online_tours_\\&_travels_management_system"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00564,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2022-23080",
+"desc": "In directus versions v9.0.0-beta.2 through 9.6.0 are vulnerable to server-side request forgery (SSRF) in the media upload functionality which allows a low privileged user to perform internal network port scans.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+"score": 5.0,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-918",
+"class": "ssrf",
+"stack": "application",
+"products": [
+"rangerstudio:directus"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00826,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2023-1075",
+"desc": "A flaw was found in the Linux Kernel. The tls_is_tx_ready() incorrectly checks for list emptiness, potentially accessing a type confused entry to the list_head, leaking the last byte of the confused field that overlaps with rec->tx_ready.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+"score": 3.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-843",
+"class": "type-confusion",
+"stack": "linux",
+"products": [
+"linux:linux_kernel"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00217,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2020-15710",
+"desc": "Potential double free in Bluez 5 module of PulseAudio could allow a local attacker to leak memory or crash the program. The modargs variable may be freed twice in the fail condition in src/modules/bluetooth/module-bluez5-device.c and src/modules/bluetooth/module-bluez5-device.c. Fixed in 1:8.0-0ubuntu3.14.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:N/A:H",
+"differs": [
+"AC"
+],
+"cwe": "CWE-415",
+"class": "use-after-free",
+"stack": "linux",
+"products": [
+"pulseaudio_project:pulseaudio",
+"canonical:ubuntu_linux"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00298,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2021-34706",
+"desc": "A vulnerability in the web-based management interface of Cisco Identity Services Engine (ISE) could allow an authenticated, remote attacker to access sensitive information or conduct a server-side request forgery (SSRF) attack through an affected device. This vulnerability is due to improper handling of XML External Entity (XXE) entries when parsing certain XML files. An attacker could exploit this vulnerability by uploading a crafted XML file that contains references to external entities. A successful exploit could allow the attacker to retrieve files from the local system, resulting in the disclosure of sensitive information, or cause the web application to perform arbitrary HTTP requests on behalf of the attacker.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N",
+"differs": [
+"S"
+],
+"cwe": "CWE-611",
+"class": "xxe",
+"stack": "network",
+"products": [
+"cisco:identity_services_engine"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00738,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+}
+]
+}

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vuln-Trainer · CVSS-Übung</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">Vuln-Trainer</div>
+    <nav class="tabs" aria-label="Übungstypen">
+      <button class="tab active" data-view="cvss">CVSS-Vektor</button>
+      <button class="tab" data-view="class">Klassen-Quiz</button>
+      <button class="tab" data-view="progress">Fortschritt</button>
+      <button class="tab" data-view="patterns">Fehlerbilder</button>
+    </nav>
+    <div class="session" id="session-counter" title="Diese Sitzung: vollständig richtige Vektoren / Versuche">–</div>
+  </header>
+
+  <main id="app">
+    <p id="loading" class="muted">Lade Korpus …</p>
+
+    <section id="exercise" hidden>
+      <div id="trap-banner" class="trap-banner" hidden>
+        <span>Gefilterte Übung: <b id="trap-banner-name"></b> <span class="muted" id="trap-banner-n"></span></span>
+        <button id="trap-clear" class="ghost small">Filter aufheben</button>
+      </div>
+      <div class="card cve-head">
+        <div class="cve-meta">
+          <span class="cve-id" id="cve-id"></span>
+          <span class="chip" id="cve-published"></span>
+          <span class="chip" id="cve-stack"></span>
+          <span class="chip chip-class" id="cve-class"></span>
+          <span class="chip chip-sr" id="cve-sr" title="Spaced Repetition: warum diese Klasse"></span>
+        </div>
+        <p class="desc" id="cve-desc" lang="en"></p>
+        <p class="hint">Lies die Beschreibung und setze den Basisvektor. Score, offizieller Vektor, EPSS und KEV erscheinen erst nach dem Abgleich.</p>
+      </div>
+
+      <div class="card">
+        <div class="metrics" id="metrics"></div>
+        <div class="livebar">
+          <div>
+            <div class="label">Dein Vektor</div>
+            <code id="live-vector" class="vector">CVSS:3.1/–</code>
+          </div>
+          <div class="live-score">
+            <div class="label">Dein Score</div>
+            <span id="live-score" class="score">–</span>
+            <span id="live-sev" class="sev"></span>
+          </div>
+          <div class="actions">
+            <button id="btn-compare" class="primary" disabled>Abgleichen</button>
+            <button id="btn-next" class="ghost">Nächste CVE</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="result" hidden>
+      <div class="card">
+        <div class="result-head">
+          <h2 id="result-title">Abgleich</h2>
+          <div class="official">
+            <div class="label">Offiziell (<span id="off-source"></span>)</div>
+            <code id="off-vector" class="vector"></code>
+            <span id="off-score" class="score"></span>
+            <span id="off-sev" class="sev"></span>
+          </div>
+        </div>
+        <table class="cmp" id="cmp-table">
+          <thead><tr><th>Metrik</th><th>Du</th><th>NVD</th><th></th><th>Begründung</th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <div id="provenance" class="prov" hidden></div>
+      </div>
+    </section>
+
+
+    <section id="quiz" hidden>
+      <div class="card cve-head">
+        <div class="cve-meta">
+          <span class="cve-id" id="q-id"></span>
+          <span class="chip" id="q-published"></span>
+          <span class="chip" id="q-stack"></span>
+          <span class="chip chip-sr" id="q-sr" title="Spaced Repetition: warum diese Klasse"></span>
+        </div>
+        <p class="desc" id="q-desc" lang="en"></p>
+        <p class="hint">Welcher Lernklasse gehört diese Schwachstelle an? Grundlage ist die CWE-Zuordnung der NVD.</p>
+      </div>
+      <div class="card">
+        <div class="q-toolbar">
+          <label class="muted"><input type="checkbox" id="q-all"> Alle 30 Klassen anzeigen statt 4 Optionen</label>
+        </div>
+        <div class="q-opts" id="q-opts"></div>
+        <div id="q-result" class="q-result" hidden></div>
+        <div class="actions center" style="margin-top:1rem">
+          <button id="q-next" class="primary" hidden>Nächste CVE</button>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="progress" hidden>
+      <div class="card">
+        <div class="result-head"><h2>Fortschritt pro Lernklasse</h2>
+          <div class="prog-actions">
+            <button id="prog-export" class="ghost small">Fortschritt exportieren</button>
+            <button id="prog-import" class="ghost small">Importieren</button>
+            <button id="prog-reset" class="ghost small danger">Protokoll zurücksetzen</button>
+            <input type="file" id="prog-file" accept="application/json,.json" hidden>
+          </div></div>
+        <p id="prog-io" class="prog-io" hidden></p>
+        <p class="muted" style="margin:.2rem 0 .8rem">Gewichtung: Klassen mit niedriger Trefferquote (letzte 10 Versuche) kommen bis zu 5× häufiger. Eine Serie richtiger Antworten verdoppelt das Wiederholungsintervall (1 → 2 → 4 → 8 → 16 → 32 Tage). Nie gesehene Klassen haben mittleren Vorrang. Beide Übungen zählen: CVSS-Vektor gilt als richtig bei 8/8 Metriken.</p>
+        <p id="prog-summary" style="margin:0 0 .8rem;font-weight:600"></p>
+        <table class="cmp" id="prog-table">
+          <thead><tr><th>Klasse</th><th>Versuche</th><th>Quote</th><th>Serie</th><th>zuletzt</th><th>Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+
+    <section id="patterns" hidden>
+      <div class="card">
+        <h2>Deine dokumentierten Fehlerbilder</h2>
+        <p class="muted" style="margin:.2rem 0 .9rem">Die Quote zeigt, wie oft du die zugehörige Metrik richtig gesetzt hast, wenn diese Falle im Vektor steckte. Grundlage ist dein Protokoll aus der CVSS-Übung.</p>
+        <div id="pat-cards" class="pat-cards"></div>
+      </div>
+      <div class="card">
+        <h2>Alle Fallen-Marker im Korpus</h2>
+        <table class="cmp" id="pat-table">
+          <thead><tr><th>Falle</th><th>im Korpus</th><th>gesehen</th><th>Metrik-Quote</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <p class="muted" id="pat-note" style="margin:.8rem 0 0"></p>
+      </div>
+    </section>
+
+    <section id="context" hidden>
+      <div class="card">
+        <h2>Kontext</h2>
+        <p id="ctx-summary" class="summary"></p>
+        <div class="ctx-grid">
+          <div class="ctx-box">
+            <div class="label">EPSS</div>
+            <div class="big" id="ctx-epss">–</div>
+            <div class="muted" id="ctx-epss-pct"></div>
+          </div>
+          <div class="ctx-box" id="ctx-kev-box">
+            <div class="label">CISA KEV</div>
+            <div class="big" id="ctx-kev">–</div>
+            <div class="muted" id="ctx-kev-detail"></div>
+          </div>
+        </div>
+        <p id="ctx-text" class="ctx-text"></p>
+        <div id="ctx-refs" class="refs"></div>
+      </div>
+      <div class="actions center">
+        <button id="btn-next-2" class="primary">Nächste CVE</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <label>CVE-ID öffnen: <input id="jump" placeholder="CVE-2021-44228" size="18"> <button id="jump-btn" class="ghost small">Los</button></label>
+    <span class="muted" id="meta-line"></span>
+  </footer>
+
+  <script src="cvss31.js"></script>
+  <script src="sr.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

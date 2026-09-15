@@ -1,0 +1,502 @@
+{
+"batch": "batch-054",
+"with_chain": false,
+"items": [
+{
+"id": "CVE-2020-15129",
+"desc": "In Traefik before versions 1.7.26, 2.2.8, and 2.3.0-rc3, there exists a potential open redirect vulnerability in Traefik's handling of the \"X-Forwarded-Prefix\" header. The Traefik API dashboard component doesn't validate that the value of the header \"X-Forwarded-Prefix\" is a site relative path and will redirect to any header provided URI. Successful exploitation of an open redirect can be used to entice victims to disclose sensitive information. Active Exploitation of this issue is unlikely as it would require active header injection, however the Traefik team addressed this issue nonetheless to prevent abuse in e.g. cache poisoning scenarios.",
+"vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 4.7,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:N/I:H/A:N",
+"differs": [
+"C",
+"I"
+],
+"cwe": "CWE-601",
+"class": "web-logic",
+"stack": "web",
+"products": [
+"traefik:traefik"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.08011,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r",
+"ac_h"
+]
+},
+{
+"id": "CVE-2021-22238",
+"desc": "An issue has been discovered in GitLab affecting all versions starting with 13.3. GitLab was vulnerable to a stored XSS by using the design feature in issues.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:H/I:N/A:N",
+"differs": [
+"C",
+"I"
+],
+"cwe": "CWE-79",
+"class": "xss",
+"stack": "web",
+"products": [
+"gitlab:gitlab"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.71787,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2020-26247",
+"desc": "Nokogiri is a Rubygem providing HTML, XML, SAX, and Reader parsers with XPath and CSS selector support. In Nokogiri before version 1.11.0.rc4 there is an XXE vulnerability. XML Schemas parsed by Nokogiri::XML::Schema are trusted by default, allowing external resources to be accessed over the network, potentially enabling XXE or SSRF attacks. This behavior is counter to the security policy followed by Nokogiri maintainers, which is to treat all input as untrusted by default whenever possible. This is fixed in Nokogiri version 1.11.0.rc4.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+"score": 4.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:U/C:L/I:N/A:N",
+"differs": [
+"AC",
+"UI"
+],
+"cwe": "CWE-611",
+"class": "xxe",
+"stack": "linux",
+"products": [
+"nokogiri:nokogiri",
+"debian:debian_linux"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01167,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2023-1625",
+"desc": "An information leak was discovered in OpenStack heat. This issue could allow a remote, authenticated attacker to use the 'stack show' command to reveal parameters which are supposed to remain hidden. This has a low impact to the confidentiality, integrity, and availability of the system.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+"score": 5.0,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:L",
+"differs": [
+"I",
+"A"
+],
+"cwe": "NVD-CWE-noinfo",
+"class": "unclassified",
+"stack": "linux",
+"products": [
+"openstack:heat",
+"redhat:openstack_platform"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00715,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2021-32543",
+"desc": "The CTS Web transaction system related to authentication management is implemented incorrectly. After login, remote attackers can manipulate cookies to access other accounts and trade in the stock market with spoofed identity.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+"differs": [
+"PR"
+],
+"cwe": "CWE-287",
+"class": "authn",
+"stack": "web",
+"products": [
+"sysjust:cts_web"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00761,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2021-4338",
+"desc": "The 404 to 301 plugin for WordPress is vulnerable to authorization bypass due to missing capability checks on the open_redirect & save_redirect functions in versions up to, and including, 3.0.7. This makes it possible for authenticated attackers to view, create and edit redirections.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N",
+"differs": [
+"UI"
+],
+"cwe": "CWE-284",
+"class": "authz",
+"stack": "web",
+"products": [
+"duckdev:404_to_301"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00617,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2022-22984",
+"desc": "The package snyk before 1.1064.0; the package snyk-mvn-plugin before 2.31.3; the package snyk-gradle-plugin before 3.24.5; the package @snyk/snyk-cocoapods-plugin before 2.5.3; the package snyk-sbt-plugin before 2.16.2; the package snyk-python-plugin before 1.24.2; the package snyk-docker-plugin before 5.6.5; the package @snyk/snyk-hex-plugin before 1.1.6 are vulnerable to Command Injection due to an incomplete fix for [CVE-2022-40764](https://security.snyk.io/vuln/SNYK-JS-SNYK-3037342). A successful exploit allows attackers to run arbitrary commands on the host system where the Snyk CLI is installed by passing in crafted command line flags. In order to exploit this vulnerability, a user would have to execute the snyk test command on untrusted files. In most cases, an attacker positioned to control the command line arguments to the Snyk CLI would already be positioned to execute arbitrary commands. However, this could be abused in specific scenarios, such as continuous integration pipelines, where developers can control the arguments passed to the Snyk CLI to leverage this component as part of a wider attack against an integration/build pipeline. This issue has been addressed in the latest Snyk Docker images available at https://hub.docker.com/r/snyk/snyk as of 2022-11-29. Images downloaded and built prior to that date should be updated. The issue has also been addressed in the Snyk TeamCity CI/CD plugin as of version v20221130.093605.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"score": 6.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"differs": [
+"AC"
+],
+"cwe": "CWE-78",
+"class": "cmd-injection",
+"stack": "web",
+"products": [
+"snyk:snyk_cli",
+"snyk:snyk_cocoapods_cli",
+"snyk:snyk_docker_cli"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.03093,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2019-13714",
+"desc": "Insufficient validation of untrusted input in Color Enhancer extension in Google Chrome prior to 78.0.3904.70 allowed a remote attacker to inject CSS into an HTML page via a crafted URL.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-94",
+"class": "code-injection",
+"stack": "linux",
+"products": [
+"google:chrome",
+"opensuse:backports_sle"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00829,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-38377",
+"desc": "OX App Suite through 7.10.5 allows XSS via JavaScript code in an anchor HTML comment within truncated e-mail, because there is a predictable UUID with HTML transformation results.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-330",
+"class": "crypto",
+"stack": "web",
+"products": [
+"open-xchange:ox_app_suite"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01119,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2022-29436",
+"desc": "Persistent Cross-Site Scripting (XSS) vulnerability in Alexander Stokmann's Code Snippets Extended plugin <= 1.4.7 on WordPress via Cross-Site Request Forgery (vulnerable parameters &title, &snippet_code).",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:N/I:L/A:N",
+"differs": [
+"C"
+],
+"cwe": "CWE-352",
+"class": "csrf",
+"stack": "web",
+"products": [
+"code_snippets_extended_project:code_snippets_extended"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00373,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-1414",
+"desc": "Multiple vulnerabilities in the web-based management interface of Cisco RV340, RV340W, RV345, and RV345P Dual WAN Gigabit VPN Routers could allow an authenticated, remote attacker to execute arbitrary code with elevated privileges equivalent to the web service process on an affected device. These vulnerabilities exist because HTTP requests are not properly validated. An attacker could exploit these vulnerabilities by sending a crafted HTTP request to the web-based management interface of an affected device. A successful exploit could allow the attacker to remotely execute arbitrary code on the device.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"score": 6.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-502",
+"class": "deserialization",
+"stack": "network",
+"products": [
+"cisco:rv340_firmware",
+"cisco:rv340",
+"cisco:rv340w_firmware"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01863,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2020-26583",
+"desc": "An issue was discovered in Sage DPW 2020_06_x before 2020_06_002. It allows unauthenticated users to upload JavaScript (in a file) via the expenses claiming functionality. However, to view the file, authentication is required. By exploiting this vulnerability, an attacker can persistently include arbitrary HTML or JavaScript code into the affected web page. The vulnerability can be used to change the contents of the displayed site, redirect to other sites, or steal user credentials. Additionally, users are potential victims of browser exploits and JavaScript malware.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-434",
+"class": "file-upload",
+"stack": "application",
+"products": [
+"sagedpw:sage_dpw"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2020-10206",
+"desc": "Use of a Hard-coded Password in VNCserver in Amino Communications AK45x series, AK5xx series, AK65x series, Aria6xx series, Aria7/AK7Xx series and Kami7B allows local attackers to view and interact with the video output of the device.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N",
+"score": 4.4,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-798",
+"class": "hardcoded-creds",
+"stack": "other-os",
+"products": [
+"amino:ak45x_firmware",
+"amino:ak45x",
+"amino:ak5xx_firmware"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00288,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2022-3902",
+"desc": "An issue has been discovered in GitLab affecting all versions starting from 9.3 before 15.4.6, all versions starting from 15.5 before 15.5.5, all versions starting from 15.6 before 15.6.1. It was possible for a project maintainer to unmask webhook secret tokens by reviewing the logs after testing webhooks.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N",
+"score": 6.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:L/I:L/A:N",
+"differs": [
+"PR"
+],
+"cwe": "CWE-532",
+"class": "info-exposure",
+"stack": "web",
+"products": [
+"gitlab:gitlab"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00719,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2023-26142",
+"desc": "All versions of the package crow are vulnerable to HTTP Response Splitting when untrusted user input is used to build header values. Header values are not properly sanitized against CRLF Injection in the set_header and add_header functions. An attacker can add the \\r\\n (carriage return line feeds) characters to end the HTTP response headers and inject malicious content.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+"differs": [
+"UI",
+"S"
+],
+"cwe": "CWE-74",
+"class": "injection-other",
+"stack": "web",
+"products": [
+"crowcpp:crow"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00522,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2022-39338",
+"desc": "user_oidc is an OpenID Connect user backend for Nextcloud. Versions prior to 1.2.1 did not properly validate discovery urls which may lead to a stored cross site scripting attack vector. The impact is limited due to the restrictive CSP that is applied on this endpoint. Additionally this vulnerability has only been shown to be exploitable in the Safari web browser. This issue has been addressed in version 1.2.1. Users are advised to upgrade. Users unable to upgrade should urge their users to avoid using the Safari web browser.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:U/C:L/I:L/A:N",
+"differs": [
+"PR",
+"S"
+],
+"cwe": "CWE-20",
+"class": "input-validation",
+"stack": "web",
+"products": [
+"nextcloud:openid_connect_user_backend"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.0061,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2022-28195",
+"desc": "NVIDIA Jetson Linux Driver Package contains a vulnerability in the Cboot ext4_read_file function, where insufficient validation of untrusted data may allow a highly privileged local attacker to cause a integer overflow, which may lead to code execution, escalation of privileges, limited denial of service, and some impact to confidentiality and integrity. The scope of impact can extend to other components.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:L/I:L/A:L",
+"score": 5.7,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-190",
+"class": "integer-overflow",
+"stack": "library",
+"products": [
+"nvidia:jetson_linux",
+"nvidia:jetson_agx_xavier",
+"nvidia:jetson_xavier_nx"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00237,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2021-1111",
+"desc": "Bootloader contains a vulnerability in the NV3P server where any user with physical access through USB can trigger an incorrect bounds check, which may lead to buffer overflow, resulting in limited information disclosure, limited data integrity, and denial of service across all components.",
+"vector": "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:H",
+"score": 6.7,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-125",
+"class": "memory-read",
+"stack": "other-os",
+"products": [
+"nvidia:jetson_linux",
+"nvidia:jetson_agx_xavier",
+"nvidia:jetson_tx2"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00281,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2020-17380",
+"desc": "A heap-based buffer overflow was found in QEMU through 5.0.0 in the SDHCI device emulation support. It could occur while doing a multi block SDMA transfer via the sdhci_sdma_transfer_multi_blocks() routine in hw/sd/sdhci.c. A guest user or process could use this flaw to crash the QEMU process on the host, resulting in a denial of service condition, or potentially execute arbitrary code with privileges of the QEMU process on the host.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:L",
+"score": 6.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-787",
+"class": "memory-write",
+"stack": "linux",
+"products": [
+"qemu:qemu",
+"debian:debian_linux"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00424,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2020-10732",
+"desc": "A flaw was found in the Linux kernel's implementation of Userspace core dumps. This flaw allows an attacker with a local account to crash a trivial program and exfiltrate private kernel data.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:L",
+"score": 4.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+"differs": [
+"A"
+],
+"cwe": "CWE-908",
+"class": "null-deref-uninit",
+"stack": "linux",
+"products": [
+"linux:linux_kernel",
+"opensuse:leap",
+"canonical:ubuntu_linux"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00617,
+"traps": [
+"c_low"
+]
+}
+]
+}

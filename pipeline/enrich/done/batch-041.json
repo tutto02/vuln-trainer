@@ -1,0 +1,628 @@
+{
+ "batch": "batch-041",
+ "items": {
+  "CVE-2020-14644": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Oracle WebLogic Server erlaubt einem unauthentifizierten Angreifer über IIOP/T3 die Kompromittierung (Deserialisierung).",
+   "metrics": {
+    "AV": {
+     "why": "'Network access via IIOP, T3' wörtlich."
+    },
+    "AC": {
+     "why": "'Easily exploitable' (Oracle-AC:L)."
+    },
+    "PR": {
+     "why": "'Unauthenticated attacker' wörtlich."
+    },
+    "UI": {
+     "why": "Keine Interaktion genannt."
+    },
+    "S": {
+     "why": "Kein 'additional products'-Satz: S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,95: WebLogic-Deserialisierung (noinfo bei NVD) über T3/IIOP, wie CVE-2020-2883, CVE-2018-2628, CVE-2015-4852. WebLogic ist im Korpus das am häufigsten wiederkehrende Deserialisierungsziel; T3/IIOP gehören nie ins Internet. Oracle patcht diese Klasse quartalsweise, neue Gadget-Chains umgehen die Filter."
+  },
+  "CVE-2022-26143": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die TP-240-Komponente in Mitel MiCollab erlaubt unauthentifizierten Angreifern das Auslesen sensibler Informationen und einen Denial of Service mit Verstärkung (TP240PhoneHome).",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz (UDP-Dienst)."
+    },
+    "AC": {
+     "why": "Präparierte UDP-Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist MiCollab, S:U."
+    },
+    "C": {
+     "why": "Sensible Informationen plus DoS-Verstärkung: alle erreichbaren Daten."
+    },
+    "I": {
+     "why": "Integrität: NVD: I:H."
+    },
+    "A": {
+     "why": "Übermäßiger Ausgangsverkehr, Leistungsabfall: A:H."
+    }
+   },
+   "context_de": "KEV, EPSS 0,87: TP240PhoneHome, für rekordverdächtige DDoS-Verstärkungsangriffe genutzt (Verstärkungsfaktor über 4 Milliarden zu 1). Fehlende Authentifizierung (CWE-306) an einem UDP-Dienst; VoIP-Systeme als DDoS-Reflektoren. Wie NTP- und Memcache-Amplification ein UDP-Dienst, der auf kleine Anfragen große Antworten sendet."
+  },
+  "CVE-2023-22518": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Confluence Data Center und Server haben eine fehlerhafte Autorisierung, die einem unauthentifizierten Angreifer das Zurücksetzen von Confluence und das Anlegen eines Administratorkontos erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Wiki über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Ein unauthentifizierter Angreifer setzt Confluence zurück und legt ein Admin-Konto an; das Konto ist die Folge: PR:N.",
+     "pitfall": "Das entstehende Admin-Konto ist Impact — PR fragt nur nach dem Startpunkt."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Confluence, S:U."
+    },
+    "C": {
+     "why": "Admin-Konto: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Admin (plus Zurücksetzen): alles änderbar."
+    },
+    "A": {
+     "why": "Zurücksetzen: Datenverlust, A:H."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: Binnen Tagen für Ransomware genutzt. Fehlerhafte Autorisierung (CWE-863), die den Setup-Modus wieder öffnet und ein Admin-Anlegen erlaubt (wie rConfig, PRTG, SonicWall). Confluence ist im Korpus ein Dauerthema; das Zurücksetzen macht diese Lücke besonders zerstörerisch."
+  },
+  "CVE-2022-28810": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "ManageEngine ADSelfService Plus erlaubt einem authentifizierten Administrator über die Custom-Script-Policy die Ausführung von OS-Befehlen als SYSTEM; ein Standard-Admin-Passwort verschärft das.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface über HTTP."
+    },
+    "AC": {
+     "why": "Custom-Script konfigurieren."
+    },
+    "PR": {
+     "why": "Admin-Zugriff nötig: PR:H."
+    },
+    "UI": {
+     "why": "NVD: UI:R (das Skript wird bei einer Nutzeraktion ausgelöst)."
+    },
+    "S": {
+     "why": "Code als SYSTEM, S:U."
+    },
+    "C": {
+     "why": "SYSTEM: alle Daten lesbar."
+    },
+    "I": {
+     "why": "SYSTEM: alles änderbar."
+    },
+    "A": {
+     "why": "SYSTEM: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,71: Die Custom-Script-Funktion ist per Design mächtig (SYSTEM-Codeausführung); das Standard-Admin-Passwort machte PR:H faktisch zu PR:N. ManageEngine ist im Korpus mehrfach vertreten. Eine legitime Funktion (Skript-Policy) wird über schwache Auth zum Angriffsvektor."
+  },
+  "CVE-2022-22965": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Spring4Shell: Eine Spring-MVC- oder WebFlux-Anwendung auf JDK 9+ ist über Data Binding anfällig für Remote Code Execution (bei WAR-Deployment auf Tomcat).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Request-Parameter, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Spring-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,996: Spring4Shell. Property-Binding-Injection (CWE-94): Über nutzergesteuerte Property-Namen (class.module.classLoader) lässt sich eine JSP-Webshell schreiben. Wie Spring Data Commons CVE-2018-1273 und Struts OGNL; das Data-Binding von Java-Frameworks ist eine wiederkehrende RCE-Klasse. Nur bei WAR-Deployment auf Tomcat, die Konfiguration entscheidet."
+  },
+  "CVE-2022-31199": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die User-Activity-Video-Recording-Komponente von Netwrix Auditor hat eine Deserialisierungslücke, die Remote Code Execution auf Server und Agenten erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Über das proprietäre Protokoll im Netz."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt."
+    },
+    "PR": {
+     "why": "Die RCE im Protokoll der Video-Recording-Komponente setzt kein Konto voraus, nur Netzwerkzugriff auf Server/Agenten: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,36: Netwrix Auditor überwacht Active Directory (wie ADAudit). Deserialisierung (CWE-502) über ein proprietäres Protokoll; die Agenten laufen auf allen überwachten Systemen mit hohen Rechten. Ein Auditing-Tool mit Zugriff auf die ganze Umgebung ist ein Sprungbrett; .NET-Deserialisierung ist im Korpus ein Dauerthema."
+  },
+  "CVE-2020-12800": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Drag-and-Drop-Multiple-File-Upload-Plugin für Contact Form 7 erlaubt über supported_type=php% und eine .php%-Datei einen unbeschränkten Datei-Upload und RCE.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Dateiendung (php%)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,79: Eine Endungs-Umgehung (CWE-434): php% wird vom Filter als sicher gewertet, vom Webserver aber als PHP ausgeführt. Contact-Form-7-Erweiterungen sind im Korpus mehrfach vertreten (auch CVE-2020-35489). WordPress-Plugin-Uploads sind ein Dauerthema; die Filter-Umgehung über exotische Endungen ist ein Klassiker."
+  },
+  "CVE-2014-7863": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Der FailOverHelperServlet in ManageEngine Applications Manager beschränkt den Zugriff nicht, was das Auslesen sensibler Informationen erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Den Servlet direkt aufrufen."
+    },
+    "PR": {
+     "why": "Das Servlet beschränkt den Zugriff nicht; „remote attackers“ genügt ohne Konto, auch wenn zusätzlich authentifizierte Nutzer genannt sind: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Applications Manager."
+    },
+    "C": {
+     "why": "Sensible Informationen (Konfiguration): gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,83: Ein ungeschützter Servlet (CWE-200), wie die JBoss-Invoker und JMX-Consoles. ManageEngine ist im Korpus mehrfach vertreten; ein Servlet, das ohne Autorisierungsprüfung erreichbar ist, ist ein wiederkehrender Fehler in Java-Anwendungen."
+  },
+  "CVE-2024-38475": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+   "summary_de": "Unzureichendes Escaping in mod_rewrite von Apache HTTP Server erlaubt das Mappen von URLs auf Dateisystempfade, die zwar servierbar, aber nicht direkt erreichbar sein sollten, was zu Codeausführung oder Quelltext-Preisgabe führt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Apache-Prozess, S:U."
+    },
+    "C": {
+     "why": "Quelltext/Dateien lesen plus mögliche RCE: gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Bei RCE: alles änderbar."
+    },
+    "A": {
+     "why": "Verfügbarkeit: NVD: A:N."
+    }
+   },
+   "context_de": "KEV, EPSS 0,9996: mod_rewrite-Escaping-Fehler (CWE-116), massenhaft gescannt. Apache ist überall; ein Rewrite-Bug mit riesiger Reichweite (wie CVE-2021-41773). Die reale Ausnutzbarkeit hängt an der konkreten mod_rewrite-Konfiguration; internetweite Scans folgen trotzdem, weil Apache so verbreitet ist."
+  },
+  "CVE-2021-45105": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Log4j2 schützt nicht vor unkontrollierter Rekursion durch selbstreferenzielle Lookups, was bei Kontrolle über Thread-Context-Map-Daten einen Denial of Service erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Über geloggte Eingaben im Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:H (bestimmte Lookup-Konfiguration und Kontrolle über Context-Daten nötig)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Anwendung."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Endlosrekursion, Stack Overflow: DoS, A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,99999, Score 5,9: Die dritte Log4Shell-CVE (mit CVE-2021-44228, 45046, 44832). Anders als das ursprüngliche Log4Shell (RCE, PR:N) ist diese nur ein DoS (CWE-20); der Fix für die RCE führte diese Rekursions-Lücke ein. Die Log4Shell-Familie im Korpus zeigt, wie eine berühmte Lücke mehrere Nachzügler mit sinkender Schwere hat."
+  },
+  "CVE-2018-6789": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die base64d-Funktion im SMTP-Listener von Exim hat einen Buffer Overflow, der über eine präparierte Nachricht Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "SMTP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte base64-kodierte Nachricht."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Exim-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,82: Exim zum dritten Mal im Korpus (CVE-2010-4344, CVE-2019-10149). Buffer Overflow (CWE-120) im base64-Decoder des SMTP-Listeners; Exim läuft auf über der Hälfte aller Mailserver. Mailserver, die untrusted Input parsen und als root laufen, sind eine wiederkehrende Angriffsfläche."
+  },
+  "CVE-2019-16278": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die http_verify-Funktion in nostromo nhttpd hat ein Directory Traversal, das über eine präparierte HTTP-Anfrage Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webserver über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage (Traversal zu /bin/sh)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im nhttpd-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: nostromo ist ein kleiner Webserver. Path Traversal (CWE-22) zu RCE: Die Traversal erreichte /bin/sh und führte es aus. Ein Metasploit-Klassiker und beliebtes CTF-Ziel (wie HFS CVE-2014-6287); kleine Webserver mit CGI-Verarbeitung sind eine wiederkehrende RCE-Quelle."
+  },
+  "CVE-2019-9514": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "HTTP/2 Reset Flood: Der Angreifer öffnet mehrere Streams und sendet über jeden eine ungültige Anfrage, die eine Flut von RST_STREAM-Frames auslöst, was zu Denial of Service führt.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP/2 über das Netz."
+    },
+    "AC": {
+     "why": "Viele Streams mit ungültigen Anfragen."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Server."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "RST_STREAM-Flut, Ressourcenerschöpfung: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,83: Teil der HTTP/2-DoS-Familie 2019 und ein Vorläufer von Rapid Reset (CVE-2023-44487). Ressourcenerschöpfung (CWE-770) über RST_STREAM-Missbrauch; dieselbe Grundidee, die 2023 zum größten DDoS wurde. Ein Protokoll-Designproblem, das über Jahre wiederkehrte."
+  },
+  "CVE-2020-11530": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Chop-Slider-3-WordPress-Plugin hat über den id-Parameter von get_script/index.php eine blinde SQL-Injection.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter id-Parameter."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank und Anwendung im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "SQLi: alle Daten lesbar."
+    },
+    "I": {
+     "why": "SQLi: alles änderbar."
+    },
+    "A": {
+     "why": "SQLi: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,96: Blinde SQLi (CWE-89) in einem WordPress-Slider-Plugin. WordPress-Plugin-SQLi ist im Korpus die häufigste einzelne Web-Lücken-Klasse; der id-Parameter ohne Parametrisierung ist der Klassiker. Die reale Ausnutzbarkeit hängt an der Plugin-Verbreitung."
+  },
+  "CVE-2020-10770": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+   "summary_de": "Keycloak lässt sich über den OIDC-Parameter request_uri dazu bringen, eine unverifizierte URL aufzurufen (Server-Side Request Forgery).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter request_uri-Parameter."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Keycloak."
+    },
+    "C": {
+     "why": "NVD: C:N (blinde SSRF)."
+    },
+    "I": {
+     "why": "Begrenzte Anfragen an interne Systeme: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,70: SSRF (CWE-918) in Keycloak, einem Identity-Provider (wie OpenAM, ForgeRock). Der OIDC-request_uri-Parameter ist ein bekannter SSRF-Vektor; ein IdP im internen Netz kann interne Dienste erreichen. Eine blinde SSRF (C:N) ist begrenzter als eine reflektierte."
+  },
+  "CVE-2017-0037": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Internet Explorer und Edge haben in der Layout-Verarbeitung von mshtml.dll eine Type Confusion, die über eine präparierte CSS/Website Codeausführung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "NVD: AC:H (Exploit-Zuverlässigkeit)."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "NVD setzt UI:N für diesen IE/Edge-Type-Confusion-Fehler; das Laden der präparierten CSS-Seite wurde nicht als gesonderte Opferaktion gewertet.",
+     "pitfall": "Uneinheitlich gegenüber ähnlichen Browser-Bugs mit UI:R — der offizielle Vektor gilt."
+    },
+    "S": {
+     "why": "Code im Browserprozess, S:U."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,80: Google Project Zero veröffentlichte den Bug nach Ablauf der 90-Tage-Frist ohne Patch (ein bekannter Streit mit Microsoft). Type Confusion (CWE-843) in der IE/Edge-Layout-Engine; die IE-Serie im Korpus zeigt Type Confusion und Use-After-Free als die zwei Haupt-RCE-Klassen des Browsers."
+  },
+  "CVE-2012-4969": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Use-After-Free in der CMshtmlEd::Exec-Funktion von mshtml.dll (Internet Explorer) erlaubt über eine präparierte Website Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "NVD: AC:H (Exploit-Zuverlässigkeit)."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "NVD setzt UI:N: Das bloße Laden der präparierten Website wurde hier nicht als gesonderte Opferaktion gewertet, anders als bei vielen vergleichbaren Browser-Bugs mit UI:R.",
+     "pitfall": "Ältere IE-Nachbewertungen sind uneinheitlich (UI:N vs. UI:R) — der offizielle Vektor entscheidet, nicht die Logik allein."
+    },
+    "S": {
+     "why": "Code im Browserprozess, S:U."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,82: Zero-Day 2012, in Exploit-Kits (Nitro). Use-After-Free (CWE-416) in mshtml.dll; die IE-UAF-Serie im Korpus (2010, 2012, 2013, 2014) belegt, wie lange IE der bevorzugte Browser-Exploit-Vektor war, bevor Chrome ihn ablöste."
+  },
+  "CVE-2023-43770": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Roundcube hat über text/plain-E-Mails mit präparierten Links (rcube_string_replacer) ein Cross-Site-Scripting.",
+   "metrics": {
+    "AV": {
+     "why": "E-Mail über das Netz."
+    },
+    "AC": {
+     "why": "Präparierter Link in einer Plain-Text-Mail."
+    },
+    "PR": {
+     "why": "Der Absender braucht kein Konto."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Mail öffnen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Postfach-Session des Opfers: C:L."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,58: Wieder Roundcube-XSS (CWE-79) über text/plain (wie CVE-2020-35730), von Winter Vivern gegen Regierungen genutzt. Roundcube ist im Korpus das meistangegriffene Webmail; der rcube_string_replacer (Link-Parser) ist eine wiederkehrende XSS-Quelle. Plain-Text-XSS ist besonders heimtückisch, weil man es dort nicht erwartet."
+  },
+  "CVE-2020-1938": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ghostcat: Apache Tomcat behandelt AJP-Verbindungen als höher vertrauenswürdig; ein exponierter AJP-Port erlaubt das Lesen und (mit Upload) das Ausführen von Dateien.",
+   "metrics": {
+    "AV": {
+     "why": "AJP-Port (8009) über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte AJP-Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Tomcat, S:U."
+    },
+    "C": {
+     "why": "Beliebige Dateien im Webroot lesen (web.xml, Quelltext) plus RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Mit Upload zu RCE: alles änderbar."
+    },
+    "A": {
+     "why": "Bei RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Ghostcat, der AJP-Konnektor war in vielen Tomcat-Installationen standardmäßig exponiert. Ein Vertrauensfehler (noinfo bei NVD): AJP galt als intern und vertrauenswürdig, war aber am Netz erreichbar. Wie bei intern-vertrauten Protokollen (T3, Erlang-Cookie) ist die Exposition eines vermeintlich internen Ports der Fehler."
+  },
+  "CVE-2022-40684": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "FortiOS, FortiProxy und FortiSwitchManager erlauben über einen alternativen Pfad/Kanal die Umgehung der Authentifizierung im Admin-Interface.",
+   "metrics": {
+    "AV": {
+     "why": "Admin-Interface über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage (Forwarded-Header-Trick), öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Admin auf der Firewall, S:U."
+    },
+    "C": {
+     "why": "Admin: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Admin: alles änderbar."
+    },
+    "A": {
+     "why": "Admin: Firewall abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,9998: Massenausnutzung binnen Tagen. Ein Auth-Bypass (CWE-288) über einen präparierten Forwarded-Header, wie F5 CVE-2022-1388. Fortinet ist im Korpus das zweithäufigste Herstellerthema; die Management-Interfaces von Firewalls sind das wiederkehrende Ziel. Der Bypass gab direkt Admin-Zugriff."
+  }
+ }
+}

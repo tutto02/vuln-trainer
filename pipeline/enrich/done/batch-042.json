@@ -1,0 +1,628 @@
+{
+ "batch": "batch-042",
+ "items": {
+  "CVE-2023-24489": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der kundenverwaltete Citrix ShareFile Storage Zones Controller hat eine fehlerhafte Zugriffskontrolle, die unauthentifizierte Remote-Kompromittierung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload (fehlerhafte Kryptografie-Validierung)."
+    },
+    "PR": {
+     "why": "Der Storage-Zones-Controller ist von einem unauthentifizierten Angreifer kompromittierbar: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Controller, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,97: ShareFile zum zweiten Mal (mit CVE-2021-22941). Fehlerhafte Zugriffskontrolle (CWE-284) beim Datei-Upload; die Kryptografie-Validierung ließ sich umgehen. ShareFile ist ein Dateitransfer-Dienst; MFT-Systeme sind im Korpus die Kategorie mit den größten Vorfällen. Citrix ist ein Dauerthema."
+  },
+  "CVE-2022-30525": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Zyxel USG FLEX Firewalls haben in einem CGI-Programm eine OS Command Injection, die unauthentifizierte Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface der Firewall über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf der Firewall, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Firewall abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,9994: In Botnetzen (Mirai) binnen Tagen. Command Injection (CWE-78) in einem Firewall-CGI. Zyxel ist im Korpus mehrfach vertreten (NAS CVE-2020-9054, Router CVE-2017-18368); Netzwerk-Appliances mit CGI-Verwaltung sind eine wiederkehrende Command-Injection-Fläche. Eine Firewall zu übernehmen heißt, das Netz dahinter zu kontrollieren."
+  },
+  "CVE-2022-26134": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Confluence Server und Data Center haben eine OGNL-Injection, die unauthentifizierten Angreifern die Ausführung beliebigen Codes erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Wiki über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL mit OGNL-Ausdruck, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Die OGNL-Injection ist von einem unauthentifizierten Angreifer ausnutzbar: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Confluence-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: Zero-Day, Massenausnutzung binnen Stunden. OGNL-Injection (CWE-917), wie CVE-2021-26084 im selben Produkt. Confluence ist im Korpus dreimal mit RCE vertreten (26084, 22527, 26134); Atlassian wiederholt die OGNL/SSTI-Klasse. Ein Produkt mit einer strukturellen Schwäche in der Ausdrucksverarbeitung."
+  },
+  "CVE-2022-35405": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "ManageEngine Password Manager Pro und PAM360 sind über eine Deserialisierung anfällig für unauthentifizierte Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt."
+    },
+    "PR": {
+     "why": "Password Manager Pro und PAM360 sind unauthentifiziert angreifbar; nur Access Manager Plus braucht ein Konto: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE auf einem Passwort-Manager: alle Passwörter."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,999: Password Manager Pro und PAM360 sind Privileged-Access-Management-Systeme, die die Passwörter der ganzen Organisation halten. Deserialisierung (CWE-502); eine RCE dort ist der GAU, weil ein PAM-System per Definition alle privilegierten Zugangsdaten speichert. ManageEngine ist im Korpus mehrfach vertreten."
+  },
+  "CVE-2020-28871": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Monitorr erlaubt über upload.php einen unsicheren Datei-Upload und damit unauthentifizierte Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,86: Datei-Upload (CWE-434) in einer Monitoring-Anwendung. Unbeschränkte Uploads zu RCE sind im Korpus die häufigste Web-RCE-Klasse nach Deserialisierung; die Filter-Umgehung (Magic Bytes, Doppelendung, exotische Endung) ist der wiederkehrende Trick."
+  },
+  "CVE-2016-2183": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Sweet32: Die DES- und Triple-DES-Cipher haben eine Geburtstagsschranke von etwa vier Milliarden Blöcken, was über einen Birthday-Angriff gegen lange Sitzungen das Auslesen von Klartext erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Im Netzpfad (Verkehr mitschneiden)."
+    },
+    "AC": {
+     "why": "NVD: AC:L; real braucht der Angriff eine sehr lange Sitzung und MITM (eher AC:H)."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Verbindung."
+    },
+    "C": {
+     "why": "Teile des Klartexts (z. B. Cookies) über den Birthday-Angriff: NVD C:H.",
+     "pitfall": "Praktisch braucht Sweet32 hunderte GB Verkehr über eine einzige Sitzung; NVDs AC:L/C:H unterschätzt den enormen Aufwand. Ein Scanner-Klassiker wie POODLE, Logjam, Sweet32."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,96: Sweet32 (CWE-200) betrifft 64-Bit-Blockchiffren (3DES). Wie POODLE, Logjam, Bar Mitzvah ein TLS-Scanner-Dauerbrenner mit hohem EPSS (jeder Scanner testet es) und minimaler realer Ausnutzung. Ein Musterfall, dass EPSS Scan-Frequenz misst, nicht reale Gefahr."
+  },
+  "CVE-2026-63030": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "WordPress hat eine REST-API-Batch-Endpunkt-Verwechslung, die in Kombination mit der author__not_in-SQL-Injection (CVE-2026-60137) zu SQL-Injection und Remote Code Execution führt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-CMS über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Batch-Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank und RCE im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "SQLi bis RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,97, nur CNA-Vektor: Eine Kette aus zwei WordPress-Kern-Lücken (Batch-Route-Confusion plus die SQLi CVE-2026-60137, im Korpus). Die Batch-Verwechslung (CWE-436) machte aus der authentifizierten SQLi eine unauthentifizierte. WordPress-Kern-Lücken treffen Millionen Sites; die Kombination zweier Kern-Lücken ist besonders gefährlich."
+  },
+  "CVE-2022-24086": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Adobe Commerce/Magento hat während des Checkout-Prozesses eine unzureichende Eingabevalidierung, die unauthentifizierte Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Shop über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Checkout (Template-Injection)."
+    },
+    "PR": {
+     "why": "'Does not require user interaction' und unauthentifiziert."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Magento-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar (auch Zahlungsdaten)."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99, nur CNA-Vektor: Template-Injection (CWE-20, real SSTI) im Magento-Checkout. Adobe Commerce/Magento ist im Korpus mehrfach vertreten (CVE-2024-34102 XXE); Web-Shops halten Zahlungsdaten und sind ein Hauptziel für Magecart-Skimming. Eine RCE im Checkout ist der direkte Weg zu Kreditkartendaten."
+  },
+  "CVE-2019-5544": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "OpenSLP in VMware ESXi und Horizon DaaS hat einen Heap-Overwrite, der Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "OpenSLP-Dienst (Port 427) über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte SLP-Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf dem ESXi-Host, S:U."
+    },
+    "C": {
+     "why": "RCE auf dem Hypervisor: alle VMs."
+    },
+    "I": {
+     "why": "RCE: alle VMs änderbar."
+    },
+    "A": {
+     "why": "RCE: alle VMs abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,97: OpenSLP in ESXi wurde massenhaft für Ransomware genutzt (ESXiArgs), die VMs direkt auf dem Hypervisor verschlüsselte. Heap-Overwrite (CWE-787); ESXi ist die Virtualisierungs-Kontrollebene, ein RCE dort trifft alle VMs. SLP ist ein selten benötigter Dienst, der oft aktiv blieb; VMware empfahl, ihn abzuschalten."
+  },
+  "CVE-2019-19781": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Citrix ADC und Gateway haben ein Directory Traversal, das über einen präparierten Pfad zu unauthentifizierter Remote Code Execution führt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface der Appliance über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL (../ zu einem Perl-Template), öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf der Appliance, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Gateway abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: 'Shitrix', eine der folgenreichsten Lücken 2019/2020; monatelang ungepatcht in vielen Organisationen, Grundlage zahlloser Ransomware-Einbrüche. Path Traversal (CWE-22), das eine XML/Perl-Template-Datei schrieb und ausführte; die Kombination aus Traversal und Template-Ausführung ergab RCE. Citrix ist im Korpus ein Dauerthema (NetScaler, ShareFile, StoreFront)."
+  },
+  "CVE-2019-9515": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "HTTP/2 Settings Flood: Der Angreifer sendet einen Strom von SETTINGS-Frames, die der Peer jeweils bestätigen muss, was zu Ressourcenerschöpfung und Denial of Service führt.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP/2 über das Netz."
+    },
+    "AC": {
+     "why": "Ein Strom leerer SETTINGS-Frames."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Server."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Bestätigungs-Flut, Ressourcenerschöpfung: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,87: Das fünfte Mitglied der HTTP/2-DoS-Familie 2019 (mit CVE-2019-9511/9512/9513/9514). Ressourcenerschöpfung (CWE-770) über SETTINGS-Missbrauch; die ganze Familie im Korpus zeigt, dass ein Protokoll-Design mehrere DoS-Vektoren gleichzeitig eröffnen kann. Alle HTTP/2-Server waren betroffen."
+  },
+  "CVE-2020-17506": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Artica Web Proxy erlaubt über eine SQL-Injection im apikey-Parameter von fw.login.php die Umgehung der Rechteprüfung und den Zugriff auf Backend-Administrator-Rechte.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter apikey-Parameter."
+    },
+    "PR": {
+     "why": "Die SQL-Injection im apikey-Parameter von fw.login.php umgeht die Anmeldung selbst; der Angreifer startet ohne Konto: PR:N.",
+     "pitfall": "Login-Seite im Text ≠ Login nötig: Der Fehler sitzt VOR der Authentifizierung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank und Admin im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "Admin über SQLi: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Admin: alles änderbar."
+    },
+    "A": {
+     "why": "Admin: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,94: SQLi (CWE-89) im Login-Parameter selbst (wie BillQuick CVE-2021-42258, Grandstream CVE-2020-5722). Das apikey/Login-Feld als SQLi-Vektor, bevor eine Authentifizierung stattfindet, ist ein wiederkehrendes Muster. Ein Proxy mit Admin-Zugriff kontrolliert den Web-Verkehr."
+  },
+  "CVE-2020-1421": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Windows erlaubt über eine präparierte .LNK-Datei Remote Code Execution mit den Rechten des lokalen Nutzers.",
+   "metrics": {
+    "AV": {
+     "why": "Die .LNK-Datei kommt per USB, Netzfreigabe oder Download."
+    },
+    "AC": {
+     "why": "Präparierte .LNK-Datei."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Der Nutzer muss den Ordner mit der .LNK-Datei anzeigen (die Verarbeitung reicht)."
+    },
+    "S": {
+     "why": "Code im Nutzerkontext, S:U."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,75: LNK-RCE (CWE-843), wie bei Stuxnet (CVE-2010-2568). Eine präparierte Verknüpfung, die beim bloßen Anzeigen im Explorer Code ausführt; .LNK-Dateien auf USB-Sticks sind ein klassischer Verbreitungsvektor. Der Nutzer muss nur den Ordner öffnen, nicht die Datei anklicken."
+  },
+  "CVE-2009-4324": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Use-After-Free in der Doc.media.newPlayer-Methode von Adobe Reader/Acrobat erlaubt über ein präpariertes PDF mit ZLib-komprimierten Streams Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "PDF über Web oder Mail."
+    },
+    "AC": {
+     "why": "Präpariertes PDF."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss das PDF öffnen."
+    },
+    "S": {
+     "why": "Code im Reader-Prozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,82: Zero-Day 2009, in gezielten Angriffen. Use-After-Free (CWE-416) über eine PDF-JavaScript-Methode (media.newPlayer); die Adobe-PDF-Serie im Korpus (2007 bis 2021) zeigt, wie JavaScript-Methoden im PDF (getIcon, util.printf, newPlayer) über Jahre die Angriffsfläche waren."
+  },
+  "CVE-2013-5223": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Der D-Link DSL-2760U-Gateway hat mehrere Cross-Site-Scripting-Lücken (ntpServer1, username und weitere Parameter).",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des Routers über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Parameter."
+    },
+    "PR": {
+     "why": "Ein authentifizierter Nutzer: PR:L."
+    },
+    "UI": {
+     "why": "Ein anderer Nutzer muss die betroffene Seite ansehen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Browserkontext des Opfers: C:L."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,34: XSS (CWE-79) in einem D-Link-Router. XSS in Router-Web-Interfaces ermöglicht CSRF-artige Angriffe (Konfigurationsänderung über den Admin-Browser). D-Link ist im Korpus der Hersteller mit den meisten Einträgen; hier XSS statt der üblichen Command Injection."
+  },
+  "CVE-2020-2883": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Oracle WebLogic Server erlaubt einem unauthentifizierten Angreifer über IIOP/T3 die Kompromittierung (Deserialisierung).",
+   "metrics": {
+    "AV": {
+     "why": "'Network access via IIOP, T3' wörtlich."
+    },
+    "AC": {
+     "why": "'Easily exploitable' (Oracle-AC:L)."
+    },
+    "PR": {
+     "why": "'Unauthenticated attacker' wörtlich."
+    },
+    "UI": {
+     "why": "Keine Interaktion genannt."
+    },
+    "S": {
+     "why": "Kein 'additional products'-Satz: S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,95: WebLogic-Deserialisierung (noinfo bei NVD), zeitgleich mit CVE-2020-14644. WebLogic ist im Korpus das am häufigsten wiederkehrende Deserialisierungsziel; T3/IIOP gehören nie ins Internet. Jede neue Gadget-Chain umgeht Oracles Filter; ein Produkt mit einer strukturellen Deserialisierungsschwäche."
+  },
+  "CVE-2023-28461": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Array Networks Array AG und vxAG erlauben über ein flags-Attribut in einem HTTP-Header ohne Authentifizierung das Durchsuchen des Dateisystems und Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "SSL-VPN-Gateway über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter HTTP-Header."
+    },
+    "PR": {
+     "why": "Das Dateisystem des SSL-VPN-Gateways wird über ein HTTP-Header-Flag „without authentication“ durchsucht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf dem Gateway, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Gateway abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,68: Ein weiteres SSL-VPN-Gateway (wie Pulse Secure, Ivanti, Citrix, Fortinet). Auth-Bypass (CWE-287) über ein Header-Attribut zu RCE; VPN-Gateways sind im Korpus das meistangegriffene Appliance-Segment. Der HTTP-Header als Angriffsvektor umging die Authentifizierung vollständig."
+  },
+  "CVE-2023-27350": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "PaperCut NG/MF erlaubt über die SetupCompleted-Klasse die Umgehung der Authentifizierung, was zu unauthentifizierter Remote Code Execution führt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im PaperCut-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: Von mehreren Ransomware-Gruppen (Clop, LockBit) genutzt. Auth-Bypass (CWE-284) über die SetupCompleted-Klasse zu RCE. PaperCut ist im Korpus dreimal vertreten (CVE-2023-2533, CVE-2023-3486, CVE-2023-27350); Print-Management-Server stehen in Schulen und Behörden oft im Internet. Ein Produkt mit mehreren kritischen Lücken im selben Jahr."
+  },
+  "CVE-2022-44877": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "CWP (Control Web Panel) erlaubt über Shell-Metazeichen im login-Parameter von login/index.php unauthentifizierte OS Command Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter login-Parameter, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Die Command-Injection sitzt im login-Parameter von login/index.php, also VOR der Anmeldung: PR:N.",
+     "pitfall": "„login/index.php“ ist der Angriffsort, nicht eine Voraussetzung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Host, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Host abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,9999: CWP ist ein Hosting-Panel (wie CyberPanel, cPanel). Command Injection (CWE-78) im Login-Feld selbst, das vor der Authentifizierung verarbeitet wird. Hosting-Panels sind im Korpus ein wiederkehrendes Ziel, weil sie viele Kundenseiten mit hohen Rechten verwalten. Das Login-Feld als Command-Injection-Vektor ist ein Klassiker."
+  },
+  "CVE-2022-3236": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das User Portal und Webadmin der Sophos Firewall haben eine Code-Injection, die unauthentifizierte Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface der Firewall über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf der Firewall, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Firewall abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Zero-Day gegen exponierte Sophos-Firewalls. Code-Injection (CWE-94) im User-Portal am WAN. Sophos ist im Korpus mehrfach vertreten (XG CVE-2020-12271, UTM CVE-2020-25223, Cyberoam CVE-2020-29574); Firewall-Verwaltungsoberflächen am Internet sind das wiederkehrende RCE-Ziel. Eine Firewall zu übernehmen heißt, das Netz dahinter zu öffnen."
+  }
+ }
+}

@@ -1,0 +1,570 @@
+{
+ "batch": "batch-007",
+ "items": {
+  "CVE-2021-29441": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der AuthFilter von Alibaba Nacos enthält eine Hintertür: Anfragen mit einem bestimmten User-Agent (Nacos-Server) umgehen die Authentifizierung vollständig.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP-API über das Netz."
+    },
+    "AC": {
+     "why": "Einen Header setzen."
+    },
+    "PR": {
+     "why": "Die Umgehung ersetzt die Anmeldung, kein Konto nötig.",
+     "pitfall": "Ein User-Agent-Header ist keine Authentifizierung. Wer ihn kennt, hat keine 'Rechte', er nutzt eine Hintertür: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Nacos selbst.",
+     "pitfall": "Der CNA vergab S:C, weil Nacos Konfigurationen anderer Dienste verwaltet. Dass andere Dienste Nacos vertrauen, ist Folgewirkung, kein Scope-Wechsel."
+    },
+    "C": {
+     "why": "Admin-Zugriff auf alle Konfigurationen und Secrets der verwalteten Dienste."
+    },
+    "I": {
+     "why": "NVD: Konfigurationen beliebig änderbar (der CNA sah I:N)."
+    },
+    "A": {
+     "why": "NVD: Dienste über Konfiguration abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA: S:C, C:H, I:N, A:N (7,7?). Ein Konfigurationsserver mit Admin-Zugriff ist mehr als ein Leseproblem; NVDs H/H/H passt besser."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,88: Massenscans gegen exponierte Nacos-Instanzen. Konfigurationsserver halten Datenbank-Zugangsdaten aller Microservices; die Auswirkung ist die ganze Plattform."
+  },
+  "CVE-2024-3400": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "GlobalProtect in PAN-OS erlaubt über beliebiges Anlegen von Dateien (Session-ID im Dateinamen) eine Command Injection, mit der unauthentifizierte Angreifer Root-Code auf der Firewall ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "GlobalProtect-Portal aus dem Internet."
+    },
+    "AC": {
+     "why": "Präparierter Cookie, keine Sonderbedingung außer der Feature-Konfiguration."
+    },
+    "PR": {
+     "why": "Unauthenticated laut Beschreibung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:C, weil die Firewall Verkehr für alle dahinterliegenden Netze kontrolliert.",
+     "pitfall": "Bei Firewall-RCEs vergibt NVD oft S:C (vgl. CVE-2020-2021). Bei anderen Appliances (FortiOS CVE-2024-23113) S:U. Der Unterschied ist Ermessen, nicht Spezifikation."
+    },
+    "C": {
+     "why": "root auf der Firewall: alles."
+    },
+    "I": {
+     "why": "root: alles."
+    },
+    "A": {
+     "why": "root: alles."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: Zero-Day, Massenausnutzung innerhalb von Tagen. Nur bei aktiviertem GlobalProtect verwundbar, das ist die Wahrscheinlichkeitsfrage; die Auswirkung ist die Firewall und alles dahinter."
+  },
+  "CVE-2015-4495": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Der PDF-Reader von Firefox erlaubt über präpariertes JavaScript und einen nativen Setter die Umgehung der Same-Origin-Policy und damit das Lesen beliebiger lokaler Dateien.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite oder Werbung."
+    },
+    "AC": {
+     "why": "Seite laden reicht, real per Werbenetzwerk ausgeliefert."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Der Angriff läuft über präpariertes JavaScript im PDF-Reader; das Opfer muss die Seite bzw. das PDF öffnen: UI:R."
+    },
+    "S": {
+     "why": "NVD: bleibt im Browser des Nutzers."
+    },
+    "C": {
+     "why": "Beliebige lokale Dateien lesen (SSH-Keys, Konfigurationen): H."
+    },
+    "I": {
+     "why": "NVD: 'gain privileges' als volle Auswirkung gewertet."
+    },
+    "A": {
+     "why": "NVD: Codeausführung angenommen."
+    }
+   },
+   "context_de": "KEV, EPSS 0,71: Über ein Werbenetzwerk verteilt, stahl gezielt Entwickler-Dateien (.ssh, FileZilla-Konfigurationen). Same-Origin-Policy-Umgehungen sind keine Speicherfehler, aber genauso gefährlich."
+  },
+  "CVE-2014-100005": {
+   "vector_basis": "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der D-Link DIR-600 hat mehrere CSRF-Lücken, über die eine präparierte Seite im Browser eines Admins Konten anlegt oder die Fernverwaltung aktiviert.",
+   "metrics": {
+    "AV": {
+     "why": "NVD: AV:A, weil der Browser des Opfers im LAN des Routers sein muss.",
+     "pitfall": "Bei CSRF gegen Heimrouter vergibt NVD mal AV:N (CVE-2016-6277), mal AV:A wie hier. AV:A ist die strengere Lesart: Die Anfrage entsteht im LAN."
+    },
+    "AC": {
+     "why": "Präparierte Seite."
+    },
+    "PR": {
+     "why": "NVD vergab PR:L, untypisch für CSRF.",
+     "pitfall": "CSRF ist normalerweise PR:N mit UI:R (der Angreifer braucht nichts, das Opfer klickt). NVD hat hier PR:L und UI:N gesetzt, als wäre der Angreifer der Angemeldete. Ein Vektor, der die Beschreibung nicht abbildet."
+    },
+    "UI": {
+     "why": "NVD: UI:N, obwohl ein Admin die Seite öffnen muss."
+    },
+    "S": {
+     "why": "Betroffen ist der Router."
+    },
+    "C": {
+     "why": "Admin-Konto auf dem Router."
+    },
+    "I": {
+     "why": "Admin: Konfiguration änderbar."
+    },
+    "A": {
+     "why": "Admin: Router abschaltbar."
+    }
+   },
+   "dissent": {
+    "PR": "Der NVD-Vektor (PR:L/UI:N) beschreibt kein CSRF. Der korrekte CSRF-Vektor wäre AV:N oder A, PR:N, UI:R. Alte Nachbewertung, offensichtlich schematisch."
+   },
+   "context_de": "KEV, EPSS 0,48: In Router-Botnetzen genutzt. Die Kombination 'Fernverwaltung aktivieren' macht aus einem LAN-Angriff einen dauerhaften Internet-Zugang."
+  },
+  "CVE-2025-49113": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Roundcube Webmail validiert den Parameter _from in settings/upload.php nicht, was PHP-Objekt-Deserialisierung und damit Codeausführung für angemeldete Nutzer erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webmail über das Netz."
+    },
+    "AC": {
+     "why": "Präparierter Parameter."
+    },
+    "PR": {
+     "why": "'By authenticated users': ein Postfach reicht.",
+     "pitfall": "Bei Webmail ist PR:L schwach als Hürde: Jeder Mitarbeiter hat ein Konto, und Phishing liefert welche. Trotzdem ist PR:L korrekt."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code läuft im Webserver-Kontext.",
+     "pitfall": "Der CNA vergab S:C. Kein Grund erkennbar; RCE im selben Prozess ist S:U."
+    },
+    "C": {
+     "why": "RCE auf dem Mailserver: alle Postfächer."
+    },
+    "I": {
+     "why": "RCE: alles."
+    },
+    "A": {
+     "why": "RCE: abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA: S:C (9,9). NVD 8,8 passt zur Spezifikation."
+   },
+   "context_de": "KEV, EPSS 0,99: Exploit binnen Tagen verkauft und öffentlich. Roundcube ist bei Behörden und Hostern verbreitet; ein Konto ist leicht zu bekommen, die Wahrscheinlichkeit entsprechend hoch."
+  },
+  "CVE-2020-24186": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Das WordPress-Plugin wpDiscuz erlaubt über die AJAX-Aktion wmuUploadFiles unauthentifizierten Nutzern das Hochladen beliebiger Dateien, auch PHP.",
+   "metrics": {
+    "AV": {
+     "why": "AJAX-Endpunkt über HTTP."
+    },
+    "AC": {
+     "why": "Upload-Request."
+    },
+    "PR": {
+     "why": "'Unauthenticated users' laut Beschreibung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:C, vermutlich Plugin als verwundbare, WordPress/Server als betroffene Komponente.",
+     "pitfall": "Bei WordPress-Plugin-RCEs vergibt NVD mal S:C (hier), mal S:U (wp-file-manager CVE-2020-25213). Gleiche Konstellation, zwei Antworten."
+    },
+    "C": {
+     "why": "PHP-Webshell: alles."
+    },
+    "I": {
+     "why": "Webshell: alles."
+    },
+    "A": {
+     "why": "Webshell: abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "Kein CNA-Vektor. NVDs S:C ist im Vergleich zu CVE-2020-25213 (S:U) inkonsistent; 9,8 wäre die übliche Bewertung."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,95: 80.000 Installationen, Massenscans. Plugin-Lücken sind der Hauptvektor gegen WordPress; die Plattform selbst ist selten das Problem."
+  },
+  "CVE-2026-22769": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Dell RecoverPoint for Virtual Machines enthält fest kodierte Zugangsdaten, mit denen ein unauthentifizierter Angreifer Root-Zugriff auf das Betriebssystem der Appliance erhält.",
+   "metrics": {
+    "AV": {
+     "why": "Anmeldung über das Netz."
+    },
+    "AC": {
+     "why": "Bekannte Zugangsdaten verwenden."
+    },
+    "PR": {
+     "why": "Fest kodierte Zugangsdaten sind keine eigenen Rechte: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:C, weil eine Backup-Appliance Zugriff auf alle gesicherten VMs und den vSphere-Verbund hat.",
+     "pitfall": "Backup-Systeme sind wie Fernwartungstools: Ihre Funktion ist der Zugriff auf andere Systeme, daher S:C mit Begründung."
+    },
+    "C": {
+     "why": "Root auf der Backup-Appliance: alle Sicherungen lesbar."
+    },
+    "I": {
+     "why": "Root: Sicherungen manipulierbar."
+    },
+    "A": {
+     "why": "Root: Sicherungen löschbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,13. Backups sind das, was die Auswirkung von Ransomware senkt; eine Lücke im Backup-System hebt diese Senkung auf. Offline-Kopien bleiben die Antwort."
+  },
+  "CVE-2017-5754": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:N",
+   "summary_de": "Meltdown: Prozessoren mit spekulativer Ausführung erlauben einem lokalen Nutzerprozess das Auslesen von Kernelspeicher über einen Cache-Seitenkanal.",
+   "metrics": {
+    "AV": {
+     "why": "Code muss lokal laufen."
+    },
+    "AC": {
+     "why": "Seitenkanal-Messung mit Rauschen: Bedingungen außerhalb der Kontrolle des Angreifers."
+    },
+    "PR": {
+     "why": "Normaler Nutzerprozess."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Nutzerprozess liest Kernelspeicher: Grenzübertritt."
+    },
+    "C": {
+     "why": "Gesamter Kernelspeicher und damit aller Prozesse: H."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,84, Vektor nur vom CNA. Meltdown war in Cloud-Umgebungen die Mandantentrennungsfrage; die Gegenmaßnahme (KPTI) kostete Leistung. Ein Fall, in dem die Auswirkung der Mitigation selbst bewertet werden musste."
+  },
+  "CVE-2022-22536": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "SAP NetWeaver, Content Server und Web Dispatcher sind anfällig für HTTP Request Smuggling: Ein unauthentifizierter Angreifer stellt beliebige Daten vor die Anfrage eines Opfers und handelt in dessen Namen.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP über das Netz."
+    },
+    "AC": {
+     "why": "NVD: keine Sonderbedingung."
+    },
+    "PR": {
+     "why": "Unauthenticated laut Beschreibung."
+    },
+    "UI": {
+     "why": "Kein Opfer muss aktiv werden; die Anfragen anderer Nutzer werden vergiftet."
+    },
+    "S": {
+     "why": "NVD: Der Web Dispatcher/Server ist verwundbar, betroffen sind Anwendungen und Nutzer dahinter: S:C.",
+     "pitfall": "Request Smuggling ist ein Musterfall für S:C: Der Proxy ist die verwundbare Komponente, die Backend-Anwendung die betroffene. Der CNA (SAP) vergab S:U."
+    },
+    "C": {
+     "why": "Handeln im Namen beliebiger Nutzer, inklusive Admins: H."
+    },
+    "I": {
+     "why": "Beliebige Aktionen als Opfer: H."
+    },
+    "A": {
+     "why": "Cache-Poisoning und Aktionen: H."
+    }
+   },
+   "dissent": {
+    "S": "CNA (SAP): S:U (9,8). Für Smuggling ist S:C spezifikationsnäher, weil zwei Komponenten beteiligt sind."
+   },
+   "context_de": "KEV, EPSS 0,98 ('ICMAD'). SAP-Systeme sind Kronjuwelen mit langen Patchzyklen; die Wahrscheinlichkeit bleibt über Jahre, weil Patches Downtime bedeuten."
+  },
+  "CVE-2026-48710": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+   "summary_de": "Starlette validiert den Host-Header nicht, bevor request.url daraus gebaut wird; ein manipulierter Header lässt request.url.path vom tatsächlich gerouteten Pfad abweichen und umgeht so pfadbasierte Sicherheitsprüfungen in Middleware.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP-Header über das Netz."
+    },
+    "AC": {
+     "why": "Ein präparierter Host-Header."
+    },
+    "PR": {
+     "why": "Keine Anmeldung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Anwendung selbst."
+    },
+    "C": {
+     "why": "Umgehung pfadbasierter Beschränkungen: begrenzter, anwendungsabhängiger Zugriff, C:L.",
+     "pitfall": "Framework-Lücke mit unbestimmter Folge: Was hinter der umgangenen Prüfung liegt, hängt von der App ab. NVD wählt dann L/L."
+    },
+    "I": {
+     "why": "Anwendungsabhängig, begrenzt: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,36: Über Red Hat AI Inference Server in KEV gelandet. Bei Framework-Lücken bestimmt die Einbettung alles; die einzelne App kann 0 oder 9,8 sein."
+  },
+  "CVE-2018-6065": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "V8 berechnet beim Anlegen neuer JavaScript-Objekte die Allokationsgröße mit einem Integer-Überlauf, was Heap-Korruption über eine präparierte Seite erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Der Integer-Overflow in V8 wird über eine präparierte HTML-Seite ausgelöst, die das Opfer laden muss: UI:R."
+    },
+    "S": {
+     "why": "Bleibt im Renderer, kein Ausbruch beschrieben: S:U.",
+     "pitfall": "Vergleiche CVE-2024-5274/4947, wo NVD bei gleicher Lage S:C vergab. Hier korrekt S:U (8,8). Derselbe Bugtyp, verschiedene Jahre, verschiedene Analysten."
+    },
+    "C": {
+     "why": "Codeausführung im Renderer angenommen."
+    },
+    "I": {
+     "why": "Codeausführung im Renderer."
+    },
+    "A": {
+     "why": "Codeausführung im Renderer."
+    }
+   },
+   "context_de": "KEV, EPSS 0,60: Pwn2Own-Exploit, später in freier Wildbahn. Der 8,8-Standardvektor für Browser-Renderer-Bugs ist die richtige Referenz."
+  },
+  "CVE-2016-1646": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Array.prototype.concat in V8 prüft Elementtypen nicht korrekt, was einen Out-of-Bounds-Read und darüber hinaus weitere Auswirkungen über präpariertes JavaScript erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Präpariertes JavaScript über das Web."
+    },
+    "AC": {
+     "why": "Seite laden."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Das präparierte JavaScript läuft erst, wenn das Opfer die Seite in Chrome lädt: UI:R."
+    },
+    "S": {
+     "why": "Im Renderer."
+    },
+    "C": {
+     "why": "NVD wertet 'unspecified other impact' bei V8 als Codeausführung: H.",
+     "pitfall": "Die Beschreibung nennt nur DoS und 'possibly unspecified other impact'. NVD nimmt bei Browser-Speicherfehlern trotzdem H/H/H an. Ein OOB-Read allein wäre C:H/I:N/A:H."
+    },
+    "I": {
+     "why": "NVD: Codeausführung angenommen."
+    },
+    "A": {
+     "why": "DoS und mehr."
+    }
+   },
+   "context_de": "KEV, EPSS 0,48: Pwn2Own 2016. Alte Chrome-Lücken sind nur relevant, wo Chromium-Ableger (Kiosk, Embedded) nicht aktualisiert werden."
+  },
+  "CVE-2024-55550": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Mitel MiCollab erlaubt einem angemeldeten Administrator das Lesen lokaler Dateien, beschränkt auf nicht sensible Systeminformationen im Admin-Zugriffsbereich.",
+   "metrics": {
+    "AV": {
+     "why": "NVD: über die Weboberfläche.",
+     "pitfall": "Der CNA vergab AV:L. Die Beschreibung sagt 'local file read', gemeint ist aber das Lesen lokaler Dateien des Servers über die Web-Oberfläche, nicht ein lokaler Angreifer."
+    },
+    "AC": {
+     "why": "Präparierte Eingabe."
+    },
+    "PR": {
+     "why": "'Administrative privilege' laut Beschreibung: PR:H."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist MiCollab."
+    },
+    "C": {
+     "why": "'Disclosure is limited to non-sensitive system information': C:L, ausdrücklich.",
+     "pitfall": "Die Beschreibung liefert die Begründung für C:L wörtlich. Der CNA vergab trotzdem C:H."
+    },
+    "I": {
+     "why": "'Does not allow file modification': I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "C": "CNA (Mitel): AV:L, C:H (4,4?). Die eigene Beschreibung des Herstellers widerspricht dem eigenen Vektor."
+   },
+   "context_de": "Score 2,7, KEV mit Ransomware-Bezug: In Kette mit dem Auth-Bypass CVE-2024-41713 wurde daraus unauthentifiziertes Dateilesen. Der niedrigste Score im Korpus mit aktiver Ausnutzung; Ketten machen aus 2,7 ein Problem."
+  },
+  "CVE-2020-17519": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Die REST-Schnittstelle des Apache-Flink-JobManagers erlaubt seit 1.11.0 das Lesen beliebiger Dateien, auf die der JobManager-Prozess Zugriff hat.",
+   "metrics": {
+    "AV": {
+     "why": "REST-Interface über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte URL."
+    },
+    "PR": {
+     "why": "Keine Anmeldung (Flink hat standardmäßig keine)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der JobManager-Host."
+    },
+    "C": {
+     "why": "Beliebige Dateien mit Prozessrechten, gezielt wählbar: H."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "NVD: A:N; der CNA vergab A:H, ohne Begründung in der Beschreibung."
+    }
+   },
+   "dissent": {
+    "A": "CNA (Apache): A:H (9,1). Für ein reines Dateilesen nicht nachvollziehbar."
+   },
+   "context_de": "KEV, EPSS 0,98: Massenscans nach exponierten Flink-Dashboards. Big-Data-Tools ohne Authentifizierung im Netz sind ein wiederkehrendes Muster (Flink, Spark, Hadoop, Kibana)."
+  },
+  "CVE-2013-0643": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Firefox-Sandbox von Adobe Flash Player beschränkt Rechte unzureichend, sodass präparierter SWF-Inhalt leichter Code ausführen kann.",
+   "metrics": {
+    "AV": {
+     "why": "SWF über das Web."
+    },
+    "AC": {
+     "why": "Seite mit Flash-Inhalt laden."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite mit dem präparierten SWF laden; Flash führt den Code erst dann aus: UI:R."
+    },
+    "S": {
+     "why": "NVD: S:U, obwohl eine Sandbox umgangen wird.",
+     "pitfall": "Sandbox-Umgehung wäre ein Argument für S:C (vgl. Chrome-Escapes). NVD bewertete 2013er-Flash-Lücken schematisch mit dem 8,8-Client-Vektor."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten."
+    },
+    "I": {
+     "why": "Code mit Nutzerrechten."
+    },
+    "A": {
+     "why": "Code mit Nutzerrechten."
+    }
+   },
+   "context_de": "KEV, EPSS 0,11: Gezielte Angriffe 2013. Historisch; zeigt, dass NVDs Sandbox-Logik (S:C) erst mit Chrome-Bewertungen konsequent wurde."
+  },
+  "CVE-2021-21166": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Data Race in der Audio-Komponente von Chrome erlaubt über eine präparierte Seite Heap-Korruption.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "NVD: AC:L trotz Race, der Exploit lief in freier Wildbahn.",
+     "pitfall": "Race Condition (CWE-362) heißt nicht automatisch AC:H. Wenn der Angreifer die Race zuverlässig gewinnt, bleibt AC:L. AC:H nur bei Bedingungen, die er nicht steuert."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Der Data-Race in der Audio-Verarbeitung wird über eine präparierte HTML-Seite ausgelöst, die das Opfer laden muss: UI:R."
+    },
+    "S": {
+     "why": "Kein Ausbruch beschrieben: S:U."
+    },
+    "C": {
+     "why": "Codeausführung im Renderer angenommen."
+    },
+    "I": {
+     "why": "Codeausführung."
+    },
+    "A": {
+     "why": "Codeausführung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,27: Zero-Day, von einer nordkoreanischen Gruppe gegen Sicherheitsforscher eingesetzt. Race-Bugs sind für Angreifer aufwendig, aber nicht unzuverlässig genug für AC:H."
+  },
+  "CVE-2018-0158": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H",
+   "summary_de": "Das IKEv2-Modul von Cisco IOS/IOS XE verarbeitet bestimmte Pakete fehlerhaft; präparierte IKEv2-Pakete verursachen ein Speicherleck oder einen Reload des Geräts.",
+   "metrics": {
+    "AV": {
+     "why": "IKEv2 (UDP 500/4500) über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Pakete."
+    },
+    "PR": {
+     "why": "Vor jeder Authentifizierung."
+    },
+    "UI": {
+     "why": "Kein Nutzer beteiligt."
+    },
+    "S": {
+     "why": "NVD-Konvention: Reload eines Routers trifft die transportierten Netze, S:C."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Reload: Gerät weg."
+    }
+   },
+   "context_de": "KEV, EPSS 0,07. IKEv2 lauscht auf jedem VPN-Router am Internet; Speicherleck plus Reload ist ein wiederholbarer DoS gegen Standort-Anbindungen."
+  }
+ }
+}

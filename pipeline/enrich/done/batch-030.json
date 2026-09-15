@@ -1,0 +1,630 @@
+{
+ "batch": "batch-030",
+ "items": {
+  "CVE-2019-0227": {
+   "vector_basis": "CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Apache Axis 1.4 ist anfällig für Server-Side Request Forgery.",
+   "metrics": {
+    "AV": {
+     "why": "NVD: AV:A, eingeschränkte Netzwerkreichweite angenommen.",
+     "pitfall": "Ungewöhnlich für eine Web-SSRF (AV:N wäre üblich). NVD vergab AV:A/AC:H, was den Score auf 7,5 drückt; die reale Ausnutzbarkeit hängt an der einbettenden Anwendung."
+    },
+    "AC": {
+     "why": "NVD setzt AC:H: Die SSRF im veralteten Axis 1.4 hängt von Konfigurations- und Netzpositionsbedingungen ab, die der Angreifer nicht kontrolliert."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Axis-Prozess."
+    },
+    "C": {
+     "why": "SSRF zu internen Ressourcen: gezielt, H."
+    },
+    "I": {
+     "why": "Anfragen an interne Systeme: I:H."
+    },
+    "A": {
+     "why": "Verfügbarkeit: NVD: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,92: Apache Axis 1.4 ist seit 2006 ohne Wartung, steckt aber in vielen Alt-Produkten (auch Oracle). SSRF (CWE-918); eine tote Bibliothek in lebenden Produkten ist ein Dauerproblem, weil sie niemand mehr aktualisiert."
+  },
+  "CVE-2022-1096": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion in V8 erlaubt über eine präparierte Seite Heap-Korruption in Chrome.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Renderer-Prozess."
+    },
+    "C": {
+     "why": "Codeausführung im Renderer: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,24: Zero-Day. V8-Type-Confusion (CWE-843); der Renderer-Bug als Kettenglied. Die Chrome-V8-Serie im Korpus (2017 bis 2026) ist der beste Datensatz, um die NVD-S:U/S:C-Verschiebung über die Jahre zu studieren."
+  },
+  "CVE-2016-7892": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Use-After-Free in der TextField-Klasse von Adobe Flash Player erlaubt Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Flash-Inhalt über das Web."
+    },
+    "AC": {
+     "why": "Präparierter Inhalt."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite mit Flash-Inhalt öffnen."
+    },
+    "S": {
+     "why": "Code im Plugin-Prozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,19: Flash-Use-After-Free (CWE-416). Die Flash-Serie im Korpus (2011 bis 2017) zeigt, warum Flash abgeschafft wurde: eine endlose Folge von Speicherfehlern in einem allgegenwärtigen Plugin."
+  },
+  "CVE-2023-3388": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Das Beautiful-Cookie-Consent-Banner-Plugin für WordPress ist über den nsc_bar_content_href-Parameter anfällig für gespeichertes XSS.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Parameter."
+    },
+    "PR": {
+     "why": "Das Stored XSS über nsc_bar_content_href wird von unauthentifizierten Angreifern eingeschleust: PR:N."
+    },
+    "UI": {
+     "why": "NVD: UI:R (ein Nutzer muss die Seite ansehen); der CNA UI:N."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Browserkontext des Opfers: C:L."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "UI": "CNA (Wordfence): UI:N (6,1). Der wiederkehrende WordPress-Plugin-XSS-Streit über UI."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,84. Ironie: ein Cookie-Consent-Banner (Datenschutz-Werkzeug) mit XSS. Gespeichertes XSS (CWE-79) in einem weit installierten Plugin; die reale Ausnutzbarkeit hängt an der Verbreitung, nicht am Einzelfall."
+  },
+  "CVE-2020-25078": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Der unauthentifizierte /config/getuser-Endpunkt auf D-Link-DCS-Kameras erlaubt die Preisgabe des Administrator-Passworts.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface der Kamera über HTTP."
+    },
+    "AC": {
+     "why": "Eine URL aufrufen."
+    },
+    "PR": {
+     "why": "Der Endpunkt /config/getuser ist ausdrücklich unauthentifiziert und gibt das Admin-Passwort preis: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Kamera."
+    },
+    "C": {
+     "why": "Das Admin-Passwort: gezielt, maximal wertvoll, H.",
+     "pitfall": "Ein einzelnes Datum (Passwort), aber der Wertfall: C:H. Wie TerraMaster CVE-2022-24990. Umfang klein, Wert maximal."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,98: Ein Endpunkt, der das Admin-Passwort im Klartext liefert (CWE-noinfo). D-Link-Kameras in Botnetzen; ein 7,5-Info-Leck, das faktisch die volle Übernahme erlaubt, weil das Passwort direkt kommt."
+  },
+  "CVE-2020-10148": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die SolarWinds Orion API hat eine Authentifizierungsumgehung, über die ein entfernter Angreifer API-Befehle ausführen kann.",
+   "metrics": {
+    "AV": {
+     "why": "Orion-API über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL (Pfad-Trick zur Umgehung)."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Orion, S:U."
+    },
+    "C": {
+     "why": "API-Zugriff: alle Daten lesbar."
+    },
+    "I": {
+     "why": "API-Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "API-Befehle: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,92: Der Auth-Bypass (CWE-306) im Umfeld des SUNBURST-Vorfalls; Angreifer nutzten ihn, um die kompromittierte Orion-Plattform weiter zu steuern. Orion überwacht die gesamte IT-Infrastruktur; SolarWinds-Produkte stehen im Korpus seither unter Dauerbeobachtung."
+  },
+  "CVE-2022-4223": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Die pgAdmin-HTTP-API zur Validierung des Pfads externer PostgreSQL-Werkzeuge erlaubt die Ausführung beliebiger Programme.",
+   "metrics": {
+    "AV": {
+     "why": "pgAdmin-Weboberfläche über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Pfad an die Validierungs-API."
+    },
+    "PR": {
+     "why": "NVD: PR:N mit UI:R (die API war unzureichend geschützt)."
+    },
+    "UI": {
+     "why": "Das Opfer (ein angemeldeter Nutzer) muss die Anfrage auslösen."
+    },
+    "S": {
+     "why": "Code im pgAdmin-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,80: Die Validierungs-API sollte prüfen, ob ein Pfad ein PostgreSQL-Werkzeug ist, indem sie es ausführt. Fehlende Autorisierung (CWE-862): Die Ausführung selbst war der Fehler. Ein Schutzmechanismus, der zum Angriffsvektor wurde."
+  },
+  "CVE-2020-25223": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das WebAdmin der Sophos SG UTM hat eine unauthentifizierte Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "WebAdmin über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf der UTM-Appliance, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Firewall abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,97: Sophos-UTM-RCE (Command Injection, CWE-78). Sophos ist im Korpus mehrfach vertreten (XG SQLi CVE-2020-12271, Cyberoam CVE-2020-29574); Firewall-Verwaltungsoberflächen am WAN sind ein wiederkehrendes RCE-Ziel."
+  },
+  "CVE-2018-1273": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Spring Data Commons hat einen Property-Binder-Fehler, über den ein unauthentifizierter Angreifer über präparierte Request-Parameter SpEL-Ausdrücke einschleust (RCE).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Request-Parameter."
+    },
+    "PR": {
+     "why": "Der Property-Binder verarbeitet Request-Parameter eines unauthentifizierten Nutzers: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Spring-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,97: SpEL-Injection (CWE-94) im Property-Binding von Spring Data. Spring-Framework-Lücken (auch Spring4Shell CVE-2022-22965) folgen diesem Muster: Nutzergesteuerte Property-Namen werden als Ausdrücke ausgewertet. Ein Framework-weites Injection-Thema."
+  },
+  "CVE-2019-10068": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Kentico Xperience validiert Sicherheits-Header im Staging-Service unzureichend, was Authentifizierungsumgehung und Deserialisierung zu RCE erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Staging-Anfrage."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Kentico-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,95: Auth-Bypass plus Deserialisierung (CWE-502) im selben Endpunkt. Kentico ist ein .NET-CMS; das Muster (Header-Validierung umgehen, dann deserialisieren) verbindet zwei Klassen zu einer RCE-Kette in einer CVE."
+  },
+  "CVE-2020-8260": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Admin-Web-Interface von Pulse Connect Secure erlaubt einem authentifizierten Angreifer über unkontrollierte gzip-Extraktion die Ausführung beliebigen Codes.",
+   "metrics": {
+    "AV": {
+     "why": "Admin-Interface der Appliance über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes gzip-Archiv."
+    },
+    "PR": {
+     "why": "'Authenticated attacker' mit Admin-Rechten: PR:H."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf der Appliance, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Gateway abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,96: Pulse Secure ist im Korpus ein Dauerthema (CVE-2019-11510, CVE-2021-22893). PR:H einzeln, aber in Kette mit einem Auth-Bypass PR:N. Unkontrollierte Archiv-Extraktion (CWE-434) als RCE-Weg; Admin-Rechte, die eine andere Lücke liefert."
+  },
+  "CVE-2016-2107": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Die AES-NI-Implementierung in OpenSSL behandelt Speicher bei einer Padding-Prüfung fehlerhaft, was über einen Padding-Oracle-Angriff das Auslesen von Klartext einer AES-CBC-Session erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Im Netzpfad (Man-in-the-Middle)."
+    },
+    "AC": {
+     "why": "AC:H, MITM-Position plus viele Anfragen für den Oracle-Angriff."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Verbindung."
+    },
+    "C": {
+     "why": "Klartext der Session, byteweise: NVD C:H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,89: Ein Padding-Oracle (CWE-200) in OpenSSLs AES-NI-Code, der Lucky-13-Fix führte ihn ein. Wie POODLE ein MITM-Krypto-Angriff (AC:H); in Scannern allgegenwärtig, real selten ausgenutzt."
+  },
+  "CVE-2019-2725": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Web-Services-Komponente von Oracle WebLogic Server erlaubt einem unauthentifizierten Angreifer über HTTP die Kompromittierung (Deserialisierung).",
+   "metrics": {
+    "AV": {
+     "why": "'Network access via HTTP' wörtlich."
+    },
+    "AC": {
+     "why": "'Easily exploitable' (Oracle-AC:L)."
+    },
+    "PR": {
+     "why": "'Unauthenticated attacker' wörtlich."
+    },
+    "UI": {
+     "why": "Keine Interaktion genannt."
+    },
+    "S": {
+     "why": "Kein 'additional products'-Satz: S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,9996: WebLogic-Deserialisierung über wls9_async (CWE-74/CWE-502), massenhaft für Kryptominer und Ransomware genutzt. WebLogic ist im Korpus mehrfach vertreten (2015, 2017, 2018, 2019, 2023); ein Produkt mit systematischen Deserialisierungslücken über die Jahre."
+  },
+  "CVE-2012-0151": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Authenticode-Signaturprüfung in Windows validiert den Digest einer signierten PE-Datei nicht korrekt, sodass sich Code an eine signierte Datei anhängen lässt, ohne die Signatur zu brechen.",
+   "metrics": {
+    "AV": {
+     "why": "Die manipulierte Datei wird lokal ausgeführt: AV:L."
+    },
+    "AC": {
+     "why": "Code an die signierte Datei anhängen."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Datei ausführen."
+    },
+    "S": {
+     "why": "Code im Nutzerkontext."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,89: Signaturprüfung (CWE-20), wie CVE-2020-1464 (GlueBall) und CurveBall. Malware konnte sich an eine gültig signierte Datei hängen und galt weiter als vertrauenswürdig; die Vertrauenskette der Signatur war der Angriffspunkt."
+  },
+  "CVE-2023-4863": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Heap-Buffer-Overflow in libwebp erlaubt über ein präpariertes WebP-Bild einen Out-of-Bounds-Speicherzugriff (BLASTPASS).",
+   "metrics": {
+    "AV": {
+     "why": "Das WebP-Bild kommt über Web oder Messenger."
+    },
+    "AC": {
+     "why": "Präpariertes WebP-Bild."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "NVD: UI:R (das Bild wird angezeigt); real teils Zero-Click (iMessage)."
+    },
+    "S": {
+     "why": "Code im verarbeitenden Prozess, S:U."
+    },
+    "C": {
+     "why": "Code mit Prozessrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,9998: BLASTPASS (NSO Pegasus, Zero-Click über iMessage). libwebp (CWE-787) steckt in fast jedem Browser, Betriebssystem und Messenger; eine Bibliotheks-Lücke mit gigantischer Reichweite. Anfangs nur Chrome zugeordnet, betraf sie faktisch die halbe Softwarewelt. Ein Musterfall für Bibliotheks-Reichweite."
+  },
+  "CVE-2020-11652": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Die ClearFuncs-Klasse des SaltStack-salt-master-Prozesses sanitisiert Pfade unzureichend, was authentifizierten Nutzern beliebigen Verzeichniszugriff erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Salt-Master über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage mit Pfad."
+    },
+    "PR": {
+     "why": "'Authenticated users': PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Salt-Master."
+    },
+    "C": {
+     "why": "Beliebiger Verzeichniszugriff (Konfiguration, Keys): gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,86: In Kette mit dem Auth-Bypass CVE-2020-11651 (der PR:L zu PR:N macht). Path Traversal (CWE-22) auf einem Konfigurationsmanagement-Master; die beiden Salt-Lücken zusammen ergaben unauthentifizierte RCE auf ganzen Server-Flotten."
+  },
+  "CVE-2022-39952": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Fortinet FortiNAC hat über eine externe Kontrolle von Datei-Namen/Pfad eine unauthentifizierte Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf der Appliance, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,998: FortiNAC steuert den Netzwerkzugang (NAC, wie Cisco ISE). Externe Datei-Pfad-Kontrolle (CWE-668), die zu RCE führt; ein NAC-System zu übernehmen heißt, den Netzzugang zu kontrollieren. Fortinet ist im Korpus ein Dauerthema."
+  },
+  "CVE-2020-13638": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "rConfig hat in userprocess.php eine Authentifizierungsumgehung, die zum Anlegen eines Administrator-Kontos führt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist rConfig, S:U."
+    },
+    "C": {
+     "why": "Admin-Konto: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Admin: alles änderbar."
+    },
+    "A": {
+     "why": "Admin: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,77: rConfig verwaltet Netzwerkgeräte-Konfigurationen. Auth-Bypass (CWE-269) zum Admin-Anlegen; ein Konfigurationsmanagement-Tool mit Zugriff auf alle Gerätekonfigurationen. Ein Admin-Konto anlegen ist die dauerhafteste Kompromittierung."
+  },
+  "CVE-2020-7247": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "smtp_mailaddr in OpenSMTPD erlaubt über Shell-Metazeichen im MAIL FROM-Feld die Ausführung beliebiger Befehle als root (Standardkonfiguration).",
+   "metrics": {
+    "AV": {
+     "why": "SMTP über das Netz."
+    },
+    "AC": {
+     "why": "Ein präpariertes MAIL FROM-Feld, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle als root im OpenSMTPD-Prozess, S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Die Absenderadresse selbst ist die Nutzlast (wie bei Exim CVE-2019-10149). Command Injection (CWE-78) im SMTP-Adress-Parsing; die 'uncommented default configuration' war verwundbar. OpenSMTPD ist im Korpus zweimal vertreten (auch CVE-2020-8794)."
+  },
+  "CVE-2023-48788": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Fortinet FortiClientEMS hat eine unauthentifizierte SQL-Injection, die zu Codeausführung führt.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz (FCTUID-Handler)."
+    },
+    "AC": {
+     "why": "Präpariertes Paket, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank und RCE im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "SQLi bis RCE (xp_cmdshell): alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,98: FortiClientEMS verwaltet die Endpoint-Clients (wie Apex Central, EPMM). SQLi (CWE-89), die über xp_cmdshell zur RCE wird; ein Endpoint-Management-Server ist ein Sprungbrett zu allen verwalteten Clients. Fortinet zum wiederholten Mal im Korpus."
+  }
+ }
+}

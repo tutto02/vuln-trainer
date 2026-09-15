@@ -1,0 +1,746 @@
+{
+ "batch": "batch-048",
+ "items": {
+  "CVE-2023-29463": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N",
+   "summary_de": "Die JMX-Konsole in Rockwell Pavilion8 ist ohne eigene Anmeldung für angemeldete Anwendungsnutzer erreichbar; darüber lassen sich fremde Sitzungsdaten lesen und Nutzer abmelden.",
+   "metrics": {
+    "AV": {
+     "why": "Die Konsole wird über das Netzwerk angesprochen, kein lokaler Zugang nötig."
+    },
+    "AC": {
+     "why": "Keine besonderen Bedingungen; der Zugriff gelingt ohne Vorarbeit zuverlässig."
+    },
+    "PR": {
+     "why": "Der Angreifer muss ein angemeldeter Anwendungsnutzer sein (niedriges Recht). Dass die JMX-Konsole intern keine zusätzliche Anmeldung verlangt, ändert nichts an dieser Grundvoraussetzung.",
+     "pitfall": "Der Satz „does not require authentication“ verführt zu PR:N. Er meint aber nur die Konsole innerhalb der bereits angemeldeten Anwendung — Anwendungszugang ist Pflicht, also PR:L."
+    },
+    "UI": {
+     "why": "Der Angreifer handelt selbst, kein Opfer muss mitwirken."
+    },
+    "S": {
+     "why": "Betroffen ist dieselbe Anwendung, in der der Angreifer angemeldet ist; kein Übertritt in eine andere Sicherheitszone."
+    },
+    "C": {
+     "why": "Lesbar sind fremde Sitzungsdaten, also ein begrenzter Ausschnitt vertraulicher Information, keine vollständige Datenbasis.",
+     "pitfall": "Zugriff auf Sitzungsdaten klingt nach Übernahme (C:H). NVD wertet den Umfang der lesbaren Information aber als begrenzt: C:L."
+    },
+    "I": {
+     "why": "Das Abmelden fremder Nutzer verändert deren Sitzungszustand begrenzt, keine tiefgreifende Datenmanipulation."
+    },
+    "A": {
+     "why": "NVD sieht keine dauerhafte Verfügbarkeitseinbuße; das Abmelden ist vorübergehend."
+    }
+   },
+   "context_de": "Klassisches C:L-vs-C:H-Beispiel: Der CNA (Rockwell) bewertete denselben Fehler als vollständige Übernahme (C:H/I:H/A:H), NVD als begrenzt. Nimm den offiziellen NVD-Vektor als Grundlage und erkenne, warum „Sitzungsdaten lesen“ nicht automatisch C:H ist.",
+   "dissent": {
+    "C": "Der CNA setzt C:H (volle Sitzungsübernahme), NVD nur C:L.",
+    "I": "CNA I:H, NVD I:L.",
+    "A": "CNA A:H, NVD A:N."
+   }
+  },
+  "CVE-2021-42360": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "In der Astra-Theme-Integration für WordPress konnten Nutzer mit Contributor-Rechten über eine ungesicherte AJAX-Aktion fremde Beiträge mit extern gehostetem, schädlichem Elementor-Block überschreiben (Stored XSS).",
+   "metrics": {
+    "AV": {
+     "why": "Angriff erfolgt über HTTP-Requests aus dem Netz."
+    },
+    "AC": {
+     "why": "Der AJAX-Aufruf ist ohne Sonderbedingungen reproduzierbar."
+    },
+    "PR": {
+     "why": "Erfordert ein Konto mit edit_posts (Contributor), also niedrige, aber echte Rechte.",
+     "pitfall": "Contributor wirkt harmlos, ist aber ein authentifiziertes Konto: PR:L, nicht PR:N."
+    },
+    "UI": {
+     "why": "Der eingeschleuste Block wird erst beim Aufruf der Seite durch ein Opfer ausgeführt: UI:R."
+    },
+    "S": {
+     "why": "Der im Backend eingeschleuste Skriptcode wirkt im Browser des Opfers, also außerhalb der verwundbaren Server-Komponente: Scope-Wechsel C.",
+     "pitfall": "Stored XSS wechselt fast immer die Zone (Server speichert, Browser führt aus): S:C."
+    },
+    "C": {
+     "why": "XSS im Opferbrowser gibt begrenzten Zugriff auf Seiteninhalte/Cookies, keine vollständige Datenkompromittierung."
+    },
+    "I": {
+     "why": "Fremde Beiträge lassen sich überschreiben — begrenzte Integritätsverletzung im Umfang des Opferkontos."
+    },
+    "A": {
+     "why": "Keine unmittelbare Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Der Scope-Wechsel (S:C) hebt die Basisnote trotz nur begrenzter Einzelimpakte. Achte darauf, dass die Ausführung im Browser eine andere Sicherheitszone ist als die verwundbare Server-Komponente.",
+   "dissent": {
+    "UI": "CNA: UI:N (S:U-Sicht ohne Opferaktion), NVD: UI:R.",
+    "S": "CNA S:U, NVD S:C.",
+    "I": "CNA I:H, NVD I:L.",
+    "A": "CNA A:L, NVD A:N."
+   }
+  },
+  "CVE-2020-5299": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:H/UI:R/S:C/C:L/I:L/A:L",
+   "summary_de": "In OctoberCMS konnten hoch privilegierte Nutzer CSV-Exportdaten so manipulieren, dass die erzeugte Datei eine CSV-Injection enthält, die erst in der Tabellenkalkulation des Opfers wirkt.",
+   "metrics": {
+    "AV": {
+     "why": "Die Daten werden über die Web-Anwendung eingebracht: Netzwerk."
+    },
+    "AC": {
+     "why": "Erfolg setzt mehrere Vorbedingungen voraus (verwundbare Tabellensoftware beim Opfer, Kontrolle exportierbarer Daten): hohe Komplexität AC:H.",
+     "pitfall": "AC:H, weil der Angriff von Umständen außerhalb der Kontrolle des Angreifers abhängt."
+    },
+    "PR": {
+     "why": "Der Angreifer braucht Rechte, exportierbare Daten zu ändern — hohe Privilegien PR:H."
+    },
+    "UI": {
+     "why": "Die Nutzlast zündet erst, wenn ein Opfer die exportierte CSV öffnet: UI:R."
+    },
+    "S": {
+     "why": "Die Ausführung findet in der Tabellensoftware des Opfers statt, außerhalb von OctoberCMS: Scope-Wechsel C.",
+     "pitfall": "Die verwundbare Komponente (CMS-Export) und die geschädigte (Tabellensoftware) sind verschieden: S:C."
+    },
+    "C": {
+     "why": "Über die Formel lässt sich begrenzt Information aus der Opferumgebung abgreifen: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation im Kontext des Opfers."
+    },
+    "A": {
+     "why": "NVD sieht eine begrenzte Verfügbarkeitswirkung (A:L) im Opferkontext."
+    }
+   },
+   "context_de": "Lehrreich für Scope: Die eigentliche Ausführung liegt in einer fremden Anwendung (Spreadsheet). Nur ein einziger Metrik-Unterschied zum CNA (A), ansonsten Konsens.",
+   "dissent": {
+    "A": "CNA A:N, NVD A:L."
+   }
+  },
+  "CVE-2021-39205": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Jitsi Meet vor 2.0.6173 erlaubt clientseitiges XSS durch unzureichend maskierte Eigenschaften in JSON-Objekten.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per manipulierter Eingabe."
+    },
+    "AC": {
+     "why": "Keine besonderen Rahmenbedingungen nötig."
+    },
+    "PR": {
+     "why": "Es sind keine Vorabrechte erforderlich; ein anonymer Angreifer präpariert die Eingabe.",
+     "pitfall": "Reines PR:N-Beispiel: einzige Voraussetzung ist der Netzzugang, kein Konto."
+    },
+    "UI": {
+     "why": "Das Skript läuft erst, wenn ein Opfer die präparierte Ansicht öffnet: UI:R."
+    },
+    "S": {
+     "why": "Clientseitiges XSS wirkt im Browser des Opfers, außerhalb der verwundbaren Web-App: S:C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff auf Browser-Kontext des Opfers, keine vollständige Preisgabe."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation der dargestellten Inhalte."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Kombiniert PR:N mit UI:R: Der Angreifer braucht kein Konto, aber ein Opfer muss die Nutzlast auslösen. Solche Fälle verwechselst du leicht mit PR:N/UI:N.",
+   "dissent": {
+    "AC": "CNA AC:H, NVD AC:L.",
+    "S": "CNA S:U, NVD S:C.",
+    "C": "CNA C:H, NVD C:L.",
+    "I": "CNA I:H, NVD I:L."
+   }
+  },
+  "CVE-2022-21940": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Im Johnson Controls SCT wird ein sensibles Sitzungs-Cookie über HTTPS ohne Secure-Attribut gesetzt und kann so abgegriffen werden.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angriff greift über den Netzwerkpfad der Web-Sitzung."
+    },
+    "AC": {
+     "why": "Keine besonderen Bedingungen für den Zugriff auf das Cookie."
+    },
+    "PR": {
+     "why": "Keine Vorabrechte nötig; der Angreifer braucht kein Konto der Anwendung.",
+     "pitfall": "PR:N, weil allein der Netzzugang die Voraussetzung ist."
+    },
+    "UI": {
+     "why": "Es braucht eine Opferaktion (Aufruf über ungesicherten Kanal), damit das Cookie exponiert wird: UI:R."
+    },
+    "S": {
+     "why": "Das erbeutete Cookie wirkt außerhalb der ausliefernden Komponente: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Preisgabe eines Cookies ist ein begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Folgemanipulation über die übernommene Sitzung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Wieder PR:N/UI:R mit Scope-Wechsel. Der CNA bewertete deutlich höher (C:H/I:H/A:H) — nimm den NVD-Vektor als Grundlage.",
+   "dissent": {
+    "AC": "CNA AC:H, NVD AC:L.",
+    "S": "CNA S:U, NVD S:C.",
+    "C": "CNA C:H, NVD C:L.",
+    "I": "CNA I:H, NVD I:L.",
+    "A": "CNA A:H, NVD A:N."
+   }
+  },
+  "CVE-2022-2518": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Das WooCommerce-Plugin „Stockists Manager“ hat keine Nonce-Prüfung; per CSRF lassen sich Einstellungen ändern und Skripte einschleusen, wenn ein Admin einen präparierten Link öffnet.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angriff läuft über einen HTTP-Request aus dem Netz."
+    },
+    "AC": {
+     "why": "Keine Sonderbedingungen; die fehlende Nonce macht den Request beliebig wiederholbar."
+    },
+    "PR": {
+     "why": "Der Angreifer selbst ist nicht authentifiziert; er nutzt die Rechte des getäuschten Admins.",
+     "pitfall": "CSRF: der Angreifer hat PR:N, weil die Rechte vom Opfer stammen, nicht von ihm."
+    },
+    "UI": {
+     "why": "Erfordert, dass ein Admin den präparierten Link anklickt: UI:R."
+    },
+    "S": {
+     "why": "Der eingeschleuste Skriptcode wirkt im Browser/Adminkontext, außerhalb der Plugin-Komponente: S:C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff auf Kontext des Opfers."
+    },
+    "I": {
+     "why": "Begrenzte Änderung der Plugin-Einstellungen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "CSRF ist der Musterfall für PR:N trotz privilegierter Wirkung: Die Rechte liefert das Opfer. Achte auf den Scope-Wechsel durch die Skript-Ausführung.",
+   "dissent": {
+    "S": "CNA S:U, NVD S:C.",
+    "C": "CNA C:H, NVD C:L.",
+    "I": "CNA I:H, NVD I:L.",
+    "A": "CNA A:H, NVD A:N."
+   }
+  },
+  "CVE-2021-43853": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Ajax.NET Professional ist anfällig für JavaScript-Objektinjektion beim Parsen von JSON, was bei Ausnutzung durch einen angemeldeten Nutzer zu XSS führen kann.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz durch präparierte JSON-Eingabe."
+    },
+    "AC": {
+     "why": "Keine besonderen Bedingungen."
+    },
+    "PR": {
+     "why": "Ein angemeldeter, wenn auch niedrig privilegierter Nutzer ist nötig: PR:L."
+    },
+    "UI": {
+     "why": "Die XSS-Nutzlast zündet erst beim Aufruf durch ein Opfer: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Opferbrowser, außerhalb der Bibliothekskomponente: S:C."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe im Browser-Kontext.",
+     "pitfall": "C:L, obwohl der CNA C:H setzt — der lesbare Umfang bleibt begrenzt."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation der Darstellung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Nur C und I unterscheiden sich vom CNA. Gutes Beispiel, um C:L (begrenzter Umfang) gegen C:H (vollständige Preisgabe) abzugrenzen.",
+   "dissent": {
+    "C": "CNA C:H, NVD C:L.",
+    "I": "CNA I:H, NVD I:L."
+   }
+  },
+  "CVE-2021-39221": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Die Nextcloud-Contacts-App vor 4.0.3 war für Stored XSS anfällig; die strikte CSP macht den Fehler auf modernen Browsern jedoch schwer ausnutzbar.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per hochgeladener/gespeicherter Datei."
+    },
+    "AC": {
+     "why": "NVD wertet die Rahmenbedingungen nicht als erschwerend: AC:L."
+    },
+    "PR": {
+     "why": "Ein angemeldetes Konto ist nötig, um die schädliche Datei einzustellen: PR:L."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Datei per Rechtsklick in neuem Tab öffnen: UI:R."
+    },
+    "S": {
+     "why": "Skriptausführung im Opferbrowser, außerhalb der App-Komponente: S:C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext des Opfers."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Beispiel dafür, dass eine wirksame CSP die reale Ausnutzbarkeit senkt — im CVSS-Basisvektor aber nicht abgebildet wird. Der Scope-Wechsel bleibt bestehen.",
+   "dissent": {
+    "AC": "CNA AC:H, NVD AC:L.",
+    "S": "CNA S:U, NVD S:C.",
+    "C": "CNA C:H, NVD C:L.",
+    "I": "CNA I:H, NVD I:L."
+   }
+  },
+  "CVE-2022-26392": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Das Baxter-Spectrum-WBM ist im Superuser-Modus über Anwendungsnachrichten für Format-String-Angriffe anfällig, mit denen sich Speicher auslesen lässt.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über anwendungsseitige Nachrichten aus dem Netz."
+    },
+    "AC": {
+     "why": "NVD sieht keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "Erfordert Superuser-/angemeldeten Zugang zur Nachrichtenschnittstelle: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig."
+    },
+    "S": {
+     "why": "Speicherzugriff bleibt in derselben Komponente (WBM): S:U."
+    },
+    "C": {
+     "why": "Das Auslesen von Speicher gibt vollständigen Lesezugriff auf sensible Information: C:H.",
+     "pitfall": "Hier ist C:H korrekt, obwohl der Scope U ist — Umfang der lesbaren Information ist hoch, unabhängig vom Scope. Verwechsle das nicht mit c_low."
+    },
+    "I": {
+     "why": "Kein Schreib-/Manipulationseffekt beschrieben: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Wichtiger Kontrast zu deinem C:L-vs-C:H-Muster: begrenzter Scope (S:U) bei zugleich hohem Vertraulichkeitsverlust (C:H). Scope und Impact-Höhe sind unabhängig.",
+   "dissent": {
+    "AC": "CNA AC:H, NVD AC:L.",
+    "C": "CNA C:L, NVD C:H."
+   }
+  },
+  "CVE-2022-43978": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:N",
+   "summary_de": "In Pandora FMS erlaubt ein statisches Secret in generatePublicHash einem Angreifer mit Kenntnis einer gültigen Sitzung, die Authentifizierungsprüfung zu umgehen.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über den Netzwerkpfad der Anwendung."
+    },
+    "AC": {
+     "why": "Erfolg hängt von Kenntnis einer gültigen Sitzung ab — erschwerende Bedingung: AC:H."
+    },
+    "PR": {
+     "why": "NVD setzt niedrige Rechte an: der Angreifer bewegt sich im Kontext einer bestehenden Sitzung: PR:L."
+    },
+    "UI": {
+     "why": "NVD wertet eine Opfer-/Interaktionskomponente ein: UI:R."
+    },
+    "S": {
+     "why": "Wirkung bleibt in der Anwendung selbst: S:U."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff auf geschützte Funktionen: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Starke Divergenz zum CNA (AV, PR, C, I). NVD bewertet konservativer als volle Übernahme. Nimm den NVD-Vektor als Referenz.",
+   "dissent": {
+    "AV": "CNA AV:A, NVD AV:N.",
+    "PR": "CNA PR:H, NVD PR:L.",
+    "C": "CNA C:H, NVD C:L.",
+    "I": "CNA I:H, NVD I:L."
+   }
+  },
+  "CVE-2022-24719": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Fluture-Node gibt bei Weiterleitungen vertrauliche Header (Authorization, Cookie) an Drittdomänen oder über unverschlüsseltes HTTP weiter.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über den Netzwerkpfad der HTTP-Anfragen."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen aus NVD-Sicht."
+    },
+    "PR": {
+     "why": "Kein Konto erforderlich; die Schwachstelle liegt im Weiterleitungsverhalten.",
+     "pitfall": "PR:N — die Voraussetzung ist der Netzpfad, nicht ein Recht."
+    },
+    "UI": {
+     "why": "Ein Opfer muss eine Anfrage mit vertraulichen Headern auslösen: UI:R."
+    },
+    "S": {
+     "why": "Header gelangen an einen Drittserver außerhalb der ursprünglichen Vertrauenszone: S:C."
+    },
+    "C": {
+     "why": "Preisgabe von Header-Geheimnissen ist begrenzt, aber real: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Folgewirkung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Der CNA weicht in sechs Metriken ab — ein extremes Provenienz-Beispiel. Konzentriere dich auf den NVD-Vektor und die Scope-Frage (Header verlassen die Vertrauenszone).",
+   "dissent": {
+    "AV": "CNA AV:A, NVD AV:N.",
+    "AC": "CNA AC:H, NVD AC:L.",
+    "PR": "CNA PR:L, NVD PR:N.",
+    "UI": "CNA UI:N, NVD UI:R.",
+    "S": "CNA S:U, NVD S:C.",
+    "I": "CNA I:N, NVD I:L."
+   }
+  },
+  "CVE-2021-32812": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Monkshu bis 2.90 hat ein reflektiertes XSS im HTTP-Server: eine präparierte URL, die einen 500-Fehler auslöst, wird in der Antwort eingebettet.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über eine präparierte URL aus dem Netz."
+    },
+    "AC": {
+     "why": "NVD wertet die Bedingungen nicht als erschwerend: AC:L."
+    },
+    "PR": {
+     "why": "Kein Konto nötig; die URL wird an ein Opfer verteilt.",
+     "pitfall": "PR:N trotz nötiger Opferaktion — Rechte spielen keine Rolle, UI schon."
+    },
+    "UI": {
+     "why": "Das Opfer muss die präparierte URL aufrufen: UI:R."
+    },
+    "S": {
+     "why": "Reflektiertes XSS führt Skript im Opferbrowser aus: S:C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation der Darstellung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Reflektiertes XSS als PR:N/UI:R mit Scope-Wechsel. Der CNA sah es ohne Scope-Wechsel (S:U) — gutes Übungsstück für die Scope-Entscheidung.",
+   "dissent": {
+    "PR": "CNA PR:L, NVD PR:N.",
+    "S": "CNA S:U, NVD S:C.",
+    "C": "CNA C:N, NVD C:L.",
+    "A": "CNA A:L, NVD A:N."
+   }
+  },
+  "CVE-2021-43861": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Mermaid vor 8.13.8 kann durch bösartige Diagramme JavaScript im Browser der Betrachtenden ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz durch ausgeliefertes Diagramm."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "NVD setzt niedrige Rechte an, um das Diagramm einzustellen: PR:L."
+    },
+    "UI": {
+     "why": "Der Code läuft erst beim Betrachten des Diagramms: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Browser der Betrachtenden, außerhalb der Bibliothek: S:C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Der CNA weicht in sechs Metriken ab (u. a. PR:H, S:U, C:H). Das zeigt, wie stark Bewertungen bei XSS auseinanderlaufen; NVD ist die Referenz.",
+   "dissent": {
+    "PR": "CNA PR:H, NVD PR:L.",
+    "UI": "CNA UI:N, NVD UI:R.",
+    "S": "CNA S:U, NVD S:C.",
+    "C": "CNA C:H, NVD C:L.",
+    "I": "CNA I:H, NVD I:L.",
+    "A": "CNA A:H, NVD A:N."
+   }
+  },
+  "CVE-2020-11039": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:L/I:H/A:L",
+   "summary_de": "In FreeRDP ≤ 2.0.0 kann ein manipulierter Server mit USB-Umleitung durch Integer-Overflows nahezu beliebigen Speicher lesen und schreiben.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über die Netzwerkverbindung zum Server."
+    },
+    "AC": {
+     "why": "NVD wertet die Bedingungen als nicht erschwerend: AC:L."
+    },
+    "PR": {
+     "why": "Der Client verbindet sich als niedrig privilegierter Nutzer zum bösartigen Server: PR:L."
+    },
+    "UI": {
+     "why": "Das Opfer muss sich mit dem manipulierten Server verbinden: UI:R."
+    },
+    "S": {
+     "why": "Der Speicherfehler bleibt im FreeRDP-Client selbst: S:U."
+    },
+    "C": {
+     "why": "Das Lesen von Speicher ist hier begrenzt gewertet: C:L.",
+     "pitfall": "Trotz „arbitrary memory read“ setzt NVD C:L, nicht C:H — der bewertete Umfang der Preisgabe ist begrenzt."
+    },
+    "I": {
+     "why": "Beliebiges Schreiben ergibt hohe Integritätswirkung: I:H."
+    },
+    "A": {
+     "why": "Begrenzte Verfügbarkeitswirkung durch mögliche Abstürze: A:L."
+    }
+   },
+   "context_de": "Der CNA sah PR:N/S:C/C:H — NVD deutlich enger. Gutes Beispiel, dass „arbitrary read“ nicht zwingend C:H bedeutet.",
+   "dissent": {
+    "AC": "CNA AC:H, NVD AC:L.",
+    "PR": "CNA PR:N, NVD PR:L.",
+    "S": "CNA S:C, NVD S:U.",
+    "C": "CNA C:H, NVD C:L.",
+    "A": "CNA A:N, NVD A:L."
+   }
+  },
+  "CVE-2020-14364": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:C/C:L/I:L/A:L",
+   "summary_de": "Ein Out-of-bounds-Zugriff im USB-Emulator von QEMU vor 5.2.0 erlaubt einem Gast-Nutzer, den QEMU-Prozess abstürzen zu lassen oder Code mit dessen Rechten auf dem Host auszuführen.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer sitzt bereits im Gastsystem und agiert lokal am Emulator: AV:L."
+    },
+    "AC": {
+     "why": "Die Ausnutzung über OOB-USB-Pakete ist von Zuständen abhängig und schwer zuverlässig: AC:H."
+    },
+    "PR": {
+     "why": "Erfordert privilegierten Gastzugang, um USB-Pakete zu senden: PR:H."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig."
+    },
+    "S": {
+     "why": "Der Ausbruch vom Gast auf den Host-QEMU-Prozess ist der klassische Scope-Wechsel C.",
+     "pitfall": "VM-Ausbruch: verwundbare Komponente (Emulator) und geschädigte (Host) trennen die Zonen — S:C."
+    },
+    "C": {
+     "why": "Auf dem Host begrenzter Vertraulichkeitsverlust im Rahmen der QEMU-Prozessrechte: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung im QEMU-Kontext."
+    },
+    "A": {
+     "why": "Absturz des QEMU-Prozesses ergibt begrenzte Verfügbarkeitswirkung: A:L."
+    }
+   },
+   "context_de": "Musterbeispiel für S:C durch VM-Ausbruch bei zugleich nur begrenzten Einzelimpakten. Hier gibt es keinen CNA-Zweitvektor — NVD ist alleinige Quelle."
+  },
+  "CVE-2020-1711": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:L",
+   "summary_de": "Der iSCSI-Block-Treiber in QEMU (2.12.0 bis vor 4.2.1) erlaubt über eine Server-Antwort einen Out-of-bounds-Zugriff, der den QEMU-Prozess abstürzen lässt oder Code mit dessen Rechten ermöglicht.",
+   "metrics": {
+    "AV": {
+     "why": "Die schädliche Antwort kommt vom iSCSI-Server über das Netz: AV:N."
+    },
+    "AC": {
+     "why": "Die Ausnutzung hängt von Zuständen der Antwortverarbeitung ab: AC:H."
+    },
+    "PR": {
+     "why": "Erfordert niedrige Rechte, um die Verbindung/Verarbeitung anzustoßen: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig."
+    },
+    "S": {
+     "why": "Wirkung vom Treiber auf den Host-QEMU-Prozess: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust im QEMU-Kontext: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Begrenzte Verfügbarkeitswirkung durch Absturz: A:L."
+    }
+   },
+   "context_de": "Nur A weicht vom CNA ab. Der Scope-Wechsel (Treiber → Host-Prozess) ist der entscheidende Punkt.",
+   "dissent": {
+    "A": "CNA A:H, NVD A:L."
+   }
+  },
+  "CVE-2021-3592": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+   "summary_de": "Eine fehlerhafte Zeigerinitialisierung in QEMUs SLiRP-Netzwerk (bootp_input) kann 10 Byte nicht initialisierten Host-Heap-Speichers preisgeben.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer agiert aus dem Gast lokal am Emulator: AV:L."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "Erfordert Gastzugang mit niedrigen Rechten: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig."
+    },
+    "S": {
+     "why": "Leck von Host-Speicher aus dem Gast heraus: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Preisgabe von nur 10 Byte Speicher ist ein klar begrenzter Vertraulichkeitsverlust: C:L.",
+     "pitfall": "Kleiner, klar umrissener Leak → C:L, nicht C:H."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Reiner Confidentiality-Leak mit Scope-Wechsel und sonst N. Gut, um C:L als „begrenzter Umfang“ zu verankern. Kein CNA-Zweitvektor vorhanden."
+  },
+  "CVE-2020-5284": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Next.js vor 9.3.2 hat eine Directory-Traversal-Schwachstelle; präparierte Anfragen erreichen Dateien im dist-Verzeichnis (.next).",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über HTTP-Anfragen aus dem Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "NVD setzt niedrige Rechte an: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig."
+    },
+    "S": {
+     "why": "Zugriff bleibt in derselben Anwendungskomponente: S:U."
+    },
+    "C": {
+     "why": "Lesbar sind nur Dateien im dist-Verzeichnis — begrenzter Umfang: C:L.",
+     "pitfall": "Traversal klingt nach Vollzugriff, ist hier aber auf .next beschränkt: C:L."
+    },
+    "I": {
+     "why": "Kein Schreibzugriff: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Der CNA sah AC:H/UI:R/S:C — NVD enger und ohne Scope-Wechsel. Übe hier die Abgrenzung, wann Traversal wirklich C:H ist (nur bei breitem Dateizugriff).",
+   "dissent": {
+    "AC": "CNA AC:H, NVD AC:L.",
+    "UI": "CNA UI:R, NVD UI:N.",
+    "S": "CNA S:C, NVD S:U.",
+    "I": "CNA I:L, NVD I:N."
+   }
+  },
+  "CVE-2022-21939": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Im Johnson Controls SCT wird ein sensibles Cookie ohne HttpOnly-Flag gesetzt und kann darum ausgelesen werden.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über den Netzwerkpfad der Web-Sitzung."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N — allein der Netzzugang ist Voraussetzung."
+    },
+    "UI": {
+     "why": "Eine Opferaktion (z. B. Skriptaufruf) ist nötig, um an das Cookie zu kommen: UI:R."
+    },
+    "S": {
+     "why": "Das Cookie wirkt außerhalb der ausliefernden Komponente: S:C."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe eines Cookies: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Folgewirkung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Parallelfall zu CVE-2022-21940 (Secure-Flag). Der CNA bewertet erneut viel höher; NVD ist die Grundlage.",
+   "dissent": {
+    "AC": "CNA AC:H, NVD AC:L.",
+    "S": "CNA S:U, NVD S:C.",
+    "C": "CNA C:H, NVD C:L.",
+    "I": "CNA I:H, NVD I:L.",
+    "A": "CNA A:H, NVD A:N."
+   }
+  },
+  "CVE-2020-2023": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:L",
+   "summary_de": "Kata Containers beschränkt den Zugriff auf das Root-Dateisystem-Gerät des Gasts nicht; ein bösartiger Container kann Code im Gast ausführen und sich als kata-agent ausgeben.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer agiert lokal aus dem Container heraus: AV:L."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "Erfordert Rechte innerhalb eines Containers: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig."
+    },
+    "S": {
+     "why": "Ausbruch vom Container auf den Gast: Scope-Wechsel C.",
+     "pitfall": "Container→Gast trennt die Sicherheitszonen: S:C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust im Gast: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung im Gast."
+    },
+    "A": {
+     "why": "Begrenzte Verfügbarkeitswirkung: A:L."
+    }
+   },
+   "context_de": "Container-Ausbruch als S:C mit durchgängig begrenzten Impakten. Nur C und A weichen vom CNA ab.",
+   "dissent": {
+    "C": "CNA C:N, NVD C:L.",
+    "A": "CNA A:N, NVD A:L."
+   }
+  }
+ }
+}

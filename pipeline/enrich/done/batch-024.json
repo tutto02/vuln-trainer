@@ -1,0 +1,634 @@
+{
+ "batch": "batch-024",
+ "items": {
+  "CVE-2017-16651": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Roundcube Webmail erlaubt einem authentifizierten Nutzer unautorisierten Zugriff auf beliebige Dateien des Hosts, inklusive Konfigurationsdateien.",
+   "metrics": {
+    "AV": {
+     "why": "NVD: AV:L; die Datei wird über die Webanwendung gelesen, NVD wertet den Angriff aber als lokal.",
+     "pitfall": "Untypisch: Roundcube ist eine Webanwendung (AV:N wäre naheliegend). NVD vergab AV:L, vermutlich weil die Ausnutzung Datei-Zugriff auf dem Host modelliert."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Valid username/password': PR:L."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Betroffen ist der Roundcube-Host."
+    },
+    "C": {
+     "why": "Konfigurationsdateien mit DB-Zugangsdaten: gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "NVD: I:H (Dateizugriff kann RCE ermöglichen)."
+    },
+    "A": {
+     "why": "Verfügbarkeit: NVD: A:H."
+    }
+   },
+   "context_de": "KEV, EPSS 0,37: Roundcube ist ein Dauerziel (mehrere KEV-Einträge). Ein Datei-Zugriff (CWE-552) über die Webmail; die Konfigurationsdatei liefert die DB-Credentials, ein Weg zur weiteren Kompromittierung."
+  },
+  "CVE-2021-20021": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "SonicWall Email Security erlaubt über eine präparierte HTTP-Anfrage das Anlegen eines administrativen Kontos.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Email Security, S:U."
+    },
+    "C": {
+     "why": "Admin-Konto: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Admin: alles änderbar."
+    },
+    "A": {
+     "why": "Admin: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,83: In Kette mit CVE-2021-20022/20023 von einer Gruppe als Zero-Days ausgenutzt (Mandiant UNC2682). Ein Admin-Konto anlegen (CWE-269) ist die dauerhafteste Kompromittierung; Patch plus Nutzer-Audit."
+  },
+  "CVE-2022-36980": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der EnterpriseServer-Dienst von Ivanti Avalanche erlaubt die Umgehung des Authentifizierungsmechanismus über eine Race Condition.",
+   "metrics": {
+    "AV": {
+     "why": "EnterpriseServer-Dienst über das Netz."
+    },
+    "AC": {
+     "why": "Race Condition: Timing außerhalb der Kontrolle, AC:H."
+    },
+    "PR": {
+     "why": "Der Auth-Mechanismus wird umgangen: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Avalanche."
+    },
+    "C": {
+     "why": "Nach dem Bypass: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,83: Avalanche verwaltet Mobilgeräte (wie EPMM). Eine TOCTOU-Race (CWE-367) im Authentifizierungsablauf; Race-basierte Auth-Bypässe sind selten, aber gefährlich, weil sie keine Zugangsdaten brauchen."
+  },
+  "CVE-2004-1464": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Cisco IOS 12.2 und früher verweigert nach einer präparierten TCP-Verbindung zum Telnet-Port neue VTY-Verbindungen (Denial of Service).",
+   "metrics": {
+    "AV": {
+     "why": "TCP zum Telnet-Port über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:H, eine bestimmte TCP-Verbindungssequenz nötig."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist das Gerät (nur die Verwaltung)."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Keine neuen Verwaltungsverbindungen: A:H (Verwaltung ausgesperrt)."
+    }
+   },
+   "context_de": "KEV, EPSS 0,05: Die zweitälteste CVE im Korpus (2004), 2024 in KEV. Ein DoS gegen die Fernverwaltung; alte Cisco-Geräte laufen in Industrieanlagen weiter. Telnet gehört ohnehin abgeschaltet."
+  },
+  "CVE-2020-5722": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die HTTP-Schnittstelle der Grandstream UCM6200-Serie hat eine unauthentifizierte SQL-Injection, über die sich als root Shell-Befehle ausführen lassen.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP-Interface über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle als root auf dem Gerät, S:U."
+    },
+    "C": {
+     "why": "SQLi bis root-Shell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Gerät abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,84: VoIP-Telefonanlage (wie Alcatel OmniPCX). SQLi (CWE-89), die bis zur root-Shell führt; TK-Anlagen stehen oft im Netz und werden selten gepatcht."
+  },
+  "CVE-2024-21893": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N",
+   "summary_de": "Eine SSRF in der SAML-Komponente von Ivanti Connect Secure erlaubt unauthentifizierten Angreifern den Zugriff auf bestimmte eingeschränkte Ressourcen.",
+   "metrics": {
+    "AV": {
+     "why": "VPN-Appliance über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte SAML-Anfrage."
+    },
+    "PR": {
+     "why": "'Without authentication' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U für SSRF."
+    },
+    "C": {
+     "why": "Zugriff auf eingeschränkte interne Ressourcen: gezielt, H."
+    },
+    "I": {
+     "why": "Begrenzte Wirkung: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: In Kette mit CVE-2023-46805 (Auth-Bypass) und CVE-2024-21887 (Command Injection) im Januar 2024. Die SSRF war das Glied, das die anderen beiden verband; die Ivanti-Kette war einer der größten Vorfälle des Jahres."
+  },
+  "CVE-2021-21224": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion in V8 erlaubt über eine präparierte Seite Codeausführung innerhalb der Chrome-Sandbox.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "'Inside a sandbox' wörtlich: S:U, hier korrekt."
+    },
+    "C": {
+     "why": "Codeausführung in der Sandbox: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,84: Zero-Day, kurz nach einem CTF-Wettbewerb öffentlich. V8-Type-Confusion (CWE-843); 2021 vergab NVD hier S:U (8,8), im Gegensatz zu 2024 (S:C). Der Vergleich zeigt die Verschiebung der NVD-Praxis."
+  },
+  "CVE-2013-1347": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Internet Explorer 8 verwaltet ein Objekt im Speicher fehlerhaft (Use-After-Free), was über den Zugriff auf ein gelöschtes Objekt Codeausführung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Code im Browserprozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,78: Watering-Hole gegen die US-Arbeitsministeriums-Website 2013. Use-After-Free (CWE-416); trotz der Microsoft-Formulierung 'handle objects in memory' ist der Mechanismus (gelöschtes Objekt) benannt."
+  },
+  "CVE-2023-0050": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "GitLab erlaubt gespeichertes XSS über ein präpariertes Kroki-Diagramm, das Aktionen im Namen des Opfers ermöglicht.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes Kroki-Diagramm."
+    },
+    "PR": {
+     "why": "Ein Konto: PR:L."
+    },
+    "UI": {
+     "why": "Ein anderer Nutzer muss das Diagramm ansehen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Browserkontext des Opfers: C:L; der CNA vergab C:H."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L; der CNA I:H."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "C": "CNA (GitLab): C:H, I:H (8,7). Der übliche GitLab-XSS-Streit; der Hersteller bewertet die Übernahme-Folge höher."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,92. Diagramm-Rendering (Kroki) als XSS-Vektor; jede Rendering-Erweiterung ist eine potenzielle Angriffsfläche. GitLab-XSS bleibt im Korpus der Musterfall für NVD-gegen-CNA bei C und I."
+  },
+  "CVE-2021-4191": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Private GitLab-Instanzen mit eingeschränkter Registrierung sind über die GraphQL-API für unauthentifizierte Nutzer anfällig für Benutzeraufzählung.",
+   "metrics": {
+    "AV": {
+     "why": "GraphQL-API über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Query."
+    },
+    "PR": {
+     "why": "Die GraphQL-API erlaubt die Nutzer-Enumeration für unauthentifizierte Nutzer, auch bei eingeschränkter Registrierung: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist GitLab."
+    },
+    "C": {
+     "why": "Nur Benutzernamen: begrenzter Umfang, C:L."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,80: Benutzeraufzählung (CWE-noinfo) über GraphQL; neue API-Technologien bringen alte Klassen zurück. Aufklärung für Password-Spraying, allein ein Medium."
+  },
+  "CVE-2023-46805": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N",
+   "summary_de": "Eine Authentifizierungsumgehung in der Web-Komponente von Ivanti Connect Secure erlaubt entfernten Angreifern den Zugriff auf eingeschränkte Ressourcen unter Umgehung der Kontrollprüfungen.",
+   "metrics": {
+    "AV": {
+     "why": "VPN-Appliance über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage (Path-Traversal-artige Umgehung)."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Appliance."
+    },
+    "C": {
+     "why": "Zugriff auf eingeschränkte Ressourcen: gezielt, H."
+    },
+    "I": {
+     "why": "Begrenzte Wirkung: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99986: Das erste Glied der Ivanti-Kette vom Januar 2024. Der Auth-Bypass (CWE-287) allein gibt nur Ressourcen-Zugriff; kombiniert mit CVE-2024-21887 (Command Injection) wurde es unauthentifizierte RCE. Die Kette erklärt, warum ein 8,2-Bypass so kritisch war."
+  },
+  "CVE-2021-3493": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die overlayfs-Implementierung im Ubuntu-Kernel validiert das Setzen von Datei-Capabilities bezüglich User-Namespaces unzureichend, was einem lokalen Nutzer Root-Rechte gibt.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Zugriff auf das System nötig."
+    },
+    "AC": {
+     "why": "Bekannter, zuverlässiger Exploit."
+    },
+    "PR": {
+     "why": "Ein unprivilegierter lokaler Nutzer (mit unprivilegierten User-Namespaces): PR:L."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Kernel-EoP: S:U.",
+     "pitfall": "Der CNA vergab S:C. Kernel-Rechteausweitung ist bei NVD S:U (7,8-Standard)."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: System abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA: S:C (8,8). NVD 7,8. Lokale Kernel-EoP ist konventionell S:U."
+   },
+   "context_de": "KEV, EPSS 0,49: Ein Ubuntu-spezifischer Patch (unprivilegierte Overlay-Mounts) plus overlayfs-Capability-Fehler (CWE-863) ergab Root. Wie bei Redis CVE-2022-0543 eine Distributions-Lücke: nicht Upstream, sondern der Downstream-Patch war das Problem."
+  },
+  "CVE-2018-6530": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "D-Link-Router (DIR-860L und weitere) haben in soap.cgi eine OS Command Injection über SOAP-Anfragen.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des Routers über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte SOAP-Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Router."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Router abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,97: In Botnetzen. Der SOAP-Handler (soap.cgi) als Command-Injection-Vektor (CWE-78); D-Link-Router tauchen im Korpus wiederholt auf (CVE-2024-3272/3273, CVE-2018-10562-verwandt). Ein Hersteller mit systematischen CGI-Injection-Problemen."
+  },
+  "CVE-2013-4810": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "HP ProCurve Manager und verwandte Produkte erlauben über ein marshalltes Objekt an EJBInvokerServlet oder JMXInvokerServlet die Ausführung beliebigen Codes (JBoss-Invoker).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Java-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,79: Die JBoss-Invoker-Servlets (EJBInvoker, JMXInvoker) waren eine jahrelange RCE-Quelle (CWE-94), die in vielen Produkten (HP, JBoss) steckte. Ungeschützte Invoker-Endpunkte nehmen serialisierte Objekte ohne Auth an."
+  },
+  "CVE-2019-5420": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ruby on Rails im Development-Modus erlaubt das Erraten des automatisch generierten Development-Secret-Tokens, das zusammen mit Rails-Internas zu Remote Code Execution führt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Das Token ist aus wenig Entropie ableitbar."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Rails-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,92: Nur im Development-Modus, der aber oft versehentlich in Produktion läuft. Schwache Zufallszahlen (CWE-330): Das Development-Secret ist vorhersagbar, weil es aus dem Anwendungspfad abgeleitet wird. Development-Konfiguration in Produktion ist ein eigenes Risiko."
+  },
+  "CVE-2017-12149": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die doFilter-Methode im ReadOnlyAccessFilter des JBoss-HTTP-Invokers beschränkt die deserialisierten Klassen nicht, was Remote Code Execution über präparierte serialisierte Daten erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP-Invoker über das Netz."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im JBoss-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,91: Der JBoss-HTTP-Invoker als Deserialisierungs-RCE (CWE-502), wieder ungefilterte ObjectInputStream. Wie CVE-2013-4810: JBoss-Invoker sind eine wiederkehrende Deserialisierungsquelle; ungefilterte Deserialisierung ist die Wurzel."
+  },
+  "CVE-2017-11357": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Progress Telerik UI für ASP.NET AJAX beschränkt die Nutzereingabe an RadAsyncUpload unzureichend, was beliebige Datei-Uploads oder Codeausführung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,78: Die zweite RadAsyncUpload-Lücke (nach dem Krypto-Fehler CVE-2017-11317). Telerik-UI steckt in vielen ASP.NET-Anwendungen; ein Upload-Fehler (CWE-434) in einer eingebetteten Komponente trifft alle Nutzer der Bibliothek."
+  },
+  "CVE-2019-1935": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Cisco IMC Supervisor, UCS Director und UCS Director Express haben ein Standard-scpuser-Konto mit fest kodierten Zugangsdaten, über das sich Angreifer an der CLI anmelden.",
+   "metrics": {
+    "AV": {
+     "why": "CLI über das Netz."
+    },
+    "AC": {
+     "why": "Bekannte Standard-Zugangsdaten."
+    },
+    "PR": {
+     "why": "Fest kodiertes Konto ist kein eigenes Recht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist das Verwaltungssystem, S:U."
+    },
+    "C": {
+     "why": "CLI-Zugang plus Rechteausweitung: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,83: UCS Director verwaltet die Rechenzentrums-Infrastruktur. Fest kodierte Zugangsdaten (CWE-798) sind im Korpus ein Dauerthema (Shiro, CentreStack, DCNM); ein Standardkonto mit bekanntem Passwort ist faktisch keine Authentifizierung."
+  },
+  "CVE-2021-28169": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Eclipse Jetty erlaubt über den ConcatServlet mit doppelt kodiertem Pfad den Zugriff auf geschützte Ressourcen im WEB-INF-Verzeichnis.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Doppelt kodierte URL (%2557EB-INF)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Jetty."
+    },
+    "C": {
+     "why": "Nur WEB-INF-Dateien (web.xml), begrenzt: C:L."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,78: Schwester von CVE-2021-28164, doppelte statt einfache Kodierung. Jetty hatte mehrere Encoding-Bypass-Lücken (CWE-200); jede Dekodierungsschicht, die vor der Zugriffsprüfung greift, öffnet einen neuen Weg."
+  },
+  "CVE-2021-29156": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "ForgeRock OpenAM erlaubt über das Webfinger-Protokoll LDAP-Injection, mit der sich zeichenweise Passwort-Hashes, Session-Tokens oder private Schlüssel auslesen lassen.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Webfinger-Anfrage."
+    },
+    "PR": {
+     "why": "Die LDAP-Injection über Webfinger ist unauthentifiziert; Passwort-Hashes und Tokens sind der Impact: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist OpenAM."
+    },
+    "C": {
+     "why": "Zeichenweise Passwort-Hashes, Tokens, private Schlüssel: gezielt, hochwertig, H.",
+     "pitfall": "Blind LDAP-Injection liest zeichenweise; obwohl langsam, ist das Ziel (Hashes, Schlüssel) hochwertig, daher C:H, nicht C:L."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,76: OpenAM ist ein Identity-Provider; erbeutete Session-Tokens und Schlüssel geben Zugang zu allen angebundenen Anwendungen. LDAP-Injection (CWE-74) über ein selten beachtetes Protokoll (Webfinger); der Wert liegt in der Identity-Rolle des Systems."
+  }
+ }
+}

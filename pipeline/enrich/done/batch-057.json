@@ -1,0 +1,660 @@
+{
+ "batch": "batch-057",
+ "items": {
+  "CVE-2021-28125": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Apache Superset bis 1.0.1 erlaubte über die URL-Shortener-Funktion Open Redirects, weil Nutzereingaben nicht auf offene Umleitungen geprüft wurden.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per präparierter Kurz-URL."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R."
+    },
+    "UI": {
+     "why": "Das Opfer muss dem Link folgen: UI:R."
+    },
+    "S": {
+     "why": "Die Umleitung führt in eine fremde Zone: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Open Redirect als PR:N/UI:R mit Scope-Wechsel."
+  },
+  "CVE-2021-23174": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Das WordPress-Plugin „Download Monitor“ (≤ 4.4.6) hat ein authentifiziertes (admin+) persistentes XSS.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per gespeichertem Inhalt."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert hohe Rechte (admin+): PR:H."
+    },
+    "UI": {
+     "why": "Das Skript zündet beim Betrachten durch ein Opfer: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Opferbrowser: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L.",
+     "pitfall": "Der CNA sah C:N; NVD wertet C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (C). Übe die C-Aufteilung bei admin-basiertem Stored XSS.",
+   "dissent": {
+    "C": "CNA C:N, NVD C:L."
+   }
+  },
+  "CVE-2020-25817": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "SilverStripe bis 4.6.0-rc1 hat eine XXE im CSSContentParser, die bei Missbrauch mit externen Daten zu XSS führen kann.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert hohe Rechte: PR:H."
+    },
+    "UI": {
+     "why": "Eine Opferaktion ist nötig: UI:R."
+    },
+    "S": {
+     "why": "XXE/XSS wirkt außerhalb der Parser-Komponente: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. XXE→XSS als Scope-Wechsel mit begrenzten Impakten."
+  },
+  "CVE-2022-2497": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N",
+   "summary_de": "In GitLab konnte ein bösartiger Developer über eine manipulierte Integrations-URL das Access-Token einer Integration an einen eigenen Server exfiltrieren.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert ein Developer-Konto: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Das Token geht an einen fremden Server außerhalb der Zone: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "NVD wertet den Vertraulichkeitsverlust begrenzt: C:L.",
+     "pitfall": "Der CNA sah C:H (Token-Diebstahl); NVD wertet C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (C). Übe C:L vs. C:H: NVD wertet den Token-Leak konservativer.",
+   "dissent": {
+    "C": "CNA C:H, NVD C:L."
+   }
+  },
+  "CVE-2018-11770": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:N",
+   "summary_de": "Der Standalone-Master von Apache Spark exponiert eine REST-API zur Job-Übermittlung, die anders als spark-submit keine Authentifizierung nutzt.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Erfolg hängt von Konfiguration/Umständen ab: AC:H."
+    },
+    "PR": {
+     "why": "NVD setzt niedrige Rechte an: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Wirkung bleibt in der Spark-Komponente: S:U."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Fehlende REST-Authentifizierung mit AC:H (konfigurationsabhängig), ohne Scope-Wechsel."
+  },
+  "CVE-2023-5056": {
+   "vector_basis": "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+   "summary_de": "Ein Fehler im Skupper-Operator kann ein Service-Konto erzeugen, das einem Angreifer im angrenzenden Cluster erlaubt, Deployments in allen Namespaces einzusehen.",
+   "metrics": {
+    "AV": {
+     "why": "Nur aus dem angrenzenden Cluster erreichbar: AV:A."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "Erfordert ein authentifiziertes Konto im Cluster: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Einblick über Namespace-Grenzen hinweg: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "NVD wertet den Vertraulichkeitsverlust begrenzt: C:L.",
+     "pitfall": "Der CNA sah C:H; NVD wertet den Umfang als begrenzt: C:L."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (C). AV:A mit Scope-Wechsel; übe C:L vs. C:H beim Namespace-übergreifenden Einblick.",
+   "dissent": {
+    "C": "CNA C:H, NVD C:L."
+   }
+  },
+  "CVE-2023-22665": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Apache Jena (≤ 4.7.0) prüft Nutzerabfragen bei benutzerdefinierten Skripten unzureichend, sodass ein Nutzer über eine SPARQL-Abfrage beliebiges JavaScript ausführen kann.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per SPARQL-Abfrage."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert ein niedrig privilegiertes Konto: PR:L."
+    },
+    "UI": {
+     "why": "Eine Opferaktion ist nötig: UI:R."
+    },
+    "S": {
+     "why": "Ausführung außerhalb der Abfragekomponente: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Skript-Injection über SPARQL als Scope-Wechsel mit begrenzten Impakten."
+  },
+  "CVE-2023-40335": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Das WordPress-Plugin „Cleverwise Daily Quotes“ (≤ 3.2) hat ein Stored XSS über CSRF.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per präpariertem Request."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto des Angreifers nötig; die Rechte liefert das Opfer.",
+     "pitfall": "CSRF → PR:N."
+    },
+    "UI": {
+     "why": "Ein Opfer muss den präparierten Request auslösen: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Opferbrowser: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (A). CSRF→XSS als PR:N/UI:R mit Scope-Wechsel.",
+   "dissent": {
+    "A": "CNA A:L, NVD A:N."
+   }
+  },
+  "CVE-2018-15425": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:L",
+   "summary_de": "Die Web-Oberfläche von Cisco ISE erlaubt einem authentifizierten Angreifer, Befehle im Kontext des Webservers auf dem OS auszuführen.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert hohe Rechte: PR:H."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Ausführung im Webserver-Kontext derselben Zone: S:U."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Begrenzte Verfügbarkeitswirkung: A:L."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Authentifizierte Befehlsausführung ohne Scope-Wechsel; Impakte begrenzt."
+  },
+  "CVE-2021-46078": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Das Vehicle Service Management System 1.0 hat einen unbeschränkten Datei-Upload, der zu Stored XSS führt.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per hochgeladener Datei."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert hohe Rechte: PR:H."
+    },
+    "UI": {
+     "why": "Das Skript zündet beim Betrachten durch ein Opfer: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Opferbrowser: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Upload-XSS als Scope-Wechsel mit begrenzten Impakten."
+  },
+  "CVE-2020-25688": {
+   "vector_basis": "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "In RHACM vor 2.0.5/2.1.0 wurden zwei interne Service-APIs mit einem Testzertifikat aus dem Quell-Repo bereitgestellt, sodass alle Installationen dieselben Zertifikate nutzen.",
+   "metrics": {
+    "AV": {
+     "why": "Nur aus dem angrenzenden Cluster-Netz erreichbar: AV:A."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "Erfordert niedrige Rechte im Cluster-Netz: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Wirkung bleibt in der Service-Komponente: S:U."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe (entschlüsselbare API-Requests): C:L."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. AV:A-Beispiel (Cluster-internes Netz) mit reinem, begrenztem C-Impact."
+  },
+  "CVE-2022-31109": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "laminas-diactoros kann über X-Forwarded-*-Header die Host/Protokoll/Port-Werte einer Uri-Instanz manipulieren, wenn die Anwendung über nicht vertrauenswürdige Proxys erreichbar ist.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per präparierter Header."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R — der CNA sah UI:N."
+    },
+    "UI": {
+     "why": "Eine Opferaktion ist nötig, damit die manipulierte URL wirkt: UI:R."
+    },
+    "S": {
+     "why": "Die manipulierte URL wirkt über die Komponente hinaus: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (UI). Übe die UI-Entscheidung bei Header-basierter URL-Manipulation.",
+   "dissent": {
+    "UI": "CNA UI:N, NVD UI:R."
+   }
+  },
+  "CVE-2020-17482": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "In PowerDNS Authoritative Server vor 4.3.1 kann ein berechtigter Nutzer durch präparierte Records den Inhalt nicht initialisierten Speichers leaken.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert ein autorisiertes Konto: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Wirkung bleibt in der Serverkomponente: S:U."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe: C:L."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Reiner Confidentiality-Leak ohne Scope-Wechsel."
+  },
+  "CVE-2023-32985": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Das Jenkins-Sidebar-Link-Plugin (≤ 2.2.1) beschränkt den Dateipfad in einer Formularvalidierung nicht, sodass Nutzer die Existenz beliebiger Pfade prüfen können.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert Overall/Read-Rechte: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Wirkung bleibt im Jenkins-Controller derselben Zone: S:U."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe (Existenz von Pfaden): C:L."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Begrenzte Pfad-Existenzprüfung als reiner C:L-Fall ohne Scope-Wechsel."
+  },
+  "CVE-2019-11761": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N",
+   "summary_de": "In Firefox < 70 war es über ein Formular mit data-URI möglich, Zugriff auf das privilegierte, in den Content geklonte JSONView-Objekt zu erhalten.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz/den Browser."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R."
+    },
+    "UI": {
+     "why": "Das Opfer muss die präparierte Seite laden: UI:R."
+    },
+    "S": {
+     "why": "Wirkung bleibt im Browser-Content-Prozess: S:U."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung (Bypass von Schutzmechanismen): I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. PR:N/UI:R ohne Scope-Wechsel; Wirkung im selben Content-Prozess."
+  },
+  "CVE-2023-0528": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+   "summary_de": "Online Tours & Travels Management System 1.0 hat in admin/abc.php eine SQL-Injection über den id-Parameter.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "NVD setzt niedrige Rechte an: PR:L.",
+     "pitfall": "Der CNA sah PR:H — NVD wertet PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Wirkung bleibt in der Anwendung: S:U."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung: I:L."
+    },
+    "A": {
+     "why": "Begrenzte Verfügbarkeitswirkung: A:L."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (PR). Übe die PR-Entscheidung bei einer admin-Pfad-SQLi — NVD wertet PR:L.",
+   "dissent": {
+    "PR": "CNA PR:H, NVD PR:L."
+   }
+  },
+  "CVE-2022-23080": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+   "summary_de": "Directus (v9.0.0-beta.2 bis 9.6.0) ist über die Medien-Upload-Funktion für SSRF anfällig, was einem niedrig privilegierten Nutzer interne Port-Scans erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert ein niedrig privilegiertes Konto: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "SSRF erreicht interne Ziele außerhalb der Zone: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe (Port-Scan-Ergebnisse): C:L."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. SSRF als Scope-Wechsel mit reinem, begrenztem C-Impact."
+  },
+  "CVE-2023-1075": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Im Linux-Kernel prüft tls_is_tx_ready() die Listen-Leerheit falsch und kann so das letzte Byte eines type-confused Feldes leaken.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer agiert lokal: AV:L."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "Erfordert niedrige lokale Rechte: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Wirkung bleibt im Kernel derselben Zone: S:U."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe (ein Byte): C:L.",
+     "pitfall": "Winziger, klar begrenzter Leak → C:L."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Reiner, minimaler Confidentiality-Leak ohne Scope-Wechsel; niedrige Note (3.3)."
+  },
+  "CVE-2020-15710": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
+   "summary_de": "Ein möglicher Double-Free im Bluez-5-Modul von PulseAudio erlaubt einem lokalen Angreifer, Speicher zu leaken oder das Programm zum Absturz zu bringen.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer agiert lokal: AV:L."
+    },
+    "AC": {
+     "why": "NVD wertet die Bedingungen als nicht erschwerend: AC:L.",
+     "pitfall": "Der CNA sah AC:H — NVD AC:L."
+    },
+    "PR": {
+     "why": "Erfordert niedrige lokale Rechte: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Wirkung bleibt in der PulseAudio-Komponente: S:U."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe (Speicher-Leak): C:L."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Hohe Verfügbarkeitswirkung durch Absturz: A:H."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (AC). Übe die AC-Entscheidung bei Double-Free — NVD wertet AC:L.",
+   "dissent": {
+    "AC": "CNA AC:H, NVD AC:L."
+   }
+  },
+  "CVE-2021-34706": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N",
+   "summary_de": "Die Web-Oberfläche von Cisco ISE hat eine XXE-Schwachstelle, über die ein authentifizierter Angreifer sensible Informationen lesen oder SSRF durchführen kann.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert ein authentifiziertes Konto: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "NVD wertet keinen Scope-Wechsel: S:U.",
+     "pitfall": "Der CNA sah S:C; NVD wertet die XXE hier ohne Zonenübertritt."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (S). Übe die Scope-Entscheidung bei XXE — hier entschied NVD S:U.",
+   "dissent": {
+    "S": "CNA S:C, NVD S:U."
+   }
+  }
+ }
+}

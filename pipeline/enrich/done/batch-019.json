@@ -1,0 +1,651 @@
+{
+ "batch": "batch-019",
+ "items": {
+  "CVE-2022-23131": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Bei aktivierter SAML-SSO in Zabbix wird der in der Session gespeicherte Nutzer-Login nicht geprüft, sodass ein unauthentifizierter Angreifer die Session manipuliert und Admin-Zugriff auf das Frontend erhält.",
+   "metrics": {
+    "AV": {
+     "why": "Zabbix-Frontend über HTTP."
+    },
+    "AC": {
+     "why": "Session-Cookie manipulieren, kein Aufwand."
+    },
+    "PR": {
+     "why": "Der Angreifer braucht kein Konto, er fälscht die Session."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Zabbix selbst."
+    },
+    "C": {
+     "why": "Admin-Frontend: alle Monitoring-Daten und Zugangsdaten lesbar."
+    },
+    "I": {
+     "why": "Admin: alles änderbar."
+    },
+    "A": {
+     "why": "NVD: A:H; der CNA vergab A:N."
+    }
+   },
+   "dissent": {
+    "A": "CNA (Zabbix): A:N (9,8 vs. NVD 9,8, gleicher Score anders zusammengesetzt). Ob Admin-Zugriff auch Verfügbarkeit umfasst, ist Ermessen."
+   },
+   "context_de": "KEV, EPSS 0,96: Nur mit SAML-SSO (Nicht-Standard) verwundbar, dennoch massenhaft ausgenutzt. Monitoring-Server sehen das ganze Netz und halten oft SSH-Keys; die Konfiguration entscheidet die Wahrscheinlichkeit."
+  },
+  "CVE-2019-15954": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Total.js CMS erlaubt einem Nutzer mit widgets-Recht die Remote Command Execution über ein Widget mit einem Tag, dessen JavaScript serverseitig ausgewertet wird.",
+   "metrics": {
+    "AV": {
+     "why": "Web-CMS über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes Widget anlegen."
+    },
+    "PR": {
+     "why": "'Authenticated user with the widgets privilege': PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Scope: NVD: S:C.",
+     "pitfall": "Kein klarer Grund in der Beschreibung für S:C; serverseitiges eval im CMS-Prozess ist S:U. NVD vergab hier S:C ohne CNA-Gegenstimme."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "Kein CNA-Vektor. S:U mit 8,8 wäre spezifikationsnäher; das serverseitige eval bleibt im CMS-Prozess."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,79. Serverseitiges Template/Script-eval (CWE-862 als Autorisierung, real Code-Injection) ist das wiederkehrende CMS-RCE-Muster; die Frage ist, wer Widgets/Makros anlegen darf."
+  },
+  "CVE-2016-1555": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Mehrere boardData*.php-Skripte in NETGEAR-Access-Points erlauben unauthentifizierten Angreifern die Ausführung beliebiger Befehle.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des Access Points über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Gerät."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Gerät abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,98: In Botnetzen. NETGEAR-Access-Points in Außenstellen ohne Inventar; die Wahrscheinlichkeit hängt an der Internet-Exposition des Management-Interfaces."
+  },
+  "CVE-2023-50721": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "XWiki escapet id und label von Such-UI-Erweiterungen in der Suchadministration nicht, sodass eingeschleuste Groovy-Makros serverseitig Code ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "Wiki-Weboberfläche über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Erweiterungseintrag."
+    },
+    "PR": {
+     "why": "Ein Konto mit Zugriff auf die Erweiterung: PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im XWiki-Prozess.",
+     "pitfall": "Der CNA vergab S:C. RCE im selben Prozess ist S:U. XWiki-CVEs wiederholen diesen Streit."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (XWiki): S:C (8,8 vs. dortiger Score). Wie CVE-2023-36469/37462: XWiki vergibt konsequent S:C, NVD S:U."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,79. Dritte XWiki-Skriptmakro-RCE im Korpus; ein Produkt mit einer Klasse von wiederkehrenden Lücken (Makro-Escaping) verdient eine eigene Regel: Makro-Rechte streng vergeben."
+  },
+  "CVE-2023-38831": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "WinRAR führt beim Öffnen einer harmlosen Datei in einem ZIP-Archiv Code aus, wenn das Archiv einen Ordner mit demselben Namen wie die Datei enthält, dessen Inhalt ausführbar ist.",
+   "metrics": {
+    "AV": {
+     "why": "Das Archiv kommt per Mail oder Web, wird aber lokal geöffnet: AV:L."
+    },
+    "AC": {
+     "why": "Präpariertes Archiv (Datei plus gleichnamiger Ordner)."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die scheinbar harmlose Datei im Archiv anklicken."
+    },
+    "S": {
+     "why": "Code im Nutzerkontext."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,98: Von mehreren Gruppen gegen Trading-Foren genutzt. Klasse laut NVD CWE-345 (Authentizität); der Trick ist die Namenskollision Datei/Ordner, ein Logikfehler im Extrahieren."
+  },
+  "CVE-2020-15148": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Yii 2 vor 2.0.38 erlaubt Remote Code Execution, wenn die Anwendung unserialize() auf beliebige Nutzereingaben anwendet.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "NVD: AC:L; der CNA vergab AC:H (Gadget-Abhängigkeit)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:C, Bibliothek verwundbar, Anwendung/Host betroffen (Bibliotheksmuster)."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "NVD: I:H; der CNA I:H, aber C:L."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "AC": "CNA (Yii): AC:H, C:L (8,1). Deserialisierung mit Gadget-Abhängigkeit; die Bewertung hängt davon ab, ob passende Gadgets im Classpath sind."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,79. Ausnutzbar nur, wenn die App unserialize() auf Nutzerdaten anwendet, was Yii nicht erzwingt; die Einbettung entscheidet, wie bei allen Deserialisierungsbibliotheken."
+  },
+  "CVE-2021-26828": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "OpenPLC ScadaBR erlaubt authentifizierten Nutzern über view_edit.shtm das Hochladen und Ausführen beliebiger JSP-Dateien.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter JSP-Upload."
+    },
+    "PR": {
+     "why": "'Authenticated users': PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im ScadaBR-Prozess."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar (SCADA-Steuerung)."
+    },
+    "A": {
+     "why": "Webshell: Prozess abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,39: SCADA-Software mit Zugriff auf industrielle Steuerung. Bei ICS ist die Auswirkung physisch; PR:L mit Standardpasswörtern faktisch PR:N."
+  },
+  "CVE-2025-14611": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Gladinet CentreStack und Triofox verwendeten fest kodierte Werte im AES-Kryptoschema, was unauthentifizierte Local File Inclusion über eine präparierte Anfrage erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage mit dem bekannten Schlüssel."
+    },
+    "PR": {
+     "why": "Fest kodierter Schlüssel ist kein eigenes Recht: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist CentreStack."
+    },
+    "C": {
+     "why": "LFI plus RCE über den Schlüssel: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,53: CentreStack zum dritten Mal in KEV (nach 30406 und 11371). Immer dasselbe Muster: fest kodierte Kryptowerte (CWE-798). Ein Produkt, das dieselbe Klasse wiederholt, gehört auf eine Sperrliste, nicht auf eine Patchliste."
+  },
+  "CVE-2022-44268": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+   "summary_de": "ImageMagick bettet beim Parsen eines PNG (etwa zum Verkleinern) den Inhalt einer beliebigen lokalen Datei in das Ergebnisbild ein, wenn das Binary sie lesen darf.",
+   "metrics": {
+    "AV": {
+     "why": "Das PNG wird über einen Webdienst hochgeladen und verarbeitet."
+    },
+    "AC": {
+     "why": "Präpariertes PNG mit Datei-Referenz."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "NVD: UI:R, ein Prozess oder Nutzer muss das Bild verarbeiten.",
+     "pitfall": "Bei automatischer Bildverarbeitung (Upload-Thumbnails) wäre UI:N realistischer. NVD nahm UI:R für den Parser."
+    },
+    "S": {
+     "why": "Betroffen ist der ImageMagick-Prozess."
+    },
+    "C": {
+     "why": "Beliebige lesbare Dateien (z. B. /etc/passwd, Konfigurationen): gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,90: ImageMagick verarbeitet Uploads in unzähligen Webanwendungen. Ein Datei-Leck über Bildkonvertierung; die reale Ausnutzbarkeit hängt daran, ob die Anwendung das Ergebnisbild zurückgibt."
+  },
+  "CVE-2020-8468": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Trend Micro Apex One und OfficeScan haben eine Content-Validierungs-Umgehung, über die ein authentifizierter Angreifer bestimmte Agent-Client-Komponenten manipuliert.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz zum Agent."
+    },
+    "AC": {
+     "why": "Präparierte Manipulation der Client-Komponenten."
+    },
+    "PR": {
+     "why": "'Requires user authentication': PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Endpoint-Agent."
+    },
+    "C": {
+     "why": "Manipulierte Agent-Komponenten mit hohen Rechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Agent-Manipulation: alles änderbar."
+    },
+    "A": {
+     "why": "Agent-Manipulation: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,06: Endpoint-Schutz als Ziel; ein manipulierter Agent läuft mit SYSTEM auf jedem Client. Sicherheitssoftware ist ein hochwertiges Ziel, weil sie überall mit hohen Rechten sitzt."
+  },
+  "CVE-2022-2856": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N",
+   "summary_de": "Unzureichende Validierung von Intents in Chrome für Android erlaubt über eine präparierte Seite die ungewollte Navigation zu einer bösartigen Website.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Browser."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Ungewollte Navigation zu anderen Apps über Intents: I:H nach NVD."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,05: Wie CVE-2021-38000 ein Android-Intent-Bug, als Kettenglied in Spyware genutzt. Kein RCE, nur Umleitung; die Klasse (CWE-20) ist generisch, der Wert liegt in der Kette."
+  },
+  "CVE-2025-48595": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Integer-Überlauf an mehreren Stellen im Android-Framework erlaubt lokale Codeausführung und Rechteausweitung ohne zusätzliche Rechte.",
+   "metrics": {
+    "AV": {
+     "why": "Eine App auf dem Gerät."
+    },
+    "AC": {
+     "why": "Präparierte Eingabe."
+    },
+    "PR": {
+     "why": "'No additional execution privileges needed': PR:N (CNA-Vektor)."
+    },
+    "UI": {
+     "why": "'User interaction is not needed' wörtlich."
+    },
+    "S": {
+     "why": "Innerhalb des Geräts, S:U."
+    },
+    "C": {
+     "why": "Codeausführung: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: Gerät störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,02, nur CNA-Vektor (Google, 2025). Android-Schablone mit klaren Vektor-Hinweisen; seit 2025 vergibt NVD keine eigenen Vektoren mehr, Google ist die einzige Quelle."
+  },
+  "CVE-2023-49285": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Ein Buffer-Overread in der HTTP-Nachrichtenverarbeitung von Squid erlaubt einen Denial of Service.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte HTTP-Nachricht."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U; der CNA vergab S:C (Proxy betrifft dahinterliegende Clients)."
+    },
+    "C": {
+     "why": "Kein Datenabfluss (nur Absturz)."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Overread führt zum Absturz des Proxys: A:H."
+    }
+   },
+   "dissent": {
+    "S": "CNA (Squid): S:C. Ein Proxy-Ausfall trifft alle Clients dahinter; der CNA wertet das als Scope-Wechsel, NVD nicht."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,88: Squid hat viele solcher Overread-DoS-Lücken. Ein Out-of-Bounds-Read (CWE-125) muss nicht Datenleck sein, hier ist er reiner DoS."
+  },
+  "CVE-2020-14871": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Ein Pufferüberlauf im Pluggable Authentication Module (PAM) von Oracle Solaris erlaubt unauthentifizierten Angreifern über mehrere Protokolle (z. B. SSH) die Kompromittierung des Systems.",
+   "metrics": {
+    "AV": {
+     "why": "'Network access via multiple protocols' (SSH etc.)."
+    },
+    "AC": {
+     "why": "'Easily exploitable' (Oracle-Formulierung für AC:L)."
+    },
+    "PR": {
+     "why": "'Unauthenticated attacker' wörtlich."
+    },
+    "UI": {
+     "why": "Keine Interaktion genannt."
+    },
+    "S": {
+     "why": "CNA (Oracle): 'attacks may significantly impact additional products' (S:C-Formulierung)."
+    },
+    "C": {
+     "why": "Systemkompromittierung: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,80, nur CNA-Vektor (Oracle). PAM ist die Authentifizierungsschicht selbst; ein Überlauf dort trifft jeden Dienst, der PAM nutzt (SSH, Telnet, FTP). Die Klasse ist ein klassischer Stack-Overflow (CWE-787)."
+  },
+  "CVE-2023-2745": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "WordPress-Kern ist über den wp_lang-Parameter anfällig für Directory Traversal, sodass unauthentifizierte Angreifer beliebige Übersetzungsdateien laden.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "NVD: AC:L; der CNA vergab AC:H (nur mit hochladbarer Übersetzungsdatei ausnutzbar)."
+    },
+    "PR": {
+     "why": "Der wp_lang-Parameter ist für unauthentifizierte Angreifer erreichbar: PR:N."
+    },
+    "UI": {
+     "why": "NVD setzt UI:R: Die geladene Übersetzungsdatei wirkt erst, wenn ein Nutzer die betroffene Seite aufruft; der CNA (WordPress) sah UI:N — Provenienz-Dissens."
+    },
+    "S": {
+     "why": "Scope: NVD: S:C.",
+     "pitfall": "Ungewöhnlich für Path Traversal (meist S:U). NVD vergab S:C, der CNA ebenfalls; vermutlich weil geladene Übersetzungsdateien Code enthalten können."
+    },
+    "C": {
+     "why": "Übersetzungsdateien laden: begrenzt, C:L."
+    },
+    "I": {
+     "why": "Bei hochladbarer Datei begrenzte Codeausführung: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "AC": "CNA (WPScan): AC:H, UI:N (6,1). Die Ausnutzbarkeit hängt an einem zweiten Upload-Vektor; einzeln ist es nur Dateiladen."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,80: WordPress-Kern, daher in vielen Scans. Allein harmlos (nur Übersetzungen laden), gefährlich nur in Kombination mit einem Upload."
+  },
+  "CVE-2025-0411": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "7-Zip umgeht den Mark-of-the-Web-Schutz: aus einem präparierten Archiv extrahierte Dateien erben die MotW-Markierung nicht, sodass Windows-Warnungen ausbleiben.",
+   "metrics": {
+    "AV": {
+     "why": "Datei wird lokal extrahiert und geöffnet: AV:L."
+    },
+    "AC": {
+     "why": "NVD: AC:H, doppelt verschachteltes Archiv nötig.",
+     "pitfall": "Die Umgehung erfordert ein Archiv im Archiv; das wertet NVD als AC:H."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die extrahierte Datei öffnen."
+    },
+    "S": {
+     "why": "Code im Nutzerkontext."
+    },
+    "C": {
+     "why": "Nach dem Ausführen der Malware: alle Nutzerdaten lesbar."
+    },
+    "I": {
+     "why": "Malware: alles änderbar."
+    },
+    "A": {
+     "why": "Malware: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,67: Von russischen Gruppen gegen die Ukraine genutzt. MotW ist eine Schutzschicht (wie Signaturprüfung); ihre Umgehung (CWE-693) senkt die Wirksamkeit der SmartScreen-Warnung, nicht der Angriff selbst."
+  },
+  "CVE-2019-1405": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der Windows UPnP-Dienst erlaubt fehlerhaft die Erstellung von COM-Objekten, was einem lokalen Nutzer Rechteausweitung ermöglicht.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Zugriff auf das System nötig."
+    },
+    "AC": {
+     "why": "Kein besonderer Aufwand."
+    },
+    "PR": {
+     "why": "Lokaler Nutzer mit normalen Rechten."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Lokale EoP: S:U."
+    },
+    "C": {
+     "why": "Erhöhte Rechte: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Erhöhte Rechte: alles änderbar."
+    },
+    "A": {
+     "why": "Erhöhte Rechte: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,30: In Kette mit CVE-2019-1322 zu SYSTEM. Lokale EoPs sind das zweite Glied nach dem Ersteinbruch; einzeln 7,8, in der Kette der Schritt zu voller Kontrolle."
+  },
+  "CVE-2021-25395": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Race Condition im MFC-Charger-Treiber von Samsung-Android erlaubt bei kompromittiertem Radio-Recht die Umgehung der Signaturprüfung.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Treiberzugriff."
+    },
+    "AC": {
+     "why": "Race Condition: Timing außerhalb der Kontrolle, AC:H."
+    },
+    "PR": {
+     "why": "'Given a radio privilege is compromised': PR:H."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Innerhalb des Geräts, S:U."
+    },
+    "C": {
+     "why": "Signaturumgehung plus Rechte: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Gerät störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,004: Schwester von CVE-2021-25394, gleicher Treiber, gleiche Spyware-Kette. Zwei CVEs (Schreiben und Signaturumgehung) im selben Treiber; Ketten bestehen oft aus Geschwistern."
+  },
+  "CVE-2020-27223": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+   "summary_de": "Eclipse Jetty erschöpft die CPU, wenn eine Anfrage mehrere Accept-Header mit vielen Quality-Parametern enthält.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP über das Netz."
+    },
+    "AC": {
+     "why": "Eine Anfrage mit vielen q-Parametern."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U; der CNA vergab S:U mit anderen Metriken."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "CPU-Erschöpfung für Minuten: NVD A:L, CNA A:H."
+    }
+   },
+   "dissent": {
+    "AV": "CNA (Eclipse): AV:A, PR:L, UI:R, A:H (5,x). Ein deutlich anderer Vektor; der Hersteller sah engere Voraussetzungen und höhere Auswirkung."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,78: Algorithmische Komplexität (CWE-400) als DoS; eine einzige Anfrage bindet Minuten CPU. Solche Lücken skalieren schlecht: wenige Anfragen legen den Server lahm."
+  },
+  "CVE-2023-38408": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das PKCS#11-Feature in ssh-agent von OpenSSH hat einen unsicheren Suchpfad, sodass ein weitergeleiteter Agent auf einem angreiferkontrollierten System zu Remote Code Execution führt.",
+   "metrics": {
+    "AV": {
+     "why": "Über SSH-Agent-Forwarding zum angreiferkontrollierten Host."
+    },
+    "AC": {
+     "why": "Präparierte Bibliotheken in /usr/lib des Angreifer-Hosts."
+    },
+    "PR": {
+     "why": "Keine Rechte auf dem Opfer-System nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt (Agent-Forwarding aktiv)."
+    },
+    "S": {
+     "why": "Code läuft im ssh-agent-Prozess des Opfers, S:U."
+    },
+    "C": {
+     "why": "Code mit den Rechten des Opfer-Nutzers: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,80: Nur bei aktivem Agent-Forwarding zu einem bösartigen Host ausnutzbar. Unsicherer Suchpfad (CWE-428), unvollständiger Fix von CVE-2016-10009; wieder ein wiederaufgetauchter Fehler."
+  }
+ }
+}

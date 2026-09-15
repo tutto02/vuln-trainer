@@ -1,0 +1,507 @@
+{
+"batch": "batch-052",
+"with_chain": false,
+"items": [
+{
+"id": "CVE-2023-2876",
+"desc": "Sensitive Cookie Without 'HttpOnly' Flag vulnerability in ABB REX640 PCL1 (firmware modules), ABB REX640 PCL2 (Firmware modules), ABB REX640 PCL3 (firmware modules) allows Cross-Site Scripting (XSS).This issue affects REX640 PCL1: from 1.0;0 before 1.0.8; REX640 PCL2: from 1.0;0 before 1.1.4; REX640 PCL3: from 1.0;0 before 1.2.1.\n\n",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:N",
+"differs": [
+"AC",
+"S",
+"I"
+],
+"cwe": "CWE-732",
+"class": "permissions-config",
+"stack": "ics-iot",
+"products": [
+"abb:rex640_pcl1_firmware",
+"abb:rex640_pcl1",
+"abb:rex640_pcl2_firmware"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00292,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2022-24072",
+"desc": "The devtools API in Whale browser before 3.12.129.18 allowed extension developers to inject arbitrary JavaScript into the extension store web page via devtools.inspectedWindow, leading to extensions downloading and uploading when users open the developer tool.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-269",
+"class": "privilege-mgmt",
+"stack": "web",
+"products": [
+"navercorp:whale"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00579,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2022-3567",
+"desc": "A vulnerability has been found in Linux Kernel and classified as problematic. This vulnerability affects the function inet6_stream_ops/inet6_dgram_ops of the component IPv6 Handler. The manipulation leads to race condition. It is recommended to apply a patch to fix this issue. VDB-211090 is the identifier assigned to this vulnerability.",
+"vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:H",
+"score": 6.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:A/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"differs": [
+"PR",
+"A"
+],
+"cwe": "CWE-362",
+"class": "race-condition",
+"stack": "linux",
+"products": [
+"linux:linux_kernel"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00309,
+"traps": [
+"c_low",
+"ac_h"
+]
+},
+{
+"id": "CVE-2023-4828",
+"desc": "An improper check for an exceptional condition in the Insider Threat Management (ITM) Server could be used by an attacker to change the server's configuration of any already-registered agent so that the agent sends all future communications to an attacker-chosen URL. This could result in disclosure of sensitive data events from the agent about the personally identifiable information (PII) and intellectual property it monitors, and all such data could be altered or deleted before reaching the ITM Server. An attacker must first successfully obtain valid agent credentials and agent hostname. All versions prior to 7.14.3.69 are affected.",
+"vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:L/I:L/A:N",
+"score": 4.2,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:L/A:L",
+"differs": [
+"C",
+"A"
+],
+"cwe": "CWE-754",
+"class": "resource-exhaustion",
+"stack": "web",
+"products": [
+"proofpoint:insider_threat_management"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00358,
+"traps": [
+"c_low",
+"pr_l_authenticated",
+"ac_h"
+]
+},
+{
+"id": "CVE-2020-8096",
+"desc": "Untrusted Search Path vulnerability in Bitdefender High-Level Antimalware SDK for Windows allows an attacker to load third party code from a DLL library in the search path. This issue affects: Bitdefender High-Level Antimalware SDK for Windows versions prior to 3.0.1.204 .",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"score": 5.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:L",
+"differs": [
+"S"
+],
+"cwe": "CWE-426",
+"class": "search-path",
+"stack": "library",
+"products": [
+"bitdefender:antimalware_software_development_kit"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00279,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2023-39365",
+"desc": "Cacti is an open source operational monitoring and fault management framework. Issues with Cacti Regular Expression validation combined with the external links feature can lead to limited SQL Injections and subsequent data leakage. This issue has been addressed in version 1.2.25. Users are advised to upgrade. There are no known workarounds for this vulnerability.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"score": 6.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:L/I:N/A:L",
+"differs": [
+"UI",
+"I"
+],
+"cwe": "CWE-89",
+"class": "sqli",
+"stack": "linux",
+"products": [
+"cacti:cacti",
+"fedoraproject:fedora"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00843,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2022-23544",
+"desc": "MeterSphere is a one-stop open source continuous testing platform, covering test management, interface testing, UI testing and performance testing. Versions prior to 2.5.0 are subject to a Server-Side Request Forgery that leads to Cross-Site Scripting. A Server-Side request forgery in `IssueProxyResourceService::getMdImageByUrl` allows an attacker to access internal resources, as well as executing JavaScript code in the context of Metersphere's origin by a victim of a reflected XSS. This vulnerability has been fixed in v2.5.0. There are no known workarounds. ",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N",
+"differs": [
+"UI"
+],
+"cwe": "CWE-918",
+"class": "ssrf",
+"stack": "library",
+"products": [
+"metersphere:metersphere"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01607,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-23447",
+"desc": "This affects the package teddy before 0.5.9. A type confusion vulnerability can be used to bypass input sanitization when the model content is an array (instead of a string).",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N",
+"differs": [
+"S"
+],
+"cwe": "CWE-843",
+"class": "type-confusion",
+"stack": "library",
+"products": [
+"teddy_project:teddy"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01128,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2019-17143",
+"desc": "This vulnerability allows remote attackers to disclose sensitive information on affected installations of Foxit PhantomPDF 9.6.0.25114. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The specific flaw exists within the parsing of DWG files. The issue results from the lack of validating the existence of an object prior to performing operations on the object. An attacker can leverage this in conjunction with other vulnerabilities to execute code in the context of the current process. Was ZDI-CAN-9273.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+"score": 4.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-416",
+"class": "use-after-free",
+"stack": "application",
+"products": [
+"foxitsoftware:phantompdf"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.03881,
+"traps": [
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-32618",
+"desc": "The Python \"Flask-Security-Too\" package is used for adding security features to your Flask application. It is an is an independently maintained version of Flask-Security based on the 3.0.0 version of Flask-Security. All versions of Flask-Security-Too allow redirects after many successful views (e.g. /login) by honoring the ?next query param. There is code in FS to validate that the url specified in the next parameter is either relative OR has the same netloc (network location) as the requesting URL. This check utilizes Pythons urlsplit library. However many browsers are very lenient on the kind of URL they accept and 'fill in the blanks' when presented with a possibly incomplete URL. As a concrete example - setting http://login?next=\\\\\\github.com will pass FS's relative URL check however many browsers will gladly convert this to http://github.com. Thus an attacker could send such a link to an unwitting user, using a legitimate site and have it redirect to whatever site they want. This is considered a low severity due to the fact that if Werkzeug is used (which is very common with Flask applications) as the WSGI layer, it by default ALWAYS ensures that the Location header is absolute - thus making this attack vector mute. It is possible for application writers to modify this default behavior by setting the 'autocorrect_location_header=False`.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:L/A:N",
+"differs": [
+"AC",
+"S",
+"C"
+],
+"cwe": "CWE-601",
+"class": "web-logic",
+"stack": "library",
+"products": [
+"flask-security_project:flask-security"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.02838,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2022-0218",
+"desc": "The WP HTML Mail WordPress plugin is vulnerable to unauthorized access which allows unauthenticated attackers to retrieve and modify theme settings due to a missing capability check on the /themesettings REST-API endpoint found in the ~/includes/class-template-designer.php file, in versions up to and including 3.0.9. This makes it possible for attackers with no privileges to execute the endpoint and add malicious JavaScript to a vulnerable WordPress site.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:L",
+"differs": [
+"UI",
+"A"
+],
+"cwe": "CWE-79",
+"class": "xss",
+"stack": "web",
+"products": [
+"codemiq:wordpress_email_template_designer"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.70511,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-21266",
+"desc": "openHAB is a vendor and technology agnostic open source automation software for your home. In openHAB before versions 2.5.12 and 3.0.1 the XML external entity (XXE) attack allows attackers in the same network as the openHAB instance to retrieve internal information like the content of files from the file system. Responses to SSDP requests can be especially malicious. All add-ons that use SAX or JAXB parsing of externally received XML are potentially subject to this kind of attack. In openHAB, the following add-ons are potentially impacted: AvmFritz, BoseSoundtouch, DenonMarantz, DLinkSmarthome, Enigma2, FmiWeather, FSInternetRadio, Gce, Homematic, HPPrinter, IHC, Insteon, Onkyo, Roku, SamsungTV, Sonos, Roku, Tellstick, TR064, UPnPControl, Vitotronic, Wemo, YamahaReceiver and XPath Tranformation. The vulnerabilities have been fixed in versions 2.5.12 and 3.0.1 by a more strict configuration of the used XML parser.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+"score": 5.0,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N",
+"differs": [
+"I"
+],
+"cwe": "CWE-611",
+"class": "xxe",
+"stack": "application",
+"products": [
+"openhab:openhab"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.011,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2023-35158",
+"desc": "XWiki Platform is a generic wiki platform offering runtime services for applications built on top of it. Users are able to forge an URL with a payload allowing to inject Javascript in the page (XSS). It's possible to exploit the restore template to perform a XSS, e.g. by using URL such as: > /xwiki/bin/view/XWiki/Main?xpage=restore&showBatch=true&xredirect=javascript:alert(document.domain). This vulnerability exists since XWiki 9.4-rc-1. The vulnerability has been patched in XWiki 14.10.5 and 15.1-rc-1. ",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H",
+"differs": [
+"C",
+"I",
+"A"
+],
+"cwe": "CWE-87",
+"class": "unclassified",
+"stack": "web",
+"products": [
+"xwiki:xwiki"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.02048,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2020-1331",
+"desc": "A spoofing vulnerability exists when System Center Operations Manager (SCOM) does not properly sanitize a specially crafted web request to an affected SCOM instance, aka 'System Center Operations Manager Spoofing Vulnerability'.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-290",
+"class": "authn",
+"stack": "windows",
+"products": [
+"microsoft:system_center_operations_manager"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01257,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2023-2183",
+"desc": "Grafana is an open-source platform for monitoring and observability. \n\nThe option to send a test alert is not available from the user panel UI for users having the Viewer role. It is still possible for a user with the Viewer role to send a test alert using the API as the API does not check access to this function.\n\nThis might enable malicious users to abuse the functionality by sending multiple alert messages to e-mail and Slack, spamming users, prepare Phishing attack or block SMTP server.\n\nUsers may upgrade to version 9.5.3, 9.4.12, 9.3.15, 9.2.19 and 8.5.26 to receive a fix.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N",
+"score": 6.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:N/A:N",
+"differs": [
+"UI",
+"I"
+],
+"cwe": "CWE-862",
+"class": "authz",
+"stack": "web",
+"products": [
+"grafana:grafana"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01027,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2020-26273",
+"desc": "osquery is a SQL powered operating system instrumentation, monitoring, and analytics framework. In osquery before version 4.6.0, by using sqlite's ATTACH verb, someone with administrative access to osquery can cause reads and writes to arbitrary sqlite databases on disk. This _does_ allow arbitrary files to be created, but they will be sqlite databases. It does not appear to allow existing non-sqlite files to be overwritten. This has been patched in osquery 4.6.0. There are several mitigating factors and possible workarounds. In some deployments, the people with access to these interfaces may be considered administrators. In some deployments, configuration is managed by a central tool. This tool can filter for the `ATTACH` keyword. osquery can be run as non-root user. Because this also limits the desired access levels, this requires deployment specific testing and configuration.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N",
+"score": 5.2,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-77",
+"class": "cmd-injection",
+"stack": "library",
+"products": [
+"linuxfoundation:osquery"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00955,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2023-4994",
+"desc": "The Allow PHP in Posts and Pages plugin for WordPress is vulnerable to Remote Code Execution in versions up to, and including, 3.0.4 via the 'php' shortcode. This allows authenticated attackers with subscriber-level permissions or above, to execute code on the server.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N",
+"score": 6.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H",
+"differs": [
+"C",
+"I",
+"A"
+],
+"cwe": "CWE-94",
+"class": "code-injection",
+"stack": "web",
+"products": [
+"hitreach:allow_php_in_posts_and_pages"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00742,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2019-11762",
+"desc": "If two same-origin documents set document.domain differently to become cross-origin, it was possible for them to call arbitrary DOM methods/getters/setters on the now-cross-origin window. This vulnerability affects Firefox < 70, Thunderbird < 68.2, and Firefox ESR < 68.2.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-346",
+"class": "crypto",
+"stack": "linux",
+"products": [
+"mozilla:firefox",
+"mozilla:firefox_esr",
+"mozilla:thunderbird"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00609,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2022-29430",
+"desc": "Cross-Site Scripting (XSS) vulnerability in KubiQ's PNG to JPG plugin <= 4.0 at WordPress via Cross-Site Request Forgery (CSRF). Vulnerable parameter &jpg_quality.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:N/I:L/A:N",
+"differs": [
+"C"
+],
+"cwe": "CWE-352",
+"class": "csrf",
+"stack": "web",
+"products": [
+"png_to_jpg_project:png_to_jpg"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.0035,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-1413",
+"desc": "Multiple vulnerabilities in the web-based management interface of Cisco RV340, RV340W, RV345, and RV345P Dual WAN Gigabit VPN Routers could allow an authenticated, remote attacker to execute arbitrary code with elevated privileges equivalent to the web service process on an affected device. These vulnerabilities exist because HTTP requests are not properly validated. An attacker could exploit these vulnerabilities by sending a crafted HTTP request to the web-based management interface of an affected device. A successful exploit could allow the attacker to remotely execute arbitrary code on the device.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"score": 6.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-502",
+"class": "deserialization",
+"stack": "network",
+"products": [
+"cisco:rv340_firmware",
+"cisco:rv340",
+"cisco:rv340w_firmware"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01612,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+}
+]
+}

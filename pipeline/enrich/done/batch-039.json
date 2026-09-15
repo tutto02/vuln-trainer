@@ -1,0 +1,625 @@
+{
+ "batch": "batch-039",
+ "items": {
+  "CVE-2022-1388": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "F5 BIG-IP erlaubt über nicht offengelegte Anfragen die Umgehung der iControl-REST-Authentifizierung und damit unauthentifizierte Ausführung von Systembefehlen.",
+   "metrics": {
+    "AV": {
+     "why": "iControl REST über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage (Connection-Header-Trick), öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf der Appliance, S:U."
+    },
+    "C": {
+     "why": "RCE auf dem Load Balancer: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Appliance abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,9996: Massenausnutzung binnen Tagen. Ein Auth-Bypass (CWE-306) über einen Header-Trick in der iControl-REST-API (wie CVE-2021-22986). F5 BIG-IP ist im Korpus ein Dauerthema; die Management-API von Netzwerk-Appliances ist das wiederkehrende Ziel. Der Bypass gab direkt Root-Befehlsausführung."
+  },
+  "CVE-2021-30657": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N",
+   "summary_de": "Ein Logikfehler in macOS erlaubt einer bösartigen Anwendung die Umgehung der Gatekeeper-Prüfungen.",
+   "metrics": {
+    "AV": {
+     "why": "Die App wird lokal ausgeführt: AV:L."
+    },
+    "AC": {
+     "why": "Präparierte App-Struktur (fehlende Info.plist)."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die App öffnen."
+    },
+    "S": {
+     "why": "Innerhalb des Systems."
+    },
+    "C": {
+     "why": "Kein direkter Datenzugriff (Gatekeeper-Umgehung selbst)."
+    },
+    "I": {
+     "why": "Umgehung der Gatekeeper-Prüfung: unsignierter Code läuft ohne Warnung, I:H."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,69: Von der Shlayer-Malware ausgenutzt. Gatekeeper (CWE-862) ist macOS' Schutzschicht gegen unsignierte Apps; ihre Umgehung lässt Malware ohne Warnung laufen. Wie Windows MotW (CVE-2025-0411) und Signaturprüfung: Der Ausfall einer Schutzschicht senkt die Wirksamkeit anderer Kontrollen."
+  },
+  "CVE-2021-36380": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Sunhillo SureLine hat über Shell-Metazeichen in ipAddr oder dnsAddr von /cgi/networkDiag.cgi eine unauthentifizierte OS Command Injection.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Parameter."
+    },
+    "PR": {
+     "why": "Die OS-Command-Injection in networkDiag.cgi ist ausdrücklich unauthentifiziert: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Gerät, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Gerät abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,98: SureLine ist eine Überwachungssoftware für Flugsicherungs-Kommunikation (ICS). Command Injection (CWE-78) in einem Netzwerk-Diagnose-CGI (ipAddr/dnsAddr); die Diagnose-Parameter (wie bei D-Link-Ping) sind der wiederkehrende Command-Injection-Verdacht. ICS in kritischer Infrastruktur."
+  },
+  "CVE-2022-22954": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "VMware Workspace ONE Access und Identity Manager haben eine Server-Side Template Injection, die unauthentifizierte Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL mit Template-Ausdruck, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99997: Massenausnutzung. SSTI (CWE-94) in VMwares Identity-Produkt; in Kette mit der Rechteausweitung CVE-2022-22960 (im Korpus) zu vollem Root. Workspace ONE Access ist ein IdP; ein Kompromiss erlaubt das Fälschen von SSO-Token. SSTI ist im Korpus eine wiederkehrende RCE-Klasse."
+  },
+  "CVE-2021-42237": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Sitecore XP deserialisiert unvertraute Daten unsicher, was unauthentifizierte Remote Command Execution ohne besondere Konfiguration erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-CMS über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt."
+    },
+    "PR": {
+     "why": "Laut Beschreibung sind weder Authentifizierung noch Sonderkonfiguration nötig; die Deserialisierung läuft für jeden Request: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Sitecore-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,98: Sitecore-Deserialisierung (CWE-502), wie CVE-2019-9874. Sitecore ist ein .NET-Enterprise-CMS; .NET-Deserialisierung ist im Korpus ein Dauerthema (ColdFusion, Telerik, DNN, Kentico, Sitecore). Das Muster (serialisiertes Objekt in einem Feld) wiederholt sich über Produkte."
+  },
+  "CVE-2014-8739": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das jQuery-File-Upload-Plugin (in vielen Contact-Form-Plugins) erlaubt über UploadHandler.php einen unbeschränkten Datei-Upload.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,92: Das jQuery-File-Upload-Plugin steckte in Tausenden WordPress- und Joomla-Erweiterungen; ein Bibliotheks-Bug (CWE-434) mit riesiger Reichweite (wie ImageMagick, Log4j). Eine einzige verbreitete Upload-Komponente trifft alle einbettenden Produkte."
+  },
+  "CVE-2014-1812": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Group-Policy-Implementierung in Windows verteilt Passwörter (Group Policy Preferences) unsicher, sodass authentifizierte Domänennutzer sensible Zugangsdaten auslesen können.",
+   "metrics": {
+    "AV": {
+     "why": "Über SYSVOL im Domänennetz."
+    },
+    "AC": {
+     "why": "Die verschlüsselte cpassword aus SYSVOL lesen und mit dem bekannten Schlüssel entschlüsseln."
+    },
+    "PR": {
+     "why": "Ein authentifizierter Domänennutzer: PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Domäne."
+    },
+    "C": {
+     "why": "Lokale Admin-Passwörter aller Rechner: gezielt, maximal, H."
+    },
+    "I": {
+     "why": "Mit den Passwörtern: alles änderbar."
+    },
+    "A": {
+     "why": "Mit den Passwörtern: Systeme abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,65: Group Policy Preferences (GPP) speicherten Passwörter mit einem öffentlich bekannten AES-Schlüssel in SYSVOL, das jeder Domänennutzer lesen kann (CWE-522). Ein Klassiker der AD-Rechteausweitung: Ein normaler Nutzer liest die lokalen Admin-Passwörter aller Domänenrechner. Der Schlüssel war in Microsofts Doku veröffentlicht."
+  },
+  "CVE-2023-22527": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ältere Versionen von Confluence Data Center und Server haben eine Template-Injection, die unauthentifizierte Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Wiki über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Die Template-Injection erlaubt einem unauthentifizierten Angreifer RCE: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Confluence-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,9998: Template-Injection (CWE-74) in Confluence, wie die OGNL-Lücke CVE-2021-26084. Confluence ist im Korpus ein Dauerthema; Atlassian-Produkte wiederholen die OGNL/SSTI-Klasse. Massenhaft für Ransomware und Kryptominer genutzt."
+  },
+  "CVE-2021-33620": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Squid erlaubt einem Remote-Server, über eine HTTP-Response mit einem bestimmten (auch in gutartigem Verkehr vorkommenden) Header alle Clients des Proxys zum Ausfall zu bringen.",
+   "metrics": {
+    "AV": {
+     "why": "Über den Proxy (Server-Response)."
+    },
+    "AC": {
+     "why": "Ein bestimmter Response-Header."
+    },
+    "PR": {
+     "why": "NVD: PR:L (ein Client muss die Anfrage stellen)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Proxy."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "DoS gegen alle Proxy-Clients: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,80: Wieder ein Squid-DoS (CWE-20), diesmal über einen Response-Header, der sogar in gutartigem Verkehr vorkommen kann (also ohne Angreifer auslösbar). Squid ist im Korpus die DoS-Dauerbaustelle (CVE-2021-28662, CVE-2021-31806, CVE-2023-49285)."
+  },
+  "CVE-2017-15944": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Palo Alto PAN-OS erlaubt über Vektoren im Management-Interface (eine Kette aus drei Lücken) Remote Code Execution als root.",
+   "metrics": {
+    "AV": {
+     "why": "Management-Interface über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfragen (die Kette)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code als root auf der Firewall, S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: Firewall abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,98: Eine Kette aus drei Lücken (Auth-Bypass, XML-Injection, Command Injection, CWE-119) zu Root-RCE auf PAN-OS. PAN-OS ist im Korpus ein Dauerthema; das Management-Interface am WAN ist der Fehler. Ein Musterfall, wie mehrere kleine Lücken zu einer kritischen RCE-Kette werden."
+  },
+  "CVE-2024-8963": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+   "summary_de": "Ein Path Traversal in der Ivanti CSA erlaubt einem unauthentifizierten Angreifer den Zugriff auf eingeschränkte Funktionalität.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die CSA."
+    },
+    "C": {
+     "why": "Zugriff auf eingeschränkte Funktionen: gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Über die erreichten Funktionen: alles änderbar."
+    },
+    "A": {
+     "why": "NVD: A:N; der CNA A:L."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Das erste Glied der Ivanti-CSA-Kette vom September 2024 (mit CVE-2024-8190 Command Injection, CVE-2024-9379 SQLi, CVE-2024-9380 Command Injection). Path Traversal (CWE-22), das die Admin-Funktionen freischaltet; die anderen Lücken lieferten dann RCE. Ivanti ist das häufigste Herstellerthema im Korpus, oft in Ketten."
+  },
+  "CVE-2019-9512": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "HTTP/2 Ping Flood: Kontinuierliche Pings an einen HTTP/2-Peer lassen dessen interne Antwort-Warteschlange wachsen, was zu einem Denial of Service führt.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP/2 über das Netz."
+    },
+    "AC": {
+     "why": "Kontinuierliche Pings."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Server."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Warteschlangen-Wachstum: Ressourcenerschöpfung, A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,83: Teil der HTTP/2-DoS-Familie von 2019 (mit mehreren CVEs, wie 'Rapid Reset' CVE-2023-44487 später). Ressourcenerschöpfung (CWE-400) über Protokoll-Missbrauch; ein Designproblem im HTTP/2-Protokoll, das jeder Anbieter einzeln mildern musste."
+  },
+  "CVE-2020-10220": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "rConfig hat im searchColumn-Parameter von commands.inc.php eine SQL-Injection.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Parameter."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank und Anwendung im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "SQLi: alle Daten lesbar."
+    },
+    "I": {
+     "why": "SQLi: alles änderbar."
+    },
+    "A": {
+     "why": "SQLi: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,997: rConfig ist ein Netzwerkgeräte-Konfigurationsmanager (wie CVE-2020-13638 Auth-Bypass im selben Produkt). SQLi (CWE-89); ein Tool mit Zugriff auf alle Gerätekonfigurationen. Mehrere Lücken im selben Produkt zeigen fehlende systematische Sicherheit."
+  },
+  "CVE-2023-51467": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Apache OFBiz erlaubt über die Umgehung der Authentifizierung die Ausführung beliebigen Codes (Umgehung des Fixes für CVE-2023-49070).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage (leere/ungültige Auth-Parameter)."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im OFBiz-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE (über SSRF/Deserialisierung): alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,96: Die Umgehung des Fixes für CVE-2023-49070. OFBiz ist im Korpus ein Dauerthema (CVE-2020-9496, CVE-2024-38856, CVE-2024-32113); jede neue CVE umging oft den vorigen Fix (CWE-918 zu RCE). Ein Produkt mit einer Serie unvollständiger Fixes, wie ColdFusion und vBulletin."
+  },
+  "CVE-2023-4762": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion in V8 erlaubt über eine präparierte Seite Codeausführung in Chrome.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Renderer-Prozess."
+    },
+    "C": {
+     "why": "Codeausführung im Renderer: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,41: Zero-Day, von Cytrox/Predator gegen einen ägyptischen Politiker genutzt (Citizen Lab). V8-Type-Confusion (CWE-843); die Chrome-V8-Reihe im Korpus zeigt, wie oft dieselbe Klasse als Zero-Day auftaucht. Kommerzielle Spyware ist ein Hauptabnehmer solcher Browser-Zero-Days."
+  },
+  "CVE-2016-9079": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Eine Use-After-Free in der SVG-Animation von Firefox wurde in freier Wildbahn gegen Firefox- und Tor-Browser-Nutzer auf Windows ausgenutzt.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "NVD: UI:N (die Seite lädt den Exploit automatisch)."
+    },
+    "S": {
+     "why": "Bleibt im Browserprozess."
+    },
+    "C": {
+     "why": "NVD: C:H (der Exploit deanonymisierte Tor-Nutzer durch Auslesen der IP): gezielt, hochwertig."
+    },
+    "I": {
+     "why": "Integrität: NVD: I:N."
+    },
+    "A": {
+     "why": "Verfügbarkeit: NVD: A:N."
+    }
+   },
+   "context_de": "KEV, EPSS 0,87: Ein Angriff zur Deanonymisierung von Tor-Nutzern (der Exploit las die echte IP-Adresse aus). Use-After-Free (CWE-416) in der SVG-Animation; bemerkenswert, weil das Ziel nicht RCE, sondern Deanonymisierung war (daher nur C:H). Die Firefox-Serie im Korpus zeigt verschiedene Angreifer (Strafverfolgung, Nachrichtendienste)."
+  },
+  "CVE-2022-27926": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Zimbra Collaboration hat in /public/launchNewWindow.jsp ein reflektiertes Cross-Site-Scripting über Request-Parameter.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierter Link über das Netz."
+    },
+    "AC": {
+     "why": "Ein präparierter Link genügt."
+    },
+    "PR": {
+     "why": "Das reflektierte XSS in launchNewWindow.jsp stammt von unauthentifizierten Angreifern; das Opfer liefert die Sitzung (UI:R): PR:N."
+    },
+    "UI": {
+     "why": "Das Opfer muss den Link öffnen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Postfach-Session des Opfers: C:L."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,18: Von einer Spionagegruppe gegen europäische Regierungs- und Medienstellen genutzt. Reflektiertes XSS (CWE-79) in Zimbra; das meistangegriffene Webmail im Korpus. XSS in Webmail ist ein Werkzeug zum Postfach-Diebstahl, wie die anderen Zimbra-XSS-Einträge zeigen."
+  },
+  "CVE-2020-11651": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die ClearFuncs-Klasse des SaltStack-salt-master-Prozesses validiert Methodenaufrufe nicht, sodass ein Remote-Nutzer ohne Authentifizierung auf Methoden zugreift und Nutzer-Token abruft (Auth-Bypass).",
+   "metrics": {
+    "AV": {
+     "why": "Salt-Master-Port über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Zugriff auf den Master, dann RCE, S:U."
+    },
+    "C": {
+     "why": "Master-Token plus RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alle verwalteten Minions: alles änderbar."
+    },
+    "A": {
+     "why": "Alle Minions: Systeme abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,97: Der Auth-Bypass, der mit dem Path Traversal CVE-2020-11652 (im Korpus) zu unauthentifizierter RCE auf ganzen Server-Flotten wurde. Salt-Master steuern hunderte Server (noinfo bei NVD, real fehlende Autorisierung); ein Konfigurationsmanagement-Master ist ein Supply-Chain-Ziel. Massenhaft ausgenutzt (auch gegen Ghost, LineageOS)."
+  },
+  "CVE-2022-21587": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Oracle Web Applications Desktop Integrator (E-Business Suite) erlaubt einem unauthentifizierten Angreifer über die Upload-Komponente die Kompromittierung.",
+   "metrics": {
+    "AV": {
+     "why": "'Network access via HTTP' wörtlich."
+    },
+    "AC": {
+     "why": "'Easily exploitable' (Oracle-AC:L)."
+    },
+    "PR": {
+     "why": "'Unauthenticated attacker' wörtlich."
+    },
+    "UI": {
+     "why": "Keine Interaktion genannt."
+    },
+    "S": {
+     "why": "Kein 'additional products'-Satz: S:U."
+    },
+    "C": {
+     "why": "Kompromittierung: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,98, nur CNA-Vektor: Die Oracle E-Business Suite ist ein ERP-System mit Finanzdaten (wie CVE-2026-46817). Ein Upload zu RCE (CWE-306); Oracle-Texte sind zum Vektor-Üben ideal, weil jedes Wort einer Metrik entspricht. ERP-Systeme sind Kronjuwelen."
+  },
+  "CVE-2022-1329": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Elementor-Website-Builder-Plugin für WordPress erlaubt durch eine fehlende Capability-Prüfung im Onboarding-Modul die unautorisierte Ausführung mehrerer AJAX-Aktionen (inklusive Datei-Upload).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte AJAX-Anfrage."
+    },
+    "PR": {
+     "why": "Ein Konto (Subscriber): PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "Über den Upload eine Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Site-Daten ändern plus Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,93: Elementor ist eines der meistinstallierten WordPress-Plugins (über 5 Millionen). Fehlende Capability-Prüfung (CWE-862): AJAX-Aktionen prüften die Nutzerrolle nicht; ein Subscriber (niedrigste Rolle) konnte Admin-Aktionen ausführen. Die Verbreitung macht die Reichweite; PR:L ist bei offener Registrierung faktisch PR:N."
+  }
+ }
+}

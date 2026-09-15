@@ -1,0 +1,493 @@
+{
+"batch": "batch-053",
+"with_chain": false,
+"items": [
+{
+"id": "CVE-2020-13260",
+"desc": "A vulnerability in the web-based management interface of RAD SecFlow-1v through 2020-05-21 could allow an authenticated attacker to upload a JavaScript file, with a stored XSS payload, that will remain stored in the system as an OVPN file in Configuration-Services-Security-OpenVPN-Config or as the static key file in Configuration-Services-Security-OpenVPN-Static Keys. This payload will execute each time a user opens an affected web page. This could be exploited in conjunction with CVE-2020-13259.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-434",
+"class": "file-upload",
+"stack": "web",
+"products": [
+"rad:secflow-1v_firmware",
+"rad:secflow-1v"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01982,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2020-16142",
+"desc": "On Mercedes-Benz C Class AMG Premium Plus c220 BlueTec vehicles, the Bluetooth stack mishandles %x and %c format-string specifiers in a device name in the COMAND infotainment software.",
+"vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:L",
+"score": 3.5,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-134",
+"class": "format-string",
+"stack": "other-os",
+"products": [
+"mercedes-benz:comand",
+"mercedes-benz:c220"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00759,
+"traps": []
+},
+{
+"id": "CVE-2023-29064",
+"desc": "The FACSChorus software contains sensitive information stored in plaintext. A threat actor could gain hardcoded secrets used by the application, which include tokens and passwords for administrative accounts.",
+"vector": "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+"score": 4.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+"differs": [
+"PR"
+],
+"cwe": "CWE-798",
+"class": "hardcoded-creds",
+"stack": "ics-iot",
+"products": [
+"bd:facschorus",
+"hp:hp_z2_tower_g9",
+"hp:hp_z2_tower_g5"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00274,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2023-23628",
+"desc": "Metabase is an open source data analytics platform. Affected versions are subject to Exposure of Sensitive Information to an Unauthorized Actor. Sandboxed users shouldn't be able to view data about other Metabase users anywhere in the Metabase application. However, when a sandbox user views the settings for a dashboard subscription, and another user has added users to that subscription, the sandboxed user is able to view the list of recipients for that subscription. This issue is patched in versions 0.43.7.1, 1.43.7.1, 0.44.6.1, 1.44.6.1, 0.45.2.1, and 1.45.2.1. There are no workarounds.\n",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:N/A:N",
+"score": 4.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:N",
+"differs": [
+"S",
+"C"
+],
+"cwe": "CWE-200",
+"class": "info-exposure",
+"stack": "web",
+"products": [
+"metabase:metabase"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00438,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2020-5336",
+"desc": "RSA Archer, versions prior to 6.7 P1 (6.7.0.1), contain a URL injection vulnerability. An unauthenticated attacker could potentially exploit this vulnerability by tricking a victim application user to execute malicious JavaScript code on the affected system.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:N",
+"differs": [
+"PR",
+"S"
+],
+"cwe": "CWE-74",
+"class": "injection-other",
+"stack": "web",
+"products": [
+"rsa:archer"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00705,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2020-15234",
+"desc": "ORY Fosite is a security first OAuth2 & OpenID Connect framework for Go. In Fosite before version 0.34.1, the OAuth 2.0 Client's registered redirect URLs and the redirect URL provided at the OAuth2 Authorization Endpoint where compared using strings.ToLower while they should have been compared with a simple string match. This allows an attacker to register a client with allowed redirect URL https://example.com/callback. Then perform an OAuth2 flow and requesting redirect URL https://example.com/CALLBACK. Instead of an error (invalid redirect URL), the browser is redirected to https://example.com/CALLBACK with a potentially successful OAuth2 response, depending on the state of the overall OAuth2 flow (the user might still deny the request for example). This vulnerability has been patched in ORY Fosite v0.34.1.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:N",
+"score": 4.8,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:U/C:H/I:H/A:N",
+"differs": [
+"S",
+"C",
+"I"
+],
+"cwe": "CWE-20",
+"class": "input-validation",
+"stack": "web",
+"products": [
+"ory:fosite"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00841,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2020-27350",
+"desc": "APT had several integer overflows and underflows while parsing .deb packages, aka GHSL-2020-168 GHSL-2020-169, in files apt-pkg/contrib/extracttar.cc, apt-pkg/deb/debfile.cc, and apt-pkg/contrib/arfile.cc. This issue affects: apt 1.2.32ubuntu0 versions prior to 1.2.32ubuntu0.2; 1.6.12ubuntu0 versions prior to 1.6.12ubuntu0.2; 2.0.2ubuntu0 versions prior to 2.0.2ubuntu0.2; 2.1.10ubuntu0 versions prior to 2.1.10ubuntu0.1;",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:L/I:L/A:L",
+"score": 5.7,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-190",
+"class": "integer-overflow",
+"stack": "linux",
+"products": [
+"debian:advanced_package_tool",
+"canonical:ubuntu_linux",
+"debian:debian_linux"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00381,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2020-2748",
+"desc": "Vulnerability in the Oracle VM VirtualBox product of Oracle Virtualization (component: Core). Supported versions that are affected are Prior to 5.2.40, prior to 6.0.20 and prior to 6.1.6. Easily exploitable vulnerability allows high privileged attacker with logon to the infrastructure where Oracle VM VirtualBox executes to compromise Oracle VM VirtualBox. While the vulnerability is in Oracle VM VirtualBox, attacks may significantly impact additional products. Successful attacks of this vulnerability can result in unauthorized read access to a subset of Oracle VM VirtualBox accessible data. CVSS 3.0 Base Score 3.2 (Confidentiality impacts). CVSS Vector: (CVSS:3.0/AV:L/AC:L/PR:H/UI:N/S:C/C:L/I:N/A:N).",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:L/I:N/A:N",
+"score": 3.2,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-125",
+"class": "memory-read",
+"stack": "linux",
+"products": [
+"oracle:vm_virtualbox",
+"opensuse:leap"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00535,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2020-14355",
+"desc": "Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1. Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:L/I:L/A:L",
+"score": 6.6,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-120",
+"class": "memory-write",
+"stack": "linux",
+"products": [
+"spice_project:spice",
+"redhat:openstack",
+"canonical:ubuntu_linux"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.02656,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2021-3595",
+"desc": "An invalid pointer initialization issue was found in the SLiRP networking implementation of QEMU. The flaw exists in the tftp_input() function and could occur while processing a udp packet that is smaller than the size of the 'tftp_t' structure. This issue may lead to out-of-bounds read access or indirect host memory disclosure to the guest. The highest threat from this vulnerability is to data confidentiality. This flaw affects libslirp versions prior to 4.6.0.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+"score": 3.8,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-824",
+"class": "null-deref-uninit",
+"stack": "linux",
+"products": [
+"libslirp_project:libslirp",
+"redhat:enterprise_linux",
+"debian:debian_linux"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00326,
+"traps": [
+"scope_c",
+"c_low"
+]
+},
+{
+"id": "CVE-2023-52085",
+"desc": "Winter is a free, open-source content management system. Users with access to backend forms that include a ColorPicker FormWidget can provide a value that would then be included without further processing in the compilation of custom stylesheets via LESS. This had the potential to lead to a Local File Inclusion vulnerability. This issue has been patched in v1.2.4.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:L/I:L/A:N",
+"differs": [
+"AC",
+"PR"
+],
+"cwe": "CWE-22",
+"class": "path-traversal",
+"stack": "web",
+"products": [
+"wintercms:winter"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.30166,
+"traps": [
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2020-27658",
+"desc": "Synology Router Manager (SRM) before 1.2.4-8081 does not include the HTTPOnly flag in a Set-Cookie header for the session cookie, which makes it easier for remote attackers to obtain potentially sensitive information via script access to this cookie.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:L",
+"differs": [
+"A"
+],
+"cwe": "CWE-732",
+"class": "permissions-config",
+"stack": "web",
+"products": [
+"synology:router_manager"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01313,
+"traps": [
+"scope_c",
+"c_low",
+"pr_n_but_ui_r"
+]
+},
+{
+"id": "CVE-2021-20208",
+"desc": "A flaw was found in cifs-utils in versions before 6.13. A user when mounting a krb5 CIFS file system from within a container can use Kerberos credentials of the host. The highest threat from this vulnerability is to data confidentiality and integrity.",
+"vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:L/I:H/A:N",
+"score": 6.1,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-269",
+"class": "privilege-mgmt",
+"stack": "linux",
+"products": [
+"samba:cifs-utils",
+"redhat:enterprise_linux",
+"fedoraproject:fedora"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00642,
+"traps": [
+"scope_c",
+"c_low",
+"ac_h"
+]
+},
+{
+"id": "CVE-2012-0953",
+"desc": "A race condition was discovered in the Linux drivers for Nvidia graphics which allowed an attacker to exfiltrate kernel memory to userspace. This issue was fixed in version 295.53.",
+"vector": "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:C/C:L/I:L/A:L",
+"score": 5.0,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-362",
+"class": "race-condition",
+"stack": "application",
+"products": [
+"nvidia:display_driver"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00246,
+"traps": [
+"scope_c",
+"c_low",
+"ac_h"
+]
+},
+{
+"id": "CVE-2022-30723",
+"desc": "Broadcasting Intent including the BluetoothDevice object without proper restriction of receivers in activateVoiceRecognitionWithDevice function of Bluetooth prior to SMR Jun-2022 Release 1 leaks MAC address of the connected Bluetooth device.",
+"vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+"score": 4.3,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+"differs": [
+"AV"
+],
+"cwe": "CWE-755",
+"class": "resource-exhaustion",
+"stack": "android",
+"products": [
+"google:android"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00109,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2019-16001",
+"desc": "A vulnerability in the loading mechanism of specific dynamic link libraries in Cisco Webex Teams for Windows could allow an authenticated, local attacker to perform a DLL hijacking attack. To exploit this vulnerability, the attacker would need to have valid credentials on the Windows system. The vulnerability is due to insufficient validation of the resources loaded by the application at run time. An attacker could exploit this vulnerability by crafting a malicious DLL file and placing it in a specific location on the targeted system. The malicious DLL file would execute when the vulnerable application is launched. A successful exploit could allow the attacker to execute arbitrary code on the target machine with the privileges of another user account.",
+"vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:L",
+"score": 5.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-427",
+"class": "search-path",
+"stack": "windows",
+"products": [
+"cisco:webex_meetings",
+"cisco:webex_teams",
+"microsoft:windows"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00377,
+"traps": [
+"c_low"
+]
+},
+{
+"id": "CVE-2022-39072",
+"desc": "There is a SQL injection vulnerability in Some ZTE Mobile Internet products. Due to insufficient validation of the input parameters of the SNTP interface, an authenticated attacker could use the vulnerability to execute stored XSS attacks.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+"score": 5.4,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-89",
+"class": "sqli",
+"stack": "other-os",
+"products": [
+"zte:mf286r_firmware",
+"zte:mf286r",
+"zte:mf289d_firmware"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.00339,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2020-36232",
+"desc": "The MessageBundleWhiteList class of atlassian-gadgets before version 4.2.37, from version 4.3.0 before 4.3.14, from version 4.3.2.0 before 4.3.2.4, from version 4.4.0 before 4.4.12, and from version 5.0.0 before 5.0.1 allowed unexpected DNS lookups and requests to arbitrary services as it incorrectly obtained application base url information from the executing http request which could be attacker controlled.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+"score": 5.0,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-918",
+"class": "ssrf",
+"stack": "web",
+"products": [
+"atlassian:atlassian-gadgets",
+"atlassian:data_center",
+"atlassian:jira_data_center"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.01082,
+"traps": [
+"scope_c",
+"c_low",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2021-41190",
+"desc": "The OCI Distribution Spec project defines an API protocol to facilitate and standardize the distribution of content. In the OCI Distribution Specification version 1.0.0 and prior, the Content-Type header alone was used to determine the type of document during push and pull operations. Documents that contain both “manifests” and “layers” fields could be interpreted as either a manifest or an index in the absence of an accompanying Content-Type header. If a Content-Type header changed between two pulls of the same digest, a client may interpret the resulting content differently. The OCI Distribution Specification has been updated to require that a mediaType value present in a manifest or index match the Content-Type header used during the push and pull operations. Clients pulling from a registry may distrust the Content-Type header and reject an ambiguous document that contains both “manifests” and “layers” fields or “manifests” and “config” fields if they are unable to update to version 1.0.1 of the spec.",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:N/I:L/A:N",
+"score": 5.0,
+"src": "nvd",
+"cna_vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:C/C:N/I:L/A:N",
+"differs": [
+"AC",
+"UI"
+],
+"cwe": "CWE-843",
+"class": "type-confusion",
+"stack": "linux",
+"products": [
+"linuxfoundation:open_container_initiative_distribution_specification",
+"linuxfoundation:open_container_initiative_image_format_specification",
+"fedoraproject:fedora"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.02241,
+"traps": [
+"scope_c",
+"pr_l_authenticated"
+]
+},
+{
+"id": "CVE-2019-8051",
+"desc": "Adobe Acrobat and Reader versions 2019.012.20035 and earlier, 2019.012.20035 and earlier, 2017.011.30142 and earlier, 2017.011.30143 and earlier, 2015.006.30497 and earlier, and 2015.006.30498 and earlier have an use after free vulnerability. Successful exploitation could lead to arbitrary code execution .",
+"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+"score": 4.3,
+"src": "nvd",
+"cna_vector": null,
+"differs": [],
+"cwe": "CWE-416",
+"class": "use-after-free",
+"stack": "windows",
+"products": [
+"adobe:acrobat_dc",
+"adobe:acrobat_reader_dc",
+"apple:macos"
+],
+"kev": false,
+"ransomware": null,
+"epss": 0.03163,
+"traps": [
+"c_low",
+"pr_n_but_ui_r"
+]
+}
+]
+}

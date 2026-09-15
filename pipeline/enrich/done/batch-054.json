@@ -1,0 +1,686 @@
+{
+ "batch": "batch-054",
+ "items": {
+  "CVE-2020-15129": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Traefik (vor 1.7.26/2.2.8/2.3.0-rc3) hat einen möglichen Open Redirect über den ungeprüften Header X-Forwarded-Prefix.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per präpariertem Header."
+    },
+    "AC": {
+     "why": "Die Ausnutzung ist von Bedingungen abhängig: AC:H."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R."
+    },
+    "UI": {
+     "why": "Das Opfer muss dem präparierten Link/Redirect folgen: UI:R."
+    },
+    "S": {
+     "why": "Die Umleitung führt in eine fremde Zone: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Der CNA sah C:N/I:H — NVD C:L/I:L. Open Redirect als Scope-Wechsel; übe die Impakt-Aufteilung.",
+   "dissent": {
+    "C": "CNA C:N, NVD C:L.",
+    "I": "CNA I:H, NVD I:L."
+   }
+  },
+  "CVE-2021-22238": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "GitLab (ab 13.3) war über die Design-Funktion in Issues für Stored XSS anfällig.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per gespeichertem Inhalt."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert ein niedrig privilegiertes Konto: PR:L."
+    },
+    "UI": {
+     "why": "Das Skript zündet beim Betrachten durch ein Opfer: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Opferbrowser: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L.",
+     "pitfall": "Der CNA sah C:H; NVD wertet den Umfang begrenzt: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Der CNA sah C:H/I:N — NVD C:L/I:L. Übe C:L vs. C:H bei Stored XSS.",
+   "dissent": {
+    "C": "CNA C:H, NVD C:L.",
+    "I": "CNA I:N, NVD I:L."
+   }
+  },
+  "CVE-2020-26247": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Nokogiri vor 1.11.0.rc4 vertraut geparsten XML-Schemas standardmäßig, was externe Ressourcenzugriffe und damit XXE/SSRF ermöglicht.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per präpariertem Schema."
+    },
+    "AC": {
+     "why": "NVD wertet die Bedingungen als nicht erschwerend: AC:L.",
+     "pitfall": "Der CNA sah AC:H — NVD AC:L."
+    },
+    "PR": {
+     "why": "Erfordert niedrige Rechte: PR:L."
+    },
+    "UI": {
+     "why": "NVD sieht keine Opferaktion: UI:N.",
+     "pitfall": "Der CNA sah UI:R — NVD UI:N."
+    },
+    "S": {
+     "why": "NVD wertet keinen Scope-Wechsel: S:U."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe über XXE: C:L."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Der CNA sah AC:H/UI:R — NVD AC:L/UI:N. Interessant: hier wertet NVD XXE ohne Scope-Wechsel (S:U).",
+   "dissent": {
+    "AC": "CNA AC:H, NVD AC:L.",
+    "UI": "CNA UI:R, NVD UI:N."
+   }
+  },
+  "CVE-2023-1625": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+   "summary_de": "In OpenStack Heat kann ein authentifizierter Angreifer über „stack show“ eigentlich verborgene Parameter aufdecken.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert ein authentifiziertes Konto: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Preisgabe von Parametern über die Komponentengrenze: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe: C:L."
+    },
+    "I": {
+     "why": "NVD sieht keine Integritätswirkung: I:N.",
+     "pitfall": "Der CNA sah I:L/A:L — NVD nur C:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Der CNA sah I:L/A:L — NVD I:N/A:N. Reiner Confidentiality-Leak; übe, dass „low impact to CIA“ nicht alle drei setzen muss.",
+   "dissent": {
+    "I": "CNA I:L, NVD I:N.",
+    "A": "CNA A:L, NVD A:N."
+   }
+  },
+  "CVE-2021-32543": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N",
+   "summary_de": "Das CTS-Web-Transaktionssystem implementiert die Authentifizierung falsch; nach Login können Angreifer per Cookie-Manipulation auf andere Konten zugreifen.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert ein Login/Konto: PR:L.",
+     "pitfall": "Der CNA sah PR:N — NVD wertet PR:L, weil ein Login vorausgesetzt wird."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Wirkung bleibt in der Anwendung: S:U."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe fremder Kontodaten: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation (Trades mit gefälschter Identität): I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (PR). Übe die PR-Entscheidung: „After login“ begründet PR:L, nicht PR:N.",
+   "dissent": {
+    "PR": "CNA PR:N, NVD PR:L."
+   }
+  },
+  "CVE-2021-4338": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Das WordPress-Plugin „404 to 301“ ≤ 3.0.7 hat einen Authorization-Bypass durch fehlende Capability-Checks, der Redirects sichtbar/änderbar macht.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert ein authentifiziertes Konto: PR:L."
+    },
+    "UI": {
+     "why": "NVD wertet eine Opferaktion ein: UI:R.",
+     "pitfall": "Der CNA sah UI:N — NVD UI:R."
+    },
+    "S": {
+     "why": "Wirkung über Redirects außerhalb der Komponente: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation der Redirects: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (UI). Übe die UI-Entscheidung bei Authorization-Bypass mit Redirects.",
+   "dissent": {
+    "UI": "CNA UI:N, NVD UI:R."
+   }
+  },
+  "CVE-2022-22984": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+   "summary_de": "Mehrere Snyk-Pakete sind wegen einer unvollständigen Fehlerbehebung für Command Injection anfällig.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "NVD wertet die Bedingungen als nicht erschwerend: AC:L.",
+     "pitfall": "Der CNA sah AC:H — NVD AC:L."
+    },
+    "PR": {
+     "why": "Erfordert niedrige Rechte: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Wirkung bleibt in der Anwendung: S:U."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Begrenzte Verfügbarkeitswirkung: A:L."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (AC). Übe die AC-Entscheidung bei Command Injection.",
+   "dissent": {
+    "AC": "CNA AC:H, NVD AC:L."
+   }
+  },
+  "CVE-2019-13714": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Die Color-Enhancer-Erweiterung in Chrome vor 78.0.3904.70 erlaubte über eine präparierte URL CSS-Injection in eine HTML-Seite.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über eine präparierte URL aus dem Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R."
+    },
+    "UI": {
+     "why": "Das Opfer muss die präparierte URL aufrufen: UI:R."
+    },
+    "S": {
+     "why": "Ausführung/Injection im Opferbrowser: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. CSS-Injection als PR:N/UI:R mit Scope-Wechsel."
+  },
+  "CVE-2021-38377": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "OX App Suite bis 7.10.5 erlaubt XSS über JavaScript in einem Anker-HTML-Kommentar innerhalb gekürzter E-Mails.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per präparierter E-Mail."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R."
+    },
+    "UI": {
+     "why": "Das Opfer muss die präparierte E-Mail öffnen: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Opferbrowser: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. E-Mail-XSS als PR:N/UI:R mit Scope-Wechsel."
+  },
+  "CVE-2022-29436": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Das WordPress-Plugin „Code Snippets Extended“ ≤ 1.4.7 hat ein persistentes XSS über CSRF (Parameter &title, &snippet_code).",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per präpariertem Request."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto des Angreifers nötig; die Rechte liefert das Opfer.",
+     "pitfall": "CSRF → PR:N."
+    },
+    "UI": {
+     "why": "Ein Opfer muss den präparierten Request auslösen: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Opferbrowser: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Nur C weicht vom CNA ab. CSRF→XSS als PR:N/UI:R mit Scope-Wechsel.",
+   "dissent": {
+    "C": "CNA C:N, NVD C:L."
+   }
+  },
+  "CVE-2021-1414": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+   "summary_de": "Die Web-Oberfläche der Cisco-RV340/RV345-Router erlaubt einem authentifizierten Angreifer über unzureichend validierte HTTP-Requests Codeausführung mit den Rechten des Webdienstes.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert ein authentifiziertes Konto: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Ausführung im Kontext des Webdienstes derselben Zone: S:U."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Begrenzte Verfügbarkeitswirkung: A:L."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Parallel zu CVE-2021-1413: authentifizierte RCE ohne Scope-Wechsel."
+  },
+  "CVE-2020-26583": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Sage DPW 2020_06_x vor 2020_06_002 erlaubt unauthentifizierten Nutzern das Hochladen von JavaScript über die Spesenfunktion (Stored XSS).",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per hochgeladener Datei."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N — der Upload gelingt ohne Anmeldung; das Anzeigen erfordert dann ein Opfer."
+    },
+    "UI": {
+     "why": "Das Skript zündet, wenn ein (authentifiziertes) Opfer die Datei ansieht: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Opferbrowser: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Interessant: Upload unauthentifiziert (PR:N), Ausführung erst beim Betrachten (UI:R)."
+  },
+  "CVE-2020-10206": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N",
+   "summary_de": "Ein fest eingebautes Passwort im VNCserver mehrerer Amino-Communications-Geräte erlaubt lokalen Angreifern, die Videoausgabe einzusehen und zu steuern.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer agiert lokal: AV:L."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "Erfordert niedrige lokale Rechte: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Wirkung bleibt in der Gerätekomponente: S:U."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust (Videoausgabe): C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung (Interaktion): I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Hardcoded-Password-Fall ohne Scope-Wechsel; Impakte begrenzt."
+  },
+  "CVE-2022-3902": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N",
+   "summary_de": "In GitLab konnte ein Projekt-Maintainer nach dem Testen von Webhooks die maskierten Webhook-Secret-Tokens in den Logs aufdecken.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert Maintainer-Rechte, hier niedrig gewertet: PR:L.",
+     "pitfall": "Der CNA sah PR:H — NVD PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Die Secrets betreffen fremde Zielsysteme außerhalb der Komponente: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe der Tokens: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Folgewirkung: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (PR). Übe die PR-Entscheidung: NVD wertet Maintainer als PR:L.",
+   "dissent": {
+    "PR": "CNA PR:H, NVD PR:L."
+   }
+  },
+  "CVE-2023-26142": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Das Paket crow ist für HTTP Response Splitting anfällig, weil set_header/add_header CRLF-Zeichen nicht säubern.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per präparierter Eingabe."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R."
+    },
+    "UI": {
+     "why": "Ein Opfer muss die manipulierte Antwort auslösen: UI:R.",
+     "pitfall": "Der CNA sah UI:N — NVD UI:R."
+    },
+    "S": {
+     "why": "Die eingeschleusten Header wirken im Opferbrowser: Scope-Wechsel C.",
+     "pitfall": "Der CNA sah S:U — NVD S:C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Der CNA sah UI:N/S:U — NVD UI:R/S:C. Übe UI- und Scope-Entscheidung bei Response Splitting.",
+   "dissent": {
+    "UI": "CNA UI:N, NVD UI:R.",
+    "S": "CNA S:U, NVD S:C."
+   }
+  },
+  "CVE-2022-39338": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "user_oidc für Nextcloud vor 1.2.1 validiert Discovery-URLs unzureichend, was zu Stored XSS führen kann (nur in Safari, begrenzt durch CSP).",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert ein niedrig privilegiertes Konto: PR:L.",
+     "pitfall": "Der CNA sah PR:H — NVD PR:L."
+    },
+    "UI": {
+     "why": "Das Skript zündet beim Betrachten durch ein Opfer: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Opferbrowser: Scope-Wechsel C.",
+     "pitfall": "Der CNA sah S:U — NVD S:C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Der CNA sah PR:H/S:U — NVD PR:L/S:C. CSP und Browserabhängigkeit senken die reale Ausnutzbarkeit, nicht den Basisvektor.",
+   "dissent": {
+    "PR": "CNA PR:H, NVD PR:L.",
+    "S": "CNA S:U, NVD S:C."
+   }
+  },
+  "CVE-2022-28195": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:L/I:L/A:L",
+   "summary_de": "Das NVIDIA Jetson Linux Driver Package hat in Cboots ext4_read_file eine unzureichende Validierung, die einen Integer-Overflow und weitergehende Folgen erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer agiert lokal: AV:L."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "Erfordert hohe lokale Rechte: PR:H."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig."
+    },
+    "S": {
+     "why": "Laut Beschreibung kann die Wirkung andere Komponenten erreichen: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Begrenzte Verfügbarkeitswirkung: A:L."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Parallel zu CVE-2022-28197: „scope of impact can extend to other components“ begründet S:C."
+  },
+  "CVE-2021-1111": {
+   "vector_basis": "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:H",
+   "summary_de": "Der Bootloader (NV3P-Server) hat eine fehlerhafte Bounds-Prüfung, die per physischem USB-Zugang zu Pufferüberlauf und begrenzter Preisgabe/DoS führt.",
+   "metrics": {
+    "AV": {
+     "why": "Erfordert physischen USB-Zugang: AV:P.",
+     "pitfall": "AV:P (physisch), nicht AV:L — der Angreifer muss ein USB-Kabel anschließen."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "Keine Vorabrechte nötig: PR:N."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Wirkung reicht laut Beschreibung über alle Komponenten: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung: I:L."
+    },
+    "A": {
+     "why": "Hohe Verfügbarkeitswirkung (DoS): A:H."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. AV:P-Beispiel mit Scope-Wechsel; begrenztes C/I bei hohem A."
+  },
+  "CVE-2020-17380": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:L",
+   "summary_de": "Ein heap-basierter Pufferüberlauf in der SDHCI-Emulation von QEMU (bis 5.0.0) kann den QEMU-Prozess auf dem Host abstürzen lassen oder Codeausführung ermöglichen.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer agiert lokal aus dem Gast: AV:L."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "Erfordert niedrige Gastrechte: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig."
+    },
+    "S": {
+     "why": "Wirkung vom Gast auf den Host-QEMU-Prozess: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Begrenzte Verfügbarkeitswirkung durch Absturz: A:L."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. VM-Ausbruch (S:C) mit durchgängig begrenzten Impakten."
+  },
+  "CVE-2020-10732": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:L",
+   "summary_de": "Ein Fehler in der Userspace-Core-Dump-Implementierung des Linux-Kernels erlaubt einem lokalen Angreifer, private Kernel-Daten zu exfiltrieren.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer agiert lokal: AV:L."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "Erfordert ein lokales Konto: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Wirkung bleibt im Kernel derselben Zone: S:U."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe von Kernel-Daten: C:L."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Begrenzte Verfügbarkeitswirkung (Crash eines Programms): A:L."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (A). Reiner Confidentiality-Leak ohne Scope-Wechsel.",
+   "dissent": {
+    "A": "CNA A:N, NVD A:L."
+   }
+  }
+ }
+}

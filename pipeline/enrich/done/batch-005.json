@@ -1,0 +1,501 @@
+{
+ "batch": "batch-005",
+ "items": {
+  "CVE-2012-1854": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "VBE6.dll in Microsoft Office und VBA lädt eine DLL aus dem aktuellen Arbeitsverzeichnis, sodass ein Trojaner-DLL neben einer .docx-Datei beim Öffnen mitgeladen wird.",
+   "metrics": {
+    "AV": {
+     "why": "Datei und DLL müssen in einem Verzeichnis liegen, das der Nutzer öffnet, etwa eine Netzwerkfreigabe: lokal im CVSS-Sinn."
+    },
+    "AC": {
+     "why": "DLL neben das Dokument legen, mehr nicht."
+    },
+    "PR": {
+     "why": "Der Angreifer braucht kein Konto auf dem Zielsystem, nur einen Ort, an dem er Dateien ablegen kann."
+    },
+    "UI": {
+     "why": "Der Nutzer muss das Dokument aus diesem Verzeichnis öffnen."
+    },
+    "S": {
+     "why": "Der Code läuft im Office-Prozess des Nutzers."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Nutzerdaten."
+    },
+    "I": {
+     "why": "Code mit Nutzerrechten: alles änderbar."
+    },
+    "A": {
+     "why": "Code mit Nutzerrechten."
+    }
+   },
+   "context_de": "KEV, EPSS 0,21, in freier Wildbahn 2012 ausgenutzt. Vektor nur vom ADP, NVD hat alte CVEs nicht mit 3.1 nachbewertet. DLL-Suchpfad-Lücken sind eine eigene Klasse (CWE-426), die Auswirkung ist immer Codeausführung im Kontext des ladenden Prozesses."
+  },
+  "CVE-2022-21661": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "WP_Query in WordPress sanitisiert bestimmte Parameter unzureichend, sodass Plugins oder Themes, die sie mit Nutzereingaben füllen, SQL-Injection ermöglichen.",
+   "metrics": {
+    "AV": {
+     "why": "Über die Webanwendung."
+    },
+    "AC": {
+     "why": "NVD: keine Sonderbedingung; der CNA sah AC:H, weil ein Plugin die Parameter erst exponieren muss."
+    },
+    "PR": {
+     "why": "NVD: Der Angriff läuft über öffentliche Plugin-Endpunkte, kein Konto nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank gehört zur Anwendung."
+    },
+    "C": {
+     "why": "SQLi liest die ganze Datenbank: Passwort-Hashes, Inhalte."
+    },
+    "I": {
+     "why": "NVD: nur Lesen belegt, keine Schreibprimitive."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "AC": "CNA (WordPress): AC:H, PR:H, S:C, C:H/I:H/A:H (6,6). Der CNA bewertet das Kernstück (nur mit Plugin exponiert, Plugin-Autor als 'Angreifer'), NVD den Endnutzer-Effekt."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,98: Über verbreitete Plugins massenhaft gescannt. Bei Framework-Lücken bestimmt die Einbettung alles; die reine WordPress-Installation ist nicht verwundbar."
+  },
+  "CVE-2021-21311": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N",
+   "summary_de": "Adminer erlaubt über den Verbindungsdialog Server-Side Request Forgery, sodass ein Angreifer den Adminer-Host Anfragen an interne Systeme stellen lassen kann.",
+   "metrics": {
+    "AV": {
+     "why": "Adminer ist eine PHP-Webseite."
+    },
+    "AC": {
+     "why": "Ein Hostname im Login-Formular reicht."
+    },
+    "PR": {
+     "why": "Das Login-Formular ist vor der Anmeldung erreichbar."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Verwundbar ist Adminer, betroffen sind interne Dienste, die Adminer für den Angreifer anspricht: SSRF-Musterfall für S:C.",
+     "pitfall": "Bei SSRF ist S:C die Regel, weil die Anfragen andere Systeme treffen. Vergleiche GitLab CVE-2021-22175, wo NVD trotzdem S:U vergab."
+    },
+    "C": {
+     "why": "Antworten interner Dienste kommen nur teilweise oder gar nicht zurück: begrenzter Lesezugriff."
+    },
+    "I": {
+     "why": "Anfragen an interne Dienste können begrenzt Zustände ändern."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,90: Gegen Cloud-Metadaten-Endpunkte (169.254.169.254) genutzt, um Zugangsdaten zu stehlen. Ein 7,2 mit C:L, der in der Cloud zur vollen Kontoübernahme führt; die Auswirkung liegt außerhalb des Vektors."
+  },
+  "CVE-2024-5274": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion in V8 erlaubt über eine präparierte HTML-Seite Codeausführung innerhalb der Chrome-Sandbox.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "NVD: AC:L; der CNA vergab AC:H."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Die V8-Type-Confusion wird über eine präparierte HTML-Seite ausgelöst, die das Opfer laden muss: UI:R."
+    },
+    "S": {
+     "why": "NVD vergab S:C, obwohl die Beschreibung 'inside a sandbox' sagt.",
+     "pitfall": "Die Beschreibung ist eindeutig: Code läuft IN der Sandbox, kein Ausbruch. Das ist S:U (8,8). NVDs S:C ist hier ein Fehler. Vergleiche CVE-2022-3075, wo 'sandbox escape' explizit steht."
+    },
+    "C": {
+     "why": "NVD: Codeausführung angenommen."
+    },
+    "I": {
+     "why": "NVD: Codeausführung angenommen."
+    },
+    "A": {
+     "why": "NVD: Codeausführung angenommen."
+    }
+   },
+   "dissent": {
+    "S": "CNA (Google): AC:H, S:C (8,1). Beide Vektoren haben Schwächen; für einen Renderer-Bug ohne Ausbruch ist S:U korrekt."
+   },
+   "context_de": "KEV, EPSS 0,07: Zero-Day. Ein Renderer-Exploit allein reicht seit Jahren nicht mehr; die reale Kette braucht einen Sandbox-Escape. Deshalb sind reine V8-Bugs trotz 9,6 nur ein Kettenglied."
+  },
+  "CVE-2021-22881": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Die Host-Authorization-Middleware von Rails leitet bei erlaubten Hosts mit führendem Punkt über präparierte Host-Header auf fremde Seiten um (Open Redirect).",
+   "metrics": {
+    "AV": {
+     "why": "Präparierter Host-Header über HTTP."
+    },
+    "AC": {
+     "why": "NVD: keine Sonderbedingung, obwohl eine bestimmte Konfiguration (führender Punkt) nötig ist."
+    },
+    "PR": {
+     "why": "Keine Rechte."
+    },
+    "UI": {
+     "why": "Ein Nutzer muss dem präparierten Link folgen."
+    },
+    "S": {
+     "why": "XSS-/Redirect-Standardvektor: verwundbar ist die App, betroffen ist der Nutzer im Browser."
+    },
+    "C": {
+     "why": "Umleitung erlaubt Phishing, kein direkter Datenzugriff."
+    },
+    "I": {
+     "why": "Begrenzte Beeinflussung des Nutzers."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,87 wegen Verbreitung von Rails. Open Redirects werden selten allein ausgenutzt, aber gern in Phishing-Ketten mit vertrauenswürdiger Domain."
+  },
+  "CVE-2025-2776": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "SysAid On-Prem verarbeitet in der Server-URL-Funktion XML mit externen Entitäten; unauthentifizierte Angreifer lesen Dateien und übernehmen Administratorkonten.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP-Endpunkt."
+    },
+    "AC": {
+     "why": "Präpariertes XML."
+    },
+    "PR": {
+     "why": "Unauthenticated laut Beschreibung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der SysAid-Server."
+    },
+    "C": {
+     "why": "NVD: Dateien lesen und Admin-Übernahme: Vollzugriff.",
+     "pitfall": "Vergleiche CVE-2025-2775: identische Beschreibung, derselbe Tag, NVD vergab dort 7,5 (C:H/I:N/A:N) und hier 9,8. Das ist keine fachliche Entscheidung, das ist Inkonsistenz. Beide Vektoren sind 'offiziell'."
+    },
+    "I": {
+     "why": "NVD: Admin-Übernahme heißt beliebige Änderungen."
+    },
+    "A": {
+     "why": "NVD: Admin kann den Dienst stören."
+    }
+   },
+   "dissent": {
+    "S": "CNA: S:C, C:H, I:N, A:L (9,3). NVD 9,8 hier, 7,5 bei der Schwesterlücke mit identischem Text. Provenienz und Konsistenz sind zwei verschiedene Probleme."
+   },
+   "context_de": "KEV, EPSS 0,64. Zwei XXE-Lücken im selben Produkt, dieselbe Kette zu RCE. Für die Priorisierung ist die Kette relevant, nicht der Unterschied zwischen 7,5 und 9,8."
+  },
+  "CVE-2014-3566": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:N/A:N",
+   "summary_de": "POODLE: SSL 3.0 verwendet nicht-deterministisches CBC-Padding, sodass ein Man-in-the-Middle über einen Padding-Orakel-Angriff Klartext (etwa Cookies) byteweise rekonstruieren kann.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer sitzt im Netzpfad zwischen Client und Server."
+    },
+    "AC": {
+     "why": "MITM-Position plus Downgrade auf SSL 3.0 plus hunderte Anfragen pro Byte: Bedingungen außerhalb der Kontrolle des Angreifers.",
+     "pitfall": "MITM-Voraussetzung ist der klassische Grund für AC:H."
+    },
+    "PR": {
+     "why": "Keine Rechte am Server."
+    },
+    "UI": {
+     "why": "Das Opfer muss die verwundbare Verbindung nutzen (Browser-Session), NVD wertet das als UI:R."
+    },
+    "S": {
+     "why": "NVD: Verwundbar ist die TLS-Bibliothek, betroffen sind die Anwendungsdaten darüber: S:C.",
+     "pitfall": "Protokoll- und Bibliotheksfehler bekommen bei NVD oft S:C, weil die geschützte Anwendung eine andere Komponente ist."
+    },
+    "C": {
+     "why": "Byteweise, langsam, nur ein Teil des Klartexts: C:L."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,99999, Score 3,4: Jeder TLS-Scanner testet POODLE, daher der extreme EPSS. Reale Angriffe sind praktisch unbekannt. Höchster EPSS im Korpus bei niedrigstem Score: EPSS misst Scan-Aktivität mit."
+  },
+  "CVE-2020-8193": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+   "summary_de": "Citrix ADC/Gateway lassen ohne Anmeldung den Zugriff auf bestimmte URL-Endpunkte zu.",
+   "metrics": {
+    "AV": {
+     "why": "Die Appliance-Oberfläche über das Netz."
+    },
+    "AC": {
+     "why": "URL aufrufen."
+    },
+    "PR": {
+     "why": "Unauthenticated laut Beschreibung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Appliance selbst."
+    },
+    "C": {
+     "why": "'Certain URL endpoints': begrenzter Umfang, kein Vollzugriff belegt: C:L.",
+     "pitfall": "In der Praxis lieferte einer der Endpunkte Session-Tokens, was zur Admin-Übernahme führte. NVD bewertet nur das, was die Beschreibung belegt: 'certain endpoints'. Die Kette wird nicht mitgerechnet."
+    },
+    "I": {
+     "why": "Begrenzte Aktionen über die Endpunkte."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,88: Diese Lücke war der Einstieg in die Citrix-Kette vom Juli 2020 (mit CVE-2020-8195/8196). Score 6,5, Ergebnis Admin-Übernahme der Appliance."
+  },
+  "CVE-2024-45195": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Apache OFBiz erlaubt per direktem Aufruf ('Forced Browsing') den Zugriff auf Funktionen, die eine Anmeldung verlangen sollten.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung."
+    },
+    "AC": {
+     "why": "Direkte URL."
+    },
+    "PR": {
+     "why": "Die Autorisierung fehlt, kein Konto nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist OFBiz selbst."
+    },
+    "C": {
+     "why": "NVD: Zugriff auf geschützte Funktionen bis zu Codeausführung: Vollzugriff auf Daten.",
+     "pitfall": "Die Beschreibung sagt fast nichts. NVD vergab C:H/I:N/A:N, der CNA H/H/H. Bei so dünnen Beschreibungen ist der Vektor eine Interpretation; der reale Exploit war RCE."
+    },
+    "I": {
+     "why": "NVD bewertete keine Schreibfolge."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung bewertet."
+    }
+   },
+   "dissent": {
+    "I": "CNA (Apache): C:H/I:H/A:H (9,8). Die reale Ausnutzung (RCE über Groovy) stützt den CNA."
+   },
+   "context_de": "KEV, EPSS 0,9998: OFBiz hatte 2024 eine Serie von Patch-Umgehungen; jede neue CVE war die Umgehung der vorigen. Bei solchen Serien lohnt der Blick auf die ganze Familie."
+  },
+  "CVE-2024-21887": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Ivanti Connect Secure und Policy Secure erlauben einem authentifizierten Administrator über präparierte Web-Anfragen die Ausführung beliebiger Befehle auf der Appliance.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Komponenten der VPN-Appliance."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Die Beschreibung sagt: authenticated administrator.",
+     "pitfall": "PR:H ist korrekt für die Einzellücke. In der realen Kette mit CVE-2023-46805 (Auth-Bypass) war es PR:N. KEV listet beide."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: Von der Web-Verwaltung auf das darunterliegende Betriebssystem der Appliance.",
+     "pitfall": "NVD vergibt bei Appliances gelegentlich S:C für den Sprung Web-UI zu OS. Bei WS_FTP CVE-2023-40044 vergab NVD für denselben Sprung S:U. Keine Konsistenz."
+    },
+    "C": {
+     "why": "Root auf der VPN-Appliance."
+    },
+    "I": {
+     "why": "Root: alles änderbar."
+    },
+    "A": {
+     "why": "Root: Appliance abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: Januar 2024, massenhaft in Kette mit dem Auth-Bypass. Ein PR:H-Vektor mit maximaler realer Ausnutzung, weil die Kette das PR wegnimmt."
+  },
+  "CVE-2025-32432": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Craft CMS erlaubt unauthentifizierte Remote Code Execution; die Lücke ist eine Nachbesserung des unvollständigen Fixes für CVE-2023-41892.",
+   "metrics": {
+    "AV": {
+     "why": "Web-CMS, Angriff über HTTP."
+    },
+    "AC": {
+     "why": "'Low-complexity attack vector' laut Beschreibung."
+    },
+    "PR": {
+     "why": "Keine Anmeldung, der Endpunkt ist öffentlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD vergab S:C.",
+     "pitfall": "Die Beschreibung liefert keinen Grund für S:C; RCE im Kontext des Webservers ist S:U. NVD und CNA vergaben beide S:C, vermutlich weil PHP-Code auf dem Host läuft. Nach Spezifikation zweifelhaft."
+    },
+    "C": {
+     "why": "RCE: alle Daten."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: NVD A:H, CNA A:L."
+    }
+   },
+   "dissent": {
+    "S": "Beide Quellen S:C, aber ohne erkennbare Grenze. Ein Fall, in dem NVD und CNA übereinstimmen und trotzdem angreifbar sind."
+   },
+   "context_de": "KEV, EPSS 0,998. Unvollständige Fixes sind ein Muster: Wer CVE-2023-41892 gepatcht hatte, war trotzdem verwundbar. Patch-Status ist nicht gleich Sicherheit."
+  },
+  "CVE-2026-48558": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "SimpleHelp akzeptiert bei OIDC-Login Identity-Tokens ohne Signaturprüfung, sodass ein Angreifer mit einem gefälschten Token eine vollwertige Techniker-Sitzung erhält.",
+   "metrics": {
+    "AV": {
+     "why": "Login über das Netz."
+    },
+    "AC": {
+     "why": "Ein gefälschtes Token mit beliebigen Claims, keine Sonderbedingung außer aktivierter OIDC-Konfiguration."
+    },
+    "PR": {
+     "why": "Unauthenticated laut Beschreibung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Eine Techniker-Sitzung in einem Fernwartungstool erreicht alle verwalteten Endpunkte: andere Systeme, S:C.",
+     "pitfall": "Fernwartungs- und RMM-Tools sind der Fall, in dem S:C aus der Produktfunktion folgt: Die Anwendung existiert, um andere Systeme zu steuern."
+    },
+    "C": {
+     "why": "Zugriff auf alle verwalteten Rechner."
+    },
+    "I": {
+     "why": "Fernsteuerung: alles änderbar."
+    },
+    "A": {
+     "why": "Fernsteuerung: alles abschaltbar."
+    }
+   },
+   "context_de": "KEV, Vektor nur vom CNA (2026, keine NVD-Nachbewertung). Signaturprüfung ausgelassen (CWE-347) ist eine Klassenfrage; die Auswirkung ist die Reichweite des Werkzeugs. Nur bei konfiguriertem OIDC verwundbar: Wahrscheinlichkeit hängt an der Konfiguration."
+  },
+  "CVE-2022-41622": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "BIG-IP und BIG-IQ sind über die iControl-SOAP-Schnittstelle anfällig für CSRF; ein angemeldeter Admin, der eine präparierte Seite öffnet, führt unbemerkt Verwaltungsbefehle aus.",
+   "metrics": {
+    "AV": {
+     "why": "Die präparierte Seite kommt aus dem Web, der Browser des Admins spricht die SOAP-Schnittstelle an."
+    },
+    "AC": {
+     "why": "Präparierte Seite."
+    },
+    "PR": {
+     "why": "Der Angreifer braucht kein Konto auf dem BIG-IP."
+    },
+    "UI": {
+     "why": "Der Admin muss die Seite mit aktiver Session öffnen."
+    },
+    "S": {
+     "why": "Betroffen ist die Appliance selbst."
+    },
+    "C": {
+     "why": "Admin-Befehle auf einem Load Balancer: Root-Zugriff möglich."
+    },
+    "I": {
+     "why": "Admin-Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Admin-Befehle: abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,92 durch öffentlichen Exploit. CSRF gegen Admin-Oberflächen von Netzwerkgeräten ist unterschätzt: Der Admin surft von einem Rechner, der die Management-Oberfläche erreicht."
+  },
+  "CVE-2025-52691": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "SmarterMail erlaubt unauthentifizierten Angreifern das Hochladen beliebiger Dateien an jede Stelle des Mailservers, was Codeausführung ermöglicht.",
+   "metrics": {
+    "AV": {
+     "why": "Webinterface des Mailservers."
+    },
+    "AC": {
+     "why": "Upload-Request."
+    },
+    "PR": {
+     "why": "Unauthenticated laut Beschreibung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "CNA-Vektor: S:C.",
+     "pitfall": "Kein Grund in der Beschreibung für S:C; ein Upload auf denselben Server ist S:U. Reiner CNA-Vektor ohne NVD-Prüfung."
+    },
+    "C": {
+     "why": "RCE auf dem Mailserver: alle Postfächer."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "Nur der CNA-Vektor liegt vor (10,0). Nach Spezifikation 9,8 mit S:U. Seit 2026 gibt es für solche CVEs keine NVD-Zweitmeinung mehr."
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,86. Mailserver mit Datei-Upload ohne Auth: Wahrscheinlichkeit nahe 1 bei Internetexposition, Auswirkung alle Kommunikation der Organisation."
+  },
+  "CVE-2019-6693": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "FortiOS verschlüsselt sensible Daten in Konfigurations-Backups mit einem fest kodierten Schlüssel; wer ein Backup hat, kann Nutzerpasswörter, Key-Passphrasen und HA-Passwörter entschlüsseln.",
+   "metrics": {
+    "AV": {
+     "why": "NVD: Backup-Dateien werden über das Netz erlangt (Freigaben, Verwaltungstools).",
+     "pitfall": "Man könnte AV:L argumentieren, weil der Angreifer eine Datei braucht. NVD sieht den Weg zur Datei als Netzwerkzugriff."
+    },
+    "AC": {
+     "why": "Der Schlüssel ist bekannt, Entschlüsseln ist trivial."
+    },
+    "PR": {
+     "why": "Zugriff auf das Backup braucht eine gewisse Berechtigung (Lesezugriff)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Firewall-Konfiguration."
+    },
+    "C": {
+     "why": "Alle Passwörter außer Admin, Key-Passphrasen, HA-Passwort: gezielt und hochwertig, C:H."
+    },
+    "I": {
+     "why": "Nur Lesen."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,06: Akira nutzte die Lücke, um aus erbeuteten Backups VPN-Zugangsdaten zu gewinnen. Niedriger EPSS, weil kein Scan möglich ist; hohe Relevanz, sobald Backups abfließen."
+  }
+ }
+}

@@ -1,0 +1,636 @@
+{
+ "batch": "batch-020",
+ "items": {
+  "CVE-2020-12271": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Sophos XG Firewall hat eine SQL-Injection im Admin- oder User-Portal (WAN-exponiert), die zu Remote Code Execution und Datenexfiltration führte.",
+   "metrics": {
+    "AV": {
+     "why": "HTTPS-Portal der Firewall über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Die SQL-Injection trifft die WAN-exponierte Admin-/Portal-Oberfläche vor jeder Anmeldung: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf der Firewall, S:U."
+    },
+    "C": {
+     "why": "SQLi bis RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Firewall abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,42: 'Asnarok', Zero-Day gegen exponierte XG-Firewalls, April 2020. SQLi in einer Firewall-Verwaltung am WAN: Die Wahrscheinlichkeit hängt an der Exposition des Portals."
+  },
+  "CVE-2019-9621": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Zimbra Collaboration erlaubt über die ProxyServlet-Komponente Server-Side Request Forgery.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U für SSRF."
+    },
+    "C": {
+     "why": "Interne Ressourcen erreichbar (Admin-Endpunkte): gezielt, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,81: In Kette mit der XXE CVE-2019-9670: Die SSRF erreichte interne Zimbra-Endpunkte, um Admin-Tokens zu holen. Ein 7,5-SSRF als Kettenglied zur Kontoübernahme."
+  },
+  "CVE-2019-8506": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion in WebKit erlaubt über präparierte Webinhalte Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Browserprozess."
+    },
+    "C": {
+     "why": "Codeausführung mit Browserrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,18: WebKit-Type-Confusion, in Exploit-Ketten gegen iOS. Auch iTunes/iCloud für Windows betroffen (WebKit ist eingebettet); die Angriffsfläche folgt der Bibliothek über Plattformen."
+  },
+  "CVE-2021-22893": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Pulse Connect Secure hat eine Use-After-Free in den File-Share- und Collaboration-Features, die unauthentifizierte Remote Code Execution auf dem VPN-Gateway erlaubt (Authentifizierungsumgehung).",
+   "metrics": {
+    "AV": {
+     "why": "VPN-Gateway aus dem Internet."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:C für VPN-Gateway-RCE (Zugang zum Netz dahinter)."
+    },
+    "C": {
+     "why": "RCE auf dem Gateway: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Gateway abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,47: Von China-nahen Gruppen gegen Regierungs- und Verteidigungsnetze, April 2021. Pulse/Ivanti-Gateways sind ein Dauerziel; die Use-After-Free (CWE-416) in einem selten genutzten Feature."
+  },
+  "CVE-2023-40176": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "XWiki erlaubt jedem registrierten Nutzer gespeichertes XSS über die Zeitzonen-Einstellung im Profil, obwohl diese aus einem Dropdown stammt (per JavaScript setzbar).",
+   "metrics": {
+    "AV": {
+     "why": "Wiki-Weboberfläche über HTTP."
+    },
+    "AC": {
+     "why": "Zeitzonen-Wert per JavaScript setzen."
+    },
+    "PR": {
+     "why": "'Any registered user': PR:L."
+    },
+    "UI": {
+     "why": "Ein anderer Nutzer muss die Profilseite ansehen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Browserkontext des Opfers: C:L; der CNA vergab C:H."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L; der CNA I:H."
+    },
+    "A": {
+     "why": "NVD: A:N; der CNA A:H."
+    }
+   },
+   "dissent": {
+    "C": "CNA (XWiki): C:H, I:H, A:H (9,x). Wie bei GitLab-XSS bewertet der Hersteller die möglichen Folgeaktionen (Admin-Übernahme) höher als NVDs XSS-Standard."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,80. Ein Dropdown-Feld als XSS-Vektor: Der Schutz (feste Auswahl) gilt nur clientseitig, der Server nimmt beliebige Werte. Client-Validierung ist keine Sicherheitsgrenze."
+  },
+  "CVE-2017-12629": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Apache Solr erlaubt Remote Code Execution durch XXE in Verbindung mit dem Config-API-Kommando add-listener, das die RunExecutableListener-Klasse erreicht.",
+   "metrics": {
+    "AV": {
+     "why": "Solr-API über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte XML-Query plus Config-API-Aufruf."
+    },
+    "PR": {
+     "why": "Solr hat standardmäßig keine Authentifizierung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Solr-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,92: Zwei Lücken in einer (XXE plus gefährliche Listener-Klasse). Solr ohne Auth im Netz ist der Fehler; die XXE liefert den Weg, die RunExecutableListener die RCE."
+  },
+  "CVE-2024-58136": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Yii 2 vor 2.0.52 behandelt das Anhängen von Behavior über den Array-Schlüssel __class fehlerhaft (Regression von CVE-2024-4990), was Remote Code Execution erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "NVD: AC:L; der CNA vergab AC:H."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U; der CNA S:C (Bibliotheksmuster)."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "AC": "CNA: AC:H, S:C (9,x). Regression eines früheren Fixes; die Ausnutzbarkeit hängt am App-Kontext."
+   },
+   "context_de": "KEV, EPSS 0,85: Eine Regression, aktiv ausgenutzt Anfang 2025. Der Fix von CVE-2024-4990 wurde zurückgerollt oder umgangen; wie bei OFBiz und Craft ein unvollständiger/rückfälliger Fix. Klasse noinfo bei NVD."
+  },
+  "CVE-2022-23134": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+   "summary_de": "Nach dem Ersteinrichtung sind einige Schritte von setup.php in Zabbix auch für unauthentifizierte Nutzer erreichbar, sodass sich die Frontend-Konfiguration ändern lässt.",
+   "metrics": {
+    "AV": {
+     "why": "Zabbix-Frontend über HTTP."
+    },
+    "AC": {
+     "why": "NVD: AC:L; der CNA vergab AC:H (Setup-Schritte müssen passend durchlaufen werden)."
+    },
+    "PR": {
+     "why": "Schritte von setup.php sind nach der Erstinstallation auch für unauthentifizierte Nutzer erreichbar: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Zabbix."
+    },
+    "C": {
+     "why": "Kein direkter Datenzugriff."
+    },
+    "I": {
+     "why": "Konfiguration begrenzt änderbar: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "AC": "CNA (Zabbix): AC:H (5,3 vs. 5,3). Der Hersteller sieht die Setup-Schritt-Prüfung als Hürde."
+   },
+   "context_de": "KEV, EPSS 0,85: Schwester von CVE-2022-23131 (SAML), im selben Zeitraum ausgenutzt. Ein 5,3 mit begrenzter Auswirkung, aber als Konfigurationsänderung Baustein für weitere Angriffe."
+  },
+  "CVE-2010-1428": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Die JBoss-Web-Console erzwingt Zugriffskontrolle nur für GET und POST, sodass ein anderer HTTP-Methoden-Aufruf (z. B. HEAD) sensible Informationen preisgibt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Anfrage mit anderer HTTP-Methode."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig (Methoden-Umgehung)."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist JBoss."
+    },
+    "C": {
+     "why": "Zugriff auf die Console: gezielt, hochwertig (Deployment möglich), H."
+    },
+    "I": {
+     "why": "Nur Lesen bewertet (real auch Deployment)."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung bewertet."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,62: Verb-Tampering (nur GET/POST geschützt) als Autorisierungsumgehung (CWE-749). Ein klassischer Fehler: Zugriffskontrolle nur für die erwarteten Methoden, nicht für alle."
+  },
+  "CVE-2017-18368": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der ZyXEL P660HN-T1A-Router (TrueOnline) hat in der Remote-System-Log-Funktion (ViewLog.asp, remote_host-Parameter) eine unauthentifizierte Command Injection.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des Routers über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Parameter."
+    },
+    "PR": {
+     "why": "'Accessible by an unauthenticated user' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Router."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Router abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,94: In Botnetzen (Mirai-Varianten). Ein Log-Forwarding-Feld als Command-Injection-Vektor; Router-Botnetze leben von genau solchen unauthentifizierten CGI-Parametern."
+  },
+  "CVE-2017-9822": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "DotNetNuke (DNN) vor 9.1.1 erlaubt Remote Code Execution über ein präpariertes Cookie (unsichere Deserialisierung des DNNPersonalization-Cookies).",
+   "metrics": {
+    "AV": {
+     "why": "Web-CMS über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes Cookie."
+    },
+    "PR": {
+     "why": "Die RCE läuft über ein manipuliertes Cookie einer bestehenden Sitzung; NVD setzt PR:L, weil ein angemeldetes DNN-Konto vorausgesetzt wird.",
+     "pitfall": "Das Cookie wird auch bei 404-Seiten verarbeitet, faktisch unauthentifiziert; PR:N wäre vertretbar. NVD blieb bei PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im DNN-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,95: Jahrelang gegen DNN-Sites genutzt. Cookie-Deserialisierung (CWE-502); ein serialisiertes Objekt im Cookie ist ein häufiger .NET-RCE-Weg."
+  },
+  "CVE-2023-41991": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N",
+   "summary_de": "Ein Zertifikatsvalidierungsproblem in Apple-Systemen erlaubt einer bösartigen App die Umgehung der Signaturprüfung.",
+   "metrics": {
+    "AV": {
+     "why": "Eine App auf dem Gerät: AV:L."
+    },
+    "AC": {
+     "why": "Präparierte App mit manipulierter Signatur."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Der Nutzer muss die App installieren/ausführen."
+    },
+    "S": {
+     "why": "Innerhalb des Geräts."
+    },
+    "C": {
+     "why": "Kein direkter Datenzugriff (Signaturumgehung selbst)."
+    },
+    "I": {
+     "why": "Umgehung der Signaturprüfung: I:H, unsignierter Code gilt als vertrauenswürdig."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,05: Teil der Predator-Kette (mit CVE-2023-41992/41993). Signaturprüfung (CWE-295) als Schutzschicht; ihre Umgehung erlaubt den unsignierten Exploit-Code der nächsten Stufe."
+  },
+  "CVE-2015-4852": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die WLS-Security-Komponente von Oracle WebLogic Server führt über ein präpariertes serialisiertes Java-Objekt im T3-Protokoll (Port 7001) beliebige Befehle aus (Apache Commons Collections).",
+   "metrics": {
+    "AV": {
+     "why": "T3-Protokoll auf TCP 7001 über das Netz."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt (InvokerTransformer-Gadget)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im WebLogic-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,96: Der Beginn der großen Java-Deserialisierungswelle 2015 (Apache Commons Collections). T3 gehört nie ins Internet; die Gadget-Chain in einer verbreiteten Bibliothek traf WebLogic, JBoss, Jenkins und mehr."
+  },
+  "CVE-2021-36741": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Trend Micro Apex One und OfficeScan erlauben einem an der Management-Konsole angemeldeten Angreifer das Hochladen beliebiger Dateien.",
+   "metrics": {
+    "AV": {
+     "why": "Management-Konsole über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload."
+    },
+    "PR": {
+     "why": "'Ability to logon to the management console': PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf dem Management-Server, S:U."
+    },
+    "C": {
+     "why": "Webshell auf dem Management-Server: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,05: Der Management-Server von Endpoint-Schutz steuert alle Agenten; eine Webshell dort verteilt sich potenziell auf jeden Client. PR:L, aber der Konsolen-Zugang ist das Ziel."
+  },
+  "CVE-2019-15975": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Cisco Data Center Network Manager (DCNM) hat mehrere Authentifizierungslücken, über die unauthentifizierte Angreifer administrative Aktionen ausführen.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Bypass authentication' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist DCNM."
+    },
+    "C": {
+     "why": "Admin-Aktionen: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Admin: alles änderbar."
+    },
+    "A": {
+     "why": "Admin: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,96: DCNM verwaltet Rechenzentrums-Switches; ein Auth-Bypass gibt Kontrolle über das Fabric. Oft nutzten diese Lücken einen fest kodierten Session-Key (CWE-798)."
+  },
+  "CVE-2019-1622": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Das Web-Interface von Cisco DCNM erlaubt unauthentifizierten Angreifern über unzureichende Zugriffskontrolle bestimmter URLs das Auslesen sensibler Informationen (Log-Dateien).",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface über HTTP."
+    },
+    "AC": {
+     "why": "Eine URL aufrufen, kein Aufwand."
+    },
+    "PR": {
+     "why": "Fehlerhafte Zugriffskontrollen auf URLs: Ein unauthentifizierter Angreifer liest die Informationen direkt: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist DCNM."
+    },
+    "C": {
+     "why": "Log-Dateien: begrenzter Umfang, C:L.",
+     "pitfall": "Informationspreisgabe über Logs ist typisch C:L. Wertvoll als Aufklärung für die schwereren DCNM-Lücken (CVE-2019-15975)."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,79: Aufklärungs-Baustein neben den DCNM-RCE-Lücken. Log-Leck (CWE-532); ein 5,3, der die schwereren Lücken vorbereitet."
+  },
+  "CVE-2021-33256": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "ManageEngine ADSelfService Plus hat im Login-Panel eine CSV-Injection über j_username, die beim Export eines Audit-Reports durch einen privilegierten Nutzer eine Reverse Shell auslöst.",
+   "metrics": {
+    "AV": {
+     "why": "Login-Panel über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Nutzername mit Formel."
+    },
+    "PR": {
+     "why": "Keine Anmeldung für die Einschleusung nötig."
+    },
+    "UI": {
+     "why": "Ein Admin muss den Report als CSV exportieren und öffnen."
+    },
+    "S": {
+     "why": "Code läuft auf dem Rechner des Admins, S:U."
+    },
+    "C": {
+     "why": "Reverse Shell mit Admin-Rechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Shell: alles änderbar."
+    },
+    "A": {
+     "why": "Shell: System störbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,79, vom Hersteller bestritten. CSV-Injection (CWE-1236): Eine Formel im Nutzernamen wird beim Öffnen der exportierten CSV in Excel ausgeführt. Der Angriff trifft den auswertenden Admin, nicht den Server."
+  },
+  "CVE-2022-48503": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Fehler bei Bounds-Checks in WebKit (JavaScriptCore) erlaubt über präparierte Webinhalte Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Browserprozess."
+    },
+    "C": {
+     "why": "Codeausführung mit Browserrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,03: WebKit-Speicherfehler (CWE-129, Array-Index-Validierung). Apple-CWEs sind oft präziser als 'memory corruption'; hier ist die falsche Index-Prüfung benannt."
+  },
+  "CVE-2019-11477": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "SACK Panic: Ein Integer-Überflow im Linux-Kernel bei der Verarbeitung von TCP Selective Acknowledgments erlaubt einem entfernten Angreifer einen Kernel-Panic (Denial of Service).",
+   "metrics": {
+    "AV": {
+     "why": "TCP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte SACK-Pakete."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Kernel des Zielsystems."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Kernel-Panic: System fällt aus, A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,99: Jeder internetseitige Linux-Server war betroffen, daher der hohe EPSS. Integer-Überlauf (CWE-190) in der TCP-Verarbeitung: remote DoS ohne jede Voraussetzung, ein Paketstrom reicht."
+  },
+  "CVE-2021-4034": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "PwnKit: pkexec (polkit) behandelt die Argumentanzahl falsch und führt bei leerem argv Umgebungsvariablen als Code aus, was jedem lokalen Nutzer Root-Rechte gibt.",
+   "metrics": {
+    "AV": {
+     "why": "Lokaler Zugriff auf das System nötig."
+    },
+    "AC": {
+     "why": "Bekannter, extrem zuverlässiger Exploit, kein Timing."
+    },
+    "PR": {
+     "why": "Jeder lokale Nutzer: PR:L."
+    },
+    "UI": {
+     "why": "Keine Interaktion."
+    },
+    "S": {
+     "why": "Lokale Rechteausweitung zu root: S:U."
+    },
+    "C": {
+     "why": "root: alle Daten lesbar."
+    },
+    "I": {
+     "why": "root: alles änderbar."
+    },
+    "A": {
+     "why": "root: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,95: Zwölf Jahre in pkexec, betraf praktisch jede Linux-Distribution. Klasse laut NVD CWE-125 (Read), real ein Argument-Handling-Fehler (CWE-787-nah); NVDs CWE trifft die Ursache nicht genau. Der zuverlässigste Linux-Root-Exploit seit Dirty COW."
+  }
+ }
+}

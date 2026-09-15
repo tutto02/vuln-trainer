@@ -1,0 +1,21 @@
+{
+ "generated": "2026-09-15T16:45:16+00:00",
+ "cves": 1100,
+ "enriched": 1100,
+ "with_chain": 0,
+ "kev_catalog_version": "2026.09.14",
+ "kev_date": "2026-09-14T19:00:02.426Z",
+ "epss_model": "v2026.06.15",
+ "epss_date": "2026-09-14T12:00:22Z",
+ "validation_errors": 0,
+ "trap_doc": {
+  "scope_c": "Scope: Changed – die verwundbare Komponente ist nicht die betroffene (z. B. Browser-Sandbox-Escape, VM-Ausbruch, XSS im Browser des Opfers).",
+  "scope_u_high_impact": "Scope: Unchanged trotz vollständiger Kompromittierung – maximaler Schaden ist KEIN Scope-Wechsel.",
+  "c_low": "Confidentiality: Low – Zugriff im Umfang begrenzt (einzelne Datei, Speicherfragment, Metadaten), auch wenn der Wert hoch sein kann.",
+  "c_high_scoped": "Confidentiality: High – Zugriff auf alle Daten oder auf gezielt die wertvollsten (z. B. Passwort-Hashes, Konfigurations-Secrets).",
+  "pr_n_network_only": "PR: None – Netzwerkzugriff ist die einzige Voraussetzung; keine Anmeldung nötig.",
+  "pr_n_but_ui_r": "PR: None, aber UI: Required – der Angreifer braucht keine Rechte, wohl aber ein Opfer, das klickt.",
+  "pr_l_authenticated": "PR: Low – ein einfaches Benutzerkonto reicht (vergleiche mit PR:N).",
+  "ac_h": "AC: High – Bedingungen außerhalb der Kontrolle des Angreifers (Race, spezielle Konfiguration, MITM-Position)."
+ }
+}

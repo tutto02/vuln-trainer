@@ -1,0 +1,667 @@
+{
+ "batch": "batch-055",
+ "items": {
+  "CVE-2021-43788": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+   "summary_de": "NodeBB vor 1.18.5 hat eine Path-Traversal, über die Nutzer JSON-Dateien außerhalb des languages/-Verzeichnisses lesen können.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert ein niedrig privilegiertes Konto: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Zugriff auf Dateien außerhalb des erwarteten Verzeichnisses: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe lesbarer JSON-Dateien: C:L."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Path-Traversal als Scope-Wechsel mit reinem, begrenztem C-Impact."
+  },
+  "CVE-2020-15910": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:N",
+   "summary_de": "SolarWinds N-Central ≤ 12.3 setzt das JSESSIONID-Cookie nicht auf HttpOnly, sodass es per JavaScript ausgelesen werden kann.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R."
+    },
+    "UI": {
+     "why": "Eine Opferaktion (Skriptaufruf/präparierte Seite) ist nötig: UI:R."
+    },
+    "S": {
+     "why": "Das Cookie wirkt außerhalb der ausliefernden Komponente: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe des Cookies: C:L."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Fehlendes HttpOnly-Flag als Scope-Wechsel mit reinem C-Impact."
+  },
+  "CVE-2022-39202": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:L",
+   "summary_de": "matrix-appservice-irc parst IRC-Mode-Kommandos falsch, wodurch versehentlich dem falschen Nutzer Rechte gegeben werden können.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "NVD setzt keine Vorabrechte an: PR:N.",
+     "pitfall": "Der CNA sah PR:H (Mode-Kommandos nur für privilegierte Nutzer) — NVD wertet PR:N."
+    },
+    "UI": {
+     "why": "Eine Opferaktion/Interaktion ist nötig: UI:R."
+    },
+    "S": {
+     "why": "Wirkung bleibt in der Bridge/Anwendung: S:U."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung (falsche Rechtevergabe): I:L."
+    },
+    "A": {
+     "why": "Begrenzte Verfügbarkeitswirkung: A:L."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (PR). Übe die PR-Entscheidung: NVD wertet PR:N trotz privilegierter Mode-Kommandos.",
+   "dissent": {
+    "PR": "CNA PR:H, NVD PR:N."
+   }
+  },
+  "CVE-2020-10744": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:C/C:L/I:L/A:L",
+   "summary_de": "Ein unvollständiger Fix für CVE-2020-1733 (unsicheres Temp-Verzeichnis bei become_user in Ansible) lässt die Race Condition auf ACL/FUSE-Systemen bestehen.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer agiert lokal: AV:L."
+    },
+    "AC": {
+     "why": "Race Conditions sind zeitabhängig und schwer zuverlässig: AC:H."
+    },
+    "PR": {
+     "why": "Erfordert niedrige lokale Rechte: PR:L."
+    },
+    "UI": {
+     "why": "Ein Opfer/Prozess muss die become-Aktion auslösen: UI:R."
+    },
+    "S": {
+     "why": "Wirkung erreicht andere Nutzerkontexte über die Zone hinweg: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Begrenzte Verfügbarkeitswirkung: A:L."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Race Condition mit Scope-Wechsel und begrenzten Impakten."
+  },
+  "CVE-2022-30724": {
+   "vector_basis": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Ein Broadcast der sendIntentSessionCompleted-Funktion (Samsung Bluetooth, vor SMR Jun-2022) ohne Empfängerbeschränkung leakt die MAC-Adresse des verbundenen Geräts.",
+   "metrics": {
+    "AV": {
+     "why": "NVD wertet den Pfad als angrenzendes Netz: AV:A.",
+     "pitfall": "NVD setzt AV:A, der CNA AV:L."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "Keine Vorabrechte nötig: PR:N."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Wirkung bleibt in der Bluetooth-Komponente: S:U."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe (MAC-Adresse): C:L."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Parallel zu CVE-2022-30723. Genau ein Metrik-Unterschied (AV). Reiner, begrenzter Confidentiality-Leak.",
+   "dissent": {
+    "AV": "CNA AV:L, NVD AV:A."
+   }
+  },
+  "CVE-2019-1794": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:L/I:H/A:N",
+   "summary_de": "Cisco Directory Connector hat eine Search-Path-Schwachstelle, über die ein authentifizierter lokaler Angreifer eine Binärdatei seiner Wahl laden kann.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer agiert lokal: AV:L."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "Erfordert hohe lokale Rechte: PR:H."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Wirkung bleibt in der Anwendung: S:U."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Hohe Integritätswirkung durch Laden beliebiger Binärdateien: I:H."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Search-Path-Hijack ohne Scope-Wechsel; hohes I bei begrenztem C."
+  },
+  "CVE-2023-43377": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Hoteldruid v3.0.5 hat ein XSS in visualizza_contratto.php über den Parameter destinatario_email1.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert ein niedrig privilegiertes Konto: PR:L."
+    },
+    "UI": {
+     "why": "Das Skript zündet beim Betrachten durch ein Opfer: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Opferbrowser: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. XSS als Scope-Wechsel mit begrenzten Impakten."
+  },
+  "CVE-2020-8118": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:N/A:N",
+   "summary_de": "Nextcloud Server 16.0.1 hat eine authentifizierte SSRF, mit der sich beim Hinzufügen eines Kalender-Abos lokale und entfernte Dienste erkennen lassen.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert ein authentifiziertes Konto: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "SSRF erreicht fremde Dienste außerhalb der Zone: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe (Dienst-Erkennung): C:L."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. SSRF als Scope-Wechsel mit reinem, begrenztem C-Impact."
+  },
+  "CVE-2023-1235": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:L",
+   "summary_de": "Eine Type-Confusion in den DevTools von Chrome vor 111.0.5563.64 kann bei bereits kompromittiertem Renderer über eine präparierte UI-Interaktion Heap-Korruption auslösen.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz/den Browser."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R."
+    },
+    "UI": {
+     "why": "Erfordert eine präparierte UI-Interaktion des Opfers: UI:R."
+    },
+    "S": {
+     "why": "Wirkung bleibt im Browser-/DevTools-Prozess: S:U."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Begrenzte Verfügbarkeitswirkung: A:L."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. PR:N/UI:R ohne Scope-Wechsel (Wirkung im selben Prozess)."
+  },
+  "CVE-2019-8053": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+   "summary_de": "Adobe Acrobat/Reader (mehrere Versionen) haben eine Use-after-free, die zu Codeausführung führen kann.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz/eine ausgelieferte Datei."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N — die Datei wird an das Opfer verteilt."
+    },
+    "UI": {
+     "why": "Das Opfer muss die schädliche Datei öffnen: UI:R."
+    },
+    "S": {
+     "why": "Wirkung bleibt im Reader-Prozess: S:U."
+    },
+    "C": {
+     "why": "NVD wertet nur begrenzte Preisgabe: C:L."
+    },
+    "I": {
+     "why": "NVD sieht keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Parallel zu CVE-2019-8051: konservativer Basisvektor trotz möglicher Codeausführung."
+  },
+  "CVE-2023-32068": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "XWiki Platform vor 14.10.4 erlaubt über bekannte URL-Parameter eine Umleitung auf nicht vertrauenswürdige Seiten.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per präparierter URL."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R."
+    },
+    "UI": {
+     "why": "Das Opfer muss dem Link folgen: UI:R."
+    },
+    "S": {
+     "why": "Die Umleitung führt in eine fremde Zone: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (I). Open Redirect als Scope-Wechsel; PR:N/UI:R-Muster.",
+   "dissent": {
+    "I": "CNA I:N, NVD I:L."
+   }
+  },
+  "CVE-2022-4830": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Das WordPress-Plugin „Paid Memberships Pro“ vor 2.9.9 säubert Shortcode-Attribute nicht, was Contributor-Nutzern Stored XSS erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per gespeichertem Shortcode."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert ein Contributor-Konto: PR:L.",
+     "pitfall": "Der CNA sah PR:N — NVD wertet PR:L, weil ein Konto (Contributor) nötig ist."
+    },
+    "UI": {
+     "why": "Das Skript zündet beim Betrachten durch ein Opfer: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Opferbrowser: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (PR). Übe die PR-Entscheidung: Contributor-Rolle → PR:L.",
+   "dissent": {
+    "PR": "CNA PR:N, NVD PR:L."
+   }
+  },
+  "CVE-2021-45096": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N",
+   "summary_de": "KNIME Analytics Platform vor 4.5.0 ist über eine präparierte Workflow-Datei (.knwf) für XXE anfällig.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per präparierter Datei."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R."
+    },
+    "UI": {
+     "why": "Das Opfer muss die präparierte Workflow-Datei öffnen: UI:R."
+    },
+    "S": {
+     "why": "NVD wertet keinen Scope-Wechsel: S:U.",
+     "pitfall": "Der CNA sah S:C; NVD wertet die XXE hier ohne Zonenübertritt."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe: C:L."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (S). Übe die Scope-Entscheidung bei XXE — NVD entschied hier S:U.",
+   "dissent": {
+    "S": "CNA S:C, NVD S:U."
+   }
+  },
+  "CVE-2021-35225": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N",
+   "summary_de": "In SolarWinds Orion (MSP-Umgebung) kann jeder authentifizierte Nutzer alle NetPath-Services aller Kunden dieses MSP einsehen.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Erfordert ein authentifiziertes Konto: PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Einblick über Kundengrenzen hinweg: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe fremder Infrastrukturdaten: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (I). Mandantenübergreifender Einblick als Scope-Wechsel.",
+   "dissent": {
+    "I": "CNA I:N, NVD I:L."
+   }
+  },
+  "CVE-2023-29062": {
+   "vector_basis": "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:N",
+   "summary_de": "Das Betriebssystem der FACSChorus-Anwendung sendet gehashte Nutzeranmeldedaten (NTLMv2) über LLMNR/MBT-NS/MDNS an eine bösartige Instanz im lokalen Netz.",
+   "metrics": {
+    "AV": {
+     "why": "Nur aus dem angrenzenden lokalen Netz erreichbar: AV:A.",
+     "pitfall": "AV:A, weil der Angreifer im lokalen Netz positioniert sein muss."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "Keine Vorabrechte nötig: PR:N."
+    },
+    "UI": {
+     "why": "Eine Nutzeraktion löst die Übertragung aus: UI:R."
+    },
+    "S": {
+     "why": "Die Hashes gelangen an eine fremde Instanz außerhalb der Zone: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzte Preisgabe (Hashes): C:L."
+    },
+    "I": {
+     "why": "Keine Integritätswirkung: I:N."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung: A:N."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. AV:A-Beispiel mit Scope-Wechsel; reiner, begrenzter C-Impact (NTLMv2-Leak)."
+  },
+  "CVE-2020-25160": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:L",
+   "summary_de": "Fehlerhafte Zugriffskontrollen in B.-Braun-SpaceCom/Data-Modulen erlauben Angreifern, die Netzwerkkonfiguration der Geräte auszulesen und zu manipulieren.",
+   "metrics": {
+    "AV": {
+     "why": "Der Angreifer agiert lokal: AV:L."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen: AC:L."
+    },
+    "PR": {
+     "why": "NVD setzt niedrige Rechte an: PR:L.",
+     "pitfall": "Der CNA sah PR:N — NVD wertet PR:L."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Manipulation der Netzwerkkonfiguration wirkt über die Komponente hinaus: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Begrenzte Verfügbarkeitswirkung: A:L."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (PR). Übe die PR-Entscheidung bei fehlenden Zugriffskontrollen.",
+   "dissent": {
+    "PR": "CNA PR:N, NVD PR:L."
+   }
+  },
+  "CVE-2023-22815": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:H/A:H",
+   "summary_de": "Western Digital My Cloud OS 5 hat eine post-authentifizierte Command Injection in CGI-Dateien, die Codeausführung als root erlaubt (erfordert Admin/Root und einen Auth-Bypass).",
+   "metrics": {
+    "AV": {
+     "why": "Nur über das Netz ausnutzbar: AV:N."
+    },
+    "AC": {
+     "why": "NVD wertet die Bedingungen als nicht erschwerend: AC:L.",
+     "pitfall": "Der CNA sah AC:H (Auth-Bypass nötig) — NVD wertet AC:L."
+    },
+    "PR": {
+     "why": "Erfordert Admin-/Root-Rechte: PR:H."
+    },
+    "UI": {
+     "why": "Keine Opferaktion nötig: UI:N."
+    },
+    "S": {
+     "why": "Ausführung im Root-Kontext derselben Zone: S:U."
+    },
+    "C": {
+     "why": "NVD wertet den Vertraulichkeitsverlust begrenzt: C:L."
+    },
+    "I": {
+     "why": "Hohe Integritätswirkung (Code als root): I:H."
+    },
+    "A": {
+     "why": "Hohe Verfügbarkeitswirkung: A:H."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (AC). Übe die AC-Entscheidung: NVD wertet den nötigen Auth-Bypass nicht als AC:H.",
+   "dissent": {
+    "AC": "CNA AC:H, NVD AC:L."
+   }
+  },
+  "CVE-2019-20635": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "codeBeamer vor 9.5.0-RC3 beschränkt die Ausführung von Java-Code über berechnete Felder nicht ausreichend.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R."
+    },
+    "UI": {
+     "why": "Eine Opferaktion ist nötig: UI:R."
+    },
+    "S": {
+     "why": "Ausführung über die Feldkomponente hinaus: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Vertraulichkeitsverlust: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Integritätswirkung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Code-Injection als PR:N/UI:R mit Scope-Wechsel."
+  },
+  "CVE-2021-39249": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Invision Community vor 4.6.5.1 hat ein reflektiertes XSS, weil Dateinamen hochgeladener Dateien über mt_rand vorhersagbar werden.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz."
+    },
+    "AC": {
+     "why": "NVD wertet die Bedingungen als nicht erschwerend: AC:L."
+    },
+    "PR": {
+     "why": "Kein Konto nötig.",
+     "pitfall": "PR:N mit UI:R."
+    },
+    "UI": {
+     "why": "Das Opfer muss die präparierte Ressource aufrufen: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Opferbrowser: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Kein CNA-Zweitvektor. Reflektiertes XSS als PR:N/UI:R mit Scope-Wechsel."
+  },
+  "CVE-2023-31230": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Das WordPress-Plugin „Baidu Tongji generator“ ≤ 1.0.2 hat ein Stored XSS über CSRF.",
+   "metrics": {
+    "AV": {
+     "why": "Angriff über das Netz per präpariertem Request."
+    },
+    "AC": {
+     "why": "Keine erschwerenden Bedingungen."
+    },
+    "PR": {
+     "why": "Kein Konto des Angreifers nötig; die Rechte liefert das Opfer.",
+     "pitfall": "CSRF → PR:N."
+    },
+    "UI": {
+     "why": "Ein Opfer muss den präparierten Request auslösen: UI:R."
+    },
+    "S": {
+     "why": "Ausführung im Opferbrowser: Scope-Wechsel C."
+    },
+    "C": {
+     "why": "Begrenzter Zugriff im Browser-Kontext: C:L."
+    },
+    "I": {
+     "why": "Begrenzte Manipulation."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitswirkung."
+    }
+   },
+   "context_de": "Genau ein Metrik-Unterschied (A). CSRF→XSS als PR:N/UI:R mit Scope-Wechsel.",
+   "dissent": {
+    "A": "CNA A:L, NVD A:N."
+   }
+  }
+ }
+}

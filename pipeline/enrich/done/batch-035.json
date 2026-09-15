@@ -1,0 +1,626 @@
+{
+ "batch": "batch-035",
+ "items": {
+  "CVE-2020-17408": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "NEC ExpressCluster ist über die clpwebmc-Komponente anfällig für einen unauthentifizierten XXE-Angriff zum Auslesen sensibler Informationen.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes XML."
+    },
+    "PR": {
+     "why": "'Authentication is not required' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Cluster-Server."
+    },
+    "C": {
+     "why": "XXE: Dateien lesen (Konfiguration, Secrets): gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,72: XXE (CWE-611) in einer Cluster-Management-Software. XXE ist im Korpus eine der häufigsten Klassen; die Wurzel ist immer ein XML-Parser mit aktivierter externer Entitätsauflösung. Cluster-Software hält Zugangsdaten zu allen Knoten."
+  },
+  "CVE-2014-8361": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der miniigd-SOAP-Dienst im Realtek SDK erlaubt über eine präparierte NewInternalClient-Anfrage die Ausführung beliebigen Codes.",
+   "metrics": {
+    "AV": {
+     "why": "SOAP/UPnP-Dienst über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte SOAP-Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Gerät, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Gerät abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,9998: Das Realtek SDK steckt in unzähligen Geräten vieler Hersteller (wie die Awind-Firmware CVE-2019-3929). 'Exploited in the wild through 2023' zeigt: Ein SDK-Bug lebt jahrelang in Rebrand-Geräten weiter, weil niemand die zugrunde liegende Komponente aktualisiert. UPnP-Command-Injection (noinfo bei NVD)."
+  },
+  "CVE-2021-33044": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Mehrere Dahua-Kameras erlauben über präparierte Datenpakete im Login-Prozess die Umgehung der Identitätsauthentifizierung.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface der Kamera über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Login-Pakete."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Kamera, S:U."
+    },
+    "C": {
+     "why": "Gerätekontrolle: alle Daten lesbar (Videostream)."
+    },
+    "I": {
+     "why": "Gerätekontrolle: alles änderbar."
+    },
+    "A": {
+     "why": "Gerätekontrolle: Kamera abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,999: Dahua-Kameras in Botnetzen und zur Spionage (wie Hikvision CVE-2017-7921). Auth-Bypass (CWE-287) über präparierte Login-Pakete. Überwachungskameras sind selten inventarisiert; die Schwester CVE-2021-33045 hat dieselbe Beschreibung."
+  },
+  "CVE-2010-0738": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+   "summary_de": "Die JMX-Console in JBoss erzwingt Zugriffskontrolle nur für GET und POST, sodass andere HTTP-Methoden Anfragen an die Anwendung senden können (Verb-Tampering).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Anfrage mit anderer HTTP-Methode (z. B. HEAD)."
+    },
+    "PR": {
+     "why": "Methoden-Umgehung: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist JBoss."
+    },
+    "C": {
+     "why": "Vertraulichkeit: NVD: C:N."
+    },
+    "I": {
+     "why": "Begrenzte Anfragen (bis Deployment): I:L.",
+     "pitfall": "Der Vektor bewertet nur die Primitive (Methoden-Umgehung). Real ermöglichte sie das Deployment einer WAR-Datei und damit RCE; NVDs I:L unterschätzt die Kette."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,79: Verb-Tampering (CWE-749), wie CVE-2010-1428 (JBoss Web-Console). Die Zugriffskontrolle nur für GET/POST ist ein klassischer Fehler; andere Methoden umgehen sie. Real führte es zum WAR-Deployment und RCE, obwohl der Vektor nur I:L sagt."
+  },
+  "CVE-2021-1497": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Web-Verwaltung von Cisco HyperFlex HX erlaubt einem unauthentifizierten Angreifer Command-Injection-Angriffe.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Die Command-Injection in der Web-Oberfläche von HyperFlex ist unauthentifiziert ausnutzbar: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem HyperFlex-System, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,999: HyperFlex ist Ciscos hyperkonvergente Infrastruktur (Storage plus Compute). Command Injection (CWE-78) in der Verwaltung; die Schwester CVE-2021-1498 hat dieselbe Beschreibung. Ein Infrastruktur-System zu übernehmen heißt, Storage und VMs zu kontrollieren."
+  },
+  "CVE-2020-8218": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Pulse Connect Secure erlaubt einem Angreifer über eine präparierte URI im Admin-Web-Interface die Ausführung beliebigen Codes.",
+   "metrics": {
+    "AV": {
+     "why": "Admin-Interface der Appliance über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URI."
+    },
+    "PR": {
+     "why": "Admin-Zugriff nötig: PR:H."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf der Appliance, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Gateway abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,33: Pulse Secure ist im Korpus ein Dauerthema (CVE-2019-11510, CVE-2020-8243, CVE-2020-8260, CVE-2021-22893). Code-Injection (CWE-94); PR:H einzeln, in Kette mit einem Auth-Bypass PR:N. VPN-Gateways sind das meistangegriffene Appliance-Segment im Korpus."
+  },
+  "CVE-2020-5741": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Plex Media Server auf Windows erlaubt einem authentifizierten Angreifer über Deserialisierung die Ausführung beliebigen Python-Codes.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt."
+    },
+    "PR": {
+     "why": "Admin-Zugriff nötig: PR:H."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Plex-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,73: Plex-Server wurden 2022 als DDoS-Reflektoren und über solche Lücken übernommen. Deserialisierung (CWE-502); PR:H, aber Plex-Server stehen oft mit Standard-Zugangsdaten im Heimnetz. Ein Heim-Medienserver als Angriffsziel."
+  },
+  "CVE-2023-38836": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "BoidCMS erlaubt über einen an eine PHP-Datei angehängten GIF-Header die Umgehung der MIME-Typ-Prüfung und damit Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Web-CMS über HTTP."
+    },
+    "AC": {
+     "why": "GIF-Header vor den PHP-Code setzen."
+    },
+    "PR": {
+     "why": "Ein Konto: PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,76: Magic-Bytes-Umgehung (CWE-434): Ein GIF-Header (GIF89a) täuscht die MIME-Prüfung, der Rest der Datei ist PHP. Ein Klassiker der Upload-Filter-Umgehung; die Prüfung schaut nur auf die ersten Bytes, nicht auf den ausführbaren Inhalt."
+  },
+  "CVE-2021-22145": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Elasticsearch gibt bei einer fehlerhaften Anfrage in der Fehlermeldung zuvor genutzte Speicherinhalte preis (Memory Disclosure).",
+   "metrics": {
+    "AV": {
+     "why": "Elasticsearch-API über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte fehlerhafte Anfrage."
+    },
+    "PR": {
+     "why": "Ein Konto mit Query-Recht: PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Elasticsearch."
+    },
+    "C": {
+     "why": "Speicherinhalte (frühere Anfragen, Daten): gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,76: Ein Info-Leck über Fehlermeldungen (CWE-209), wie Heartbleed über Speicher-Overread. Die Fehlermeldung enthielt uninitalisierten Speicher mit Daten anderer Anfragen; ein subtiler Leak, der über viele Anfragen sensible Daten einsammelt."
+  },
+  "CVE-2021-28662": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+   "summary_de": "Squid stürzt ab, wenn ein Remote-Server einen bestimmten Response-Header über HTTP/HTTPS sendet (Denial of Service).",
+   "metrics": {
+    "AV": {
+     "why": "Über den Proxy (Response eines Remote-Servers)."
+    },
+    "AC": {
+     "why": "Ein bestimmter Response-Header."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Ein Client muss über den Proxy auf den bösartigen Server zugreifen."
+    },
+    "S": {
+     "why": "Betroffen ist der Proxy."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Squid-Absturz: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,72: Wieder ein Squid-DoS (CWE-116), wie CVE-2021-31806, CVE-2023-49285. Bemerkenswert: Der bösartige Header kommt vom Server, nicht vom Client; ein Nutzer, der eine präparierte Seite über den Proxy lädt, legt den Proxy für alle lahm. Squid ist im Korpus die DoS-Dauerbaustelle."
+  },
+  "CVE-2018-7600": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Drupalgeddon2: Drupal erlaubt über ein Problem in mehreren Subsystemen (unzureichende Bereinigung von Formular-Array-Schlüsseln) unauthentifizierte Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Web-CMS über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Drupal-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,9999: Drupalgeddon2, binnen Stunden nach Veröffentlichung massenhaft ausgenutzt (der Nachfolger CVE-2018-7602 ist im Korpus). Property-Injection (CWE-20) über Formular-Array-Schlüssel wie #post_render; eine Drupal-Kern-RCE trifft Millionen Sites gleichzeitig. Ein Referenzfall für 'Patch-Fenster in Stunden'."
+  },
+  "CVE-2010-2883": {
+   "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Stack-Buffer-Overflow in CoolType.dll in Adobe Reader/Acrobat erlaubt über ein PDF mit einem langen Feld in einer SING-Tabelle (Schriftart) Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "PDF über Web oder Mail."
+    },
+    "AC": {
+     "why": "Präpariertes PDF mit bösartiger Schriftart."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss das PDF öffnen."
+    },
+    "S": {
+     "why": "Code im Reader-Prozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,82: In Stuxnet-verwandten Angriffen und breit in Kits genutzt. Ein Font-Parsing-Overflow (CWE-787); eingebettete Schriftarten in PDFs waren eine besonders ergiebige Angriffsfläche, weil der Font-Renderer komplexe Formate parst."
+  },
+  "CVE-2020-3452": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Die Web-Services-Schnittstelle von Cisco ASA/FTD erlaubt einem unauthentifizierten Angreifer Directory-Traversal-Angriffe zum Lesen sensibler Dateien.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Services über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte URL (../-Sequenz)."
+    },
+    "PR": {
+     "why": "Die Directory-Traversal über die Web-Services-Schnittstelle gelingt ohne Anmeldung: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Firewall."
+    },
+    "C": {
+     "why": "Dateien im WebVPN-Verzeichnis (Konfiguration): gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,9999: Path Traversal (CWE-22) in Cisco ASA, massenhaft gescannt. Der lesbare Bereich war auf das WebVPN-Verzeichnis begrenzt (daher C:H, nicht das ganze System); trotzdem hochwertig, weil dort Konfiguration und Sessions liegen. Cisco ASA ist im Korpus ein Dauerthema."
+  },
+  "CVE-2023-44487": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "HTTP/2 Rapid Reset: Das HTTP/2-Protokoll erlaubt einen Denial of Service, weil das schnelle Zurücksetzen (RST_STREAM) vieler Streams den Server überlastet.",
+   "metrics": {
+    "AV": {
+     "why": "HTTP/2 über das Netz."
+    },
+    "AC": {
+     "why": "Schnelles Öffnen und Zurücksetzen vieler Streams."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Server."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Ressourcenerschöpfung: der Server verweigert den Dienst, A:H."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99999: Der bis dahin größte DDoS-Angriff (398 Millionen Anfragen/Sekunde gegen Google). Ein Protokoll-Designfehler (CWE-400) in HTTP/2 selbst, nicht in einer Implementierung; alle HTTP/2-Server waren betroffen. Wie NSEC3 (CVE-2023-50868) ein Fehler in der Spezifikation, den jeder Anbieter einzeln mildern musste."
+  },
+  "CVE-2026-21643": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Fortinet FortiClientEMS hat eine unauthentifizierte SQL-Injection, die zu Codeausführung führt.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz (HTTP-Anfragen)."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Unauthenticated' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank und RCE im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "SQLi bis RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,94, nur CNA-Vektor: FortiClientEMS zum zweiten Mal (nach CVE-2023-48788), gleiche Klasse (SQLi, CWE-89). Ein Produkt, das dieselbe Lücke wiederholt; FortiClientEMS verwaltet die Endpoint-Clients. Fortinet-Wiederholungstäter gehören auf eine engmaschige Beobachtungsliste."
+  },
+  "CVE-2021-27905": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Der ReplicationHandler in Apache Solr hat einen masterUrl-Parameter, über den sich Server-Side Request Forgery und darüber RCE auslösen lassen.",
+   "metrics": {
+    "AV": {
+     "why": "Solr-API über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte masterUrl."
+    },
+    "PR": {
+     "why": "Solr hat standardmäßig keine Auth."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: hier als RCE-Kette bewertet, S:U."
+    },
+    "C": {
+     "why": "Über die SSRF bis RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,93: SSRF (CWE-918) im Solr-Replikations-Handler, die zum Konfigurationsimport und RCE führt. Solr ist im Korpus mehrfach vertreten (CVE-2017-12629, CVE-2019-17558); Solr ohne Auth im Netz plus SSRF ist ein wiederkehrendes RCE-Muster."
+  },
+  "CVE-2023-2033": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion in V8 erlaubt über eine präparierte Seite Heap-Korruption in Chrome.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Renderer-Prozess."
+    },
+    "C": {
+     "why": "Codeausführung im Renderer: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,41: Zero-Day. Ein weiteres V8-Type-Confusion (CWE-843). Die Chrome-V8-Reihe im Korpus umfasst inzwischen über ein Dutzend CVEs; für dein Klassen-Training ist V8 das Paradebeispiel für CWE-843 und für die S:U/S:C-Bewertungsentwicklung."
+  },
+  "CVE-2021-37975": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Use-After-Free in V8 erlaubt über eine präparierte Seite Heap-Korruption in Chrome.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Renderer-Prozess."
+    },
+    "C": {
+     "why": "Codeausführung im Renderer: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,35: Zero-Day, in Kette mit CVE-2021-37976 (Info-Leck, ebenfalls im Korpus). Use-After-Free (CWE-416) in V8; das Leck lieferte die Adressen, der UAF die Codeausführung. Zwei Chrome-CVEs, eine Kette."
+  },
+  "CVE-2019-9978": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Das social-warfare-Plugin für WordPress hat über den swp_url-Parameter ein gespeichertes XSS.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Parameter."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Ein Admin muss die betroffene Seite ansehen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Browserkontext des Opfers: C:L."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,73: Ein WordPress-Plugin-XSS (CWE-79), 2019 in freier Wildbahn genutzt (kombiniert mit einer RCE im selben Plugin). Bemerkenswert für ein XSS in KEV: Meist stehen dort RCEs; hier war das XSS Teil einer Kette. Der swp_url-Parameter lud auch Remote-Konfiguration, was die eigentliche RCE ermöglichte."
+  },
+  "CVE-2015-1427": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Groovy-Scripting-Engine in Elasticsearch erlaubt über ein präpariertes Skript die Umgehung der Sandbox und die Ausführung beliebiger Shell-Befehle.",
+   "metrics": {
+    "AV": {
+     "why": "Elasticsearch-API über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes Groovy-Skript."
+    },
+    "PR": {
+     "why": "Elasticsearch hatte standardmäßig keine Auth."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle im Elasticsearch-Prozess, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,999: Ein Sandbox-Escape (noinfo bei NVD) in Elasticsearchs Groovy-Engine, wie die MVEL-Lücke CVE-2014-3120. Elasticsearch ohne Auth im Netz plus scriptfähige Query-Sprache ist ein wiederkehrendes RCE-Muster; dynamisches Scripting war eine gefährliche Standardeinstellung."
+  }
+ }
+}

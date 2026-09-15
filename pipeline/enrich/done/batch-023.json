@@ -1,0 +1,678 @@
+{
+ "batch": "batch-023",
+ "items": {
+  "CVE-2020-8617": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Eine präparierte Nachricht bringt einen BIND-Server in einen inkonsistenten Zustand, wenn der Angreifer den Namen eines TSIG-Schlüssels kennt oder errät; BIND konfiguriert standardmäßig einen lokalen Session-Key.",
+   "metrics": {
+    "AV": {
+     "why": "DNS über das Netz."
+    },
+    "AC": {
+     "why": "NVD: AC:H, der TSIG-Schlüsselname muss bekannt sein; der CNA vergab AC:L (der Standard-Session-Key macht fast alle Server verwundbar).",
+     "pitfall": "NVD wertet 'muss den Schlüsselnamen kennen' als AC:H; ISC sagt, weil BIND standardmäßig einen lokalen Key konfiguriert, ist die Hürde faktisch weg (AC:L)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der DNS-Dienst."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Assertion-Failure, BIND beendet sich: A:H."
+    }
+   },
+   "dissent": {
+    "AC": "CNA (ISC): AC:L (7,5). Der Hersteller kennt die Standardkonfiguration: Ein lokaler Session-Key ist immer da, die AC:H-Hürde existiert praktisch nicht."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,93: DNS-DoS über eine Assertion (CWE-617). Der Fall zeigt, wie eine Standardkonfiguration (immer ein Session-Key) NVDs AC:H-Annahme aushebelt; ISCs AC:L ist realistischer."
+  },
+  "CVE-2021-22054": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Die VMware Workspace ONE UEM Console ist anfällig für Server-Side Request Forgery, über die unauthentifizierte Angreifer sensible Informationen erlangen.",
+   "metrics": {
+    "AV": {
+     "why": "UEM-Console über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "'Without authentication' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U für SSRF."
+    },
+    "C": {
+     "why": "Sensible Informationen über die SSRF (interne Endpunkte): gezielt, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,97: UEM verwaltet Mobilgeräte (wie Ivanti EPMM). Eine SSRF, deren Wert im internen Netz und in erreichbaren Metadaten-Endpunkten liegt; UEM-Server sind hochwertige Ziele."
+  },
+  "CVE-2021-1789": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion in WebKit erlaubt über präparierte Webinhalte Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Browserprozess."
+    },
+    "C": {
+     "why": "Codeausführung mit Browserrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,14: WebKit-Type-Confusion, als Renderer-Bug in iOS-Ketten. Das wiederkehrende Apple-Muster: 'processing maliciously crafted web content may lead to arbitrary code execution', Klasse Type Confusion (CWE-843)."
+  },
+  "CVE-2012-4792": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Use-After-Free im Internet Explorer (CDwnBindInfo-Objekt) erlaubt über eine präparierte Website Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Code im Browserprozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,79: Watering-Hole-Angriff 2012 (Council on Foreign Relations). Eine IE-Use-After-Free (CWE-416); das benannte Objekt (CDwnBindInfo) macht die Beschreibung ungewöhnlich konkret für Microsoft."
+  },
+  "CVE-2022-1190": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "GitLab erlaubt gespeichertes XSS über mehrwortige Milestone-Referenzen in Issue-Beschreibungen und Kommentaren.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Milestone-Referenz."
+    },
+    "PR": {
+     "why": "Ein Konto zum Erstellen von Issues: PR:L."
+    },
+    "UI": {
+     "why": "Ein anderer Nutzer muss das Issue ansehen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Browserkontext des Opfers: C:L; der CNA vergab C:H."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L; der CNA I:H."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "dissent": {
+    "C": "CNA (GitLab): C:H, I:H (8,7). Wie bei allen GitLab-XSS bewertet der Hersteller die Admin-Übernahme-Folge höher als NVDs XSS-Standard."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,87. Gespeichertes XSS in einer Entwicklerplattform; der Wert ist die mögliche Übernahme von Maintainer-Konten. GitLab-XSS ist im Korpus ein wiederkehrendes NVD-gegen-CNA-Muster."
+  },
+  "CVE-2023-20198": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+   "summary_de": "Das Web-UI-Feature von Cisco IOS XE erlaubt einem unauthentifizierten Angreifer das Anlegen eines Kontos mit höchsten Rechten (Privilege 15).",
+   "metrics": {
+    "AV": {
+     "why": "Web-UI über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Der Angreifer legt über die exponierte Web-UI ohne Anmeldung ein Konto mit Level-15-Rechten an: PR:N.",
+     "pitfall": "Die erlangten Level-15-Rechte sind Impact, nicht Voraussetzung."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:C, ein kompromittierter Router/Switch trifft alle transportierten Netze."
+    },
+    "C": {
+     "why": "Privilege-15-Konto: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Volle Gerätekontrolle: alles änderbar."
+    },
+    "A": {
+     "why": "Volle Kontrolle: Gerät abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,996, Score 10,0: Im Oktober 2023 wurden über 40.000 Cisco-Geräte übernommen. In Kette mit CVE-2023-20273 (Command Injection) für Persistenz. Das Web-UI von Netzwerkgeräten gehört nie ins Internet; die Klasse ist noinfo bei NVD, real fehlende Authentifizierung."
+  },
+  "CVE-2023-27532": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "Eine Komponente von Veeam Backup & Replication erlaubt das Auslesen verschlüsselter Zugangsdaten aus der Konfigurationsdatenbank, was Zugriff auf die Backup-Infrastruktur ermöglicht.",
+   "metrics": {
+    "AV": {
+     "why": "Über den Backup-Service-Port (9401) im Netz."
+    },
+    "AC": {
+     "why": "Anfrage an den ungeschützten Endpunkt."
+    },
+    "PR": {
+     "why": "Die verschlüsselten Zugangsdaten werden ohne vorherige Anmeldung aus der Konfigurationsdatenbank abgefragt; sie sind die Beute: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Veeam."
+    },
+    "C": {
+     "why": "Zugangsdaten zu den Backup-Hosts: gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Lesen bewertet."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung bewertet."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,78: Ransomware-Gruppen zielen auf Backup-Systeme, um die Wiederherstellung zu verhindern. Die erbeuteten Credentials geben Zugriff auf alle Backup-Hosts; Offline-Backups bleiben die Antwort."
+  },
+  "CVE-2021-28799": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Autorisierungslücke in QNAP HBS 3 (Hybrid Backup Sync) erlaubt entfernten Angreifern die Anmeldung an einem Gerät (fest kodierte Zugangsdaten).",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz."
+    },
+    "AC": {
+     "why": "Bekannte Zugangsdaten nutzen."
+    },
+    "PR": {
+     "why": "Keine eigenen Rechte (fest kodierte Credentials): PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U; der CNA vergab S:C."
+    },
+    "C": {
+     "why": "Gerätezugriff: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Gerät abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (QNAP): S:C (10,0). NVD 9,8."
+   },
+   "context_de": "KEV mit Ransomware-Bezug (Qlocker), EPSS 0,78: NAS-Geräte am Internet, Massenverschlüsselung. Fest kodierte Zugangsdaten (CWE-285/CWE-798) in der Backup-Software; die Auswirkung war Ransomware auf Heimnutzer und kleine Firmen."
+  },
+  "CVE-2018-14933": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "upgrade_handle.php auf NUUO-NVRmini-Geräten erlaubt über Shell-Metazeichen im uploaddir-Parameter Remote Command Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface des NVR über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Parameter."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem Gerät."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar (Videoaufnahmen)."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Gerät abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,95: Netzwerk-Videorekorder in Botnetzen. Ein CGI-Parameter als Command Injection (CWE-78); Überwachungsgeräte sind selten inventarisiert und selten gepatcht."
+  },
+  "CVE-2009-1151": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "setup.php in phpMyAdmin erlaubt über die save-Aktion die Injektion von PHP-Code in eine Konfigurationsdatei (Static Code Injection).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte save-Anfrage."
+    },
+    "PR": {
+     "why": "setup.php war ohne Anmeldung erreichbar."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Webserver-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,97: phpMyAdmin ist in unzähligen Hosting-Umgebungen installiert. Static Code Injection (CWE-94): Angreifergesteuerter Text landet in einer PHP-Datei, die dann ausgeführt wird; ein Klassiker der PHP-Ära."
+  },
+  "CVE-2025-59718": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "FortiOS, FortiProxy und FortiSwitchManager prüfen eine kryptografische Signatur unzureichend, was unauthentifizierte Kompromittierung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage mit gefälschter Signatur."
+    },
+    "PR": {
+     "why": "Signaturumgehung: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Firewall (CNA-Vektor S:U)."
+    },
+    "C": {
+     "why": "Kompromittierung: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Firewall abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,68, nur CNA-Vektor. Fehlende Signaturprüfung (CWE-347); Fortinet ist ein Dauerziel mit vielen KEV-Einträgen. Bei einem Hersteller mit dieser Historie ist jede neue Firewall-CVE ein Prioritätsfall."
+  },
+  "CVE-2017-1000353": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Jenkins ist anfällig für unauthentifizierte Remote Code Execution: Ein serialisiertes SignedObject an die Jenkins-CLI wird mit einem neuen ObjectInputStream deserialisiert und umgeht die Blacklist.",
+   "metrics": {
+    "AV": {
+     "why": "Jenkins-CLI-Port über das Netz."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt."
+    },
+    "PR": {
+     "why": "„Unauthenticated remote code execution“: Das serialisierte Objekt geht an die Jenkins-CLI ohne jede Anmeldung: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf dem Jenkins-Master, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Credentials und Builds."
+    },
+    "I": {
+     "why": "RCE: alles änderbar (Supply Chain)."
+    },
+    "A": {
+     "why": "RCE: Master abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,997: Der Jenkins-Master hält Cloud-Credentials und signiert Artefakte. Deserialisierung (CWE-502) über die CLI, die eine Blacklist umging: Die SignedObject-Verpackung war der Trick, die Filterung zu passieren."
+  },
+  "CVE-2016-3088": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Fileserver-Webanwendung von Apache ActiveMQ erlaubt über HTTP PUT gefolgt von HTTP MOVE das Hochladen und Ausführen beliebiger Dateien.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "PUT plus MOVE, öffentlicher Exploit."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im ActiveMQ-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Jahrelang in Botnetzen. PUT zum Hochladen, MOVE zum Verschieben ins ausführbare Verzeichnis (CWE-434); der Fileserver war ein optionales Feature, das viele nicht abschalteten. Vergleiche die neuere ActiveMQ-RCE CVE-2023-46604."
+  },
+  "CVE-2019-1619": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Web-Interface von Cisco DCNM erlaubt über fehlerhaftes Session-Management die Umgehung der Authentifizierung und administrative Aktionen.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Session-Anfrage."
+    },
+    "PR": {
+     "why": "'Bypass authentication' wörtlich."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist DCNM."
+    },
+    "C": {
+     "why": "Admin-Aktionen: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Admin: alles änderbar."
+    },
+    "A": {
+     "why": "Admin: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,83: Der dritte DCNM-Auth-Bypass im Korpus (mit CVE-2019-15975/15976). Hier über Session-Management (fest kodierter Encryption-Key für Session-Cookies); Cisco veröffentlichte die DCNM-Lücken gebündelt."
+  },
+  "CVE-2021-28164": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+   "summary_de": "Eclipse Jetty erlaubt über URIs mit %2e- oder %2e%2e-Segmenten den Zugriff auf geschützte Ressourcen im WEB-INF-Verzeichnis (z. B. web.xml).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist Jetty."
+    },
+    "C": {
+     "why": "Nur WEB-INF-Dateien (web.xml), begrenzt: C:L."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,82: Path-Normalisierung mit %2e (CWE-200/CWE-22). Jetty hat mehrere solcher Encoding-Bypass-Lücken (CVE-2021-28169); der Server prüft die URL vor der Dekodierung, greift aber danach zu."
+  },
+  "CVE-2023-29525": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "XWiki ist über den since-Parameter des LegacyNotificationAdministration-Endpunkts anfällig für Code-Injection (XWiki-Syntax).",
+   "metrics": {
+    "AV": {
+     "why": "Wiki-Weboberfläche über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter since-Parameter."
+    },
+    "PR": {
+     "why": "Ein Konto: PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im XWiki-Prozess.",
+     "pitfall": "Der CNA vergab S:C. Wie bei allen XWiki-CVEs; RCE im selben Prozess ist S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (XWiki): S:C (8,8). Sechste XWiki-Syntax-Injection im Korpus."
+   },
+   "context_de": "Nicht in KEV, EPSS 0,78. XWiki-Code-Injection Nummer sechs; ein Parameter, der ungeprüft in die Rendering-Engine geht (CWE-74). Das Muster ist so konsistent, dass es eine eigene Merkregel verdient: XWiki-Parameter niemals ungeprüft rendern."
+  },
+  "CVE-2022-20699": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Cisco Small Business RV340/RV345-Router erlauben über die SSL-VPN-Verarbeitung unauthentifizierte Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "SSL-VPN über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Die Schwachstellen erlauben u. a. das Umgehen von Authentifizierung und Autorisierung; der Angreifer startet ohne Konto: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U; der CNA vergab S:C.",
+     "pitfall": "Cisco vergab S:C (Router betrifft dahinterliegende Netze), NVD S:U. Wie bei den anderen RV-Router-CVEs kein fester Scope-Konsens."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Gerät abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (Cisco): S:C (10,0). NVD 9,8."
+   },
+   "context_de": "KEV, EPSS 0,72: Die RV-Serie taucht mehrfach im Korpus auf (CVE-2023-20073, CVE-2022-20703). End-of-Life-Router ohne Patch; eine unzureichende Eingabevalidierung (CWE-1284) im VPN-Handler."
+  },
+  "CVE-2020-36228": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Ein Integer-Underflow in OpenLDAP führt bei der Certificate-List-Exact-Assertion-Verarbeitung zum slapd-Absturz (Denial of Service).",
+   "metrics": {
+    "AV": {
+     "why": "LDAP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Assertion."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der LDAP-Dienst."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "slapd-Absturz: A:H."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,84: Schwester von CVE-2020-36221, gleicher OpenLDAP-Patch, gleiche Klasse (CWE-191). OpenLDAP hatte 2020 ein ganzes Bündel solcher Assertion-DoS-Lücken; Geschwister im selben Release."
+  },
+  "CVE-2020-8794": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "OpenSMTPD hat einen Out-of-Bounds-Read in mta_io bei mehrzeiligen Antworten, der Remote Code Execution erlaubt; obwohl es den Client betrifft, ist auch ein Server über das Bounce-Handling angreifbar.",
+   "metrics": {
+    "AV": {
+     "why": "SMTP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte mehrzeilige SMTP-Antwort."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im OpenSMTPD-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,89: Zweite große OpenSMTPD-RCE 2020 (nach CVE-2020-7247). Ein Client-Bug (Out-of-Bounds-Read, CWE-125), der über Bounce-Handling zum Server-Bug wird: Der Server startet Client-Code, wenn er Zustellfehler behandelt."
+  },
+  "CVE-2013-1690": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Firefox und Thunderbird behandeln onreadystatechange-Events beim Seiten-Reload fehlerhaft, was Codeausführung über präparierte Inhalte erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Code im Browserprozess."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,69: Vom FBI in einer Operation gegen Tor-Nutzer (Freedom Hosting) eingesetzt. Eine Speicherkorruption (CWE-119); der Fall zeigt, dass auch Strafverfolger Zero-Days nutzen."
+  },
+  "CVE-2021-41773": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Fehler in der Pfad-Normalisierung von Apache HTTP Server 2.4.49 erlaubt Path Traversal, das URLs auf Dateien außerhalb der konfigurierten Verzeichnisse abbildet und je nach Konfiguration RCE ermöglicht.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte URL (%2e-Encoding)."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist der Apache-Prozess, S:U."
+    },
+    "C": {
+     "why": "NVD: Dateien lesen plus RCE bei aktivem mod_cgi: alle Daten lesbar."
+    },
+    "I": {
+     "why": "NVD: I:H (bei RCE); der CNA vergab I:N (nur Lesen)."
+    },
+    "A": {
+     "why": "NVD: A:H; der CNA A:N."
+    }
+   },
+   "dissent": {
+    "I": "CNA (Apache): C:H, I:N, A:N (7,5, nur Dateilesen). NVD 9,8 rechnet die RCE über mod_cgi mit. Ob es RCE oder nur Dateilesen ist, hängt an der Konfiguration (require all denied, mod_cgi)."
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,9999: Der Fix in 2.4.49 war selbst fehlerhaft und wurde in 2.4.50 erneut umgangen (CVE-2021-42013). Ein neu eingeführter Bug (Regression) in einer der verbreitetsten Software überhaupt; Massenscans binnen Tagen."
+  }
+ }
+}

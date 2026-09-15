@@ -1,0 +1,630 @@
+{
+ "batch": "batch-036",
+ "items": {
+  "CVE-2021-33045": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Mehrere Dahua-Kameras erlauben über präparierte Datenpakete im Login-Prozess die Umgehung der Identitätsauthentifizierung.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface der Kamera über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Login-Pakete."
+    },
+    "PR": {
+     "why": "Auth-Bypass: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Kamera, S:U."
+    },
+    "C": {
+     "why": "Gerätekontrolle: alle Daten lesbar (Videostream)."
+    },
+    "I": {
+     "why": "Gerätekontrolle: alles änderbar."
+    },
+    "A": {
+     "why": "Gerätekontrolle: Kamera abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,996: Schwester von CVE-2021-33044, gleiche Beschreibung, anderer Endpunkt. Auth-Bypass (CWE-287) in Dahua-Kameras; zwei CVEs im selben Login-Prozess. Überwachungskameras in Botnetzen und zur Spionage, wie Hikvision."
+  },
+  "CVE-2012-4681": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Java Runtime Environment (JRE) erlaubt über ein präpariertes Applet die Umgehung der SecurityManager-Beschränkungen (com.sun.beans.finder.ClassFinder) und Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Bösartiges Applet über eine Webseite."
+    },
+    "AC": {
+     "why": "Präpariertes Applet."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "NVD: UI:N (das Applet läuft beim Seitenbesuch automatisch)."
+    },
+    "S": {
+     "why": "Code außerhalb der Java-Sandbox, S:U."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99: Ein Java-Applet-Sandbox-Escape (CWE-284), 2012 in allen Exploit-Kits. Java-Applets waren jahrelang der gefährlichste Browser-Vektor (wie Flash); der SecurityManager sollte den Applet-Code einsperren, die Reflection-API (ClassFinder) umging ihn. Java-Applets sind heute tot, das Sandbox-Escape-Muster lebt in Browsern weiter."
+  },
+  "CVE-2021-1498": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Die Web-Verwaltung von Cisco HyperFlex HX erlaubt einem unauthentifizierten Angreifer Command-Injection-Angriffe.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage."
+    },
+    "PR": {
+     "why": "Wie CVE-2021-1497: Command-Injection über die Web-Oberfläche ohne Anmeldung: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf dem HyperFlex-System, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: System abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,99999: Schwester von CVE-2021-1497, gleiche Beschreibung. Command Injection (CWE-77) in Ciscos hyperkonvergenter Infrastruktur; zwei CVEs im selben Web-Interface. Ein Infrastruktur-System, das Storage und VMs steuert, ist ein hochwertiges Ziel."
+  },
+  "CVE-2020-8243": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Pulse Connect Secure erlaubt einem authentifizierten Angreifer über ein hochgeladenes Custom-Template die Ausführung beliebigen Codes.",
+   "metrics": {
+    "AV": {
+     "why": "Admin-Interface der Appliance über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes Template."
+    },
+    "PR": {
+     "why": "Admin-Zugriff nötig: PR:H."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code auf der Appliance, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Gateway abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,91: Pulse Secure zum wiederholten Mal (CVE-2019-11510, CVE-2020-8218, CVE-2020-8260). Template-Injection (CWE-94); PR:H, aber in Kette mit einem Auth-Bypass PR:N. Die Pulse-Secure-Familie im Korpus zeigt, wie ein VPN-Produkt über Jahre eine Lücke nach der anderen aufwies."
+  },
+  "CVE-2020-7961": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Liferay Portal erlaubt über die JSON-Web-Services (JSONWS) die Deserialisierung unvertrauter Daten und damit unauthentifizierte Remote Code Execution.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Liferay-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,999: Deserialisierung (CWE-502) über JSONWS. Liferay ist ein Java-Portal-Framework; JSON, das zu Java-Objekten deserialisiert wird, ist ein wiederkehrendes RCE-Muster (auch Jackson, XStream). Massenhaft gescannt."
+  },
+  "CVE-2024-50623": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Cleo Harmony, VLTrader und LexiCom haben einen unbeschränkten Datei-Upload und -Download, der zu Remote Code Execution führt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter Upload."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Cleo-Prozess, S:U."
+    },
+    "C": {
+     "why": "Webshell: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Webshell: alles änderbar."
+    },
+    "A": {
+     "why": "Webshell: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99: Von Clop (der MOVEit-Gruppe) Ende 2024 zum Massendatendiebstahl genutzt. Datei-Upload (CWE-434) in einem Managed-File-Transfer-Server; MFT-Server (MOVEit, GoAnywhere, Accellion, Cleo) sind die Kategorie mit den größten Ransomware-Vorfällen im Korpus. Der Fix war zudem unvollständig (CVE-2024-55956 folgte)."
+  },
+  "CVE-2021-30116": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Kaseya VSA gibt über die Download-Seite (dl.asp) Zugangsdaten preis, was zur Kompromittierung des VSA-Servers und aller verwalteten Endpunkte führt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Die Download-Seite aufrufen."
+    },
+    "PR": {
+     "why": "Die Download-Seite dl.asp gibt die Zugangsdaten ohne Anmeldung preis: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: S:U; der CNA vergab S:C (VSA steuert alle verwalteten Endpunkte).",
+     "pitfall": "Der CNA vergab S:C mit der RMM-Rolle; VSA verwaltet die Endpunkte seiner Kunden. Wie bei ScreenConnect ist die Produktrolle das S:C-Argument."
+    },
+    "C": {
+     "why": "Zugangsdaten plus RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alle verwalteten Endpunkte: alles änderbar."
+    },
+    "A": {
+     "why": "Ransomware auf alle Endpunkte: Systeme abschaltbar."
+    }
+   },
+   "dissent": {
+    "S": "CNA (Kaseya): S:C (10,0). NVD 9,8. Die RMM-Rolle (Steuerung aller Kunden-Endpunkte) stützt S:C."
+   },
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,86: Der Kaseya-VSA-Angriff vom Juli 2021 (REvil), einer der größten Supply-Chain-Ransomware-Vorfälle (über 1000 nachgelagerte Firmen). RMM-Server sind die wertvollsten Ziele überhaupt, weil ein Server alle Kunden-Endpunkte erreicht; wie ScreenConnect und ConnectWise im Korpus."
+  },
+  "CVE-2021-41282": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "diag_routes.php in pfSense erlaubt einem authentifizierten Nutzer eine sed-Daten-Injection, die über die netstat/sed-Verarbeitung zu Codeausführung führt.",
+   "metrics": {
+    "AV": {
+     "why": "Web-Interface der Firewall über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Route-Daten."
+    },
+    "PR": {
+     "why": "Ein authentifizierter Nutzer: PR:L."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Befehle auf der Firewall, S:U."
+    },
+    "C": {
+     "why": "Befehle: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Befehle: alles änderbar."
+    },
+    "A": {
+     "why": "Befehle: Firewall abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,87: Eine sed-Injection (CWE-74): netstat-Ausgabe wird per sed geparst, präparierte Routennamen schleusen sed-Kommandos ein. Ein ungewöhnlicher Injection-Vektor über ein Kommandozeilen-Werkzeug in der Verarbeitungskette. pfSense ist eine verbreitete Open-Source-Firewall."
+  },
+  "CVE-2019-0604": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Microsoft SharePoint prüft das Quell-Markup eines Anwendungspakets nicht, was unauthentifizierte Remote Code Execution über XML-Deserialisierung erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präpariertes serialisiertes Objekt."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im SharePoint-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,999: SharePoint-Deserialisierung (CWE-20, real XML-Deserialisierung), massenhaft ausgenutzt (auch von APT-Gruppen gegen Behörden). SharePoint ist ein wiederkehrendes RCE-Ziel; Deserialisierungslücken in .NET-Anwendungen sind im Korpus ein Dauerthema."
+  },
+  "CVE-2010-4344": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Ein Heap-Buffer-Overflow in string_vformat in Exim erlaubt über eine SMTP-Sitzung mit zwei MAIL-Kommandos und präparierten Headern die Ausführung beliebigen Codes.",
+   "metrics": {
+    "AV": {
+     "why": "SMTP über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte SMTP-Sitzung."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Code im Exim-Prozess, S:U."
+    },
+    "C": {
+     "why": "RCE: alle Daten lesbar."
+    },
+    "I": {
+     "why": "RCE: alles änderbar."
+    },
+    "A": {
+     "why": "RCE: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,72: Ein Exim-Heap-Overflow (CWE-787) von 2010, in Wurmangriffen genutzt. Exim ist im Korpus dreimal vertreten (2010, 2019 CVE-2019-10149); Mailserver, die als root laufen und Header parsen, sind eine wiederkehrende Angriffsfläche. Die Überlauf-Nutzlast steckt im Mail-Header."
+  },
+  "CVE-2021-20124": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+   "summary_de": "DrayTek VigorConnect hat im WebServlet-Download eine unauthentifizierte Local File Inclusion, die das Lesen beliebiger Dateien als root erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Download-Anfrage."
+    },
+    "PR": {
+     "why": "Der Datei-Download über das WebServlet steht unauthentifizierten Angreifern offen: PR:N."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist VigorConnect."
+    },
+    "C": {
+     "why": "Beliebige Dateien als root (Konfiguration, Secrets): gezielt, hochwertig, H."
+    },
+    "I": {
+     "why": "Nur Lesen, keine Änderung."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,96: Path Traversal (CWE-22) in DrayTeks Management-Software (wie die Vigor-Router CVE-2020-8515, CVE-2024-12987). DrayTek ist im Korpus ein Dauerthema; ein LFI, das als root beliebige Dateien liest, liefert die Zugangsdaten für den nächsten Schritt."
+  },
+  "CVE-2024-3393": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+   "summary_de": "Die DNS-Security-Funktion von PAN-OS erlaubt einem unauthentifizierten Angreifer über ein bösartiges Paket den Neustart der Firewall (Denial of Service).",
+   "metrics": {
+    "AV": {
+     "why": "Über die Data Plane der Firewall im Netz."
+    },
+    "AC": {
+     "why": "Ein bösartiges Paket."
+    },
+    "PR": {
+     "why": "Ein unauthentifizierter Angreifer sendet das schädliche Paket durch die Datenebene der Firewall: PR:N."
+    },
+    "UI": {
+     "why": "Kein Nutzer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist die Firewall."
+    },
+    "C": {
+     "why": "Kein Datenabfluss."
+    },
+    "I": {
+     "why": "Keine Änderung."
+    },
+    "A": {
+     "why": "Neustart, bei wiederholten Versuchen Wartungsmodus: A:H."
+    }
+   },
+   "context_de": "KEV, EPSS 0,28: Ein DoS (CWE-754) gegen PAN-OS, der die Firewall neu startet. PAN-OS ist im Korpus ein Dauerthema (GlobalProtect, SAML, DNS-Security); ein DoS gegen eine Firewall trifft alle Netze dahinter. Nur mit aktivierter DNS-Security-Logging-Funktion verwundbar; die Konfiguration entscheidet."
+  },
+  "CVE-2026-42208": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "LiteLLM mischt bei der API-Key-Prüfung den vom Aufrufer gelieferten Key-Wert in den Query-Text statt ihn als Parameter zu übergeben, was unauthentifizierte SQL-Injection erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Proxy-API über HTTP."
+    },
+    "AC": {
+     "why": "Präparierter API-Key-Wert."
+    },
+    "PR": {
+     "why": "Die Injection erfolgt in der Key-Prüfung selbst: keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Datenbank und Anwendung im selben Kontext, S:U."
+    },
+    "C": {
+     "why": "SQLi: alle Daten lesbar (auch die Keys anderer Nutzer)."
+    },
+    "I": {
+     "why": "SQLi: alles änderbar."
+    },
+    "A": {
+     "why": "SQLi: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,89: LiteLLM ist ein KI-Gateway (Proxy für LLM-APIs). SQLi (CWE-89) in der API-Key-Prüfung selbst: Der Key wird in den Query-Text konkateniert statt parametrisiert. KI-Tooling ist die neue Klasse exponierter Werkzeuge im Korpus (wie Langflow, Ray, MLflow); die Klasse (SQLi ohne Parametrisierung) ist uralt."
+  },
+  "CVE-2022-1386": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Das Fusion-Builder-Plugin (Avada-Theme) für WordPress validiert einen Formular-Parameter nicht, was Server-Side Request Forgery mit reflektiertem Ergebnis erlaubt.",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Formular-Anfrage."
+    },
+    "PR": {
+     "why": "Keine Anmeldung nötig."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "NVD: hier als schwerwiegende SSRF bewertet, S:U."
+    },
+    "C": {
+     "why": "Interne Ressourcen erreichbar, reflektiert lesbar: gezielt, H."
+    },
+    "I": {
+     "why": "Anfragen an interne Systeme: alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "Nicht in KEV, EPSS 0,71: SSRF (CWE-918) im Avada-Theme (eines der meistverkauften WordPress-Themes). Reflektierte SSRF (das Ergebnis kommt zurück) ist wertvoller als blinde; der Angreifer sieht die Antworten interner Dienste. Die Verbreitung des Themes macht die Reichweite."
+  },
+  "CVE-2023-23529": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Type Confusion in WebKit erlaubt über präparierte Webinhalte Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Browserprozess."
+    },
+    "C": {
+     "why": "Codeausführung mit Browserrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,10: Zero-Day gegen iOS. WebKit-Type-Confusion (CWE-843); die Apple-WebKit-Serie im Korpus spiegelt die Chrome-V8-Serie: Type Confusion als häufigster Browser-RCE-Weg. Niedriger EPSS trotz KEV: gezielte Ausnutzung gegen wenige Ziele."
+  },
+  "CVE-2022-3038": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+   "summary_de": "Eine Use-After-Free im Network Service von Chrome erlaubt über eine präparierte Seite Heap-Korruption.",
+   "metrics": {
+    "AV": {
+     "why": "Präparierte Webseite."
+    },
+    "AC": {
+     "why": "Seite laden reicht."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Seite besuchen."
+    },
+    "S": {
+     "why": "Bleibt im Renderer-Prozess."
+    },
+    "C": {
+     "why": "Codeausführung im Renderer: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Codeausführung: alles änderbar."
+    },
+    "A": {
+     "why": "Codeausführung: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,25: Use-After-Free (CWE-416) im Chrome Network Service. Wie WebAudio, WebRTC und IndexedDB sind die Chrome-Dienste mit komplexem Zustandsmanagement wiederkehrende UAF-Quellen. Ein Renderer-Kettenglied."
+  },
+  "CVE-2020-35730": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+   "summary_de": "Roundcube Webmail hat ein XSS über JavaScript in einem Link-Referenz-Element einer Plain-Text-E-Mail (linkref_addindex-Fehler).",
+   "metrics": {
+    "AV": {
+     "why": "E-Mail über das Netz."
+    },
+    "AC": {
+     "why": "Präparierte Plain-Text-Mail mit Link-Referenz."
+    },
+    "PR": {
+     "why": "Der Absender braucht kein Konto."
+    },
+    "UI": {
+     "why": "Das Opfer muss die Mail öffnen."
+    },
+    "S": {
+     "why": "XSS: Code läuft im Browser des Opfers, Scope Changed."
+    },
+    "C": {
+     "why": "Postfach-Session des Opfers: C:L."
+    },
+    "I": {
+     "why": "Aktionen als Opfer: I:L."
+    },
+    "A": {
+     "why": "Keine Verfügbarkeitsauswirkung."
+    }
+   },
+   "context_de": "KEV, EPSS 0,33: Wieder Roundcube-XSS (CWE-79), von APT28 gegen europäische Regierungen genutzt (wie CVE-2020-13965, CVE-2023-5631). Bemerkenswert: XSS über eine Plain-Text-Mail, nicht HTML; der Link-Parser interpretierte JavaScript. Roundcube ist im Korpus das meistangegriffene Webmail; der Sanitizer ist die Dauerbaustelle."
+  },
+  "CVE-2018-19410": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "PRTG Network Monitor erlaubt unauthentifizierten Angreifern über eine präparierte HTTP-Anfrage das Anlegen von Nutzern mit Lese-Schreib-Rechten (inklusive Administrator).",
+   "metrics": {
+    "AV": {
+     "why": "Webanwendung über HTTP."
+    },
+    "AC": {
+     "why": "Präparierte Anfrage (include-Direktive überschreiben)."
+    },
+    "PR": {
+     "why": "Der HTTP-Request auf /public/login.htm gelingt ohne Anmeldung und erzeugt sogar Admin-Konten: PR:N.",
+     "pitfall": "Dass Admin-Rechte ENTSTEHEN, ist Impact, nicht Voraussetzung — PR bewertet nur, was der Angreifer vorher braucht."
+    },
+    "UI": {
+     "why": "Kein Opfer beteiligt."
+    },
+    "S": {
+     "why": "Betroffen ist PRTG, S:U."
+    },
+    "C": {
+     "why": "Admin-Konto: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Admin: alles änderbar."
+    },
+    "A": {
+     "why": "Admin: Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,98: PRTG ist ein Netzwerk-Monitoring-Tool (wie WhatsUp Gold, Orion). Eine Autorisierungsumgehung (noinfo bei NVD), die das Anlegen eines Admin-Kontos erlaubt; in Kette mit einer Command Injection (CVE-2018-9276) zu RCE. Monitoring-Server sehen das ganze Netz."
+  },
+  "CVE-2021-35587": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Oracle Access Manager (OpenSSO-Agent-Komponente) erlaubt einem unauthentifizierten Angreifer über das Netz die Kompromittierung.",
+   "metrics": {
+    "AV": {
+     "why": "'Network access via HTTP' wörtlich."
+    },
+    "AC": {
+     "why": "'Easily exploitable' (Oracle-AC:L)."
+    },
+    "PR": {
+     "why": "'Unauthenticated attacker' wörtlich."
+    },
+    "UI": {
+     "why": "Keine Interaktion genannt."
+    },
+    "S": {
+     "why": "Kein 'additional products'-Satz: S:U."
+    },
+    "C": {
+     "why": "Kompromittierung: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Alles änderbar."
+    },
+    "A": {
+     "why": "Dienst abschaltbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,96, nur CNA-Vektor (Oracle): Oracle Access Manager ist ein Identity-Provider (wie OpenAM, Keycloak). Wer ihn übernimmt, kann Authentifizierungs-Token für alle angebundenen Anwendungen fälschen. Ein IdP-Kompromiss ist ein Single-Sign-On-Albtraum; die Auswirkung ist jede angebundene App."
+  },
+  "CVE-2013-0422": {
+   "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+   "summary_de": "Oracle Java erlaubt über ein präpariertes Applet (JmxMBeanServer/MBeanInstantiator) die Umgehung der Sandbox und Codeausführung.",
+   "metrics": {
+    "AV": {
+     "why": "Bösartiges Applet über eine Webseite."
+    },
+    "AC": {
+     "why": "Präpariertes Applet."
+    },
+    "PR": {
+     "why": "Keine Rechte nötig."
+    },
+    "UI": {
+     "why": "NVD: UI:N (das Applet läuft automatisch)."
+    },
+    "S": {
+     "why": "Code außerhalb der Java-Sandbox, S:U."
+    },
+    "C": {
+     "why": "Code mit Nutzerrechten: alle Daten lesbar."
+    },
+    "I": {
+     "why": "Code: alles änderbar."
+    },
+    "A": {
+     "why": "Code: System störbar."
+    }
+   },
+   "context_de": "KEV, EPSS 0,98, nur CNA-Vektor: Ein weiterer Java-Applet-Sandbox-Escape (CWE-284), wie CVE-2012-4681. 2013 waren Java-Applets in fast jedem Exploit-Kit; die Reflection-basierten Sandbox-Escapes (MBeanInstantiator, ClassFinder) waren die verlässlichste RCE-Quelle. Java-Applets führten zur Empfehlung, das Java-Plugin ganz zu deaktivieren."
+  }
+ }
+}
