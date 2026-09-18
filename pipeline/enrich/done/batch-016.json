@@ -646,7 +646,31 @@
      "why": "Codeausführung: System störbar."
     }
    },
-   "context_de": "KEV, EPSS 0,29: Teil der Predator-Spyware-Kette (mit CVE-2023-41991/41992), von Citizen Lab dokumentiert. Klasse laut NVD Fehlerbehandlung (CWE-754); Apple-CWEs sind grob."
+   "context_de": "KEV, EPSS 0,29: Teil der Predator-Spyware-Kette (mit CVE-2023-41991/41992), von Citizen Lab dokumentiert. Klasse laut NVD Fehlerbehandlung (CWE-754); Apple-CWEs sind grob.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Apple-Gerät nutzt eine verwundbare WebKit-Version; das Opfer besucht mit dem Browser eine Webseite."
+     },
+     {
+      "phase": "trigger",
+      "text": "Die präparierten Webinhalte lösen im WebKit-Prozess einen Speicherfehler aus."
+     },
+     {
+      "phase": "impact",
+      "text": "Es kommt zur Ausführung von beliebigem Code im Kontext des Browserprozesses (aktiv ausgenutzte 0-Day-Kette)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitsupdate (iOS/macOS) einspielen; das schließt die WebKit-Lücke."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt physischen Zugriff und schließt ein USB-Gerät an.",
+     "Ein lokaler Nutzer eskaliert über eine setuid-Binary zu root."
+    ]
+   }
   }
  }
 }

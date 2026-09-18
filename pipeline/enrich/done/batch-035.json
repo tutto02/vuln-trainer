@@ -341,7 +341,31 @@
      "why": "RCE: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,9999: Drupalgeddon2, binnen Stunden nach Veröffentlichung massenhaft ausgenutzt (der Nachfolger CVE-2018-7602 ist im Korpus). Property-Injection (CWE-20) über Formular-Array-Schlüssel wie #post_render; eine Drupal-Kern-RCE trifft Millionen Sites gleichzeitig. Ein Referenzfall für 'Patch-Fenster in Stunden'."
+   "context_de": "KEV, EPSS 0,9999: Drupalgeddon2, binnen Stunden nach Veröffentlichung massenhaft ausgenutzt (der Nachfolger CVE-2018-7602 ist im Korpus). Property-Injection (CWE-20) über Formular-Array-Schlüssel wie #post_render; eine Drupal-Kern-RCE trifft Millionen Sites gleichzeitig. Ein Referenzfall für 'Patch-Fenster in Stunden'.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Drupal-Server (vor 7.58 / 8.5.1) ist ohne Anmeldung über das Netz erreichbar (Drupalgeddon2)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet einen Request, dessen Formular-Array-Schlüssel (z. B. #-Eigenschaften) ungefiltert als Renderable verarbeitet wird."
+     },
+     {
+      "phase": "impact",
+      "text": "Die Render-API wertet den eingeschleusten Callback aus und führt beliebigen Code aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update auf gepatchte Drupal-Version; als Übergang den offiziellen Patch für die Formularverarbeitung anwenden."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer errät die Session-ID eines angemeldeten Redakteurs.",
+     "Ein Insider mit Redakteursrechten hinterlegt manuell ein bösartiges Skript."
+    ]
+   }
   },
   "CVE-2010-2883": {
    "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H",
@@ -403,7 +427,31 @@
      "why": "Keine Verfügbarkeitsauswirkung."
     }
    },
-   "context_de": "KEV, EPSS 0,9999: Path Traversal (CWE-22) in Cisco ASA, massenhaft gescannt. Der lesbare Bereich war auf das WebVPN-Verzeichnis begrenzt (daher C:H, nicht das ganze System); trotzdem hochwertig, weil dort Konfiguration und Sessions liegen. Cisco ASA ist im Korpus ein Dauerthema."
+   "context_de": "KEV, EPSS 0,9999: Path Traversal (CWE-22) in Cisco ASA, massenhaft gescannt. Der lesbare Bereich war auf das WebVPN-Verzeichnis begrenzt (daher C:H, nicht das ganze System); trotzdem hochwertig, weil dort Konfiguration und Sessions liegen. Cisco ASA ist im Korpus ein Dauerthema.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine Cisco-ASA/FTD-Weboberfläche ist ohne Anmeldung aus dem Netz erreichbar und nicht gepatcht."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet einen Request mit Path-Traversal an die Web-Services-Schnittstelle."
+     },
+     {
+      "phase": "impact",
+      "text": "Er liest lesbare Dateien im Webverzeichnis (kein Systemdatei-Vollzugriff): begrenzte Informationspreisgabe."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; Zugriff auf die Weboberfläche/WebVPN netzseitig beschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer führt über die Lücke beliebigen Code als root aus.",
+     "Ein Opfer meldet sich über eine gefälschte VPN-Seite an und gibt Zugangsdaten preis."
+    ]
+   }
   },
   "CVE-2023-44487": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",

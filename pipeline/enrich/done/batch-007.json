@@ -134,7 +134,31 @@
    "dissent": {
     "PR": "Der NVD-Vektor (PR:L/UI:N) beschreibt kein CSRF. Der korrekte CSRF-Vektor wäre AV:N oder A, PR:N, UI:R. Alte Nachbewertung, offensichtlich schematisch."
    },
-   "context_de": "KEV, EPSS 0,48: In Router-Botnetzen genutzt. Die Kombination 'Fernverwaltung aktivieren' macht aus einem LAN-Angriff einen dauerhaften Internet-Zugang."
+   "context_de": "KEV, EPSS 0,48: In Router-Botnetzen genutzt. Die Kombination 'Fernverwaltung aktivieren' macht aus einem LAN-Angriff einen dauerhaften Internet-Zugang.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein D-Link-DIR-600-Router hat die Weboberfläche aktiv; ein Administrator ist dort angemeldet."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer bringt den Administrator dazu, eine präparierte Seite zu öffnen, die im Hintergrund Requests an hedwig.cgi sendet (CSRF)."
+     },
+     {
+      "phase": "impact",
+      "text": "Im Namen des Admins wird ein neues Administratorkonto angelegt bzw. die Fernverwaltung aktiviert."
+     },
+     {
+      "phase": "stopper",
+      "text": "Firmware aktualisieren; CSRF-Token für administrative Aktionen einführen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer sendet OGNL im Content-Type-Header an den Router.",
+     "Ein lokaler Nutzer liest über einen Speicher-Leak Kernel-Daten aus."
+    ]
+   }
   },
   "CVE-2025-49113": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",

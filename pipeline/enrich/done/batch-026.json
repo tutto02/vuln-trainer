@@ -422,7 +422,31 @@
      "why": "Kernel-RCE: System abschaltbar."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99: Teil des EternalBlue-Bündels (mit CVE-2017-0143 bis 0148), das WannaCry und NotPetya trug. Score 8,1 mit AC:H für eine der folgenreichsten Lücken der Geschichte: der klarste Fall, dass CVSS reale Auswirkung nicht abbildet. EPSS und KEV tun es."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99: Teil des EternalBlue-Bündels (mit CVE-2017-0143 bis 0148), das WannaCry und NotPetya trug. Score 8,1 mit AC:H für eine der folgenreichsten Lücken der Geschichte: der klarste Fall, dass CVSS reale Auswirkung nicht abbildet. EPSS und KEV tun es.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Windows-System hat den veralteten SMBv1-Dienst aktiv und über das Netz erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet speziell präparierte SMBv1-Pakete an den Dienst."
+     },
+     {
+      "phase": "impact",
+      "text": "Ein Speicherfehler im SMBv1-Server erlaubt die Ausführung von beliebigem Code im Kernel-Kontext (EternalBlue-Familie)."
+     },
+     {
+      "phase": "stopper",
+      "text": "MS17-010-Patch einspielen, SMBv1 deaktivieren und Port 445 zum Internet sperren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer nutzt gestohlene gültige Domänen-Anmeldedaten für einen regulären Login.",
+     "Ein Nutzer öffnet einen bösartigen E-Mail-Anhang, der ein Makro ausführt."
+    ]
+   }
   },
   "CVE-2018-0798": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",

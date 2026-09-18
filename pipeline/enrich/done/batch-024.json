@@ -441,7 +441,31 @@
      "why": "RCE: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,79: Die JBoss-Invoker-Servlets (EJBInvoker, JMXInvoker) waren eine jahrelange RCE-Quelle (CWE-94), die in vielen Produkten (HP, JBoss) steckte. Ungeschützte Invoker-Endpunkte nehmen serialisierte Objekte ohne Auth an."
+   "context_de": "KEV, EPSS 0,79: Die JBoss-Invoker-Servlets (EJBInvoker, JMXInvoker) waren eine jahrelange RCE-Quelle (CWE-94), die in vielen Produkten (HP, JBoss) steckte. Ungeschützte Invoker-Endpunkte nehmen serialisierte Objekte ohne Auth an.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "HP ProCurve Manager / IDM exponiert die JBoss-Servlets EJBInvoker/JMXInvokerServlet ohne Authentifizierung im Netz."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet ein serialisiertes Java-Objekt an eines der Invoker-Servlets."
+     },
+     {
+      "phase": "impact",
+      "text": "Das Objekt wird deserialisiert und löst die Ausführung von beliebigem Code aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; Invoker-Servlets deaktivieren oder den Zugriff darauf netzseitig beschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer nutzt eine Path-Traversal, um /etc/passwd zu lesen.",
+     "Ein Opfer besucht eine Seite mit reflektiertem Cross-Site-Scripting."
+    ]
+   }
   },
   "CVE-2019-5420": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

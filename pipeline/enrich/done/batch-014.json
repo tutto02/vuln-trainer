@@ -615,7 +615,31 @@
    "dissent": {
     "AV": "Kein CNA-Vektor. Nach dem realen Angriffsweg wäre AV:N/UI:N/S:C (10,0) korrekt. Apples Standardtext hat NVD in die Irre geführt."
    },
-   "context_de": "KEV, EPSS 0,76: NSO Pegasus, Zero-Click über iMessage. Der Fall zeigt, dass ein Vektor aus einer Schablonen-Beschreibung die Realität verfehlen kann."
+   "context_de": "KEV, EPSS 0,76: NSO Pegasus, Zero-Click über iMessage. Der Fall zeigt, dass ein Vektor aus einer Schablonen-Beschreibung die Realität verfehlen kann.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Apple-Gerät verarbeitet eine vom Angreifer gelieferte PDF-Datei (z. B. per iMessage), CoreGraphics ist verwundbar (FORCEDENTRY)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Beim Parsen der präparierten PDF entsteht durch einen Integer-Overflow ein Speicherfehler."
+     },
+     {
+      "phase": "impact",
+      "text": "Die Kette führt ohne Nutzerinteraktion zur Ausführung von beliebigem Code (0-Click)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitsupdate einspielen; das korrigiert die Eingabevalidierung im PDF-Parser."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt gültige Apple-ID-Zugangsdaten des Opfers.",
+     "Ein Web-Formular reflektiert ungefiltert Eingaben als Skript zurück."
+    ]
+   }
   },
   "CVE-2022-22674": {
    "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",

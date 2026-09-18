@@ -263,7 +263,31 @@
      "why": "Admin: alles."
     }
    },
-   "context_de": "KEV, EPSS 0,92: Monitoring-Server sehen das ganze Netz und haben oft SSH-Keys zu allen Hosts. Gleiche Klasse wie Shiro und CentreStack: ein Key für alle."
+   "context_de": "KEV, EPSS 0,92: Monitoring-Server sehen das ganze Netz und haben oft SSH-Keys zu allen Hosts. Gleiche Klasse wie Shiro und CentreStack: ein Key für alle.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "EyesOfNetwork 5.3 nutzt bei allen Installationen denselben fest eingebauten API-Schlüssel (EONAPI_KEY)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer berechnet aus dem bekannten Schlüssel einen gültigen Admin-Zugriffstoken."
+     },
+     {
+      "phase": "impact",
+      "text": "Mit dem Token erhält er administrativen Zugriff auf die API."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; pro Installation einen zufälligen, geheimen API-Schlüssel erzeugen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer lädt eine .php-Datei über ein Upload-Feld hoch.",
+     "Ein Race-Condition-Fenster erlaubt das Überschreiben einer temporären Datei."
+    ]
+   }
   },
   "CVE-2013-7331": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:L",

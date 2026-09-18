@@ -620,7 +620,31 @@
      "why": "RCE: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,9999: Wieder Struts OGNL-Injection (noinfo bei NVD), diesmal über die URL-Namespace-Auswertung. Die Struts-Serie im Korpus (2006, 2013, 2017, 2018, 2023) ist die vollständigste Fallsammlung für Framework-Injection; jede Version brachte eine neue OGNL- oder Upload-Lücke."
+   "context_de": "KEV, EPSS 0,9999: Wieder Struts OGNL-Injection (noinfo bei NVD), diesmal über die URL-Namespace-Auswertung. Die Struts-Serie im Korpus (2006, 2013, 2017, 2018, 2023) ist die vollständigste Fallsammlung für Framework-Injection; jede Version brachte eine neue OGNL- oder Upload-Lücke.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Server läuft mit Apache Struts 2 (2.3–2.5.16), wobei alwaysSelectFullNamespace aktiv ist und ein Ergebnis ohne Namespace konfiguriert wurde."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer setzt einen OGNL-Ausdruck in den URL-Namespace der Anfrage."
+     },
+     {
+      "phase": "impact",
+      "text": "Struts wertet den Ausdruck bei der URL-Erzeugung aus und führt beliebigen Code aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; alwaysSelectFullNamespace nicht setzen und Ergebnisse mit definiertem Namespace konfigurieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer lädt über ein Formular eine ausführbare Datei hoch.",
+     "Ein lokaler Angreifer nutzt eine Race Condition beim Anlegen einer Datei."
+    ]
+   }
   }
  }
 }

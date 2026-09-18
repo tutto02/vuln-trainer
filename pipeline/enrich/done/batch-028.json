@@ -541,7 +541,31 @@
      "why": "RCE: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,99999: Der Equifax-Einbruch (147 Millionen Datensätze). Klasse laut NVD Fehlerbehandlung (CWE-755), real OGNL-Injection: Der Fehler entstand in der Fehlermeldungs-Generierung, die den Header als OGNL auswertete. Struts-OGNL ist im Korpus mehrfach vertreten."
+   "context_de": "KEV, EPSS 0,99999: Der Equifax-Einbruch (147 Millionen Datensätze). Klasse laut NVD Fehlerbehandlung (CWE-755), real OGNL-Injection: Der Fehler entstand in der Fehlermeldungs-Generierung, die den Header als OGNL auswertete. Struts-OGNL ist im Korpus mehrfach vertreten.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Server läuft mit verwundbarem Apache Struts 2 (Jakarta-Multipart-Parser) und ist erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet einen HTTP-Request mit einem OGNL-Ausdruck im Content-Type-Header."
+     },
+     {
+      "phase": "impact",
+      "text": "Die fehlerhafte Ausnahmebehandlung wertet den OGNL-Ausdruck aus und führt beliebige Befehle aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update auf 2.3.32 / 2.5.10.1; verwundbaren Multipart-Parser ersetzen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit Standard-Zugangsdaten am Admin-Panel an.",
+     "Ein lokaler Nutzer platziert eine bösartige DLL im Suchpfad der Anwendung."
+    ]
+   }
   },
   "CVE-2021-42258": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

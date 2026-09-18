@@ -630,7 +630,31 @@
      "why": "root: System abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,95: Zwölf Jahre in pkexec, betraf praktisch jede Linux-Distribution. Klasse laut NVD CWE-125 (Read), real ein Argument-Handling-Fehler (CWE-787-nah); NVDs CWE trifft die Ursache nicht genau. Der zuverlässigste Linux-Root-Exploit seit Dirty COW."
+   "context_de": "KEV, EPSS 0,95: Zwölf Jahre in pkexec, betraf praktisch jede Linux-Distribution. Klasse laut NVD CWE-125 (Read), real ein Argument-Handling-Fehler (CWE-787-nah); NVDs CWE trifft die Ursache nicht genau. Der zuverlässigste Linux-Root-Exploit seit Dirty COW.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Der Angreifer hat bereits ein unprivilegiertes lokales Konto auf einem Linux-System mit verwundbarem pkexec (PwnKit)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er ruft pkexec mit einer leeren Argumentliste und präparierten Umgebungsvariablen auf."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Fehler in der Argumentbehandlung lässt pkexec eine angreiferkontrollierte Bibliothek als root laden: lokale Rechteausweitung auf root."
+     },
+     {
+      "phase": "stopper",
+      "text": "polkit-Update einspielen; als Notlösung das setuid-Bit von pkexec entfernen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer verbindet sich ohne Konto über das Netzwerk mit dem Dienst.",
+     "Ein Opfer öffnet ein manipuliertes PDF, das den Reader zum Absturz bringt."
+    ]
+   }
   }
  }
 }

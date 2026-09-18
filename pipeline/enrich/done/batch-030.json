@@ -190,7 +190,31 @@
      "why": "API-Befehle: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,92: Der Auth-Bypass (CWE-306) im Umfeld des SUNBURST-Vorfalls; Angreifer nutzten ihn, um die kompromittierte Orion-Plattform weiter zu steuern. Orion überwacht die gesamte IT-Infrastruktur; SolarWinds-Produkte stehen im Korpus seither unter Dauerbeobachtung."
+   "context_de": "KEV, EPSS 0,92: Der Auth-Bypass (CWE-306) im Umfeld des SUNBURST-Vorfalls; Angreifer nutzten ihn, um die kompromittierte Orion-Plattform weiter zu steuern. Orion überwacht die gesamte IT-Infrastruktur; SolarWinds-Produkte stehen im Korpus seither unter Dauerbeobachtung.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein SolarWinds-Orion-Server ist über das Netz erreichbar und nicht gegen den API-Auth-Bypass gepatcht."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer ruft eine API-URL mit bestimmten Pfadbestandteilen auf, die die Authentifizierungsprüfung umgehen."
+     },
+     {
+      "phase": "impact",
+      "text": "Ohne gültige Anmeldung kann er API-Befehle ausführen und die Orion-Instanz kompromittieren."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; Zugriff auf die Orion-API netzseitig einschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer entschlüsselt abgefangenen TLS-Verkehr mit einem statischen Zertifikat.",
+     "Ein Opfer öffnet ein Office-Dokument mit einem bösartigen Makro."
+    ]
+   }
   },
   "CVE-2022-4223": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",

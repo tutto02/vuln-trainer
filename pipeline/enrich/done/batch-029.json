@@ -499,7 +499,31 @@
      "why": "Volle Kontrolle: A:H."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999, Score 10,0: Einer der folgenreichsten VPN-Bugs (2019/2020), monatelang ungepatcht in vielen Organisationen, Grundlage zahlreicher Ransomware-Einbrüche. Ein Path Traversal (CWE-22), das Klartext-Passwörter liefert; die Kombination aus Dateilesen und exponierten Credentials machte es zum 10,0."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999, Score 10,0: Einer der folgenreichsten VPN-Bugs (2019/2020), monatelang ungepatcht in vielen Organisationen, Grundlage zahlreicher Ransomware-Einbrüche. Ein Path Traversal (CWE-22), das Klartext-Passwörter liefert; die Kombination aus Dateilesen und exponierten Credentials machte es zum 10,0.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Pulse-Connect-Secure-VPN-Gateway (anfällige Version) ist ohne Anmeldung aus dem Internet erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet eine speziell präparierte URI mit Path-Traversal an das Gateway."
+     },
+     {
+      "phase": "impact",
+      "text": "Er liest beliebige Systemdateien, darunter Klartext-Zugangsdaten und Session-Daten der VPN-Nutzer."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen und danach alle Passwörter und Sitzungsschlüssel rotieren, da Geheimnisse abgeflossen sein können."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer bringt den VPN-Dienst durch eine Flut von Paketen zum Absturz.",
+     "Ein Opfer wird über einen bösartigen Link auf eine gefälschte Login-Seite geleitet."
+    ]
+   }
   },
   "CVE-2020-11532": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

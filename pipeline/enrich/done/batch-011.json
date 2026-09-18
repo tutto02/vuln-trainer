@@ -464,7 +464,31 @@
    "dissent": {
     "I": "Kein CNA-Vektor. Für ein Nutzerkonto ohne Admin wäre C:H/I:L/A:N (8,2) angemessener."
    },
-   "context_de": "KEV, EPSS 0,98: Passwort auf Twitter, danach Massenanmeldungen. Fest kodierte Konten in Add-ons: Die Angriffsfläche eines Produkts umfasst seine Erweiterungen."
+   "context_de": "KEV, EPSS 0,98: Passwort auf Twitter, danach Massenanmeldungen. Fest kodierte Konten in Add-ons: Die Angriffsfläche eines Produkts umfasst seine Erweiterungen.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Die Atlassian-App „Questions for Confluence“ ist installiert und legt beim Aktivieren ein Konto disabledsystemuser mit fest eingebautem Passwort an."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer meldet sich aus dem Netz mit dem öffentlich bekannten, fest eingebauten Passwort an."
+     },
+     {
+      "phase": "impact",
+      "text": "Er erhält Zugriff auf alle für die confluence-users-Gruppe sichtbaren Inhalte."
+     },
+     {
+      "phase": "stopper",
+      "text": "App aktualisieren oder deaktivieren und das Konto disabledsystemuser deaktivieren bzw. entfernen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer schleust über einen XXE-Payload eine externe Entity ein.",
+     "Ein lokaler Prozess liest das Passwort aus einer Speicherauszugsdatei."
+    ]
+   }
   },
   "CVE-2016-2388": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",

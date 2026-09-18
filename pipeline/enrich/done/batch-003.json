@@ -308,7 +308,31 @@
    "dissent": {
     "S": "CNA: S:C, A:L (9,3). NVD 7,5 bewertet die Primitive (Datei lesen), der CNA die Folge (Admin-Übernahme)."
    },
-   "context_de": "KEV, EPSS 0,43: Helpdesk-Software mit AD-Anbindung, Kette zu RCE über weitere CVEs. Die Auswirkung ist die Domäne, nicht der Helpdesk."
+   "context_de": "KEV, EPSS 0,43: Helpdesk-Software mit AD-Anbindung, Kette zu RCE über weitere CVEs. Die Auswirkung ist die Domäne, nicht der Helpdesk.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "SysAid On-Prem (≤ 23.3.40) verarbeitet im Checkin-Endpunkt XML, ohne externe Entities zu deaktivieren, und ist ohne Anmeldung erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet ein XML-Dokument mit einer externen Entity, die auf eine lokale Datei oder interne URL verweist."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Parser löst die Entity auf, liest Serverdateien und ermöglicht so u. a. die Übernahme des Administratorkontos."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; XML-Parser ohne Auflösung externer Entities und ohne DTD konfigurieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer lädt eine Web-Shell über ein ungeschütztes Upload-Formular hoch.",
+     "Ein Insider mit Datenbankzugriff exportiert die Kundentabelle direkt."
+    ]
+   }
   },
   "CVE-2020-1472": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",

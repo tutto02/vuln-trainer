@@ -624,7 +624,31 @@
      "why": "Code: System störbar."
     }
    },
-   "context_de": "KEV, EPSS 0,98, nur CNA-Vektor: Ein weiterer Java-Applet-Sandbox-Escape (CWE-284), wie CVE-2012-4681. 2013 waren Java-Applets in fast jedem Exploit-Kit; die Reflection-basierten Sandbox-Escapes (MBeanInstantiator, ClassFinder) waren die verlässlichste RCE-Quelle. Java-Applets führten zur Empfehlung, das Java-Plugin ganz zu deaktivieren."
+   "context_de": "KEV, EPSS 0,98, nur CNA-Vektor: Ein weiterer Java-Applet-Sandbox-Escape (CWE-284), wie CVE-2012-4681. 2013 waren Java-Applets in fast jedem Exploit-Kit; die Reflection-basierten Sandbox-Escapes (MBeanInstantiator, ClassFinder) waren die verlässlichste RCE-Quelle. Java-Applets führten zur Empfehlung, das Java-Plugin ganz zu deaktivieren.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Auf dem System läuft ein verwundbares Java 7 (vor Update 11) Browser-Plugin; das Opfer surft im Web."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer liefert ein Applet, das über getMBeanInstantiator und findClass die Sandbox-Beschränkung umgeht."
+     },
+     {
+      "phase": "impact",
+      "text": "Das Applet verlässt die Java-Sandbox und führt beliebigen Code mit den Rechten des Nutzers aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Java aktualisieren; Browser-Plugin deaktivieren, wenn nicht zwingend nötig."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer nutzt eine SQL-Injection im Login-Formular.",
+     "Ein Dienst gibt wegen fehlendem HttpOnly-Flag ein Session-Cookie preis."
+    ]
+   }
   }
  }
 }

@@ -318,7 +318,31 @@
      "why": "RCE: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,9999, nur CNA-Vektor. XXE plus eine glibc-Lücke (CVE-2024-2961) ergaben RCE gegen tausende Shops. Klasse XXE (CWE-611); die RCE kam aus der Kette, nicht aus der XXE allein."
+   "context_de": "KEV, EPSS 0,9999, nur CNA-Vektor. XXE plus eine glibc-Lücke (CVE-2024-2961) ergaben RCE gegen tausende Shops. Klasse XXE (CWE-611); die RCE kam aus der Kette, nicht aus der XXE allein.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Adobe Commerce/Magento (anfällige Version) verarbeitet ohne Anmeldung XML und löst externe Entities auf."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet ein präpariertes XML-Dokument, das externe Entities referenziert."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Parser liest lokale Dateien; verkettet mit weiteren Schwächen führt das zu Codeausführung (CosmicSting)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitspatch (isolierter Hotfix) einspielen; XML-Verarbeitung ohne externe Entities konfigurieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer nutzt ein gültiges Kundenkonto und kauft mit fremder Zahlungsmethode.",
+     "Ein Nutzer wird per CSRF-Link zu einer ungewollten Aktion verleitet."
+    ]
+   }
   },
   "CVE-2022-43939": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
