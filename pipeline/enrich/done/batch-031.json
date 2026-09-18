@@ -628,7 +628,31 @@
    "dissent": {
     "PR": "CNA (Roundcube): PR:N (6,1). Der Absender braucht kein Zimbra-/Roundcube-Konto; PR:N ist schlüssiger."
    },
-   "context_de": "KEV, EPSS 0,76: Von der Gruppe Winter Vivern gegen europäische Regierungen genutzt. SVG als XSS-Vektor (CWE-79), wie CVE-2025-68461. Roundcube ist im Korpus ein wiederkehrendes Spionageziel; der HTML-Sanitizer (washtml) ist die Dauerbaustelle."
+   "context_de": "KEV, EPSS 0,76: Von der Gruppe Winter Vivern gegen europäische Regierungen genutzt. SVG als XSS-Vektor (CWE-79), wie CVE-2025-68461. Roundcube ist im Korpus ein wiederkehrendes Spionageziel; der HTML-Sanitizer (washtml) ist die Dauerbaustelle.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Roundcube-Webmail (anfällige Version) zeigt HTML-E-Mails an; ein Nutzer besitzt ein Konto."
+     },
+     {
+      "phase": "trigger",
+      "text": "Das Opfer öffnet eine E-Mail mit einem präparierten SVG-Dokument, das die HTML-Bereinigung umgeht."
+     },
+     {
+      "phase": "impact",
+      "text": "Das eingebettete JavaScript wird im Roundcube-Kontext des Opfers ausgeführt (Stored XSS)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Roundcube aktualisieren; die HTML-/SVG-Bereinigung (rcube_washtml) korrigieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer sendet OS-Befehle über einen CGI-Parameter.",
+     "Ein unauthentifizierter Angreifer liest über XXE lokale Dateien."
+    ]
+   }
   }
  }
 }

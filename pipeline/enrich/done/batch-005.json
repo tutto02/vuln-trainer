@@ -197,7 +197,31 @@
    "dissent": {
     "S": "CNA: S:C, C:H, I:N, A:L (9,3). NVD 9,8 hier, 7,5 bei der Schwesterlücke mit identischem Text. Provenienz und Konsistenz sind zwei verschiedene Probleme."
    },
-   "context_de": "KEV, EPSS 0,64. Zwei XXE-Lücken im selben Produkt, dieselbe Kette zu RCE. Für die Priorisierung ist die Kette relevant, nicht der Unterschied zwischen 7,5 und 9,8."
+   "context_de": "KEV, EPSS 0,64. Zwei XXE-Lücken im selben Produkt, dieselbe Kette zu RCE. Für die Priorisierung ist die Kette relevant, nicht der Unterschied zwischen 7,5 und 9,8.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "SysAid On-Prem (≤ 23.3.40) verarbeitet im Server-URL-Endpunkt XML ohne Schutz vor externen Entities und ist ohne Anmeldung erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet ein XML mit externer Entity, die auf eine lokale Datei oder interne URL zeigt."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Parser liest Serverdateien und ermöglicht die Übernahme des Administratorkontos."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; XML-Parser ohne externe Entities und ohne DTD betreiben."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer nutzt eine hartkodierte Zugangskennung für den Login.",
+     "Ein lokaler Nutzer eskaliert über pkexec zu root."
+    ]
+   }
   },
   "CVE-2014-3566": {
    "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:N/A:N",

@@ -231,7 +231,31 @@
    "dissent": {
     "C": "Nur CNA-Vektor (10,0). Für die beschriebene Primitive wäre 7,2 (C:L/I:L) üblich; die 10,0 setzt Wissen voraus, das nicht im Text steht."
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,85. Schwester von CVE-2026-83548, beide vage beschrieben, beide 10,0: Herstellerangaben ersetzen die eigene Analyse nicht."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,85. Schwester von CVE-2026-83548, beide vage beschrieben, beide 10,0: Herstellerangaben ersetzen die eigene Analyse nicht.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine SonicWall-SMA1000-Appliance exponiert die Work-Place-Oberfläche ohne Anmeldung im Netz."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet einen Request, der die Appliance zu einer HTTP-Anfrage an ein von ihm gewähltes Ziel bewegt (SSRF)."
+     },
+     {
+      "phase": "impact",
+      "text": "Die Appliance stellt Anfragen an interne, sonst nicht erreichbare Dienste (Scope-Wechsel in die interne Zone)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; ausgehende Ziele der Appliance per Allowlist beschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer führt über die Lücke direkt Betriebssystembefehle aus.",
+     "Ein lokaler Nutzer liest über einen Buffer-Over-Read Speicher aus."
+    ]
+   }
   },
   "CVE-2016-7201": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",

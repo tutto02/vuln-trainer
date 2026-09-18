@@ -185,7 +185,31 @@
      "why": "Webshell: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99: Von Clop (der MOVEit-Gruppe) Ende 2024 zum Massendatendiebstahl genutzt. Datei-Upload (CWE-434) in einem Managed-File-Transfer-Server; MFT-Server (MOVEit, GoAnywhere, Accellion, Cleo) sind die Kategorie mit den größten Ransomware-Vorfällen im Korpus. Der Fix war zudem unvollständig (CVE-2024-55956 folgte)."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99: Von Clop (der MOVEit-Gruppe) Ende 2024 zum Massendatendiebstahl genutzt. Datei-Upload (CWE-434) in einem Managed-File-Transfer-Server; MFT-Server (MOVEit, GoAnywhere, Accellion, Cleo) sind die Kategorie mit den größten Ransomware-Vorfällen im Korpus. Der Fix war zudem unvollständig (CVE-2024-55956 folgte).",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Cleo Harmony/VLTrader/LexiCom (< 5.8.0.21) bietet ohne Anmeldung einen Datei-Upload/-Download an."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer lädt eine präparierte Datei hoch und platziert sie im Autorun-/Ausführungspfad."
+     },
+     {
+      "phase": "impact",
+      "text": "Die Datei wird verarbeitet/ausgeführt und führt zu Remote Code Execution (in Ransomware-Kampagnen genutzt)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; Upload-Verzeichnisse ohne Ausführungsrechte betreiben, Dateitypen streng prüfen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer errät das Admin-Passwort per Brute Force.",
+     "Ein lokaler Nutzer nutzt eine Race Condition beim Symlink."
+    ]
+   }
   },
   "CVE-2021-30116": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
@@ -220,7 +244,31 @@
    "dissent": {
     "S": "CNA (Kaseya): S:C (10,0). NVD 9,8. Die RMM-Rolle (Steuerung aller Kunden-Endpunkte) stützt S:C."
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,86: Der Kaseya-VSA-Angriff vom Juli 2021 (REvil), einer der größten Supply-Chain-Ransomware-Vorfälle (über 1000 nachgelagerte Firmen). RMM-Server sind die wertvollsten Ziele überhaupt, weil ein Server alle Kunden-Endpunkte erreicht; wie ScreenConnect und ConnectWise im Korpus."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,86: Der Kaseya-VSA-Angriff vom Juli 2021 (REvil), einer der größten Supply-Chain-Ransomware-Vorfälle (über 1000 nachgelagerte Firmen). RMM-Server sind die wertvollsten Ziele überhaupt, weil ein Server alle Kunden-Endpunkte erreicht; wie ScreenConnect und ConnectWise im Korpus.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Kaseya-VSA-On-Premise-Server (< 9.5.7) ist über das Netz erreichbar; die Download-Seite dl.asp ist per Default aktiv."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer ruft ohne Anmeldung die vorhersagbare URL /dl.asp auf."
+     },
+     {
+      "phase": "impact",
+      "text": "Er erhält Klartext-Zugangsdaten, die für die weitere Kompromittierung (bis zur Ransomware-Verteilung) genutzt wurden."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen und alle offengelegten Zugangsdaten rotieren; VSA nicht offen ins Internet stellen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit einem fest eingebauten Standardpasswort an.",
+     "Ein Opfer klickt auf einen CSRF-Link, der ein Admin-Konto anlegt."
+    ]
+   }
   },
   "CVE-2021-41282": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",

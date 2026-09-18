@@ -541,7 +541,31 @@
      "why": "RCE: alles."
     }
    },
-   "context_de": "KEV, EPSS 0,83: Alte EL-Injection, 2021 noch gegen alte JBoss-Instanzen genutzt. Expression Language Injection (CWE-917) ist die Java-Variante von SSTI."
+   "context_de": "KEV, EPSS 0,83: Alte EL-Injection, 2021 noch gegen alte JBoss-Instanzen genutzt. Expression Language Injection (CWE-917) ist die Java-Variante von SSTI.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine Anwendung nutzt JBoss Seam 2, bei der der Java Security Manager nicht aktiv ist, und ist über das Netz erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer ruft eine präparierte URL mit einer JBoss-EL-Expression auf, die nicht ausreichend gefiltert wird."
+     },
+     {
+      "phase": "impact",
+      "text": "Die EL-Expression wird ausgewertet und führt beliebigen Code auf dem Server aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; Java Security Manager aktivieren und EL-Eingaben strikt filtern."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer lädt über ein Formular eine Web-Shell hoch.",
+     "Ein Opfer öffnet eine E-Mail mit eingebettetem SVG-Skript."
+    ]
+   }
   },
   "CVE-2015-4000": {
    "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N",

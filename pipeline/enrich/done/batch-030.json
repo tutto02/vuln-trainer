@@ -369,7 +369,31 @@
      "why": "RCE: Gateway abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,96: Pulse Secure ist im Korpus ein Dauerthema (CVE-2019-11510, CVE-2021-22893). PR:H einzeln, aber in Kette mit einem Auth-Bypass PR:N. Unkontrollierte Archiv-Extraktion (CWE-434) als RCE-Weg; Admin-Rechte, die eine andere Lücke liefert."
+   "context_de": "KEV, EPSS 0,96: Pulse Secure ist im Korpus ein Dauerthema (CVE-2019-11510, CVE-2021-22893). PR:H einzeln, aber in Kette mit einem Auth-Bypass PR:N. Unkontrollierte Archiv-Extraktion (CWE-434) als RCE-Weg; Admin-Rechte, die eine andere Lücke liefert.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Pulse-Connect-Secure-Gateway (< 9.1R9) ist verwundbar; der Angreifer besitzt bereits ein administratives Konto der Weboberfläche."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er lädt ein präpariertes Archiv hoch, dessen unkontrollierte gzip-Entpackung Dateien an beliebige Orte schreibt."
+     },
+     {
+      "phase": "impact",
+      "text": "Durch das Ablegen einer Datei im Webverzeichnis erreicht er Codeausführung auf dem Gateway."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; Entpackpfade validieren und administrativen Zugang absichern."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel ohne jegliche Anmeldung.",
+     "Ein Opfer öffnet ein Office-Dokument mit Makro."
+    ]
+   }
   },
   "CVE-2016-2107": {
    "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
@@ -617,7 +641,31 @@
      "why": "root: System abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,99: Die Absenderadresse selbst ist die Nutzlast (wie bei Exim CVE-2019-10149). Command Injection (CWE-78) im SMTP-Adress-Parsing; die 'uncommented default configuration' war verwundbar. OpenSMTPD ist im Korpus zweimal vertreten (auch CVE-2020-8794)."
+   "context_de": "KEV, EPSS 0,99: Die Absenderadresse selbst ist die Nutzlast (wie bei Exim CVE-2019-10149). Command Injection (CWE-78) im SMTP-Adress-Parsing; die 'uncommented default configuration' war verwundbar. OpenSMTPD ist im Korpus zweimal vertreten (auch CVE-2020-8794).",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Server läuft mit verwundbarem OpenSMTPD (6.6, Default-Konfiguration) und nimmt SMTP-Verbindungen aus dem Netz an."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer öffnet eine SMTP-Sitzung und setzt Shell-Metazeichen in das MAIL-FROM-Feld."
+     },
+     {
+      "phase": "impact",
+      "text": "Die fehlerhafte Adressprüfung führt die eingeschleusten Befehle als root aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "OpenSMTPD aktualisieren; die Adressvalidierung in smtp_mailaddr korrigieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt ein gültiges Postfach-Konto zum Versand.",
+     "Ein Opfer klickt auf einen Link, der ein Admin-Konto anlegt."
+    ]
+   }
   },
   "CVE-2023-48788": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

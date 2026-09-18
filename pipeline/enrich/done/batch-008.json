@@ -199,7 +199,31 @@
    "dissent": {
     "C": "CNA: AC:H, C:H (6,9). Umfang-gegen-Wert-Diskussion auf Bibliotheksebene."
    },
-   "context_de": "KEV, EPSS 0,85: Über Drupal und andere Einbettungen ausgenutzt. Jede alte jQuery-Kopie in einer Webanwendung ist ein Findling in Scannerberichten; die reale Ausnutzbarkeit hängt am Aufruf."
+   "context_de": "KEV, EPSS 0,85: Über Drupal und andere Einbettungen ausgenutzt. Jede alte jQuery-Kopie in einer Webanwendung ist ein Findling in Scannerberichten; die reale Ausnutzbarkeit hängt am Aufruf.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine Webanwendung nutzt eine verwundbare jQuery-Version (< 3.5.0) und übergibt HTML aus nicht vertrauenswürdiger Quelle an DOM-Methoden wie .html()/.append()."
+     },
+     {
+      "phase": "trigger",
+      "text": "Ein Opfer lädt eine Seite, auf der HTML mit präparierten <option>-Elementen verarbeitet wird."
+     },
+     {
+      "phase": "impact",
+      "text": "Der eingebettete Skriptcode wird im Browser des Opfers ausgeführt (Scope-Wechsel in dessen Sitzung)."
+     },
+     {
+      "phase": "stopper",
+      "text": "jQuery auf 3.5.0+ aktualisieren; HTML serverseitig strikt filtern, bevor es an DOM-Methoden geht."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer liest über eine Path-Traversal Serverdateien.",
+     "Ein unauthentifizierter Angreifer führt über einen Deserialisierungsfehler Code aus."
+    ]
+   }
   },
   "CVE-2021-29447": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
@@ -565,7 +589,31 @@
      "why": "RCE: alles."
     }
    },
-   "context_de": "KEV, EPSS 0,93: 'Shiro-550', in China massenhaft ausgenutzt, Klasse CWE-321 (fester Kryptoschlüssel), Auswirkung über CWE-502. Vergleiche CentreStack CVE-2025-30406 und Superset CVE-2023-27524: dasselbe Muster, drei Produkte."
+   "context_de": "KEV, EPSS 0,93: 'Shiro-550', in China massenhaft ausgenutzt, Klasse CWE-321 (fester Kryptoschlüssel), Auswirkung über CWE-502. Vergleiche CentreStack CVE-2025-30406 und Superset CVE-2023-27524: dasselbe Muster, drei Produkte.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine Anwendung nutzt Apache Shiro (< 1.2.5) mit „Remember Me“, ohne einen individuellen Chiffrierschlüssel zu setzen (Default-Schlüssel)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer erstellt mit dem bekannten Default-Schlüssel ein präpariertes, verschlüsseltes rememberMe-Cookie mit serialisiertem Objekt."
+     },
+     {
+      "phase": "impact",
+      "text": "Beim Entschlüsseln und Deserialisieren des Cookies wird beliebiger Code ausgeführt."
+     },
+     {
+      "phase": "stopper",
+      "text": "Shiro aktualisieren; einen zufälligen, geheimen Chiffrierschlüssel konfigurieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer nutzt eine SQL-Injection im Suchfeld.",
+     "Ein lokaler Angreifer platziert eine bösartige DLL im Suchpfad."
+    ]
+   }
   },
   "CVE-2025-47813": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",

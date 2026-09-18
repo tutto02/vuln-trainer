@@ -217,7 +217,31 @@
      "why": "Codeausführung: System störbar."
     }
    },
-   "context_de": "KEV, EPSS 0,84: Zero-Day, kurz nach einem CTF-Wettbewerb öffentlich. V8-Type-Confusion (CWE-843); 2021 vergab NVD hier S:U (8,8), im Gegensatz zu 2024 (S:C). Der Vergleich zeigt die Verschiebung der NVD-Praxis."
+   "context_de": "KEV, EPSS 0,84: Zero-Day, kurz nach einem CTF-Wettbewerb öffentlich. V8-Type-Confusion (CWE-843); 2021 vergab NVD hier S:U (8,8), im Gegensatz zu 2024 (S:C). Der Vergleich zeigt die Verschiebung der NVD-Praxis.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Das Opfer öffnet mit einer verwundbaren Chrome-Version (< 90.0.4430.85) eine Webseite."
+     },
+     {
+      "phase": "trigger",
+      "text": "Die präparierte HTML-Seite löst in der V8-JavaScript-Engine eine Type Confusion aus."
+     },
+     {
+      "phase": "impact",
+      "text": "Innerhalb der Renderer-Sandbox wird beliebiger Code ausgeführt (erst mit einem Sandbox-Escape wird das System übernommen)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Chrome aktualisieren; die Site-Isolation/Sandbox begrenzt den Schaden bis zum Patch."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt ein gültiges Google-Konto des Opfers.",
+     "Ein Server gibt wegen fehlender Zugriffskontrolle interne Dateien preis."
+    ]
+   }
   },
   "CVE-2013-1347": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
@@ -410,7 +434,31 @@
      "why": "Befehle: Router abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,97: In Botnetzen. Der SOAP-Handler (soap.cgi) als Command-Injection-Vektor (CWE-78); D-Link-Router tauchen im Korpus wiederholt auf (CVE-2024-3272/3273, CVE-2018-10562-verwandt). Ein Hersteller mit systematischen CGI-Injection-Problemen."
+   "context_de": "KEV, EPSS 0,97: In Botnetzen. Der SOAP-Handler (soap.cgi) als Command-Injection-Vektor (CWE-78); D-Link-Router tauchen im Korpus wiederholt auf (CVE-2024-3272/3273, CVE-2018-10562-verwandt). Ein Hersteller mit systematischen CGI-Injection-Problemen.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein D-Link-Router (DIR-8xxL, anfällige Firmware) exponiert soap.cgi ohne Authentifizierung im Netz."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet einen SOAP-Request mit Shell-Metazeichen in einem Parameter an soap.cgi."
+     },
+     {
+      "phase": "impact",
+      "text": "Die eingeschleusten Befehle werden vom Betriebssystem des Routers ausgeführt (OS Command Injection)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Firmware aktualisieren; Eingaben serverseitig strikt validieren, Fernzugriff auf die CGI beschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer deserialisiert ein präpariertes Java-Objekt.",
+     "Ein Opfer öffnet einen Link mit reflektiertem XSS."
+    ]
+   }
   },
   "CVE-2013-4810": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
@@ -527,7 +575,31 @@
      "why": "RCE: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,91: Der JBoss-HTTP-Invoker als Deserialisierungs-RCE (CWE-502), wieder ungefilterte ObjectInputStream. Wie CVE-2013-4810: JBoss-Invoker sind eine wiederkehrende Deserialisierungsquelle; ungefilterte Deserialisierung ist die Wurzel."
+   "context_de": "KEV, EPSS 0,91: Der JBoss-HTTP-Invoker als Deserialisierungs-RCE (CWE-502), wieder ungefilterte ObjectInputStream. Wie CVE-2013-4810: JBoss-Invoker sind eine wiederkehrende Deserialisierungsquelle; ungefilterte Deserialisierung ist die Wurzel.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein JBoss-Application-Server (RHEL EAP 5.2) exponiert den HTTP-Invoker mit ReadOnlyAccessFilter ohne Klassen-Beschränkung."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet präparierte serialisierte Daten an den HTTP-Invoker-Endpunkt."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Filter deserialisiert die Daten ohne Allowlist und führt dabei beliebigen Code aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; Deserialisierung auf erlaubte Klassen beschränken, Invoker-Endpunkt absichern."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer liest über eine Path-Traversal die Konfigurationsdatei.",
+     "Ein Opfer wird per CSRF zu einer administrativen Aktion verleitet."
+    ]
+   }
   },
   "CVE-2017-11357": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

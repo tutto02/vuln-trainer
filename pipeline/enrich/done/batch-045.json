@@ -124,7 +124,31 @@
      "why": "RCE: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,75: Die Telerik-Serie im Korpus (CVE-2017-11317, 11357, 2017-9248, 2019-18935). Ein schwach geschützter Verschlüsselungsschlüssel (CWE-522), der über einen Padding-Oracle-Angriff ermittelt und dann für die Deserialisierung genutzt wird. Telerik steckt in vielen ASP.NET-Anwendungen; ein Bibliotheks-Bug mit breiter Reichweite."
+   "context_de": "KEV, EPSS 0,75: Die Telerik-Serie im Korpus (CVE-2017-11317, 11357, 2017-9248, 2019-18935). Ein schwach geschützter Verschlüsselungsschlüssel (CWE-522), der über einen Padding-Oracle-Angriff ermittelt und dann für die Deserialisierung genutzt wird. Telerik steckt in vielen ASP.NET-Anwendungen; ein Bibliotheks-Bug mit breiter Reichweite.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine ASP.NET-Anwendung nutzt eine verwundbare Telerik-UI-Version, deren Dialog-Verschlüsselungsschlüssel schwach geschützt ist."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer führt einen Orakel-Angriff gegen den DialogParametersEncryptionKey und leitet daraus den MachineKey ab."
+     },
+     {
+      "phase": "impact",
+      "text": "Mit dem MachineKey kann er ViewState fälschen und beliebigen Code ausführen."
+     },
+     {
+      "phase": "stopper",
+      "text": "Telerik-Komponente aktualisieren; individuelle, geheime Schlüssel setzen und den MachineKey rotieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit einem fest eingebauten API-Schlüssel an.",
+     "Ein Opfer öffnet ein bösartiges PDF, das den Reader kompromittiert."
+    ]
+   }
   },
   "CVE-2020-9757": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
@@ -372,7 +396,31 @@
      "why": "Kernel-RCE: System abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,99999: BlueKeep, wurmfähig wie EternalBlue (WannaCry); Microsoft veröffentlichte sogar Patches für das End-of-Life-Windows XP. Use-After-Free (CWE-416) im RDP-Dienst. RDP gehört nie ins Internet; die Wahrscheinlichkeit hängt an der Exposition von Port 3389. Trotz der Warnungen blieben Millionen Systeme exponiert."
+   "context_de": "KEV, EPSS 0,99999: BlueKeep, wurmfähig wie EternalBlue (WannaCry); Microsoft veröffentlichte sogar Patches für das End-of-Life-Windows XP. Use-After-Free (CWE-416) im RDP-Dienst. RDP gehört nie ins Internet; die Wahrscheinlichkeit hängt an der Exposition von Port 3389. Trotz der Warnungen blieben Millionen Systeme exponiert.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Windows-System hat Remote Desktop Services (RDP) aktiv und ist ohne Netzwerkschutz erreichbar (BlueKeep), ohne NLA."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer verbindet sich per RDP und sendet speziell präparierte Requests an einen virtuellen Kanal."
+     },
+     {
+      "phase": "impact",
+      "text": "Ein Use-after-free im RDP-Dienst erlaubt die Ausführung von beliebigem Code ohne Anmeldung (wurmfähig)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Patch einspielen; Network Level Authentication aktivieren und RDP nicht offen ins Internet stellen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer verleitet einen Nutzer zum Öffnen eines Anhangs.",
+     "Ein Web-Formular reflektiert Eingaben ungefiltert als Skript."
+    ]
+   }
   },
   "CVE-2021-20080": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",

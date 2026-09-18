@@ -510,7 +510,31 @@
      "why": "root: System abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,19: Hosting-Panels (cPanel) verwalten viele Kundenseiten mit hohen Rechten. Rechteausweitung (CWE-266) über ein Plugin; wie CyberPanel ein Fall, in dem die Verwaltungssoftware selbst die Angriffsfläche ist. Die Beschreibung liefert sogar einen Grep-Befehl zur Erkennung."
+   "context_de": "KEV, EPSS 0,19: Hosting-Panels (cPanel) verwalten viele Kundenseiten mit hohen Rechten. Rechteausweitung (CWE-266) über ein Plugin; wie CyberPanel ein Fall, in dem die Verwaltungssoftware selbst die Angriffsfläche ist. Die Beschreibung liefert sogar einen Grep-Befehl zur Erkennung.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein cPanel-Server nutzt das verwundbare LiteSpeed-User-End-Plugin (< 2.4.5) und ist über das Netz erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer ruft ohne Anmeldung die Redis-Steuerfunktion des Plugins (cpanel_jsonapi_func=redisAble) auf."
+     },
+     {
+      "phase": "impact",
+      "text": "Über die fehlerhafte Rechtezuweisung eskaliert er seine Rechte, möglicherweise bis root."
+     },
+     {
+      "phase": "stopper",
+      "text": "Plugin auf 2.4.5+ aktualisieren; Zugriff auf die Plugin-Endpunkte absichern."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer sendet einen OGNL-Ausdruck im HTTP-Header.",
+     "Ein Opfer öffnet eine E-Mail mit eingebettetem SVG-Skript."
+    ]
+   }
   },
   "CVE-2017-5638": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

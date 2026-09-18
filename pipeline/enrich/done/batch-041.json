@@ -155,7 +155,31 @@
      "why": "RCE: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,996: Spring4Shell. Property-Binding-Injection (CWE-94): Über nutzergesteuerte Property-Namen (class.module.classLoader) lässt sich eine JSP-Webshell schreiben. Wie Spring Data Commons CVE-2018-1273 und Struts OGNL; das Data-Binding von Java-Frameworks ist eine wiederkehrende RCE-Klasse. Nur bei WAR-Deployment auf Tomcat, die Konfiguration entscheidet."
+   "context_de": "KEV, EPSS 0,996: Spring4Shell. Property-Binding-Injection (CWE-94): Über nutzergesteuerte Property-Namen (class.module.classLoader) lässt sich eine JSP-Webshell schreiben. Wie Spring Data Commons CVE-2018-1273 und Struts OGNL; das Data-Binding von Java-Frameworks ist eine wiederkehrende RCE-Klasse. Nur bei WAR-Deployment auf Tomcat, die Konfiguration entscheidet.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine Spring-MVC/WebFlux-Anwendung läuft auf JDK 9+ als WAR-Deployment auf Tomcat und nutzt Data Binding auf Objekte (Spring4Shell)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer manipuliert über präparierte Request-Parameter die verschachtelten class-Eigenschaften des gebundenen Objekts."
+     },
+     {
+      "phase": "impact",
+      "text": "Er überschreibt Tomcat-Logging-Eigenschaften, legt eine JSP-Web-Shell ab und führt beliebigen Code aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Spring-Framework aktualisieren; als Übergang das Binden gefährlicher Feldnamen (classLoader) per Allowlist unterbinden."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer sendet einen JNDI-Lookup-String, der beim Loggen aufgelöst wird.",
+     "Ein lokaler Nutzer hebt über eine setuid-Binary seine Rechte an."
+    ]
+   }
   },
   "CVE-2022-31199": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

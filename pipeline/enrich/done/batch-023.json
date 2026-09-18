@@ -382,7 +382,31 @@
      "why": "RCE: Master abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,997: Der Jenkins-Master hält Cloud-Credentials und signiert Artefakte. Deserialisierung (CWE-502) über die CLI, die eine Blacklist umging: Die SignedObject-Verpackung war der Trick, die Filterung zu passieren."
+   "context_de": "KEV, EPSS 0,997: Der Jenkins-Master hält Cloud-Credentials und signiert Artefakte. Deserialisierung (CWE-502) über die CLI, die eine Blacklist umging: Die SignedObject-Verpackung war der Trick, die Filterung zu passieren.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Jenkins-Server (≤ 2.56 / LTS 2.46.1) ist erreichbar und akzeptiert CLI-Verbindungen."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet ohne Anmeldung ein serialisiertes SignedObject an die Jenkins-CLI."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Server deserialisiert das Objekt über einen neuen ObjectInputStream und führt beliebigen Code aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Jenkins aktualisieren; den verwundbaren CLI-Deserialisierungspfad deaktivieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit Standard-Admin-Zugangsdaten an.",
+     "Ein Opfer öffnet einen Link mit reflektiertem XSS."
+    ]
+   }
   },
   "CVE-2016-3088": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

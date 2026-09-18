@@ -98,7 +98,31 @@
      "why": "Befehle: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,99999: 2014, binnen Stunden massenhaft ausgenutzt, jahrelang in Botnetzen. Eine Umgebungsvariable als Angriffsvektor; die Klasse (CWE-78) trifft nur den Kern, der Weg (CGI-Header) ist das Überraschende."
+   "context_de": "KEV, EPSS 0,99999: 2014, binnen Stunden massenhaft ausgenutzt, jahrelang in Botnetzen. Eine Umgebungsvariable als Angriffsvektor; die Klasse (CWE-78) trifft nur den Kern, der Weg (CGI-Header) ist das Überraschende.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Dienst (z. B. Apache mod_cgi, DHCP-Client, sshd ForceCommand) ruft mit verwundbarem Bash (≤ 4.3) auf und übergibt vom Angreifer beeinflussbare Umgebungsvariablen (Shellshock)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer setzt eine Umgebungsvariable, deren Wert nach einer Funktionsdefinition noch angehängte Befehle enthält."
+     },
+     {
+      "phase": "impact",
+      "text": "Bash führt beim Start den angehängten Befehl aus: Remote Code Execution im Kontext des Dienstes."
+     },
+     {
+      "phase": "stopper",
+      "text": "Bash aktualisieren, sodass Text nach Funktionsdefinitionen nicht mehr ausgeführt wird."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit gestohlenen SSH-Schlüsseln regulär an.",
+     "Ein Opfer klickt auf einen Link, der ein Session-Cookie stiehlt."
+    ]
+   }
   },
   "CVE-2012-0158": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",

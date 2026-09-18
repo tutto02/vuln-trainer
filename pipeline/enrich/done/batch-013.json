@@ -437,7 +437,31 @@
      "why": "Keine Verfügbarkeitsauswirkung."
     }
    },
-   "context_de": "KEV, EPSS 0,99999: Der Lehrbuchfall. Score 7,5 für eine Lücke, die private Schlüssel des halben Internets preisgab; Scores haben eine Obergrenze für 'nur Lesen'."
+   "context_de": "KEV, EPSS 0,99999: Der Lehrbuchfall. Score 7,5 für eine Lücke, die private Schlüssel des halben Internets preisgab; Scores haben eine Obergrenze für 'nur Lesen'.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Dienst nutzt eine verwundbare OpenSSL-Version (1.0.1 vor 1.0.1g) mit aktivierter TLS-Heartbeat-Erweiterung (Heartbleed)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet ein Heartbeat-Paket, das eine größere Rücklänge angibt, als tatsächlich Daten mitgeschickt wurden."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Server liest über den Puffer hinaus und gibt bis zu 64 KB Prozessspeicher zurück, darunter private Schlüssel und Sitzungsdaten."
+     },
+     {
+      "phase": "stopper",
+      "text": "OpenSSL auf 1.0.1g+ aktualisieren, danach Zertifikate/Schlüssel neu ausstellen und Sitzungen invalidieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer überschreibt gezielt Speicher und führt eigenen Code aus.",
+     "Ein lokaler Nutzer nutzt eine Race Condition beim Anlegen einer Temp-Datei."
+    ]
+   }
   },
   "CVE-2016-0189": {
    "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
