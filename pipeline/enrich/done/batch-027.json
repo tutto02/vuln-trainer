@@ -555,7 +555,31 @@
      "why": "root: System abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,36: In Kette mit CVE-2022-22954 (RCE) für vollen Root-Zugriff. Unsichere Skript-Rechte (CWE-732); ein lokaler EoP als zweites Glied nach der RCE. VMware-Identity-Produkte tauchen mehrfach im Korpus auf."
+   "context_de": "KEV, EPSS 0,36: In Kette mit CVE-2022-22954 (RCE) für vollen Root-Zugriff. Unsichere Skript-Rechte (CWE-732); ein lokaler EoP als zweites Glied nach der RCE. VMware-Identity-Produkte tauchen mehrfach im Korpus auf.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Der Angreifer hat bereits lokalen Zugriff auf ein VMware-Workspace-ONE/vRA-System mit fehlerhaften Rechten in Support-Skripten."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er nutzt die zu großzügigen Dateirechte eines Support-Skripts aus, um eigenen Code einzuschleusen."
+     },
+     {
+      "phase": "impact",
+      "text": "Das Skript läuft mit erhöhten Rechten und eskaliert ihn auf root."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; die Dateirechte der Support-Skripte restriktiv setzen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel unauthentifiziert über das Netzwerk.",
+     "Ein Opfer öffnet eine E-Mail mit eingebettetem SVG-Skript."
+    ]
+   }
   },
   "CVE-2026-46817": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

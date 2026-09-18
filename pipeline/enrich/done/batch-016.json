@@ -639,7 +639,31 @@
      "why": "System: Gerät abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,008: Von einer kommerziellen Spyware (Cytrox/Predator) in einer Android-Kette genutzt. AC:H und PR:H, trotzdem in KEV: Gezielte Angreifer scheuen den Aufwand nicht."
+   "context_de": "KEV, EPSS 0,008: Von einer kommerziellen Spyware (Cytrox/Predator) in einer Android-Kette genutzt. AC:H und PR:H, trotzdem in KEV: Gezielte Angreifer scheuen den Aufwand nicht.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Der Angreifer besitzt bereits erhöhte lokale Rechte auf einem Android-/Linux-System mit verwundbarem af_unix.c."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er löst in unix_scm_to_skb über eine Race Condition einen Use-after-free aus."
+     },
+     {
+      "phase": "impact",
+      "text": "Der wiederverwendete Speicher erlaubt lokale Rechteausweitung bis zu System-Rechten."
+     },
+     {
+      "phase": "stopper",
+      "text": "Kernel-Sicherheitsupdate einspielen; das schließt die Race Condition."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer verbindet sich ohne Konto über das Netz mit einem Dienst.",
+     "Ein Opfer öffnet eine Webseite mit einem Type-Confusion-Exploit."
+    ]
+   }
   },
   "CVE-2023-41993": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",

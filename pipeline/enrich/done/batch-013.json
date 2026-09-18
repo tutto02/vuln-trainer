@@ -660,7 +660,31 @@
    "dissent": {
     "UI": "Kein CNA-Vektor. UI:R (7,5) wäre konsistent mit Browser-Bugs."
    },
-   "context_de": "KEV, EPSS 0,03: Zero-Day-Paar mit CVE-2020-6820. Zwei UAFs, ein Angriff; Mozilla vergibt je Bug eine CVE."
+   "context_de": "KEV, EPSS 0,03: Zero-Day-Paar mit CVE-2020-6820. Zwei UAFs, ein Angriff; Mozilla vergibt je Bug eine CVE.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer nutzt einen verwundbaren Firefox/Thunderbird und öffnet präparierte Webinhalte."
+     },
+     {
+      "phase": "trigger",
+      "text": "Beim Ausführen des nsDocShell-Destruktors löst eine Race Condition einen Use-after-free aus."
+     },
+     {
+      "phase": "impact",
+      "text": "Der wiederverwendete Speicher führt zur Codeausführung (gezielte Angriffe in freier Wildbahn)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Firefox/Thunderbird aktualisieren; das schließt die Race Condition."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt gültige Zugangsdaten des Opfers.",
+     "Ein Server gibt über eine Path-Traversal Dateien preis."
+    ]
+   }
   },
   "CVE-2024-20481": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:L",

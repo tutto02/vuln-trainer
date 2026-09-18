@@ -525,7 +525,31 @@
      "why": "Code mit Nutzerrechten."
     }
    },
-   "context_de": "KEV, EPSS 0,11: Gezielte Angriffe 2013. Historisch; zeigt, dass NVDs Sandbox-Logik (S:C) erst mit Chrome-Bewertungen konsequent wurde."
+   "context_de": "KEV, EPSS 0,11: Gezielte Angriffe 2013. Historisch; zeigt, dass NVDs Sandbox-Logik (S:C) erst mit Chrome-Bewertungen konsequent wurde.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer nutzt einen verwundbaren Adobe Flash Player, dessen Firefox-Sandbox Rechte nicht korrekt beschränkt."
+     },
+     {
+      "phase": "trigger",
+      "text": "Es öffnet präparierte SWF-Inhalte, die gezielt gegen die schwache Sandbox gerichtet sind."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Code entkommt der Sandbox und wird mit den Rechten des Nutzers ausgeführt (gezielte Angriffe)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Flash aktualisieren; als Übergang Flash-Inhalte blockieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit einem Standardpasswort an.",
+     "Ein Opfer klickt auf einen Link mit reflektiertem XSS."
+    ]
+   }
   },
   "CVE-2021-21166": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",

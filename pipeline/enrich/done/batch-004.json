@@ -562,7 +562,31 @@
      "why": "Kein Absturz."
     }
    },
-   "context_de": "KEV, EPSS 0,008: Cellebrite nutzte die Lücke zum Entsperren beschlagnahmter Android-Geräte, per USB. Ein 5,5 mit physischem Zugriff, gezielt und real; EPSS misst das nicht."
+   "context_de": "KEV, EPSS 0,008: Cellebrite nutzte die Lücke zum Entsperren beschlagnahmter Android-Geräte, per USB. Ein 5,5 mit physischem Zugriff, gezielt und real; EPSS misst das nicht.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Der Angreifer hat lokalen Zugriff auf ein Linux-/Android-System mit verwundbarem HID-Core (nicht nullinitialisierter Report-Puffer)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er meldet ein präpariertes HID-Gerät an, dessen Report so gestaltet ist, dass ungenutzte Pufferbereiche zurückgelesen werden."
+     },
+     {
+      "phase": "impact",
+      "text": "Über den nicht initialisierten Puffer werden Reste von Kernel-Speicher preisgegeben."
+     },
+     {
+      "phase": "stopper",
+      "text": "Kernel aktualisieren; der Fix nullinitialisiert den Report-Puffer bei der Allokation."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel unauthentifiziert über das Netz.",
+     "Ein Opfer öffnet eine Webseite mit einem Type-Confusion-Exploit."
+    ]
+   }
   }
  }
 }

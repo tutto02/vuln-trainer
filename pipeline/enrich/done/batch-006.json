@@ -163,7 +163,31 @@
      "why": "Keine Verfügbarkeitsauswirkung."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,9995. Wie CitrixBleed 1 (CVE-2023-4966): Der Score 7,5 sagt 'Informationsleck', die Praxis sagt 'MFA-umgehende Session-Übernahme'. Sessions nach dem Patch invalidieren, sonst bleibt die Auswirkung."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,9995. Wie CitrixBleed 1 (CVE-2023-4966): Der Score 7,5 sagt 'Informationsleck', die Praxis sagt 'MFA-umgehende Session-Übernahme'. Sessions nach dem Patch invalidieren, sonst bleibt die Auswirkung.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein NetScaler ist als Gateway/AAA-Server konfiguriert und ohne Anmeldung erreichbar (CitrixBleed 2)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet Eingaben, die durch unzureichende Validierung einen Speicher-Over-Read auslösen."
+     },
+     {
+      "phase": "impact",
+      "text": "Die Appliance gibt uninitialisierte Speicherinhalte zurück, darunter potenziell sensible Session-Daten."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen und aktive Sitzungen terminieren, da Daten abgeflossen sein können."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer führt über die Lücke direkt Betriebssystembefehle aus.",
+     "Ein Opfer öffnet ein Office-Dokument mit Makro."
+    ]
+   }
   },
   "CVE-2018-2380": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:L/I:L/A:L",
@@ -361,7 +385,31 @@
      "why": "SYSTEM: alles."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,10: Standard-Post-Exploitation auf Clients mit VPN-Software. Solche EoPs entscheiden, ob ein Phishing-Erfolg beim Nutzer bleibt oder zum Domänenproblem wird."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,10: Standard-Post-Exploitation auf Clients mit VPN-Software. Solche EoPs entscheiden, ob ein Phishing-Erfolg beim Nutzer bleibt oder zum Domänenproblem wird.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Der Angreifer besitzt bereits ein gültiges lokales Windows-Konto auf einem System mit Cisco AnyConnect (anfällige Version)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er platziert eine bösartige DLL in einem Pfad, den der AnyConnect-IPC-Dienst zum Laden nutzt (DLL-Hijacking)."
+     },
+     {
+      "phase": "impact",
+      "text": "Der privilegierte Dienst lädt die DLL und führt ihren Code mit erhöhten Rechten aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "AnyConnect aktualisieren; Ladepfade absichern und nur signierte Bibliotheken aus geschützten Verzeichnissen laden."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel unauthentifiziert über das Netz.",
+     "Ein Opfer öffnet einen Link mit reflektiertem XSS."
+    ]
+   }
   },
   "CVE-2026-60137": {
    "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",

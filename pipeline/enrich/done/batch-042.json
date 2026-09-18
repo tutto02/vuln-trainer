@@ -92,7 +92,31 @@
      "why": "RCE: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: Zero-Day, Massenausnutzung binnen Stunden. OGNL-Injection (CWE-917), wie CVE-2021-26084 im selben Produkt. Confluence ist im Korpus dreimal mit RCE vertreten (26084, 22527, 26134); Atlassian wiederholt die OGNL/SSTI-Klasse. Ein Produkt mit einer strukturellen Schwäche in der Ausdrucksverarbeitung."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: Zero-Day, Massenausnutzung binnen Stunden. OGNL-Injection (CWE-917), wie CVE-2021-26084 im selben Produkt. Confluence ist im Korpus dreimal mit RCE vertreten (26084, 22527, 26134); Atlassian wiederholt die OGNL/SSTI-Klasse. Ein Produkt mit einer strukturellen Schwäche in der Ausdrucksverarbeitung.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Confluence-Server/Data-Center (anfällige Version) ist ohne Anmeldung aus dem Netz erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer ruft eine URL auf, deren Pfadbestandteil einen OGNL-Ausdruck enthält."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Ausdruck wird ausgewertet und führt beliebigen Code auf der Confluence-Instanz aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Auf eine gepatchte Version aktualisieren; als Übergang die offizielle Mitigation anwenden."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit einem fest eingebauten Passwort an.",
+     "Ein Opfer klickt auf einen CSRF-Link, der ein Admin-Konto anlegt."
+    ]
+   }
   },
   "CVE-2022-35405": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

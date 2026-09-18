@@ -585,7 +585,31 @@
      "why": "Root-Shell auf dem Router."
     }
    },
-   "context_de": "KEV, EPSS 0,998: Über Jahre in Router-Botnetzen. Bei Heimroutern gibt es kein Vulnerability Management; im Unternehmen stehen solche Geräte oft in Außenstellen ohne Inventar."
+   "context_de": "KEV, EPSS 0,998: Über Jahre in Router-Botnetzen. Bei Heimroutern gibt es kein Vulnerability Management; im Unternehmen stehen solche Geräte oft in Außenstellen ohne Inventar.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein NETGEAR-Router (anfällige Firmware) hat die Weboberfläche aktiv; ein Administrator ist angemeldet."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer bringt den Admin dazu, eine präparierte Seite zu öffnen, die im Hintergrund einen Befehls-Request an den Router sendet (CSRF, verkettet mit Command Injection)."
+     },
+     {
+      "phase": "impact",
+      "text": "Im Namen des Admins wird ein Befehl auf dem Router ausgeführt."
+     },
+     {
+      "phase": "stopper",
+      "text": "Firmware aktualisieren; CSRF-Token einführen und Eingaben serverseitig validieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer sendet OGNL im Content-Type-Header.",
+     "Ein lokaler Nutzer nutzt eine Race Condition beim Anlegen einer Datei."
+    ]
+   }
   },
   "CVE-2023-46604": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

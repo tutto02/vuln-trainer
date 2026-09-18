@@ -339,7 +339,31 @@
      "why": "Code: System störbar."
     }
    },
-   "context_de": "KEV, EPSS 0,92: Operation Aurora, der Angriff auf Google und Dutzende Firmen 2010, der Advanced Persistent Threat als Begriff prägte. Eine IE-Use-After-Free (CWE-416) als Ausgangspunkt eines historischen Spionagefalls."
+   "context_de": "KEV, EPSS 0,92: Operation Aurora, der Angriff auf Google und Dutzende Firmen 2010, der Advanced Persistent Threat als Begriff prägte. Eine IE-Use-After-Free (CWE-416) als Ausgangspunkt eines historischen Spionagefalls.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer nutzt eine verwundbare Internet-Explorer-Version (6–8) und surft im Web (Aurora)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Es öffnet eine präparierte Webseite, die einen Use-after-free über einen ungültigen Zeiger auslöst."
+     },
+     {
+      "phase": "impact",
+      "text": "Der wiederverwendete Speicher führt zur Ausführung von beliebigem Code im Browserkontext."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitsupdate einspielen; betroffene Skriptfunktionen einschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt gültige Windows-Zugangsdaten.",
+     "Ein lokaler Nutzer nutzt eine Race Condition beim Anlegen einer Datei."
+    ]
+   }
   },
   "CVE-2025-68461": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",

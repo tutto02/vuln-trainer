@@ -61,7 +61,31 @@
      "why": "Code mit Nutzerrechten."
     }
    },
-   "context_de": "KEV, EPSS 0,99: 2011 in Spear-Phishing (RSA-Einbruch) genutzt. Historisch, aber das Muster 'Plugin in Dokument in Mail' lebt in anderen Formaten weiter."
+   "context_de": "KEV, EPSS 0,99: 2011 in Spear-Phishing (RSA-Einbruch) genutzt. Historisch, aber das Muster 'Plugin in Dokument in Mail' lebt in anderen Formaten weiter.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer nutzt einen verwundbaren Adobe Flash Player (bzw. Reader mit Authplay); es öffnet Webinhalte oder ein Dokument."
+     },
+     {
+      "phase": "trigger",
+      "text": "Die präparierte SWF-Datei löst in Flash eine Type Confusion aus."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Speicherfehler führt zur Ausführung von beliebigem Code im Kontext des Nutzers."
+     },
+     {
+      "phase": "stopper",
+      "text": "Flash/Reader aktualisieren; als Übergang Flash-Inhalte blockieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt Netzwerkzugriff ohne jede Nutzerinteraktion.",
+     "Ein unauthentifizierter Angreifer liest über XXE lokale Dateien."
+    ]
+   }
   },
   "CVE-2021-37973": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H",
@@ -644,7 +668,31 @@
      "why": "Codeausführung."
     }
    },
-   "context_de": "KEV, EPSS 0,02, nur CNA-Vektor. Ohne NVD-Nachbewertung verschwindet die S:C-Inkonsistenz von selbst: Google vergibt konsequent S:U für Renderer-Bugs."
+   "context_de": "KEV, EPSS 0,02, nur CNA-Vektor. Ohne NVD-Nachbewertung verschwindet die S:C-Inkonsistenz von selbst: Google vergibt konsequent S:U für Renderer-Bugs.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer öffnet mit einer verwundbaren Chrome-Version (< 149.0.7827.103) eine Webseite."
+     },
+     {
+      "phase": "trigger",
+      "text": "Die präparierte HTML-Seite löst in der V8-Engine einen Out-of-bounds-Zugriff aus."
+     },
+     {
+      "phase": "impact",
+      "text": "Innerhalb der Renderer-Sandbox wird beliebiger Code ausgeführt (erst ein Sandbox-Escape übernimmt das System)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Chrome aktualisieren; die Sandbox begrenzt den Schaden bis zum Patch."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt ein gültiges Google-Konto des Opfers.",
+     "Ein Server gibt wegen fehlender Zugriffskontrolle interne Dateien preis."
+    ]
+   }
   }
  }
 }

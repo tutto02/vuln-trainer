@@ -421,7 +421,31 @@
      "why": "Fernsteuerung: alles abschaltbar."
     }
    },
-   "context_de": "KEV, Vektor nur vom CNA (2026, keine NVD-Nachbewertung). Signaturprüfung ausgelassen (CWE-347) ist eine Klassenfrage; die Auswirkung ist die Reichweite des Werkzeugs. Nur bei konfiguriertem OIDC verwundbar: Wahrscheinlichkeit hängt an der Konfiguration."
+   "context_de": "KEV, Vektor nur vom CNA (2026, keine NVD-Nachbewertung). Signaturprüfung ausgelassen (CWE-347) ist eine Klassenfrage; die Auswirkung ist die Reichweite des Werkzeugs. Nur bei konfiguriertem OIDC verwundbar: Wahrscheinlichkeit hängt an der Konfiguration.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "SimpleHelp (≤ 5.5.15 / 6.0-Vorabversionen) ist mit OIDC-Authentifizierung konfiguriert und erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer reicht beim Login ein selbst erzeugtes Identity-Token ein, dessen Signatur der Server nicht prüft."
+     },
+     {
+      "phase": "impact",
+      "text": "Das ungeprüfte Token wird akzeptiert: Authentifizierungs-Bypass mit Zugriff als beliebiger Nutzer."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; die kryptografische Signatur der OIDC-Tokens verifizieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer errät das Admin-Passwort per Brute Force.",
+     "Ein lokaler Nutzer nutzt eine Format-String-Lücke im Treiber."
+    ]
+   }
   },
   "CVE-2022-41622": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",

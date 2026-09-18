@@ -311,7 +311,31 @@
    "dissent": {
     "AC": "CNA: AC:H, S:C (9,0). Bei fest kodierten Secrets ist AC:L die spezifikationsnähere Wahl."
    },
-   "context_de": "KEV, EPSS 0,94, im März 2025 als Zero-Day ausgenutzt. Ein fest kodierter Key ist eine Klassenfrage (CWE-798), die Auswirkung kommt aus der Deserialisierung (CWE-502): zwei Klassen in einer Kette."
+   "context_de": "KEV, EPSS 0,94, im März 2025 als Zero-Day ausgenutzt. Ein fest kodierter Key ist eine Klassenfrage (CWE-798), die Auswirkung kommt aus der Deserialisierung (CWE-502): zwei Klassen in einer Kette.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Gladinet CentreStack (anfällige Version) nutzt einen fest eingebauten machineKey im Portal."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer, dem der machineKey bekannt ist, erstellt damit ein präpariertes, serialisiertes Payload."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Server deserialisiert das Payload und führt beliebigen Code aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; einen individuellen, geheimen machineKey erzeugen und rotieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer nutzt eine SQL-Injection im Login-Formular.",
+     "Ein lokaler Nutzer eskaliert über eine setuid-Binary zu root."
+    ]
+   }
   },
   "CVE-2025-31125": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",

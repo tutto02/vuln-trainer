@@ -188,7 +188,31 @@
      "why": "Gerätekontrolle: Router abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,93: Der Auth-Bypass, der mit der Command Injection CVE-2018-10562 kombiniert wurde (das GPON-Router-Botnetz). Ein absurd einfacher Bypass (CWE-287): Ein URL-Suffix umging die gesamte Authentifizierung. Bypass plus Injection als Kette."
+   "context_de": "KEV, EPSS 0,93: Der Auth-Bypass, der mit der Command Injection CVE-2018-10562 kombiniert wurde (das GPON-Router-Botnetz). Ein absurd einfacher Bypass (CWE-287): Ein URL-Suffix umging die gesamte Authentifizierung. Bypass plus Injection als Kette.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Dasan-GPON-Home-Router exponiert die Weboberfläche im Netz; bestimmte URLs verlangen Authentifizierung."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer hängt an eine geschützte URL den Zusatz ?images an (z. B. /menu.html?images/)."
+     },
+     {
+      "phase": "impact",
+      "text": "Die Authentifizierungsprüfung wird umgangen, und er verwaltet das Gerät ohne Anmeldung."
+     },
+     {
+      "phase": "stopper",
+      "text": "Firmware aktualisieren; Fernzugriff auf die Verwaltung deaktivieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer nutzt eine Deserialisierungslücke über das Netz.",
+     "Ein lokaler Nutzer platziert eine DLL im Suchpfad der Anwendung."
+    ]
+   }
   },
   "CVE-2014-3120": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N",

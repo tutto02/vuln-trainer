@@ -654,7 +654,31 @@
      "why": "Webshell: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,78: Die zweite RadAsyncUpload-Lücke (nach dem Krypto-Fehler CVE-2017-11317). Telerik-UI steckt in vielen ASP.NET-Anwendungen; ein Upload-Fehler (CWE-434) in einer eingebetteten Komponente trifft alle Nutzer der Bibliothek."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,78: Die zweite RadAsyncUpload-Lücke (nach dem Krypto-Fehler CVE-2017-11317). Telerik-UI steckt in vielen ASP.NET-Anwendungen; ein Upload-Fehler (CWE-434) in einer eingebetteten Komponente trifft alle Nutzer der Bibliothek.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine ASP.NET-Anwendung nutzt Telerik RadAsyncUpload (anfällige Version), das Nutzereingaben nicht ausreichend beschränkt."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer lädt über RadAsyncUpload eine Datei an einen von ihm gewählten Ort hoch."
+     },
+     {
+      "phase": "impact",
+      "text": "Durch das Ablegen einer ausführbaren Datei im Webverzeichnis erreicht er Codeausführung."
+     },
+     {
+      "phase": "stopper",
+      "text": "Telerik aktualisieren; Upload-Ziele und -Typen strikt beschränken, individuelle Schlüssel setzen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit einem fest eingebauten API-Schlüssel an.",
+     "Ein Opfer wird per CSRF zu einer Aktion verleitet."
+    ]
+   }
   },
   "CVE-2019-1935": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

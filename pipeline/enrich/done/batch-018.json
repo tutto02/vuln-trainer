@@ -31,7 +31,31 @@
      "why": "Kernel-RCE: System abschaltbar."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,998: Wurmfähig wie WannaCry, deshalb der Notfall-Patch. SMB gehört nie ins Internet; die Wahrscheinlichkeit hängt an der Exposition von Port 445."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,998: Wurmfähig wie WannaCry, deshalb der Notfall-Patch. SMB gehört nie ins Internet; die Wahrscheinlichkeit hängt an der Exposition von Port 445.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Windows-System hat den SMBv3-Dienst (3.1.1) mit Kompression aktiv und ist ohne Netzwerkschutz erreichbar (SMBGhost)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet ein präpariertes, komprimiertes SMBv3-Paket mit manipulierten Längenangaben."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Integer-/Puffer-Fehler erlaubt die Ausführung von beliebigem Code (wurmfähig, ohne Anmeldung)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Patch einspielen; SMBv3-Kompression deaktivieren und Port 445 zum Internet sperren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit gestohlenen Domänen-Zugangsdaten an.",
+     "Ein Opfer öffnet einen bösartigen E-Mail-Anhang mit Makro."
+    ]
+   }
   },
   "CVE-2020-4430": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",

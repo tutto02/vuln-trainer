@@ -604,7 +604,31 @@
    "dissent": {
     "PR": "Kein CNA-Vektor. Nach CSRF-Logik wäre AV:N/AC:L/PR:N/UI:R (8,8) korrekt."
    },
-   "context_de": "KEV, EPSS 0,84. KI-Tooling mit Web-UI ist die neue Klasse exponierter Entwicklerwerkzeuge; die Klasse (CWE-346, Origin-Validierung) ist alt."
+   "context_de": "KEV, EPSS 0,84. KI-Tooling mit Web-UI ist die neue Klasse exponierter Entwicklerwerkzeuge; die Klasse (CWE-346, Origin-Validierung) ist alt.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Langflow (≤ 1.6.9) läuft mit zu großzügiger CORS-Konfiguration (allow_origins='*' mit Credentials) und SameSite=None-Refresh-Token."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer bringt ein angemeldetes Opfer dazu, eine bösartige Webseite zu öffnen, die mit dessen Cookie Cross-Origin-Requests stellt."
+     },
+     {
+      "phase": "impact",
+      "text": "Er liest das Refresh-Token aus, übernimmt das Konto und erreicht darüber Codeausführung."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; CORS auf vertrauenswürdige Origins beschränken und Cookie-Attribute korrekt setzen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer führt über die Lücke direkt Betriebssystembefehle aus.",
+     "Ein lokaler Nutzer eskaliert über pkexec zu root."
+    ]
+   }
   },
   "CVE-2025-10035": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

@@ -165,7 +165,31 @@
      "why": "Code: System störbar."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,98: Von mehreren Gruppen gegen Trading-Foren genutzt. Klasse laut NVD CWE-345 (Authentizität); der Trick ist die Namenskollision Datei/Ordner, ein Logikfehler im Extrahieren."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,98: Von mehreren Gruppen gegen Trading-Foren genutzt. Klasse laut NVD CWE-345 (Authentizität); der Trick ist die Namenskollision Datei/Ordner, ein Logikfehler im Extrahieren.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Nutzer erhält ein ZIP-Archiv und öffnet es mit einer verwundbaren WinRAR-Version (< 6.23)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er klickt auf eine scheinbar harmlose Datei; das Archiv enthält zusätzlich einen gleichnamigen Ordner mit einem Skript."
+     },
+     {
+      "phase": "impact",
+      "text": "Statt der harmlosen Datei wird das Skript aus dem gleichnamigen Ordner ausgeführt: Codeausführung."
+     },
+     {
+      "phase": "stopper",
+      "text": "WinRAR aktualisieren; Archive aus unbekannter Quelle nicht öffnen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel unauthentifiziert über das Netz.",
+     "Ein unauthentifizierter Angreifer liest über XXE lokale Dateien."
+    ]
+   }
   },
   "CVE-2020-15148": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
