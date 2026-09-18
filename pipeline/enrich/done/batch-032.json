@@ -364,7 +364,31 @@
      "why": "Befehle: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,97: Das RCE-Herzstück von ImageTragick (mit CVE-2016-3715 Löschen, CVE-2016-3718 SSRF, alle im Korpus). ImageMagicks Delegates führen externe Programme mit Bildparametern aus (CWE-20); ein Bild-Upload wird zur Befehlszeile. Die ganze ImageTragick-Familie zeigt eine Bibliothek mit systematischem Delegate-Design-Fehler."
+   "context_de": "KEV, EPSS 0,97: Das RCE-Herzstück von ImageTragick (mit CVE-2016-3715 Löschen, CVE-2016-3718 SSRF, alle im Korpus). ImageMagicks Delegates führen externe Programme mit Bildparametern aus (CWE-20); ein Bild-Upload wird zur Befehlszeile. Die ganze ImageTragick-Familie zeigt eine Bibliothek mit systematischem Delegate-Design-Fehler.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine Webanwendung verarbeitet mit verwundbarem ImageMagick hochgeladene Bilder (ImageTragick)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer lädt eine präparierte Bilddatei mit Shell-Metazeichen in einem der anfälligen Coder hoch."
+     },
+     {
+      "phase": "impact",
+      "text": "Beim Verarbeiten führt ImageMagick die eingeschleusten Befehle aus: Remote Code Execution."
+     },
+     {
+      "phase": "stopper",
+      "text": "ImageMagick aktualisieren; per policy.xml die gefährlichen Coder deaktivieren und Dateitypen prüfen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit einem fest eingebauten Passwort an.",
+     "Ein Opfer klickt auf einen CSRF-Link."
+    ]
+   }
   },
   "CVE-2007-5659": {
    "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",

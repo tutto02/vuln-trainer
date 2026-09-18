@@ -506,7 +506,31 @@
    "dissent": {
     "S": "CNA (Samsung): S:C, I:L, A:N. Der CNA wertet den Sprung in den Kernel als Scope-Wechsel; die Auswirkungen sind widersprüchlich (I:L bei Codeausführung)."
    },
-   "context_de": "EPSS 0,006, trotzdem KEV: Teil einer kommerziellen Spyware-Kette. Ein OOB-Read (CWE-125) ist hier nicht nur Leak, sondern der Weg zur Codeausführung; die Klasse sagt nichts über die Auswirkung."
+   "context_de": "EPSS 0,006, trotzdem KEV: Teil einer kommerziellen Spyware-Kette. Ein OOB-Read (CWE-125) ist hier nicht nur Leak, sondern der Weg zur Codeausführung; die Klasse sagt nichts über die Auswirkung.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Der Angreifer hat auf einem Samsung-Android-Gerät bereits niedrige lokale Rechte; der Modem-Treiber ist verwundbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er übergibt set_skb_priv() Eingaben, die die fehlende Grenzprüfung überschreiten (OOB-Read)."
+     },
+     {
+      "phase": "impact",
+      "text": "Über den Zugriff auf einen ungültigen Funktionszeiger wird beliebiger Code ausgeführt."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitsupdate (SMR) einspielen; Grenzprüfung im Treiber ergänzen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel unauthentifiziert über das Netz.",
+     "Ein Opfer öffnet eine E-Mail mit eingebettetem SVG-Skript."
+    ]
+   }
   },
   "CVE-2021-22555": {
    "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",

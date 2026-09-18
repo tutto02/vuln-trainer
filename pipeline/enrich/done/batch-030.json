@@ -744,7 +744,31 @@
      "why": "Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,98: FortiClientEMS verwaltet die Endpoint-Clients (wie Apex Central, EPMM). SQLi (CWE-89), die über xp_cmdshell zur RCE wird; ein Endpoint-Management-Server ist ein Sprungbrett zu allen verwalteten Clients. Fortinet zum wiederholten Mal im Korpus."
+   "context_de": "KEV, EPSS 0,98: FortiClientEMS verwaltet die Endpoint-Clients (wie Apex Central, EPMM). SQLi (CWE-89), die über xp_cmdshell zur RCE wird; ein Endpoint-Management-Server ist ein Sprungbrett zu allen verwalteten Clients. Fortinet zum wiederholten Mal im Korpus.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein FortiClientEMS-Server (anfällige Version) ist über das Netz erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet speziell präparierte Pakete mit einer SQL-Injection."
+     },
+     {
+      "phase": "impact",
+      "text": "Über die Injection führt er unautorisierten Code bzw. Befehle aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "FortiClientEMS aktualisieren; Eingaben parametrisiert verarbeiten, Zugriff beschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer lädt über ein Upload-Feld eine Web-Shell hoch.",
+     "Ein lokaler Nutzer nutzt eine Race Condition beim Symlink."
+    ]
+   }
   }
  }
 }

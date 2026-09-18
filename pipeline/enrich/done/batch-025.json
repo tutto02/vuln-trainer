@@ -163,7 +163,31 @@
      "why": "RCE: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,91: ColdFusion ist ein Dauerbrenner im Korpus (CVE-2013-0632, CVE-2023-26360, CVE-2018-15961). Deserialisierung (CWE-502) über BlazeDS/AMF; die eingebettete Flash-Messaging-Bibliothek war die Schwachstelle."
+   "context_de": "KEV, EPSS 0,91: ColdFusion ist ein Dauerbrenner im Korpus (CVE-2013-0632, CVE-2023-26360, CVE-2018-15961). Deserialisierung (CWE-502) über BlazeDS/AMF; die eingebettete Flash-Messaging-Bibliothek war die Schwachstelle.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Adobe-ColdFusion-Server (anfällige Version) nutzt die Apache-BlazeDS-Bibliothek und ist erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet ein präpariertes serialisiertes AMF-/Java-Objekt an den BlazeDS-Endpunkt."
+     },
+     {
+      "phase": "impact",
+      "text": "Das Objekt wird ohne Typfilter deserialisiert und führt beliebigen Code aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update/Hotfix einspielen; Deserialisierung auf erlaubte Klassen beschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit Standard-Zugangsdaten an.",
+     "Ein lokaler Nutzer platziert eine DLL im Suchpfad."
+    ]
+   }
   },
   "CVE-2023-4220": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",

@@ -423,7 +423,31 @@
      "why": "DoS und mehr."
     }
    },
-   "context_de": "KEV, EPSS 0,48: Pwn2Own 2016. Alte Chrome-Lücken sind nur relevant, wo Chromium-Ableger (Kiosk, Embedded) nicht aktualisiert werden."
+   "context_de": "KEV, EPSS 0,48: Pwn2Own 2016. Alte Chrome-Lücken sind nur relevant, wo Chromium-Ableger (Kiosk, Embedded) nicht aktualisiert werden.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer nutzt eine verwundbare Chrome-Version (< 49.0.2623.108) und öffnet eine Webseite."
+     },
+     {
+      "phase": "trigger",
+      "text": "Die präparierte HTML-Seite bringt Array.prototype.concat in V8 dazu, Elementtypen falsch zu behandeln."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Out-of-bounds-Read führt zu DoS oder zur Ausführung von Code in der Renderer-Sandbox."
+     },
+     {
+      "phase": "stopper",
+      "text": "Chrome aktualisieren; die Sandbox begrenzt den Schaden bis zum Patch."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt ein gültiges Google-Konto.",
+     "Ein Server gibt wegen fehlender Zugriffskontrolle Dateien preis."
+    ]
+   }
   },
   "CVE-2024-55550": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:N/A:N",

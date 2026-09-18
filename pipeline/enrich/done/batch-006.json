@@ -640,7 +640,31 @@
    "dissent": {
     "I": "CNA (GitHub): C:H, I:N, A:L (8,2). Für XXE ist der CNA-Vektor spezifikationsnäher."
    },
-   "context_de": "KEV, EPSS 0,65. GeoServer-Instanzen sind oft öffentlich (Kartendienste) und laufen mit Zugriff auf Datenbanken; XXE zu SSRF zu Datenbank ist die typische Kette."
+   "context_de": "KEV, EPSS 0,65. GeoServer-Instanzen sind oft öffentlich (Kartendienste) und laufen mit Zugriff auf Datenbanken; XXE zu SSRF zu Datenbank ist die typische Kette.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein GeoServer (anfällige Version) verarbeitet am /geoserver/wms-Endpunkt (GetMap) XML und ist erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet ein präpariertes XML mit einer externen Entity."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Parser löst die Entity auf und liest lokale Dateien bzw. erreicht interne Ziele (XXE)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; XML-Parser ohne externe Entities und ohne DTD betreiben."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit einem fest eingebauten Passwort an.",
+     "Ein lokaler Nutzer eskaliert über pkexec zu root."
+    ]
+   }
   }
  }
 }

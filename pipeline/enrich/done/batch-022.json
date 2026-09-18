@@ -454,7 +454,31 @@
      "why": "Code: System störbar."
     }
    },
-   "context_de": "KEV, EPSS 0,84: 2009 in Kits. U3D (3D-Modelle in PDF) war eine breite Angriffsfläche; ein Out-of-Bounds-Write (CWE-787) beim Parsen. PDF-Parser hatten vor der Sandbox viele solcher Lücken."
+   "context_de": "KEV, EPSS 0,84: 2009 in Kits. U3D (3D-Modelle in PDF) war eine breite Angriffsfläche; ein Out-of-Bounds-Write (CWE-787) beim Parsen. PDF-Parser hatten vor der Sandbox viele solcher Lücken.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer öffnet mit verwundbarem Adobe Reader/Acrobat (7.x–9.x) eine Datei."
+     },
+     {
+      "phase": "trigger",
+      "text": "Die präparierte PDF enthält fehlerhafte U3D-Daten, die einen Pufferüberlauf auslösen."
+     },
+     {
+      "phase": "impact",
+      "text": "Die Speicherkorruption führt zur Ausführung von beliebigem Code im Kontext des Nutzers."
+     },
+     {
+      "phase": "stopper",
+      "text": "Reader/Acrobat aktualisieren; PDFs aus unbekannter Quelle nicht öffnen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel unauthentifiziert über das Netz.",
+     "Ein unauthentifizierter Angreifer liest über XXE lokale Dateien."
+    ]
+   }
   },
   "CVE-2021-26086": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
@@ -547,7 +571,31 @@
      "why": "root: System abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,60: In Kette mit dem API-Key-Leck CVE-2020-8657 im selben Produkt. sudo-Regeln, die nmap-Skripte erlauben, sind ein Rechteausweitungs-Klassiker (CWE-269): nmap kann per NSE beliebigen Lua-Code als root ausführen."
+   "context_de": "KEV, EPSS 0,60: In Kette mit dem API-Key-Leck CVE-2020-8657 im selben Produkt. sudo-Regeln, die nmap-Skripte erlauben, sind ein Rechteausweitungs-Klassiker (CWE-269): nmap kann per NSE beliebigen Lua-Code als root ausführen.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Der Angreifer hat auf einem EyesOfNetwork-5.3-System bereits Codeausführung als apache-Nutzer (z. B. über eine Web-Lücke)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er ruft über die fehlerhafte sudoers-Regel nmap mit einem präparierten NSE-Skript auf."
+     },
+     {
+      "phase": "impact",
+      "text": "Das NSE-Skript läuft als root: lokale Rechteausweitung."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; die sudoers-Regel restriktiv fassen, sodass apache nmap nicht als root starten kann."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel unauthentifiziert über das Netz.",
+     "Ein Opfer öffnet eine Webseite mit einem Type-Confusion-Exploit."
+    ]
+   }
   },
   "CVE-2014-0196": {
    "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",

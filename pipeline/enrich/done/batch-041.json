@@ -521,7 +521,31 @@
      "why": "Code: System störbar."
     }
    },
-   "context_de": "KEV, EPSS 0,80: Google Project Zero veröffentlichte den Bug nach Ablauf der 90-Tage-Frist ohne Patch (ein bekannter Streit mit Microsoft). Type Confusion (CWE-843) in der IE/Edge-Layout-Engine; die IE-Serie im Korpus zeigt Type Confusion und Use-After-Free als die zwei Haupt-RCE-Klassen des Browsers."
+   "context_de": "KEV, EPSS 0,80: Google Project Zero veröffentlichte den Bug nach Ablauf der 90-Tage-Frist ohne Patch (ein bekannter Streit mit Microsoft). Type Confusion (CWE-843) in der IE/Edge-Layout-Engine; die IE-Serie im Korpus zeigt Type Confusion und Use-After-Free als die zwei Haupt-RCE-Klassen des Browsers.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer nutzt einen verwundbaren Internet Explorer 10/11 oder Edge und surft im Web."
+     },
+     {
+      "phase": "trigger",
+      "text": "Es öffnet eine präparierte Seite, deren CSS in mshtml.dll eine Type Confusion auslöst."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Speicherfehler führt zur Ausführung von beliebigem Code im Browserkontext."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitsupdate einspielen; betroffene Layout-/CSS-Funktionen korrigieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt gültige Windows-Zugangsdaten.",
+     "Ein lokaler Nutzer nutzt eine Race Condition beim Anlegen einer Datei."
+    ]
+   }
   },
   "CVE-2012-4969": {
    "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",

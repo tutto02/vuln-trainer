@@ -185,7 +185,31 @@
      "why": "Code: Dienst störbar."
     }
    },
-   "context_de": "KEV, EPSS 0,99: Die Ivanti CSA ist im Korpus mehrfach vertreten (CVE-2024-8963, CVE-2024-9379). Code-Injection (CWE-94); der nobody-Kontext begrenzt die direkte Auswirkung, aber in Kette mit einer Rechteausweitung wird es root. Ivanti ist das häufigste Herstellerthema im Korpus."
+   "context_de": "KEV, EPSS 0,99: Die Ivanti CSA ist im Korpus mehrfach vertreten (CVE-2024-8963, CVE-2024-9379). Code-Injection (CWE-94); der nobody-Kontext begrenzt die direkte Auswirkung, aber in Kette mit einer Rechteausweitung wird es root. Ivanti ist das häufigste Herstellerthema im Korpus.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine Ivanti-EPM-Cloud-Services-Appliance (CSA) ist ohne Anmeldung aus dem Netz erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet einen Request, dessen Inhalt als Code interpretiert wird (Code Injection)."
+     },
+     {
+      "phase": "impact",
+      "text": "Der eingeschleuste Code wird mit eingeschränkten Rechten (nobody) auf der Appliance ausgeführt."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; Eingaben strikt validieren und den Zugriff beschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit Standard-Zugangsdaten an.",
+     "Ein Opfer wird per CSRF zu einer Aktion verleitet."
+    ]
+   }
   },
   "CVE-2021-35464": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
@@ -592,7 +616,31 @@
      "why": "Keine Verfügbarkeitsauswirkung."
     }
    },
-   "context_de": "KEV, EPSS 0,86: XSS (CWE-79) in der Cisco-ASA-Web-Schnittstelle, in freier Wildbahn genutzt. XSS gegen VPN-/Firewall-Login-Seiten ist Phishing mit vertrauenswürdiger Domain (wie CVE-2014-2120); das Ziel sind die Zugangsdaten der Admins. Cisco ASA ist im Korpus ein Dauerthema."
+   "context_de": "KEV, EPSS 0,86: XSS (CWE-79) in der Cisco-ASA-Web-Schnittstelle, in freier Wildbahn genutzt. XSS gegen VPN-/Firewall-Login-Seiten ist Phishing mit vertrauenswürdiger Domain (wie CVE-2014-2120); das Ziel sind die Zugangsdaten der Admins. Cisco ASA ist im Korpus ein Dauerthema.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine Cisco-ASA/FTD-Weboberfläche ist erreichbar und nicht gegen das XSS gepatcht."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer bringt ein Opfer dazu, einen präparierten Link auf die Web-Services-Schnittstelle zu öffnen."
+     },
+     {
+      "phase": "impact",
+      "text": "Das reflektierte Skript läuft im Browser des Opfers (Scope-Wechsel in dessen Sitzung)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; Eingaben serverseitig kodieren, Zugriff auf die Oberfläche beschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer führt über die Lücke direkt Betriebssystembefehle aus.",
+     "Ein lokaler Nutzer platziert eine DLL im Suchpfad."
+    ]
+   }
   },
   "CVE-2019-11580": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

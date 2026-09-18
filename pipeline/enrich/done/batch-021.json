@@ -116,7 +116,31 @@
      "why": "Admin: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,94: 2013 in freier Wildbahn. ColdFusion ist ein Dauerbrenner (mehrere KEV-Einträge); ein leeres Standardpasswort für RDS (CWE-276) ist eine Fehlkonfiguration ab Werk."
+   "context_de": "KEV, EPSS 0,94: 2013 in freier Wildbahn. ColdFusion ist ein Dauerbrenner (mehrere KEV-Einträge); ein leeres Standardpasswort für RDS (CWE-276) ist eine Fehlkonfiguration ab Werk.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Adobe-ColdFusion-Server (9.0–10) hat die RDS-Komponente mit leerem Standardpasswort aktiv und ist erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer meldet sich an der RDS-Komponente mit dem leeren Default-Passwort an."
+     },
+     {
+      "phase": "impact",
+      "text": "Er nutzt die Sitzung, um die Admin-Oberfläche zu erreichen und möglicherweise Code auszuführen."
+     },
+     {
+      "phase": "stopper",
+      "text": "Hotfix einspielen; RDS deaktivieren oder ein starkes Passwort setzen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer nutzt eine OGNL-Injection im HTTP-Header.",
+     "Ein lokaler Nutzer nutzt eine Race Condition beim Anlegen einer Datei."
+    ]
+   }
   },
   "CVE-2020-3950": {
    "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",

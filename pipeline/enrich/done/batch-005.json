@@ -120,7 +120,31 @@
      "why": "Keine Verfügbarkeitsauswirkung."
     }
    },
-   "context_de": "KEV, EPSS 0,90: Gegen Cloud-Metadaten-Endpunkte (169.254.169.254) genutzt, um Zugangsdaten zu stehlen. Ein 7,2 mit C:L, der in der Cloud zur vollen Kontoübernahme führt; die Auswirkung liegt außerhalb des Vektors."
+   "context_de": "KEV, EPSS 0,90: Gegen Cloud-Metadaten-Endpunkte (169.254.169.254) genutzt, um Zugangsdaten zu stehlen. Ein 7,2 mit C:L, der in der Cloud zur vollen Kontoübernahme führt; die Auswirkung liegt außerhalb des Vektors.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine Adminer-Instanz (4.0.0–4.7.8, alle Treiber gebündelt) ist über das Netz erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer bringt Adminer über die Verbindungsfunktion dazu, eine Anfrage an ein von ihm gewähltes Ziel zu stellen (SSRF)."
+     },
+     {
+      "phase": "impact",
+      "text": "Adminer erreicht interne, sonst geschützte Dienste (Scope-Wechsel in die interne Zone)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Adminer auf 4.7.9+ aktualisieren; ausgehende Ziele beschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer führt über die Lücke direkt Betriebssystembefehle aus.",
+     "Ein lokaler Nutzer eskaliert über eine setuid-Binary zu root."
+    ]
+   }
   },
   "CVE-2024-5274": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H",
@@ -378,7 +402,31 @@
      "why": "Root: Appliance abschaltbar."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: Januar 2024, massenhaft in Kette mit dem Auth-Bypass. Ein PR:H-Vektor mit maximaler realer Ausnutzung, weil die Kette das PR wegnimmt."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: Januar 2024, massenhaft in Kette mit dem Auth-Bypass. Ein PR:H-Vektor mit maximaler realer Ausnutzung, weil die Kette das PR wegnimmt.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Ivanti-Connect-Secure/Policy-Secure-Gateway (9.x/22.x) ist verwundbar; der Angreifer besitzt (oder umgeht per CVE-2023-46805) einen administrativen Zugang."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er sendet an eine Web-Komponente einen Request mit Command-Injection-Zeichen in einem Parameter."
+     },
+     {
+      "phase": "impact",
+      "text": "Die eingeschleusten Befehle werden auf der Appliance ausgeführt (Scope-Wechsel, verkettet zur unauthentifizierten RCE)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; Eingaben strikt validieren und die bereitgestellten Mitigationen anwenden."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit einem fest eingebauten Passwort an.",
+     "Ein Opfer öffnet ein Office-Dokument mit Makro."
+    ]
+   }
   },
   "CVE-2025-32432": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",

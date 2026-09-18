@@ -101,7 +101,31 @@
    "dissent": {
     "C": "NVD bewertet die Primitive (Datei kopieren), nicht die Folge (DLL-Hijacking, Code als SYSTEM). Als Kette wäre es C:H/I:H/A:H, 7,8 oder 8,8."
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,28: Klassische Post-Exploitation-Rechteausweitung nach Phishing. Die Wahrscheinlichkeit ist hoch, sobald ein Angreifer als Nutzer auf dem Client ist."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,28: Klassische Post-Exploitation-Rechteausweitung nach Phishing. Die Wahrscheinlichkeit ist hoch, sobald ein Angreifer als Nutzer auf dem Client ist.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Der Angreifer besitzt bereits ein gültiges lokales Windows-Konto auf einem System mit Cisco AnyConnect (anfällige Installer-Komponente)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er nutzt die fehlerhafte Pfadbehandlung des Installers, um eigene Dateien in Systemverzeichnisse kopieren zu lassen."
+     },
+     {
+      "phase": "impact",
+      "text": "Die mit Systemrechten kopierten Dateien ermöglichen eine lokale Rechteausweitung."
+     },
+     {
+      "phase": "stopper",
+      "text": "AnyConnect aktualisieren; Zielpfade des Installers validieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel unauthentifiziert über das Netz.",
+     "Ein Opfer öffnet ein bösartiges PDF."
+    ]
+   }
   },
   "CVE-2025-25181": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
@@ -716,7 +740,31 @@
    "dissent": {
     "UI": "Ciscos Advisory: AV:A/AC:L/PR:N/UI:N (8,8). Das UI:R der NVD ist ein Fehler."
    },
-   "context_de": "KEV, EPSS 0,03: Ausnutzung braucht Layer-2-Zugang, also physische oder bereits interne Position. Port-Security und LLDP nur auf Uplinks senken die Wahrscheinlichkeit."
+   "context_de": "KEV, EPSS 0,03: Ausnutzung braucht Layer-2-Zugang, also physische oder bereits interne Position. Port-Security und LLDP nur auf Uplinks senken die Wahrscheinlichkeit.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Cisco-IOS/IOS-XE/XR-Gerät hat LLDP aktiv; der Angreifer befindet sich im angrenzenden Netzsegment."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er sendet ein präpariertes LLDP-Paket mit Format-Spezifizierern an das Gerät."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Format-String-Fehler löst einen DoS aus oder führt Code mit erhöhten Rechten aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Software aktualisieren; LLDP auf nicht benötigten Ports deaktivieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel unauthentifiziert über das Internet.",
+     "Ein Opfer öffnet einen Link mit reflektiertem XSS."
+    ]
+   }
   }
  }
 }

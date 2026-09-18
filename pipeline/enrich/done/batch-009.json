@@ -96,7 +96,31 @@
      "why": "Codeausführung."
     }
    },
-   "context_de": "KEV, EPSS 0,42: Pwn2Own 2017. Klasse laut NVD OOB-Read (CWE-125), Auswirkung RCE: Bei V8-Bugs ist die Klasse selten die ganze Geschichte."
+   "context_de": "KEV, EPSS 0,42: Pwn2Own 2017. Klasse laut NVD OOB-Read (CWE-125), Auswirkung RCE: Bei V8-Bugs ist die Klasse selten die ganze Geschichte.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer nutzt eine verwundbare Chrome-Version (< 57.0.2987.98) und öffnet eine Webseite."
+     },
+     {
+      "phase": "trigger",
+      "text": "Die präparierte HTML-Seite löst durch fehlerhafte Species-Behandlung in V8 einen Speicherfehler aus."
+     },
+     {
+      "phase": "impact",
+      "text": "Es kommt zur Ausführung von beliebigem Code in der Renderer-Sandbox."
+     },
+     {
+      "phase": "stopper",
+      "text": "Chrome aktualisieren; die Sandbox begrenzt den Schaden bis zum Patch."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt ein gültiges Google-Konto des Opfers.",
+     "Ein Server gibt über eine Path-Traversal Dateien preis."
+    ]
+   }
   },
   "CVE-2023-4966": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",

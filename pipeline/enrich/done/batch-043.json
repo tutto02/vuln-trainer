@@ -371,7 +371,31 @@
      "why": "RCE: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,999: Die erste große Confluence-RCE, massenhaft für Kryptominer (GandCrab) genutzt. Path Traversal (CWE-22) plus SSTI (Velocity-Template); Confluence ist im Korpus viermal mit RCE vertreten (3396, 26084, 22527, 26134). Ein Produkt mit einer jahrelangen Serie kritischer RCEs."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,999: Die erste große Confluence-RCE, massenhaft für Kryptominer (GandCrab) genutzt. Path Traversal (CWE-22) plus SSTI (Velocity-Template); Confluence ist im Korpus viermal mit RCE vertreten (3396, 26084, 22527, 26134). Ein Produkt mit einer jahrelangen Serie kritischer RCEs.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Atlassian-Confluence-Server (anfällige Version) ist erreichbar; das Widget-Connector-Makro ist verfügbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer nutzt das Makro mit einer Path-Traversal/Template-Referenz auf eine Velocity-Template."
+     },
+     {
+      "phase": "impact",
+      "text": "Er liest Serverdateien und erreicht die Ausführung von beliebigem Code."
+     },
+     {
+      "phase": "stopper",
+      "text": "Auf eine gepatchte Version aktualisieren; Confluence nicht offen ins Internet stellen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit einem fest eingebauten Passwort an.",
+     "Ein Opfer wird per CSRF zu einer administrativen Aktion verleitet."
+    ]
+   }
   },
   "CVE-2020-13935": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",

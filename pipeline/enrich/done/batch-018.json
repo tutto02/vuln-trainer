@@ -521,7 +521,31 @@
      "why": "Befehle: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,997: PHPMailer steckt in unzähligen Anwendungen (WordPress, Drupal), daher Massenausnutzung. Argument-Injection (CWE-88) über sendmail-Parameter: Der Sender-String wird zur Kommandozeile."
+   "context_de": "KEV, EPSS 0,997: PHPMailer steckt in unzähligen Anwendungen (WordPress, Drupal), daher Massenausnutzung. Argument-Injection (CWE-88) über sendmail-Parameter: Der Sender-String wird zur Kommandozeile.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine Webanwendung nutzt PHPMailer (< 5.2.18) mit isMail-Transport und übergibt eine vom Angreifer beeinflussbare Sender-Adresse."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer setzt in die Sender-Property eine präparierte Zeichenfolge (\\\") mit zusätzlichen mail-Parametern."
+     },
+     {
+      "phase": "impact",
+      "text": "Die extra Parameter erreichen den sendmail-Aufruf, sodass eine Datei geschrieben und Code ausgeführt wird."
+     },
+     {
+      "phase": "stopper",
+      "text": "PHPMailer aktualisieren; die Absenderadresse strikt validieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit gestohlenen Zugangsdaten an.",
+     "Ein Opfer klickt auf einen Link mit reflektiertem XSS."
+    ]
+   }
   },
   "CVE-2022-43769": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H",

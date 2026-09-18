@@ -159,7 +159,31 @@
      "why": "Codeausführung."
     }
    },
-   "context_de": "KEV, EPSS 0,07: Zweite Hälfte des Zero-Day-Paars. Zwei UAFs in einer Kette ergeben einen Angriff; jede bekommt denselben Vektor."
+   "context_de": "KEV, EPSS 0,07: Zweite Hälfte des Zero-Day-Paars. Zwei UAFs in einer Kette ergeben einen Angriff; jede bekommt denselben Vektor.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer nutzt einen verwundbaren Firefox/Thunderbird und öffnet präparierte Webinhalte."
+     },
+     {
+      "phase": "trigger",
+      "text": "Beim Verarbeiten eines ReadableStream löst eine Race Condition einen Use-after-free aus."
+     },
+     {
+      "phase": "impact",
+      "text": "Der wiederverwendete Speicher führt zur Codeausführung (gezielte Angriffe in freier Wildbahn)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Firefox/Thunderbird aktualisieren; das schließt die Race Condition."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt gültige Zugangsdaten des Opfers.",
+     "Ein Server gibt über eine Path-Traversal Dateien preis."
+    ]
+   }
   },
   "CVE-2021-38003": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
