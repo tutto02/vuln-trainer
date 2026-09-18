@@ -173,7 +173,31 @@
    "dissent": {
     "PR": "CNA: PR:H, S:C (7,2). Beides sind typische CSRF-Fehlbewertungen: PR beschreibt den Angreifer, und der Browser des Opfers ist kein zweiter Scope."
    },
-   "context_de": "KEV, EPSS 0,29. PaperCut-Server sind in Schulen und Behörden verbreitet und stehen oft im Internet. Awareness der Admins senkt die Wahrscheinlichkeit, ein getrennter Admin-Browser ebenso."
+   "context_de": "KEV, EPSS 0,29. PaperCut-Server sind in Schulen und Behörden verbreitet und stehen oft im Internet. Awareness der Admins senkt die Wahrscheinlichkeit, ein getrennter Admin-Browser ebenso.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein PaperCut-NG/MF-Server ist erreichbar; ein Administrator hat eine aktive Login-Sitzung."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer bringt den angemeldeten Admin dazu, eine präparierte Seite zu öffnen, die im Hintergrund Requests sendet (CSRF)."
+     },
+     {
+      "phase": "impact",
+      "text": "Im Namen des Admins werden Sicherheitseinstellungen geändert oder Code ausgeführt."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; CSRF-Token für administrative Aktionen erzwingen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer sendet OGNL im HTTP-Header.",
+     "Ein lokaler Nutzer liest über einen Speicher-Leak Kernel-Daten."
+    ]
+   }
   },
   "CVE-2020-9496": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
@@ -276,7 +300,31 @@
      "why": "Die Firewall kann abgeschaltet werden."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,46. Für ein VPN-Gateway ist AC:H praktisch bedeutungslos, sobald ein öffentlicher Exploit existiert; die Wahrscheinlichkeit bestimmt dann der Exploit, nicht der Vektor."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,46. Für ein VPN-Gateway ist AC:H praktisch bedeutungslos, sobald ein öffentlicher Exploit existiert; die Wahrscheinlichkeit bestimmt dann der Exploit, nicht der Vektor.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein PAN-OS-Gerät (anfällige Version) hat das GlobalProtect-Portal/-Gateway aktiv und ist erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet einen Request mit Format-Spezifizierern an eine ungeprüfte Portal-Eingabe."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Format-String-Fehler führt zur Ausführung von beliebigem Code ohne Anmeldung."
+     },
+     {
+      "phase": "stopper",
+      "text": "PAN-OS aktualisieren; Eingaben als Datenargument statt als Format-String verarbeiten."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit Standard-Zugangsdaten an.",
+     "Ein Opfer wird per CSRF zu einer administrativen Aktion verleitet."
+    ]
+   }
   },
   "CVE-2025-30406": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

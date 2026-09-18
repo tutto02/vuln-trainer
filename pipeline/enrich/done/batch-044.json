@@ -124,7 +124,31 @@
      "why": "RCE: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: Von Clop für Massendatendiebstahl genutzt (der Vorläufer des MOVEit-Angriffs). Deserialisierung (CWE-502) in einem Managed-File-Transfer-Server. GoAnywhere ist im Korpus zweimal vertreten (auch CVE-2025-10035); MFT-Server sind die Kategorie mit den größten Ransomware-Vorfällen."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: Von Clop für Massendatendiebstahl genutzt (der Vorläufer des MOVEit-Angriffs). Deserialisierung (CWE-502) in einem Managed-File-Transfer-Server. GoAnywhere ist im Korpus zweimal vertreten (auch CVE-2025-10035); MFT-Server sind die Kategorie mit den größten Ransomware-Vorfällen.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein GoAnywhere-MFT-Admin-Interface ist erreichbar; das License-Response-Servlet ist ohne Anmeldung ansprechbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet an das Servlet ein präpariertes, angreiferkontrolliertes serialisiertes Objekt."
+     },
+     {
+      "phase": "impact",
+      "text": "Das Objekt wird deserialisiert und führt beliebige Befehle aus (Clop-Kampagne)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Auf 7.1.2+ aktualisieren; das Admin-Interface nicht ins Internet stellen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit gestohlenen Zugangsdaten an.",
+     "Ein Opfer klickt auf einen Link mit reflektiertem XSS."
+    ]
+   }
   },
   "CVE-2021-3378": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
@@ -341,7 +365,31 @@
      "why": "RCE: Appliance abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,99999: Massenausnutzung binnen Tagen (Juli 2020). Path Traversal (CWE-22, ..;/-Trick, der die Authentifizierung umging) zu RCE auf dem Load Balancer. F5 BIG-IP ist im Korpus ein Dauerthema (iControl, TMUI); das Management-Interface von Netzwerk-Appliances ist das wiederkehrende Ziel. Eine der folgenreichsten Appliance-Lücken 2020."
+   "context_de": "KEV, EPSS 0,99999: Massenausnutzung binnen Tagen (Juli 2020). Path Traversal (CWE-22, ..;/-Trick, der die Authentifizierung umging) zu RCE auf dem Load Balancer. F5 BIG-IP ist im Korpus ein Dauerthema (iControl, TMUI); das Management-Interface von Netzwerk-Appliances ist das wiederkehrende Ziel. Eine der folgenreichsten Appliance-Lücken 2020.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein F5-BIG-IP-Gerät exponiert die Traffic-Management-Oberfläche (TMUI) ohne ausreichenden Schutz im Netz."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer ruft eine TMUI-URL mit Path-Traversal auf, die zu einem ungeschützten Endpunkt führt."
+     },
+     {
+      "phase": "impact",
+      "text": "Er ruft eine Funktion auf, die beliebige Befehle ausführt: unauthentifizierte Remote Code Execution."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; TMUI-Zugriff auf das Verwaltungsnetz beschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit gestohlenen Zugangsdaten an.",
+     "Ein Opfer öffnet einen Link mit reflektiertem XSS."
+    ]
+   }
   },
   "CVE-2020-36222": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",

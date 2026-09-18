@@ -489,7 +489,31 @@
      "why": "Verfügbarkeit: NVD: A:N."
     }
    },
-   "context_de": "KEV, EPSS 0,996: Expedition ist ein Migrationstool, das Firewall-Konfigurationen und API-Keys hält. SQLi (CWE-89), die die Zugangsdaten zu den Firewalls liefert; ein Werkzeug mit Zugriff auf die Firewall-Verwaltung ist ein hochwertiges Ziel. Palo Alto ist im Korpus mehrfach vertreten (PAN-OS, GlobalProtect, Expedition)."
+   "context_de": "KEV, EPSS 0,996: Expedition ist ein Migrationstool, das Firewall-Konfigurationen und API-Keys hält. SQLi (CWE-89), die die Zugangsdaten zu den Firewalls liefert; ein Werkzeug mit Zugriff auf die Firewall-Verwaltung ist ein hochwertiges Ziel. Palo Alto ist im Korpus mehrfach vertreten (PAN-OS, GlobalProtect, Expedition).",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine Palo-Alto-Expedition-Instanz ist ohne Anmeldung über das Netz erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet einen Request mit einer SQL-Injection an die Anwendung."
+     },
+     {
+      "phase": "impact",
+      "text": "Er liest Datenbankinhalte (Passwort-Hashes, API-Schlüssel) und kann Dateien erstellen/lesen."
+     },
+     {
+      "phase": "stopper",
+      "text": "Expedition aktualisieren; Eingaben parametrisiert verarbeiten, Zugriff beschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer lädt über ein Upload-Feld eine Web-Shell hoch.",
+     "Ein lokaler Nutzer nutzt eine Race Condition beim Symlink."
+    ]
+   }
   },
   "CVE-2021-22986": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

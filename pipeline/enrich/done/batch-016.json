@@ -153,7 +153,31 @@
      "why": "Code mit Nutzerrechten: System störbar."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,9998: Über ein Jahrzehnt der beliebteste Dokument-Exploit für APT-Gruppen (RTF-Dateien). Ein ActiveX-Control als jahrelanger Standard-Einstieg; alte Office-Installationen halten die Wahrscheinlichkeit hoch."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,9998: Über ein Jahrzehnt der beliebteste Dokument-Exploit für APT-Gruppen (RTF-Dateien). Ein ActiveX-Control als jahrelanger Standard-Einstieg; alte Office-Installationen halten die Wahrscheinlichkeit hoch.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer nutzt Microsoft Office (anfällige Version); es erhält ein präpariertes Dokument."
+     },
+     {
+      "phase": "trigger",
+      "text": "Beim Öffnen verarbeitet das ActiveX-Control in MSCOMCTL.OCX manipulierte Daten und löst einen Speicherfehler aus."
+     },
+     {
+      "phase": "impact",
+      "text": "Die Speicherkorruption führt zur Ausführung von beliebigem Code im Kontext des Nutzers (weit verbreitet in Angriffen)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitsupdate einspielen; Dokumente aus unbekannter Quelle nicht öffnen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel unauthentifiziert über das Netz.",
+     "Ein unauthentifizierter Angreifer liest über XXE lokale Dateien."
+    ]
+   }
   },
   "CVE-2017-11317": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
@@ -436,7 +460,31 @@
      "why": "Code: System störbar."
     }
    },
-   "context_de": "KEV, EPSS 0,97: 2009 der Standard-PDF-Exploit in allen Kits. PDF-JavaScript (getIcon, Collab) war jahrelang die Angriffsfläche; die Klasse ist ein klassischer Stack-Overflow (CWE-121)."
+   "context_de": "KEV, EPSS 0,97: 2009 der Standard-PDF-Exploit in allen Kits. PDF-JavaScript (getIcon, Collab) war jahrelang die Angriffsfläche; die Klasse ist ein klassischer Stack-Overflow (CWE-121).",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer öffnet mit verwundbarem Adobe Reader/Acrobat (7/8/9) eine Datei."
+     },
+     {
+      "phase": "trigger",
+      "text": "Die präparierte PDF übergibt der getIcon-Methode eines Collab-Objekts ein überlanges Argument."
+     },
+     {
+      "phase": "impact",
+      "text": "Der stack-basierte Pufferüberlauf erlaubt die Ausführung von beliebigem Code."
+     },
+     {
+      "phase": "stopper",
+      "text": "Reader/Acrobat aktualisieren; JavaScript im Reader deaktivieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt Netzwerkzugriff ohne jede Nutzerinteraktion.",
+     "Ein lokaler Angreifer platziert eine DLL im Suchpfad."
+    ]
+   }
   },
   "CVE-2022-0185": {
    "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

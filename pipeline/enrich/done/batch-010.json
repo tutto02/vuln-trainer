@@ -513,7 +513,31 @@
    "dissent": {
     "AC": "CNA (SolarWinds): AC:H (9,0). Zero-Day einer chinesischen Gruppe; AC:H trotz aktiver Ausnutzung ist eine Herstellerneigung."
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,91. Dateitransfer-Server als SYSTEM im Internet: die gleiche Geschichte wie MOVEit, GoAnywhere, CrushFTP."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,91. Dateitransfer-Server als SYSTEM im Internet: die gleiche Geschichte wie MOVEit, GoAnywhere, CrushFTP.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein SolarWinds-Serv-U-Dienst ist über das Netz erreichbar und nicht gepatcht."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet präparierte Daten, die einen Speicherfehler (Remote Memory Escape) im Serv-U-Prozess auslösen."
+     },
+     {
+      "phase": "impact",
+      "text": "Die Speicherkorruption führt zu privilegiertem Zugriff auf das Serv-U-hostende System (aktiv ausgenutzt)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Hotfix einspielen; Serv-U nicht offen ins Internet stellen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit einem fest eingebauten Passwort an.",
+     "Ein lokaler Nutzer platziert eine DLL im Suchpfad."
+    ]
+   }
   },
   "CVE-2021-40444": {
    "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",

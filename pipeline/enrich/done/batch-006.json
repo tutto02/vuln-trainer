@@ -310,7 +310,31 @@
    "dissent": {
     "PR": "CNA (Broadcom): AC:H, PR:L (7,5). Broadcom kennt Details, die die Beschreibung nicht nennt; NVD bewertet nur den Text."
    },
-   "context_de": "KEV, EPSS 0,17: Zusammen mit CVE-2024-38812 (Heap Overflow) als Kette, die 2025 aktiv ausgenutzt wurde. vCenter ist die Kontrollebene der Virtualisierung; die Auswirkung ist jede VM."
+   "context_de": "KEV, EPSS 0,17: Zusammen mit CVE-2024-38812 (Heap Overflow) als Kette, die 2025 aktiv ausgenutzt wurde. vCenter ist die Kontrollebene der Virtualisierung; die Auswirkung ist jede VM.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein VMware-vCenter-Server (anfällige Version) ist über das Netz erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet ein speziell präpariertes Netzwerkpaket an vCenter."
+     },
+     {
+      "phase": "impact",
+      "text": "Die fehlerhafte Rechtezuweisung eskaliert seine Rechte auf root."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; Zugriff auf vCenter-Verwaltungsports netzseitig beschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit Standard-Zugangsdaten an.",
+     "Ein Opfer öffnet ein Office-Dokument mit Makro."
+    ]
+   }
   },
   "CVE-2025-22224": {
    "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:H/I:H/A:H",

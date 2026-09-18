@@ -248,7 +248,31 @@
      "why": "RCE: Appliance abschaltbar."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,97: F5 BIG-IP zum wiederholten Mal (CVE-2020-5902 TMUI, CVE-2021-22986 iControl, CVE-2022-1388 iControl). Request Smuggling zur Auth-Umgehung (CWE-306) plus Command Injection (CVE-2023-46748, SQLi, im Korpus); die beiden ergaben unauthentifizierte RCE. Die Management-API von Netzwerk-Appliances ist das wiederkehrende Ziel."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,97: F5 BIG-IP zum wiederholten Mal (CVE-2020-5902 TMUI, CVE-2021-22986 iControl, CVE-2022-1388 iControl). Request Smuggling zur Auth-Umgehung (CWE-306) plus Command Injection (CVE-2023-46748, SQLi, im Korpus); die beiden ergaben unauthentifizierte RCE. Die Management-API von Netzwerk-Appliances ist das wiederkehrende Ziel.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein F5-BIG-IP-System exponiert die Konfigurationsoberfläche über Management-Port oder Self-IP im Netz."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet undokumentierte Requests, die die Authentifizierung der Konfigurationsoberfläche umgehen."
+     },
+     {
+      "phase": "impact",
+      "text": "Ohne gültige Anmeldung führt er beliebige Systembefehle aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; den Zugriff auf die Verwaltungsschnittstelle strikt einschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer nutzt einen Deserialisierungsfehler.",
+     "Ein Opfer öffnet ein Office-Dokument mit Makro."
+    ]
+   }
   },
   "CVE-2023-28771": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
@@ -372,7 +396,31 @@
      "why": "root: System abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,81: Looney Tunables, in fast jeder Linux-Distribution (die glibc ist überall). Buffer Overflow (CWE-787) im dynamischen Loader beim Verarbeiten einer Umgebungsvariablen; wie PwnKit (CVE-2021-4034) und Dirty COW eine universelle Linux-Root-Rechteausweitung. Der Loader läuft bei jedem Programmstart mit erhöhten Rechten für setuid-Binaries."
+   "context_de": "KEV, EPSS 0,81: Looney Tunables, in fast jeder Linux-Distribution (die glibc ist überall). Buffer Overflow (CWE-787) im dynamischen Loader beim Verarbeiten einer Umgebungsvariablen; wie PwnKit (CVE-2021-4034) und Dirty COW eine universelle Linux-Root-Rechteausweitung. Der Loader läuft bei jedem Programmstart mit erhöhten Rechten für setuid-Binaries.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Der Angreifer besitzt bereits ein unprivilegiertes lokales Konto auf einem Linux-System mit verwundbarem glibc-Loader (Looney Tunables)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er startet eine SUID-Binary mit einer präparierten GLIBC_TUNABLES-Umgebungsvariable, die einen Pufferüberlauf im Loader auslöst."
+     },
+     {
+      "phase": "impact",
+      "text": "Der ld.so-Overflow erlaubt lokale Rechteausweitung auf root."
+     },
+     {
+      "phase": "stopper",
+      "text": "glibc aktualisieren; das schließt die Verarbeitung der GLIBC_TUNABLES-Variable."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer verbindet sich ohne Konto über das Netz mit einem Dienst.",
+     "Ein Opfer öffnet eine Webseite mit einem Type-Confusion-Exploit."
+    ]
+   }
   },
   "CVE-2022-29464": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

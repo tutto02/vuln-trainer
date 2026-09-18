@@ -419,7 +419,31 @@
      "why": "Code: System störbar."
     }
    },
-   "context_de": "KEV, EPSS 0,94: Ein PDF-Buffer-Overflow von 2007 (CWE-120), 2021 in KEV. PDF-JavaScript-Methoden mit langen Argumenten waren jahrelang die Angriffsfläche; die Adobe-Serie im Korpus (2007, 2008, 2009, 2018) zeigt, wie lange PDF-Reader das Haupteinfallstor waren."
+   "context_de": "KEV, EPSS 0,94: Ein PDF-Buffer-Overflow von 2007 (CWE-120), 2021 in KEV. PDF-JavaScript-Methoden mit langen Argumenten waren jahrelang die Angriffsfläche; die Adobe-Serie im Korpus (2007, 2008, 2009, 2018) zeigt, wie lange PDF-Reader das Haupteinfallstor waren.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer öffnet mit verwundbarem Adobe Reader/Acrobat (≤ 8.1.1) eine Datei."
+     },
+     {
+      "phase": "trigger",
+      "text": "Die präparierte PDF ruft unspezifizierte JavaScript-Methoden mit überlangen Argumenten auf."
+     },
+     {
+      "phase": "impact",
+      "text": "Die Pufferüberläufe führen zur Ausführung von beliebigem Code."
+     },
+     {
+      "phase": "stopper",
+      "text": "Reader/Acrobat aktualisieren; JavaScript im Reader deaktivieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel unauthentifiziert über das Netz.",
+     "Ein Server gibt über eine SQL-Injection Daten preis."
+    ]
+   }
   },
   "CVE-2018-13379": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
@@ -454,7 +478,31 @@
    "dissent": {
     "I": "CNA (Fortinet): C:H, I:N, A:H. Fortinet bewertet nur das Dateilesen (I:N), NVD die Folge über die Zugangsdaten (I:H)."
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: Eine der am längsten und breitesten ausgenutzten VPN-Lücken, jahrelang die Grundlage von Ransomware-Einbrüchen (auch nach dem Patch, weil die Zugangsdaten schon abgeflossen waren). Ein Path Traversal (CWE-22), das Klartext-Passwörter liefert; nach dem Patch mussten alle VPN-Passwörter gewechselt werden."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: Eine der am längsten und breitesten ausgenutzten VPN-Lücken, jahrelang die Grundlage von Ransomware-Einbrüchen (auch nach dem Patch, weil die Zugangsdaten schon abgeflossen waren). Ein Path Traversal (CWE-22), das Klartext-Passwörter liefert; nach dem Patch mussten alle VPN-Passwörter gewechselt werden.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein FortiOS-SSL-VPN-Webportal (anfällige Version) ist ohne Anmeldung aus dem Internet erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet eine präparierte URL mit Path-Traversal an das SSL-VPN-Portal."
+     },
+     {
+      "phase": "impact",
+      "text": "Er lädt Systemdateien herunter, darunter Klartext-Zugangsdaten aktiver VPN-Sitzungen."
+     },
+     {
+      "phase": "stopper",
+      "text": "FortiOS aktualisieren und danach alle VPN-Zugangsdaten rotieren, da Geheimnisse abgeflossen sein können."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer führt über die Lücke direkt Betriebssystembefehle aus.",
+     "Ein lokaler Nutzer eskaliert über pkexec zu root."
+    ]
+   }
   },
   "CVE-2022-0441": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
@@ -579,7 +627,31 @@
      "why": "RCE: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: Massenausnutzung gegen exponierte vCenter-Server. Ein standardmäßig aktives Plugin (CWE-918-nah, real Command Injection); vCenter ist die Kontrollebene der Virtualisierung und im Korpus ein Dauerthema (CVE-2020-3952, CVE-2021-21972, CVE-2024-38813). Ransomware-Gruppen lieben vCenter, weil ein Server alle VMs verschlüsselt."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: Massenausnutzung gegen exponierte vCenter-Server. Ein standardmäßig aktives Plugin (CWE-918-nah, real Command Injection); vCenter ist die Kontrollebene der Virtualisierung und im Korpus ein Dauerthema (CVE-2020-3952, CVE-2021-21972, CVE-2024-38813). Ransomware-Gruppen lieben vCenter, weil ein Server alle VMs verschlüsselt.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein VMware-vCenter-Server ist über Port 443 erreichbar; das Virtual-SAN-Health-Check-Plugin ist standardmäßig aktiv."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet an das Plugin einen Request mit unzureichend validierten Eingaben."
+     },
+     {
+      "phase": "impact",
+      "text": "Die eingeschleusten Eingaben führen zur Ausführung von Befehlen mit den Rechten des vCenter-Dienstes."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; nicht benötigte Plugins deaktivieren, Zugriff auf Port 443 beschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit einem fest eingebauten Passwort an.",
+     "Ein lokaler Nutzer nutzt eine Race Condition beim Anlegen einer Datei."
+    ]
+   }
   },
   "CVE-2022-3723": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",

@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-18T22:29:01+00:00",
+ "generated": "2026-09-18T22:30:34+00:00",
  "cves": 1100,
  "enriched": 1100,
- "with_chain": 120,
+ "with_chain": 140,
  "kev_catalog_version": "2026.09.18",
  "kev_date": "2026-09-18T19:00:05.0974Z",
  "epss_model": "v2026.06.15",

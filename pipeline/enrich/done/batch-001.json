@@ -569,7 +569,31 @@
      "why": "Der Angreifer kann das System des Nutzers beliebig stören."
     }
    },
-   "context_de": "KEV, EPSS 0,35. Office-Dokumente sind der klassische Phishing-Vektor; Makro- und Dokument-Exploits treffen den Nutzer, nicht den Server. Awareness und Patchstand senken die Wahrscheinlichkeit, EDR die Auswirkung."
+   "context_de": "KEV, EPSS 0,35. Office-Dokumente sind der klassische Phishing-Vektor; Makro- und Dokument-Exploits treffen den Nutzer, nicht den Server. Awareness und Patchstand senken die Wahrscheinlichkeit, EDR die Auswirkung.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer nutzt Microsoft Office 2013 und erhält ein präpariertes Dokument."
+     },
+     {
+      "phase": "trigger",
+      "text": "Beim Öffnen verarbeitet Office nicht initialisierten Speicher aus dem manipulierten Dokument."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Speicherfehler führt zur Ausführung von beliebigem Code im Kontext des Nutzers."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitsupdate einspielen; Dokumente aus unbekannter Quelle geschützt öffnen (Protected View)."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel unauthentifiziert über das Netz.",
+     "Ein Opfer klickt auf einen Link mit reflektiertem XSS."
+    ]
+   }
   },
   "CVE-2019-18187": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",

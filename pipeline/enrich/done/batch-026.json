@@ -632,7 +632,31 @@
      "why": "Verfügbarkeit: NVD: A:H."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,40: Von einer Gruppe als Zero-Day gegen SonicWall selbst und Kunden genutzt. SMA100 taucht mehrfach im Korpus auf (CVE-2019-7481, CVE-2021-20028); SQLi (CWE-89) in VPN-Appliances gibt Session-Zugang und damit Netzzugang."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,40: Von einer Gruppe als Zero-Day gegen SonicWall selbst und Kunden genutzt. SMA100 taucht mehrfach im Korpus auf (CVE-2019-7481, CVE-2021-20028); SQLi (CWE-89) in VPN-Appliances gibt Session-Zugang und damit Netzzugang.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine SonicWall-SMA100-SSLVPN-Appliance (Build 10.x) ist ohne Anmeldung aus dem Netz erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet eine SQL-Abfrage über eine unauthentifizierte SQL-Injection."
+     },
+     {
+      "phase": "impact",
+      "text": "Er liest Benutzernamen, Passwörter und Sitzungsinformationen aus der Datenbank."
+     },
+     {
+      "phase": "stopper",
+      "text": "Firmware aktualisieren; Eingaben parametrisiert verarbeiten, Zugriff einschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer lädt über ein Upload-Feld eine Web-Shell hoch.",
+     "Ein lokaler Nutzer nutzt eine Race Condition beim Symlink."
+    ]
+   }
   },
   "CVE-2016-3718": {
    "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N",

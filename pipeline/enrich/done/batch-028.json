@@ -123,7 +123,31 @@
      "why": "Code: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,99: Der Linux-Gegenstück-Moment zu EternalBlue (2017). Code-Injection (CWE-94) über eine geladene Shared Library; Samba ist auf Millionen Linux-Servern und NAS-Geräten. Eine Zeile Metasploit reichte."
+   "context_de": "KEV, EPSS 0,99: Der Linux-Gegenstück-Moment zu EternalBlue (2017). Code-Injection (CWE-94) über eine geladene Shared Library; Samba ist auf Millionen Linux-Servern und NAS-Geräten. Eine Zeile Metasploit reichte.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Samba-Server (3.5.0 bis vor 4.6.4) bietet eine beschreibbare Freigabe an und ist erreichbar (SambaCry)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer lädt eine gemeinsame Bibliothek in die beschreibbare Freigabe hoch und bringt den Server dazu, ihren Pfad zu laden."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Server lädt und führt die Bibliothek aus: Remote Code Execution."
+     },
+     {
+      "phase": "stopper",
+      "text": "Samba aktualisieren; als Übergang 'nt pipe support = no' setzen und Freigaben nicht beschreibbar/erreichbar machen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit einem fest eingebauten Passwort an.",
+     "Ein Opfer öffnet ein bösartiges PDF."
+    ]
+   }
   },
   "CVE-2015-2808": {
    "vector_basis": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",

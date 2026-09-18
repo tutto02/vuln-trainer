@@ -663,7 +663,31 @@
      "why": "Bei RCE: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,99: Ghostcat, der AJP-Konnektor war in vielen Tomcat-Installationen standardmäßig exponiert. Ein Vertrauensfehler (noinfo bei NVD): AJP galt als intern und vertrauenswürdig, war aber am Netz erreichbar. Wie bei intern-vertrauten Protokollen (T3, Erlang-Cookie) ist die Exposition eines vermeintlich internen Ports der Fehler."
+   "context_de": "KEV, EPSS 0,99: Ghostcat, der AJP-Konnektor war in vielen Tomcat-Installationen standardmäßig exponiert. Ein Vertrauensfehler (noinfo bei NVD): AJP galt als intern und vertrauenswürdig, war aber am Netz erreichbar. Wie bei intern-vertrauten Protokollen (T3, Erlang-Cookie) ist die Exposition eines vermeintlich internen Ports der Fehler.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Apache-Tomcat-Server hat den AJP-Connector (Port 8009) aktiv und für den Angreifer erreichbar (GhostCat)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet präparierte AJP-Requests, die Tomcat als vertrauenswürdig behandelt und Attribute zur Dateiverarbeitung setzt."
+     },
+     {
+      "phase": "impact",
+      "text": "Er liest Dateien aus dem Webapp-Verzeichnis und kann bei Upload-Möglichkeit eine JSP zur Codeausführung bringen."
+     },
+     {
+      "phase": "stopper",
+      "text": "Tomcat aktualisieren; den AJP-Connector deaktivieren oder mit secret/Adressbindung absichern."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit einem fest eingebauten Passwort an.",
+     "Ein lokaler Nutzer eskaliert über eine setuid-Binary zu root."
+    ]
+   }
   },
   "CVE-2022-40684": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

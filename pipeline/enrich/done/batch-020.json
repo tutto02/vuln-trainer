@@ -318,7 +318,31 @@
      "why": "Befehle: Router abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,94: In Botnetzen (Mirai-Varianten). Ein Log-Forwarding-Feld als Command-Injection-Vektor; Router-Botnetze leben von genau solchen unauthentifizierten CGI-Parametern."
+   "context_de": "KEV, EPSS 0,94: In Botnetzen (Mirai-Varianten). Ein Log-Forwarding-Feld als Command-Injection-Vektor; Router-Botnetze leben von genau solchen unauthentifizierten CGI-Parametern.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein ZyXEL-P660HN-Router exponiert die ViewLog.asp-Seite ohne Anmeldung im Netz."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet an die Remote-System-Log-Funktion einen Request mit Shell-Metazeichen."
+     },
+     {
+      "phase": "impact",
+      "text": "Die eingeschleusten Befehle werden auf dem Router ausgeführt (in Botnetz-Kampagnen genutzt)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Firmware aktualisieren; Eingaben serverseitig validieren, Fernzugriff deaktivieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit gestohlenen Zugangsdaten an.",
+     "Ein Opfer klickt auf einen CSRF-Link."
+    ]
+   }
   },
   "CVE-2017-9822": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",

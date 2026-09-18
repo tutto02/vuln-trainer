@@ -310,7 +310,31 @@
      "why": "Codeausführung oder Absturz."
     }
    },
-   "context_de": "KEV, EPSS 0,80: In Exploit-Kits. Microsofts Beschreibungen von 2016 nennen wenigstens 'crafted web site' und 'arbitrary code'; das reicht für den Standardvektor 8,8."
+   "context_de": "KEV, EPSS 0,80: In Exploit-Kits. Microsofts Beschreibungen von 2016 nennen wenigstens 'crafted web site' und 'arbitrary code'; das reicht für den Standardvektor 8,8.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer nutzt Microsoft Edge (Chakra, anfällige Version) und surft im Web."
+     },
+     {
+      "phase": "trigger",
+      "text": "Es öffnet eine präparierte Seite, die in der Chakra-Engine eine Type Confusion auslöst."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Speicherfehler führt zur Ausführung von beliebigem Code im Browserkontext."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitsupdate einspielen; betroffene Skriptfunktionen korrigieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt gültige Windows-Zugangsdaten.",
+     "Ein lokaler Nutzer nutzt eine Race Condition beim Anlegen einer Datei."
+    ]
+   }
   },
   "CVE-2022-26486": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H",
