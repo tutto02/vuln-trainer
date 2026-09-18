@@ -92,6 +92,29 @@
     return srPick(src.length ? src : state.cves, 'cvss');
   }
 
+  // ---------- Beschreibungen bereinigen (nur Anzeige, Daten bleiben unverändert) ----------
+  // Manche NVD-Texte enthalten Formatierungs-HTML (<p>) und Entities (&nbsp;, &#39;).
+  // Entfernt werden NUR echte Formatierungs-Tags aus einer festen Liste. Spitze Klammern,
+  // die Inhalt sind (<option>, <script …>, <pid>, <host>), bleiben stehen. Erst Tags,
+  // dann Entities: So wird ein kodiertes &lt;p&gt; korrekt zu sichtbarem Text "<p>".
+  const FMT_TAG = /<\s*\/?\s*(p|div|span|b|strong|i|em|u|ul|ol|a)(\s[^<>]*)?\s*\/?>/gi;
+  const ENTITY = { nbsp: ' ', amp: '&', lt: '<', gt: '>', quot: '"', apos: "'" };
+  function cleanDesc(s) {
+    let t = String(s || '');
+    t = t.replace(/<\s*br\s*\/?\s*>/gi, '\n')
+         .replace(/<\s*\/\s*(p|div|li|ul|ol)\s*>/gi, '\n')
+         .replace(/<\s*li(\s[^<>]*)?>/gi, '• ')
+         .replace(FMT_TAG, '');
+    t = t.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (m, e) => {
+      if (e[0] === '#') {
+        const n = /^#x/i.test(e) ? parseInt(e.slice(2), 16) : parseInt(e.slice(1), 10);
+        return n > 0 && n < 0x110000 ? String.fromCodePoint(n === 160 ? 32 : n) : m;
+      }
+      const v = ENTITY[e.toLowerCase()]; return v === undefined ? m : v;
+    });
+    return t.replace(/ /g, ' ').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+  }
+
   // ---------- Rendering: Übung ----------
   function renderMetrics() {
     const host = $('metrics'); host.innerHTML = '';
@@ -147,7 +170,7 @@
     $('cve-stack').textContent = STACK_DE[cve.stack] || cve.stack;
     const cls = state.classes[cve.cwe.learn_class];
     $('cve-class').textContent = (cls ? cls.name : cve.cwe.learn_class) + (cve.cwe.id ? ` · ${cve.cwe.id}` : '');
-    $('cve-desc').textContent = (cve.description || '').trim();
+    $('cve-desc').textContent = cleanDesc(cve.description);
     $('cve-sr').textContent = cve._srReason ? 'SR: ' + cve._srReason : '';
     document.querySelectorAll('.metric').forEach(m => { m.classList.remove('locked'); m.querySelectorAll('.opt').forEach(b => b.classList.remove('sel')); });
     updateLive();
@@ -334,7 +357,7 @@
     $('q-id').textContent = cve.id;
     $('q-published').textContent = cve.published ? cve.published.slice(0, 10) : '';
     $('q-stack').textContent = STACK_DE[cve.stack] || cve.stack;
-    $('q-desc').textContent = (cve.description || '').trim();
+    $('q-desc').textContent = cleanDesc(cve.description);
     $('q-sr').textContent = cve._srReason ? 'SR: ' + cve._srReason : '';
     const ex = cve.exercises.class;
     let keys = $('q-all').checked
@@ -574,6 +597,59 @@
     return new Date(ts).toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' });
   }
 
+  // ---------- Suche (unabhängig von Zufallsauswahl und Filtern) ----------
+  const BROWSE_CAP = 200;
+  const idKey = (id) => { const p = id.split('-'); return (+p[1] || 0) * 1e7 + (+p[2] || 0); };
+  const hasCwe = (c, n) => [c.cwe.id, ...(c.cwe.all || [])].some(x => x && String(x).toUpperCase() === 'CWE-' + n);
+
+  // Liefert Treffergruppen: CWE-Nummer exakt, CVE-ID als Teilstring. Reine Ziffern prüfen beides.
+  function browseSearch(raw) {
+    const q = String(raw || '').trim().toLowerCase().replace(/\s+/g, '');
+    const newest = (a, b) => idKey(b.id) - idKey(a.id);
+    if (!q) return [{ label: `Alle CVEs`, hits: state.cves.slice().sort(newest) }];
+    const cwe = (q.match(/^cwe-?(\d+)$/) || [])[1];
+    if (cwe) return [{ label: `CWE-${cwe}`, hits: state.cves.filter(c => hasCwe(c, cwe)).sort(newest) }];
+    const idq = q.replace(/^cve-?/, '');
+    const byId = idq ? state.cves.filter(c => c.id.toLowerCase().replace(/^cve-/, '').includes(idq)).sort(newest) : [];
+    if (/^\d+$/.test(q)) {
+      const byCwe = state.cves.filter(c => hasCwe(c, q)).sort(newest);
+      const seenIds = new Set(byCwe.map(c => c.id));
+      return [{ label: `CWE-${q}`, hits: byCwe }, { label: `CVE-ID enthält „${q}“`, hits: byId.filter(c => !seenIds.has(c.id)) }];
+    }
+    return [{ label: `CVE-ID enthält „${raw.trim()}“`, hits: byId }];
+  }
+
+  function renderBrowse() {
+    const all = browseSearch($('browse-q').value);
+    const groups = all.length > 1 ? all.filter(g => g.hits.length) : all;
+    const total = groups.reduce((n, g) => n + g.hits.length, 0);
+    $('browse-info').textContent = total ? `${total} Treffer` + (total > BROWSE_CAP ? ` · angezeigt je Gruppe höchstens ${BROWSE_CAP}, Suche verfeinern` : '') : 'Keine Treffer.';
+    const host = $('browse-list'); host.innerHTML = '';
+    for (const g of groups) {
+      if (!g.hits.length) continue;
+      if (groups.length > 1 || $('browse-q').value.trim()) {
+        const h = document.createElement('div'); h.className = 'browse-group'; h.textContent = `${g.label} · ${g.hits.length}`; host.appendChild(h);
+      }
+      for (const c of g.hits.slice(0, BROWSE_CAP)) {
+        const cls = state.classes[c.cwe.learn_class];
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'b-row'; b.dataset.id = c.id;
+        b.innerHTML = `<span class="b-head"><span class="b-id">${esc(c.id)}</span>
+          <span class="b-cls">${esc((c.published || '').slice(0, 4))} · ${esc(STACK_DE[c.stack] || c.stack)} · ${esc(cls ? cls.name : c.cwe.learn_class)}${c.cwe.id ? ' · ' + esc(c.cwe.id) : ''}</span></span>
+          <span class="b-snip">${esc(cleanDesc(c.description).slice(0, 160))}</span>`;
+        b.addEventListener('click', () => openFromBrowse(c.id));
+        host.appendChild(b);
+      }
+      if (g.hits.length > BROWSE_CAP) { const m = document.createElement('div'); m.className = 'b-more'; m.textContent = `… ${g.hits.length - BROWSE_CAP} weitere`; host.appendChild(m); }
+    }
+  }
+
+  function openFromBrowse(id) {
+    const c = state.byId.get(id); if (!c) return;
+    c._srReason = null;                       // direkt geöffnet, nicht von der Wiederholung gewählt
+    showView('cvss');
+    showCVE(c);
+  }
+
   // ---------- Tabs ----------
   function renderProgress() {
     const stats = srStats(); const tb = $('prog-table').querySelector('tbody'); tb.innerHTML = '';
@@ -609,12 +685,13 @@
   function showView(v) {
     document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.view === v));
     $('exercise').hidden = v !== 'cvss'; $('quiz').hidden = v !== 'class';
-    $('progress').hidden = v !== 'progress'; $('patterns').hidden = v !== 'patterns';
+    $('progress').hidden = v !== 'progress'; $('patterns').hidden = v !== 'patterns'; $('browse').hidden = v !== 'browse';
     if (v !== 'cvss') { $('result').hidden = true; $('context').hidden = true; }
     if (v === 'cvss') $('session-counter').textContent = `${session.perfect} / ${session.tries} vollständig richtig`;
     if (v === 'class') { if (!qstate.cur) showQuiz(qPickNext()); $('session-counter').textContent = `Quiz: ${qsession.right} / ${qsession.tries} richtig`; }
     if (v === 'progress') { renderProgress(); $('session-counter').textContent = 'Fortschritt'; }
     if (v === 'patterns') { renderPatterns(); $('session-counter').textContent = 'Fehlerbilder'; }
+    if (v === 'browse') { renderBrowse(); $('session-counter').textContent = 'Suche'; setTimeout(() => $('browse-q').focus(), 0); }
   }
 
   // ---------- Start ----------
@@ -649,9 +726,14 @@
     $('prog-file').addEventListener('change', (e) => { const f = e.target.files && e.target.files[0]; if (f) importProgress(f); e.target.value = ''; });
     $('prog-reset').addEventListener('click', () => { if (confirm('Beide Protokolle (CVSS-Übung und Klassen-Quiz) wirklich löschen?')) { try { localStorage.removeItem(LOG_KEY); localStorage.removeItem('vt-class-attempts'); } catch (_) {} renderProgress(); ioMsg('Protokoll gelöscht.', 'ok'); } });
     $('trap-clear').addEventListener('click', clearTrapDrill);
-    window.__vt = { filters, candidates, applyFilter, dueText, pickNext, qPickNext, srStats, renderProgress, renderPatterns, trapStats, startTrapDrill, exportProgress, importProgress, mergeAttempts, readLog };
+    window.__vt = { browseSearch, openFromBrowse, cleanDesc, filters, candidates, applyFilter, dueText, pickNext, qPickNext, srStats, renderProgress, renderPatterns, trapStats, startTrapDrill, exportProgress, importProgress, mergeAttempts, readLog };
     $('q-all').addEventListener('change', () => { if (qstate.cur) showQuiz(qstate.cur); });
     initFilterBar('cvss'); initFilterBar('quiz');
+    $('browse-q').addEventListener('input', renderBrowse);
+    $('browse-q').addEventListener('keydown', (e) => {   // Enter öffnet, wenn genau ein Treffer übrig ist
+      if (e.key !== 'Enter') return;
+      const rows = document.querySelectorAll('#browse-list .b-row'); if (rows.length === 1) rows[0].click();
+    });
     showCVE(pickNext());
   }
   main();

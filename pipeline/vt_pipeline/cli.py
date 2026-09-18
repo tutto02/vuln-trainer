@@ -79,6 +79,30 @@ def cmd_status(_: argparse.Namespace) -> None:
     print(enrich.status(_load_corpus()))
 
 
+def cmd_refresh_context(args: argparse.Namespace) -> None:
+    """EPSS und KEV frisch laden und NUR die context-Felder der bestehenden Korpus-CVEs
+    aktualisieren. Keine neuen CVEs, keine Auswahl, keine Vektoren, keine Anreicherung.
+    Danach `build` ausführen."""
+    corpus = _load_corpus()
+    kev = fetch_kev.load_kev(refresh=True)
+    epss = fetch_epss.load_epss(refresh=True)
+    print(f"KEV-Katalog {kev['catalog_version']} ({len(kev['items'])} Einträge), "
+          f"EPSS-Modell {epss['model']} vom {epss['date']}")
+    changes = []
+    for r in corpus:
+        old = dict(r["context"])
+        ep = epss["items"].get(r["id"])
+        # identisch zu select.build_record
+        r["context"] = {"epss": ep[0] if ep else None,
+                        "epss_percentile": ep[1] if ep else None,
+                        "kev": kev["items"].get(r["id"])}
+        changes.append((r["id"], old, r["context"]))
+    (select.OUT_DIR / "corpus.json").write_text(json.dumps(corpus, ensure_ascii=False, indent=1), encoding="utf-8")
+    report = select.OUT_DIR / "context-refresh.json"
+    report.write_text(json.dumps([{"id": i, "old": o, "new": n} for i, o, n in changes], ensure_ascii=False), encoding="utf-8")
+    print(f"{len(corpus)} CVEs aktualisiert → out/corpus.json, Vorher/Nachher in {report.name}. Jetzt `build`.")
+
+
 def cmd_build(_: argparse.Namespace) -> None:
     meta = build_mod.build(_load_corpus(), fetch_kev.load_kev(), fetch_epss.load_epss())
     print(json.dumps({k: v for k, v in meta.items() if k != "trap_doc"}, indent=1, ensure_ascii=False))
@@ -116,6 +140,7 @@ def main() -> None:
 
     sub.add_parser("enrich-fix", help="zu knappe Begründungen ausschreiben").set_defaults(func=cmd_enrich_fix)
     sub.add_parser("status", help="Anreicherung validieren und Fortschritt zeigen").set_defaults(func=cmd_status)
+    sub.add_parser("refresh-context", help="EPSS/KEV neu laden, nur context der Korpus-CVEs aktualisieren").set_defaults(func=cmd_refresh_context)
     sub.add_parser("build", help="docs/data/*.json erzeugen").set_defaults(func=cmd_build)
 
     args = ap.parse_args()

@@ -164,3 +164,32 @@ td.due .mini { font-weight:400; }
 .filterbar .fb-count { font-variant-numeric:tabular-nums; }
 .filterbar .fb-count.warn { color:var(--warn); }
 .fb-hint { flex-basis:100%; margin:.1rem 0 0; font-size:.85rem; color:var(--warn); }
+
+/* Suche */
+.browse-q { width:100%; font:inherit; font-size:1rem; padding:.55rem .7rem; border:1px solid var(--line); border-radius:8px; background:var(--card); color:var(--fg); }
+.browse-q:focus { outline:none; border-color:var(--accent); }
+.browse-info { margin:.6rem 0 .4rem; font-size:.88rem; }
+.browse-group { margin:.9rem 0 .3rem; font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
+.browse-list { display:flex; flex-direction:column; gap:.35rem; }
+.b-row { display:block; width:100%; text-align:left; font:inherit; color:var(--fg); background:transparent; border:1px solid var(--line); border-radius:8px; padding:.5rem .7rem; cursor:pointer; }
+.b-row:hover, .b-row:focus { border-color:var(--accent); outline:none; }
+.b-row .b-head { display:flex; flex-wrap:wrap; gap:.2rem .6rem; align-items:baseline; }
+.b-row .b-id { font-weight:700; font-family:ui-monospace,Menlo,monospace; }
+.b-row .b-cls { color:var(--muted); font-size:.85rem; }
+.b-row .b-snip { display:block; margin-top:.2rem; font-size:.85rem; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.b-more { font-size:.85rem; color:var(--muted); padding:.3rem .2rem; }
+
+/* Kopfzeile: Tabs scrollen in sich statt die ganze Seite zu verbreitern */
+.tabs { overflow-x:auto; flex-wrap:nowrap; min-width:0; max-width:100%; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+.tabs::-webkit-scrollbar { display:none; }
+.tab { white-space:nowrap; flex:0 0 auto; }
+@media (max-width: 720px) {
+  .top { flex-wrap:wrap; gap:.35rem .8rem; padding-top:.5rem; padding-bottom:.45rem; }
+  .brand { flex:1 0 auto; }
+  .session { font-size:.8rem; }
+  .tabs { order:3; flex-basis:100%; }
+}
+
+/* Lange CVSS-Vektoren ohne Leerzeichen dürfen auf schmalen Bildschirmen umbrechen */
+.vector { overflow-wrap:anywhere; word-break:break-all; max-width:100%; }
+.livebar > div, .official, .prov .row { min-width:0; max-width:100%; }

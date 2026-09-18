@@ -25,6 +25,7 @@
       <button class="tab" data-view="class">Klassen-Quiz</button>
       <button class="tab" data-view="progress">Fortschritt</button>
       <button class="tab" data-view="patterns">Fehlerbilder</button>
+      <button class="tab" data-view="browse">Suche</button>
     </nav>
     <div class="session" id="session-counter" title="Diese Sitzung: vollständig richtige Vektoren / Versuche">–</div>
   </header>
@@ -160,6 +161,17 @@
           <tbody></tbody>
         </table></div>
         <p class="muted" id="pat-note" style="margin:.8rem 0 0"></p>
+      </div>
+    </section>
+
+
+    <section id="browse" hidden>
+      <div class="card">
+        <h2>Suche</h2>
+        <p class="muted" style="margin:.2rem 0 .7rem">Nach CVE-ID oder CWE suchen, z. B. <code>2021-44228</code>, <code>CWE-79</code> oder nur <code>79</code>. Ein Klick öffnet die CVE in der CVSS-Übung. Score und Vektor stehen hier bewusst nicht.</p>
+        <input id="browse-q" class="browse-q" type="search" placeholder="CVE-ID oder CWE-Nummer" autocomplete="off" spellcheck="false" aria-label="CVE-ID oder CWE-Nummer suchen">
+        <p id="browse-info" class="browse-info muted"></p>
+        <div id="browse-list" class="browse-list"></div>
       </div>
     </section>
 

@@ -1,12 +1,12 @@
 {
- "generated": "2026-09-15T16:45:16+00:00",
+ "generated": "2026-09-18T22:05:59+00:00",
  "cves": 1100,
  "enriched": 1100,
  "with_chain": 0,
- "kev_catalog_version": "2026.09.14",
- "kev_date": "2026-09-14T19:00:02.426Z",
+ "kev_catalog_version": "2026.09.18",
+ "kev_date": "2026-09-18T19:00:05.0974Z",
  "epss_model": "v2026.06.15",
- "epss_date": "2026-09-14T12:00:22Z",
+ "epss_date": "2026-09-18T12:00:20Z",
  "validation_errors": 0,
  "trap_doc": {
   "scope_c": "Scope: Changed – die verwundbare Komponente ist nicht die betroffene (z. B. Browser-Sandbox-Escape, VM-Ausbruch, XSS im Browser des Opfers).",
