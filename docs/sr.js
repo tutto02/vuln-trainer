@@ -10,7 +10,8 @@
                interval  = 1 Tag · 2^min(streak,5)   (1d, 2d, 4d, 8d, 16d, 32d)
                overdue   = (jetzt − zuletzt) / interval, begrenzt auf 0.2 … 2
                weight    = errWeight · overdue
-   - „fällig“ = overdue ≥ 1 oder acc < 0.7 */
+   - „fällig“ = overdue ≥ 1 oder acc < 0.7
+   - dueAt   = lastTs + interval, bei acc < 0.7 = lastTs (sofort wieder fällig) */
 (function (global) {
   'use strict';
   const DAY = 86400000;
@@ -36,8 +37,11 @@
       const overdueRaw = lastTs ? (now - lastTs) / interval : 2;
       const overdue = Math.min(2, Math.max(0.2, overdueRaw));
       const errWeight = 1 + 4 * (1 - acc);
+      // Nächste Fälligkeit: letzter Versuch + Intervall; bei schwacher Quote (< 70 %)
+      // sofort nach dem letzten Versuch. Nur berechnet, nie gespeichert.
+      const dueAt = lastTs ? (acc < 0.7 ? lastTs : lastTs + interval) : now;
       stats[cls] = {
-        n: list.length, ok: list.filter(a => a.ok).length, acc, streak, lastTs,
+        n: list.length, ok: list.filter(a => a.ok).length, acc, streak, lastTs, dueAt,
         interval, overdue: overdueRaw, weight: errWeight * overdue,
         due: overdueRaw >= 1 || acc < 0.7,
         status: acc < 0.7 ? 'fällig' : (overdueRaw >= 1 ? 'wiederholen' : 'gefestigt'),

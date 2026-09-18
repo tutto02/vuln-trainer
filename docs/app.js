@@ -86,7 +86,7 @@
     return pick;
   }
   function pickNext() {
-    const base = state.trapFilter ? state.cves.filter(c => (c.traps || []).includes(state.trapFilter)) : state.cves;
+    const base = candidates('cvss');
     const pool = base.filter(c => !state.seen.has(c.id));
     const src = pool.length ? pool : (state.seen.clear(), base);
     return srPick(src.length ? src : state.cves, 'cvss');
@@ -255,6 +255,66 @@
   function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
 
 
+  // ---------- Filterleiste: Klasse × Stack (nur im Arbeitsspeicher, nichts wird gespeichert) ----------
+  const filters = { cvss: { cls: '', stack: '' }, quiz: { cls: '', stack: '' } };
+  const FB_ID = { cvss: 'cvss-filter', quiz: 'quiz-filter' };
+  // Grundmenge je Ansicht: CVSS inkl. Fallen-Filter, Quiz ohne unklassifizierte CVEs.
+  function filterBase(kind) {
+    if (kind === 'quiz') return quizPool();
+    return state.trapFilter ? state.cves.filter(c => (c.traps || []).includes(state.trapFilter)) : state.cves;
+  }
+  const fMatch = (c, f) => (!f.cls || c.cwe.learn_class === f.cls) && (!f.stack || c.stack === f.stack);
+  // Treffer für Klasse+Stack; ergibt die Kombination nichts, bleibt die Grundmenge (und die Leiste warnt).
+  function candidates(kind) {
+    const base = filterBase(kind), hit = base.filter(c => fMatch(c, filters[kind]));
+    return hit.length ? hit : base;
+  }
+
+  function refreshFilterBar(kind) {
+    const bar = $(FB_ID[kind]); if (!bar) return;
+    const f = filters[kind], base = filterBase(kind);
+    const clsSel = bar.querySelector('[data-f=cls]'), stSel = bar.querySelector('[data-f=stack]');
+    // Zählungen berücksichtigen jeweils den anderen Filter, damit man sieht, was kombinierbar ist.
+    const byStack = base.filter(c => !f.stack || c.stack === f.stack);
+    const byCls = base.filter(c => !f.cls || c.cwe.learn_class === f.cls);
+    const clsKeys = Object.keys(state.classes).filter(k => k !== 'unclassified')
+      .sort((x, y) => state.classes[x].name.localeCompare(state.classes[y].name, 'de'));
+    clsSel.innerHTML = `<option value="">Alle Klassen (${byStack.length})</option>` + clsKeys.map(k => {
+      const n = byStack.filter(c => c.cwe.learn_class === k).length;
+      return `<option value="${k}"${k === f.cls ? ' selected' : ''}${n === 0 && k !== f.cls ? ' disabled' : ''}>${esc(state.classes[k].name)} (${n})</option>`;
+    }).join('');
+    const stacks = [...new Set(base.map(c => c.stack))]
+      .sort((x, y) => base.filter(c => c.stack === y).length - base.filter(c => c.stack === x).length);
+    stSel.innerHTML = `<option value="">Alle Stacks (${byCls.length})</option>` + stacks.map(st => {
+      const n = byCls.filter(c => c.stack === st).length;
+      return `<option value="${st}"${st === f.stack ? ' selected' : ''}${n === 0 && st !== f.stack ? ' disabled' : ''}>${esc(STACK_DE[st] || st)} (${n})</option>`;
+    }).join('');
+    clsSel.classList.toggle('active', !!f.cls); stSel.classList.toggle('active', !!f.stack);
+    const hits = base.filter(c => fMatch(c, f)).length, active = !!(f.cls || f.stack);
+    const cnt = bar.querySelector('.fb-count');
+    cnt.classList.toggle('warn', active && hits === 0);
+    cnt.textContent = !active ? '' : hits ? `${hits} CVE${hits === 1 ? '' : 's'}` : 'keine Treffer – Filter wird ignoriert';
+    bar.querySelector('.fb-reset').hidden = !active;
+    const hint = bar.querySelector('.fb-hint'); if (hint) hint.hidden = !f.cls;
+  }
+
+  // Nach einer Filteränderung: aktuelle CVE behalten, wenn sie passt, sonst die nächste passende zeigen.
+  function applyFilter(kind) {
+    refreshFilterBar(kind);
+    const f = filters[kind];
+    if (kind === 'cvss') { if (!state.cur || !fMatch(state.cur, f) || (state.trapFilter && !(state.cur.traps || []).includes(state.trapFilter))) showCVE(pickNext()); }
+    else if (!qstate.cur || !fMatch(qstate.cur, f)) showQuiz(qPickNext());
+  }
+
+  function initFilterBar(kind) {
+    const bar = $(FB_ID[kind]); if (!bar) return;
+    const clsSel = bar.querySelector('[data-f=cls]'), stSel = bar.querySelector('[data-f=stack]');
+    const onChange = () => { filters[kind].cls = clsSel.value; filters[kind].stack = stSel.value; applyFilter(kind); };
+    clsSel.addEventListener('change', onChange); stSel.addEventListener('change', onChange);
+    bar.querySelector('.fb-reset').addEventListener('click', () => { filters[kind] = { cls: '', stack: '' }; applyFilter(kind); });
+    refreshFilterBar(kind);
+  }
+
   // ---------- Klassen-Quiz ----------
   const QLOG_KEY = 'vt-class-attempts';
   const qstate = { cur: null, seen: new Set(), done: false };
@@ -262,9 +322,10 @@
 
   function quizPool() { return state.cves.filter(c => c.cwe.learn_class !== 'unclassified' && c.exercises.class); }
   function qPickNext() {
-    const pool = quizPool().filter(c => !qstate.seen.has(c.id));
-    const src = pool.length ? pool : (qstate.seen.clear(), quizPool());
-    return srPick(src, 'quiz');
+    const base = candidates('quiz');
+    const pool = base.filter(c => !qstate.seen.has(c.id));
+    const src = pool.length ? pool : (qstate.seen.clear(), base);
+    return srPick(src.length ? src : quizPool(), 'quiz');
   }
   function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
@@ -495,23 +556,37 @@
     $('trap-banner-n').textContent = `· ${state.cves.filter(c => (c.traps || []).includes(trap)).length} CVEs`;
     $('trap-banner').hidden = false;
     showView('cvss');
+    refreshFilterBar('cvss');
     showCVE(pickNext());
   }
   function clearTrapDrill() {
-    state.trapFilter = null; $('trap-banner').hidden = true; showCVE(pickNext());
+    state.trapFilter = null; $('trap-banner').hidden = true; refreshFilterBar('cvss'); showCVE(pickNext());
+  }
+
+  // ---------- Fälligkeit (nur Anzeige) ----------
+  function dueText(dueAt, now) {
+    const DAY = window.SR.DAY, diff = dueAt - now;
+    if (diff <= 0) { const d = Math.floor(-diff / DAY); return d === 0 ? 'heute fällig' : `fällig seit ${d} ${d === 1 ? 'Tag' : 'Tagen'}`; }
+    if (diff < DAY) { const h = Math.max(1, Math.ceil(diff / 3600000)); return `fällig in ${h} Std.`; }
+    const d = Math.round(diff / DAY); return `fällig in ${d} ${d === 1 ? 'Tag' : 'Tagen'}`;
+  }
+  function dueDate(ts) {
+    return new Date(ts).toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit' });
   }
 
   // ---------- Tabs ----------
   function renderProgress() {
     const stats = srStats(); const tb = $('prog-table').querySelector('tbody'); tb.innerHTML = '';
     const keys = Object.keys(state.classes).filter(k => k !== 'unclassified');
-    // Geübte Klassen zuerst (dringendste oben), danach die noch nie gesehenen alphabetisch.
+    // Nach Dringlichkeit: am längsten überfällig zuerst (frühestes dueAt), bei Gleichstand
+    // die schwächere Quote. Noch nie gesehene Klassen haben kein Datum und stehen am Ende.
     keys.sort((x, y) => {
-      const sx = !!stats[x], sy = !!stats[y];
-      if (sx !== sy) return sx ? -1 : 1;
-      if (sx) return window.SR.weightFor(y, stats) - window.SR.weightFor(x, stats);
+      const sx = stats[x], sy = stats[y];
+      if (!!sx !== !!sy) return sx ? -1 : 1;
+      if (sx) return (sx.dueAt - sy.dueAt) || (sx.acc - sy.acc);
       return state.classes[x].name.localeCompare(state.classes[y].name, 'de');
     });
+    const now = Date.now();
     const fmt = (ts) => { if (!ts) return '–'; const d = (Date.now() - ts) / window.SR.DAY; return d < 1 ? 'heute' : d < 2 ? 'gestern' : `vor ${Math.floor(d)} Tagen`; };
     const seen = keys.filter(k => stats[k]);
     const due = seen.filter(k => stats[k].due).length;
@@ -525,7 +600,8 @@
         <td>${s ? s.n : 0}</td>
         <td>${s ? `<span class="bar"><i style="width:${Math.round(s.acc * 100)}%"></i></span>${Math.round(s.acc * 100)} %` : '–'}</td>
         <td>${s ? s.streak : '–'}</td><td>${fmt(s && s.lastTs)}</td>
-        <td class="st-${st}">${st}</td>`;
+        <td class="st-${st}">${st}</td>
+        <td class="due ${s && s.dueAt <= now ? 'due-now' : ''}">${s ? `${dueText(s.dueAt, now)}<span class="mini">${dueDate(s.dueAt)}</span>` : '<span class="muted">–</span>'}</td>`;
       tb.appendChild(tr);
     }
   }
@@ -542,7 +618,20 @@
   }
 
   // ---------- Start ----------
+  // ---------- Offline (Service Worker) ----------
+  // Erst nach dem Seitenladen registrieren: Die 3-MB-Daten liegen dann schon im
+  // HTTP-Cache und werden beim Vorab-Cachen nicht doppelt geladen.
+  function registerServiceWorker() {
+    if (!('serviceWorker' in navigator) || location.protocol === 'file:') return;
+    const go = () => navigator.serviceWorker.register('sw.js')
+      .then(() => navigator.serviceWorker.ready)
+      .then(() => { const f = $('offline-flag'); if (f) f.hidden = false; })
+      .catch((e) => console.warn('Service Worker nicht registriert:', e));
+    if (document.readyState === 'complete') go(); else window.addEventListener('load', go, { once: true });
+  }
+
   async function main() {
+    registerServiceWorker();
     try { await loadData(); }
     catch (e) { $('loading').textContent = 'Konnte data/*.json nicht laden. Starte im Ordner docs: python3 -m http.server'; console.error(e); return; }
     $('loading').hidden = true;
@@ -560,8 +649,9 @@
     $('prog-file').addEventListener('change', (e) => { const f = e.target.files && e.target.files[0]; if (f) importProgress(f); e.target.value = ''; });
     $('prog-reset').addEventListener('click', () => { if (confirm('Beide Protokolle (CVSS-Übung und Klassen-Quiz) wirklich löschen?')) { try { localStorage.removeItem(LOG_KEY); localStorage.removeItem('vt-class-attempts'); } catch (_) {} renderProgress(); ioMsg('Protokoll gelöscht.', 'ok'); } });
     $('trap-clear').addEventListener('click', clearTrapDrill);
-    window.__vt = { pickNext, qPickNext, srStats, renderProgress, renderPatterns, trapStats, startTrapDrill, exportProgress, importProgress, mergeAttempts, readLog };
+    window.__vt = { filters, candidates, applyFilter, dueText, pickNext, qPickNext, srStats, renderProgress, renderPatterns, trapStats, startTrapDrill, exportProgress, importProgress, mergeAttempts, readLog };
     $('q-all').addEventListener('change', () => { if (qstate.cur) showQuiz(qstate.cur); });
+    initFilterBar('cvss'); initFilterBar('quiz');
     showCVE(pickNext());
   }
   main();

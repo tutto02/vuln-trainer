@@ -2,8 +2,19 @@
 <html lang="de">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Vuln-Trainer · CVSS-Übung</title>
+  <meta name="description" content="CVSS-3.1-Vektoren, Schwachstellenklassen und typische Fehlerbilder üben.">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a2029" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <!-- iOS: als eigenständige App vom Home-Bildschirm starten -->
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Vuln-Trainer">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -25,6 +36,12 @@
       <div id="trap-banner" class="trap-banner" hidden>
         <span>Gefilterte Übung: <b id="trap-banner-name"></b> <span class="muted" id="trap-banner-n"></span></span>
         <button id="trap-clear" class="ghost small">Filter aufheben</button>
+      </div>
+      <div class="filterbar" id="cvss-filter">
+        <label>Klasse <select data-f="cls" aria-label="Lernklasse filtern"></select></label>
+        <label>Stack <select data-f="stack" aria-label="Stack filtern"></select></label>
+        <span class="fb-count muted"></span>
+        <button type="button" class="ghost small fb-reset" hidden>Zurücksetzen</button>
       </div>
       <div class="card cve-head">
         <div class="cve-meta">
@@ -69,16 +86,24 @@
             <span id="off-sev" class="sev"></span>
           </div>
         </div>
-        <table class="cmp" id="cmp-table">
+        <div class="tablewrap"><table class="cmp" id="cmp-table">
           <thead><tr><th>Metrik</th><th>Du</th><th>NVD</th><th></th><th>Begründung</th></tr></thead>
           <tbody></tbody>
-        </table>
+        </table></div>
         <div id="provenance" class="prov" hidden></div>
       </div>
     </section>
 
 
     <section id="quiz" hidden>
+
+      <div class="filterbar" id="quiz-filter">
+        <label>Klasse <select data-f="cls" aria-label="Lernklasse filtern"></select></label>
+        <label>Stack <select data-f="stack" aria-label="Stack filtern"></select></label>
+        <span class="fb-count muted"></span>
+        <button type="button" class="ghost small fb-reset" hidden>Zurücksetzen</button>
+        <p class="fb-hint" hidden>Klassenfilter aktiv: Die richtige Antwort steht damit fest. Gut, um Beschreibungen einer Klasse gezielt zu lesen – als Test die Klasse auf „Alle“ lassen.</p>
+      </div>
       <div class="card cve-head">
         <div class="cve-meta">
           <span class="cve-id" id="q-id"></span>
@@ -112,12 +137,12 @@
             <input type="file" id="prog-file" accept="application/json,.json" hidden>
           </div></div>
         <p id="prog-io" class="prog-io" hidden></p>
-        <p class="muted" style="margin:.2rem 0 .8rem">Gewichtung: Klassen mit niedriger Trefferquote (letzte 10 Versuche) kommen bis zu 5× häufiger. Eine Serie richtiger Antworten verdoppelt das Wiederholungsintervall (1 → 2 → 4 → 8 → 16 → 32 Tage). Nie gesehene Klassen haben mittleren Vorrang. Beide Übungen zählen: CVSS-Vektor gilt als richtig bei 8/8 Metriken.</p>
+        <p class="muted" style="margin:.2rem 0 .8rem">Gewichtung: Klassen mit niedriger Trefferquote (letzte 10 Versuche) kommen bis zu 5× häufiger. Eine Serie richtiger Antworten verdoppelt das Wiederholungsintervall (1 → 2 → 4 → 8 → 16 → 32 Tage). Nie gesehene Klassen haben mittleren Vorrang. Fällig ist eine Klasse am Tag des letzten Versuchs plus Intervall; liegt die Quote unter 70 %, sofort wieder. Die Tabelle ist nach Dringlichkeit sortiert. Beide Übungen zählen: CVSS-Vektor gilt als richtig bei 8/8 Metriken.</p>
         <p id="prog-summary" style="margin:0 0 .8rem;font-weight:600"></p>
-        <table class="cmp" id="prog-table">
-          <thead><tr><th>Klasse</th><th>Versuche</th><th>Quote</th><th>Serie</th><th>zuletzt</th><th>Status</th></tr></thead>
+        <div class="tablewrap"><table class="cmp" id="prog-table">
+          <thead><tr><th>Klasse</th><th>Versuche</th><th>Quote</th><th>Serie</th><th>zuletzt</th><th>Status</th><th>Nächste Fälligkeit</th></tr></thead>
           <tbody></tbody>
-        </table>
+        </table></div>
       </div>
     </section>
 
@@ -130,10 +155,10 @@
       </div>
       <div class="card">
         <h2>Alle Fallen-Marker im Korpus</h2>
-        <table class="cmp" id="pat-table">
+        <div class="tablewrap"><table class="cmp" id="pat-table">
           <thead><tr><th>Falle</th><th>im Korpus</th><th>gesehen</th><th>Metrik-Quote</th><th></th></tr></thead>
           <tbody></tbody>
-        </table>
+        </table></div>
         <p class="muted" id="pat-note" style="margin:.8rem 0 0"></p>
       </div>
     </section>
@@ -165,7 +190,7 @@
 
   <footer class="foot">
     <label>CVE-ID öffnen: <input id="jump" placeholder="CVE-2021-44228" size="18"> <button id="jump-btn" class="ghost small">Los</button></label>
-    <span class="muted" id="meta-line"></span>
+    <span class="muted"><span id="meta-line"></span><span id="offline-flag" hidden> · offline verfügbar</span></span>
   </footer>
 
   <script src="cvss31.js"></script>
