@@ -30,7 +30,31 @@
      "why": "Admin: Firewall abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,90: Ein Backdoor-Konto (zyfwp) mit Klartext-Passwort in der Firmware (CWE-522/CWE-798), wie die Juniper-ScreenOS-Hintertür CVE-2015-7755. Das Konto war für automatische Firmware-Updates gedacht, aber missbrauchbar. Zyxel ist im Korpus mehrfach vertreten; ein hart kodiertes Admin-Konto ist faktisch keine Authentifizierung."
+   "context_de": "KEV, EPSS 0,90: Ein Backdoor-Konto (zyfwp) mit Klartext-Passwort in der Firmware (CWE-522/CWE-798), wie die Juniper-ScreenOS-Hintertür CVE-2015-7755. Das Konto war für automatische Firmware-Updates gedacht, aber missbrauchbar. Zyxel ist im Korpus mehrfach vertreten; ein hart kodiertes Admin-Konto ist faktisch keine Authentifizierung.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Zyxel-USG-Gerät (Firmware 4.60) enthält ein undokumentiertes Konto (zyfwp) mit fest eingebautem, im Klartext auslesbarem Passwort."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer meldet sich mit dem bekannten Passwort per SSH oder Weboberfläche an."
+     },
+     {
+      "phase": "impact",
+      "text": "Er erhält Admin-Rechte auf dem Gerät."
+     },
+     {
+      "phase": "stopper",
+      "text": "Firmware aktualisieren, die das Konto entfernt; Fernzugriff einschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer nutzt eine OGNL-Injection im HTTP-Header.",
+     "Ein lokaler Nutzer eskaliert über eine Race Condition zu root."
+    ]
+   }
   },
   "CVE-2021-22911": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

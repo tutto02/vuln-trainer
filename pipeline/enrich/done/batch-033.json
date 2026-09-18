@@ -340,7 +340,31 @@
      "why": "Code: System störbar."
     }
    },
-   "context_de": "KEV, EPSS 0,98: Ein PDF-Stack-Overflow (CWE-787) von 2008 über util.printf, jahrelang in Exploit-Kits. Die Adobe-PDF-Serie im Korpus (2007 bis 2018) zeigt, wie util.printf, getIcon und U3D immer wieder die Angriffsfläche waren, bevor die Sandbox kam."
+   "context_de": "KEV, EPSS 0,98: Ein PDF-Stack-Overflow (CWE-787) von 2008 über util.printf, jahrelang in Exploit-Kits. Die Adobe-PDF-Serie im Korpus (2007 bis 2018) zeigt, wie util.printf, getIcon und U3D immer wieder die Angriffsfläche waren, bevor die Sandbox kam.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer öffnet mit verwundbarem Adobe Reader/Acrobat (≤ 8.1.2) eine Datei."
+     },
+     {
+      "phase": "trigger",
+      "text": "Die präparierte PDF ruft util.printf mit einem manipulierten Format-String-Argument auf."
+     },
+     {
+      "phase": "impact",
+      "text": "Der stack-basierte Pufferüberlauf erlaubt die Ausführung von beliebigem Code."
+     },
+     {
+      "phase": "stopper",
+      "text": "Reader/Acrobat aktualisieren; JavaScript im Reader deaktivieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel unauthentifiziert über das Netz.",
+     "Ein unauthentifizierter Angreifer liest über XXE lokale Dateien."
+    ]
+   }
   },
   "CVE-2019-5418": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",

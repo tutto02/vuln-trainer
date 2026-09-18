@@ -307,7 +307,31 @@
      "why": "RCE: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,97: SpEL-Injection (CWE-94) im Property-Binding von Spring Data. Spring-Framework-Lücken (auch Spring4Shell CVE-2022-22965) folgen diesem Muster: Nutzergesteuerte Property-Namen werden als Ausdrücke ausgewertet. Ein Framework-weites Injection-Thema."
+   "context_de": "KEV, EPSS 0,97: SpEL-Injection (CWE-94) im Property-Binding von Spring Data. Spring-Framework-Lücken (auch Spring4Shell CVE-2022-22965) folgen diesem Muster: Nutzergesteuerte Property-Namen werden als Ausdrücke ausgewertet. Ein Framework-weites Injection-Thema.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine Anwendung nutzt Spring Data Commons (anfällige Version) und bindet Request-Parameter auf Objekte."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet präparierte Parameternamen mit einer SpEL-Expression, die nicht neutralisiert wird."
+     },
+     {
+      "phase": "impact",
+      "text": "Die Expression wird ausgewertet und führt beliebigen Code aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Spring Data aktualisieren; Property-Binding gegen SpEL-Injection absichern."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit einem fest eingebauten Passwort an.",
+     "Ein lokaler Nutzer nutzt eine Race Condition beim Anlegen einer Datei."
+    ]
+   }
   },
   "CVE-2019-10068": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

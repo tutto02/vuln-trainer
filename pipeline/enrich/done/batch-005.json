@@ -30,7 +30,31 @@
      "why": "Code mit Nutzerrechten."
     }
    },
-   "context_de": "KEV, EPSS 0,21, in freier Wildbahn 2012 ausgenutzt. Vektor nur vom ADP, NVD hat alte CVEs nicht mit 3.1 nachbewertet. DLL-Suchpfad-Lücken sind eine eigene Klasse (CWE-426), die Auswirkung ist immer Codeausführung im Kontext des ladenden Prozesses."
+   "context_de": "KEV, EPSS 0,21, in freier Wildbahn 2012 ausgenutzt. Vektor nur vom ADP, NVD hat alte CVEs nicht mit 3.1 nachbewertet. DLL-Suchpfad-Lücken sind eine eigene Klasse (CWE-426), die Auswirkung ist immer Codeausführung im Kontext des ladenden Prozesses.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Der Angreifer kann eine bösartige DLL in das aktuelle Arbeitsverzeichnis eines Opfers legen (z. B. neben ein Office-Dokument)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Das Opfer öffnet ein Office-/VBA-Dokument, woraufhin VBE6.dll aus dem unsicheren Suchpfad geladen wird."
+     },
+     {
+      "phase": "impact",
+      "text": "Die untergeschobene DLL wird ausgeführt und bringt Code mit den Rechten des Nutzers ein."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitsupdate einspielen; sichere DLL-Suchreihenfolge erzwingen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel unauthentifiziert über das Netz.",
+     "Ein Server gibt über eine SQL-Injection Daten preis."
+    ]
+   }
   },
   "CVE-2022-21661": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",

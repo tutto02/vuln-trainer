@@ -629,7 +629,31 @@
      "why": "RCE: alles."
     }
    },
-   "context_de": "KEV, EPSS 0,99: Wenige Tage nach CVE-2017-5638 (Equifax). Struts 2017 war die Referenz für 'Framework-Lücke mit Massenausnutzung'."
+   "context_de": "KEV, EPSS 0,99: Wenige Tage nach CVE-2017-5638 (Equifax). Struts 2017 war die Referenz für 'Framework-Lücke mit Massenausnutzung'.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Server läuft mit Apache Struts 2 REST-Plugin (anfällige Version) und ist erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet ein präpariertes XML-Payload, das der XStreamHandler ohne Typfilter deserialisiert."
+     },
+     {
+      "phase": "impact",
+      "text": "Beim Deserialisieren wird beliebiger Code ausgeführt (Remote Code Execution)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Struts aktualisieren; XStream-Deserialisierung auf erlaubte Typen beschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit Standard-Zugangsdaten an.",
+     "Ein lokaler Nutzer platziert eine DLL im Suchpfad."
+    ]
+   }
   }
  }
 }

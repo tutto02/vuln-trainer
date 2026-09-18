@@ -483,7 +483,31 @@
      "why": "Code: System störbar."
     }
    },
-   "context_de": "KEV, EPSS 0,82: Zero-Day 2009, in gezielten Angriffen. Use-After-Free (CWE-416) über eine PDF-JavaScript-Methode (media.newPlayer); die Adobe-PDF-Serie im Korpus (2007 bis 2021) zeigt, wie JavaScript-Methoden im PDF (getIcon, util.printf, newPlayer) über Jahre die Angriffsfläche waren."
+   "context_de": "KEV, EPSS 0,82: Zero-Day 2009, in gezielten Angriffen. Use-After-Free (CWE-416) über eine PDF-JavaScript-Methode (media.newPlayer); die Adobe-PDF-Serie im Korpus (2007 bis 2021) zeigt, wie JavaScript-Methoden im PDF (getIcon, util.printf, newPlayer) über Jahre die Angriffsfläche waren.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer öffnet mit verwundbarem Adobe Reader/Acrobat (8.x/9.x) eine Datei."
+     },
+     {
+      "phase": "trigger",
+      "text": "Die präparierte PDF ruft Doc.media.newPlayer auf und löst über zlib-komprimierte Streams einen Use-after-free aus."
+     },
+     {
+      "phase": "impact",
+      "text": "Der wiederverwendete Speicher führt zur Codeausführung im Kontext des Nutzers (aktiv ausgenutzt)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Reader/Acrobat aktualisieren; JavaScript im Reader deaktivieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt Netzwerkzugriff ohne jede Nutzerinteraktion.",
+     "Ein lokaler Angreifer platziert eine DLL im Suchpfad."
+    ]
+   }
   },
   "CVE-2013-5223": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",

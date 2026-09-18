@@ -560,7 +560,31 @@
      "why": "Befehle: Router abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,9995: In riesigen Botnetzen (Mirai, Muhstik, Hajime). Der Ping-Diagnose-Parameter als Command Injection; die Ergebnisdatei wird sogar zurückgegeben, was die Ausnutzung trivial macht."
+   "context_de": "KEV, EPSS 0,9995: In riesigen Botnetzen (Mirai, Muhstik, Hajime). Der Ping-Diagnose-Parameter als Command Injection; die Ergebnisdatei wird sogar zurückgegeben, was die Ausnutzung trivial macht.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Dasan-GPON-Router ist erreichbar; die Authentifizierung lässt sich per ?images-Trick umgehen (verkettet mit CVE-2018-10561)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet an GponForm/diag_Form einen diag_action=ping-Request mit Shell-Metazeichen im dest_host-Parameter."
+     },
+     {
+      "phase": "impact",
+      "text": "Die eingeschleusten Befehle werden ausgeführt, und das Ergebnis lässt sich über /diag.html auslesen: RCE."
+     },
+     {
+      "phase": "stopper",
+      "text": "Firmware aktualisieren; Eingaben serverseitig validieren, Fernzugriff deaktivieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer nutzt einen Deserialisierungsfehler.",
+     "Ein Opfer wird per CSRF zu einer Aktion verleitet."
+    ]
+   }
   },
   "CVE-2023-46731": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

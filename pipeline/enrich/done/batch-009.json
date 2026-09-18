@@ -454,7 +454,31 @@
      "why": "Keine Verfügbarkeitsauswirkung."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,95. VPN-Auth-Bypass ist die Lücke, die Ransomware-Gruppen am schnellsten aufgreifen; MFA hilft hier nicht, weil die Prüfung selbst umgangen wird."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,95. VPN-Auth-Bypass ist die Lücke, die Ransomware-Gruppen am schnellsten aufgreifen; MFA hilft hier nicht, weil die Prüfung selbst umgangen wird.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein PAN-OS-GlobalProtect-Portal/-Gateway (anfällige Version) ist über das Netz erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet präparierte Anfragen, die die Authentifizierungsprüfung des Portals umgehen."
+     },
+     {
+      "phase": "impact",
+      "text": "Er baut ohne gültige Anmeldung eine unautorisierte VPN-Verbindung auf."
+     },
+     {
+      "phase": "stopper",
+      "text": "PAN-OS aktualisieren; Zugriff auf das Portal einschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer führt über die Lücke direkt Betriebssystembefehle aus.",
+     "Ein lokaler Nutzer platziert eine DLL im Suchpfad."
+    ]
+   }
   },
   "CVE-2020-13965": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",

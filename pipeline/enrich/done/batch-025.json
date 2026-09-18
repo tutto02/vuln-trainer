@@ -553,7 +553,31 @@
      "why": "SYSTEM: System abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,74: Win32k-EoP (CWE-404 bei NVD, real Speicherfehler), von APT-Gruppen als zweites Glied genutzt. Win32k ist die ergiebigste Windows-Kernel-EoP-Quelle; nach dem Phishing-Einbruch der Weg zu SYSTEM."
+   "context_de": "KEV, EPSS 0,74: Win32k-EoP (CWE-404 bei NVD, real Speicherfehler), von APT-Gruppen als zweites Glied genutzt. Win32k ist die ergiebigste Windows-Kernel-EoP-Quelle; nach dem Phishing-Einbruch der Weg zu SYSTEM.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Der Angreifer besitzt bereits ein niedrig privilegiertes lokales Konto auf einem Windows-System (7 / Server 2008) mit verwundbarem Win32k."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er löst über eine präparierte Eingabe eine fehlerhafte Objektbehandlung in der Win32k-Komponente aus."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Speicherfehler erlaubt die lokale Rechteausweitung auf SYSTEM."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitsupdate einspielen; das schließt die Win32k-Objektbehandlung."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel unauthentifiziert über das Netz.",
+     "Ein Opfer öffnet einen Link mit reflektiertem XSS."
+    ]
+   }
   },
   "CVE-2022-25149": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",

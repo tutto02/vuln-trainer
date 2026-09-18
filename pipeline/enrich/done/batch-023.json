@@ -127,7 +127,31 @@
      "why": "Code: System störbar."
     }
    },
-   "context_de": "KEV, EPSS 0,79: Watering-Hole-Angriff 2012 (Council on Foreign Relations). Eine IE-Use-After-Free (CWE-416); das benannte Objekt (CDwnBindInfo) macht die Beschreibung ungewöhnlich konkret für Microsoft."
+   "context_de": "KEV, EPSS 0,79: Watering-Hole-Angriff 2012 (Council on Foreign Relations). Eine IE-Use-After-Free (CWE-416); das benannte Objekt (CDwnBindInfo) macht die Beschreibung ungewöhnlich konkret für Microsoft.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer nutzt eine verwundbare Internet-Explorer-Version (6–8) und surft im Web."
+     },
+     {
+      "phase": "trigger",
+      "text": "Es öffnet eine präparierte Webseite, die über ein CDwnBindInfo-Objekt einen Use-after-free auslöst."
+     },
+     {
+      "phase": "impact",
+      "text": "Der wiederverwendete Speicher führt zur Ausführung von beliebigem Code im Browserkontext (aktiv ausgenutzt)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitsupdate einspielen; als Übergang betroffene ActiveX-Funktionen einschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt gültige Windows-Zugangsdaten.",
+     "Ein lokaler Nutzer nutzt eine Race Condition beim Anlegen einer Datei."
+    ]
+   }
   },
   "CVE-2022-1190": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",

@@ -251,7 +251,31 @@
      "why": "Master abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,97. CI-Server halten Cloud-Credentials und signieren Artefakte; ein kompromittierter Master ist ein Lieferketten-Angriff. Segmentierung des Masters senkt die Wahrscheinlichkeit kaum, weil Entwickler ihn erreichen müssen."
+   "context_de": "KEV, EPSS 0,97. CI-Server halten Cloud-Credentials und signieren Artefakte; ein kompromittierter Master ist ein Lieferketten-Angriff. Segmentierung des Masters senkt die Wahrscheinlichkeit kaum, weil Entwickler ihn erreichen müssen.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Der Angreifer kann in Jenkins (Pipeline-Groovy-Plugin ≤ 2.63) Pipeline-Skripte definieren."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er schreibt ein Groovy-Skript, das die Sandbox-Beschränkungen des CpsGroovyShell umgeht."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Code entkommt der Sandbox und wird auf der Jenkins-Master-JVM ausgeführt."
+     },
+     {
+      "phase": "stopper",
+      "text": "Plugin aktualisieren; Skript-Sicherheitsfreigaben restriktiv handhaben."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit einem fest eingebauten Passwort an.",
+     "Ein Opfer öffnet ein bösartiges PDF."
+    ]
+   }
   },
   "CVE-2024-38813": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

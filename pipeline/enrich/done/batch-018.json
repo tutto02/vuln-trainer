@@ -184,7 +184,31 @@
      "why": "Kernel-Korruption: Gerät abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,004: Zweite Stufe einer Samsung-Spyware-Kette. Setzt kompromittiertes Radio-Recht voraus (PR:H), das eine frühere Lücke lieferte: Kettenglied mit hoher Vorbedingung."
+   "context_de": "KEV, EPSS 0,004: Zweite Stufe einer Samsung-Spyware-Kette. Setzt kompromittiertes Radio-Recht voraus (PR:H), das eine frühere Lücke lieferte: Kettenglied mit hoher Vorbedingung.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Der Angreifer hat auf einem Samsung-Android-Gerät bereits Radio-Rechte (privilegierter lokaler Kontext)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er löst im MFC-Charger-Treiber über eine Race Condition einen Use-after-free aus."
+     },
+     {
+      "phase": "impact",
+      "text": "Der wiederverwendete Speicher erlaubt einen beliebigen Schreibzugriff im Kernel."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitsupdate (SMR) einspielen; die Race Condition im Treiber schließen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel unauthentifiziert über das Netz.",
+     "Ein Opfer öffnet eine Webseite mit einem Type-Confusion-Exploit."
+    ]
+   }
   },
   "CVE-2023-50868": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",

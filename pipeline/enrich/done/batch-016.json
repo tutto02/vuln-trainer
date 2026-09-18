@@ -184,7 +184,31 @@
      "why": "Webshell: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,84: Jahrelang gegen ASP.NET-Anwendungen genutzt, weil Telerik in vielen Produkten eingebettet ist. Klasse schwache Kryptografie (CWE-326), Auswirkung RCE über den Upload; wie Shiro und CentreStack ein Schlüssel-Problem."
+   "context_de": "KEV, EPSS 0,84: Jahrelang gegen ASP.NET-Anwendungen genutzt, weil Telerik in vielen Produkten eingebettet ist. Klasse schwache Kryptografie (CWE-326), Auswirkung RCE über den Upload; wie Shiro und CentreStack ein Schlüssel-Problem.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine ASP.NET-Anwendung nutzt Telerik RadAsyncUpload mit schwacher Verschlüsselung (Standard-/schwacher Schlüssel)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer bricht die schwache Verschlüsselung der Upload-Konfiguration und fälscht ein gültiges Upload-Paket."
+     },
+     {
+      "phase": "impact",
+      "text": "Er lädt eine ausführbare Datei an einen web-erreichbaren Ort und erreicht Codeausführung."
+     },
+     {
+      "phase": "stopper",
+      "text": "Telerik aktualisieren; einen starken, individuellen Schlüssel setzen und Upload-Ziele beschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit gestohlenen Domänen-Zugangsdaten an.",
+     "Ein Opfer klickt auf einen Link mit reflektiertem XSS."
+    ]
+   }
   },
   "CVE-2021-35216": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",

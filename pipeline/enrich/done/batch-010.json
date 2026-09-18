@@ -353,7 +353,31 @@
      "why": "root: alles."
     }
    },
-   "context_de": "KEV, EPSS 0,97, nur CNA-Vektor. ISE ist der Türsteher des Netzes; wer ihn kontrolliert, vergibt Zugang. Schwester-CVE 2025-20337 mit identischem Text."
+   "context_de": "KEV, EPSS 0,97, nur CNA-Vektor. ISE ist der Türsteher des Netzes; wer ihn kontrolliert, vergibt Zugang. Schwester-CVE 2025-20337 mit identischem Text.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine Cisco-ISE/ISE-PIC-Instanz exponiert eine bestimmte API ohne Anmeldung im Netz."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet präparierte Eingaben, die wegen unzureichender Validierung als Befehl interpretiert werden."
+     },
+     {
+      "phase": "impact",
+      "text": "Die eingeschleusten Befehle werden als root auf dem Betriebssystem ausgeführt."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; Eingaben strikt validieren, API-Zugriff netzseitig beschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit gestohlenen Zugangsdaten an.",
+     "Ein Opfer öffnet ein Office-Dokument mit Makro."
+    ]
+   }
   },
   "CVE-2019-11708": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",

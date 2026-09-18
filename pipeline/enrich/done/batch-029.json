@@ -430,7 +430,31 @@
      "why": "RCE: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,85: SSTI (CWE-74) in Jiras E-Mail-Vorlagen, wie Strapi und SugarCRM. Template-Injection über Admin-Kontaktformulare; die Klasse ist im Korpus so oft vertreten, dass sie eine Merkregel verdient: Nutzergesteuerte Vorlagen sind RCE-Verdächtige."
+   "context_de": "KEV, EPSS 0,85: SSTI (CWE-74) in Jiras E-Mail-Vorlagen, wie Strapi und SugarCRM. Template-Injection über Admin-Kontaktformulare; die Klasse ist im Korpus so oft vertreten, dass sie eine Merkregel verdient: Nutzergesteuerte Vorlagen sind RCE-Verdächtige.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Jira-Server/Data-Center (anfällige Version) ist erreichbar; die ContactAdministrators-/SendBulkMail-Funktion ist nutzbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer schleust in ein Eingabefeld eine Server-Side-Template-Injection ein."
+     },
+     {
+      "phase": "impact",
+      "text": "Die Template-Engine wertet den Ausdruck aus und führt beliebigen Code auf dem Jira-Server aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; als Übergang die Kontaktformular-Funktion deaktivieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit Standard-Zugangsdaten an.",
+     "Ein Opfer klickt auf einen CSRF-Link."
+    ]
+   }
   },
   "CVE-2010-3904": {
    "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
@@ -671,7 +695,31 @@
      "why": "Dienst abschaltbar."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,999: Der MOVEit-Massenangriff durch Clop (2023), einer der größten Datendiebstähle überhaupt (tausende Organisationen). SQLi (CWE-89) in einem Managed-File-Transfer-Server; MFT-Server sind seit MOVEit die Kategorie mit den höchsten Auswirkungen im Korpus."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,999: Der MOVEit-Massenangriff durch Clop (2023), einer der größten Datendiebstähle überhaupt (tausende Organisationen). SQLi (CWE-89) in einem Managed-File-Transfer-Server; MFT-Server sind seit MOVEit die Kategorie mit den höchsten Auswirkungen im Korpus.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein MOVEit-Transfer-Webserver (anfällige Version) ist ohne Anmeldung aus dem Internet erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet Requests mit einer SQL-Injection an die Web-Anwendung."
+     },
+     {
+      "phase": "impact",
+      "text": "Über die Injection erlangt er Zugriff auf die Datenbank und legt eine Web-Shell (human2.aspx) ab: Datenabfluss und RCE (Clop-Kampagne)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; MOVEit nicht offen ins Internet stellen, auf abgelegte Web-Shells prüfen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit einem fest eingebauten Passwort an.",
+     "Ein Opfer öffnet einen bösartigen E-Mail-Anhang mit Makro."
+    ]
+   }
   }
  }
 }

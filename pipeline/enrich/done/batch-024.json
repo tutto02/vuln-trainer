@@ -155,7 +155,31 @@
      "why": "Gerät abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,84: VoIP-Telefonanlage (wie Alcatel OmniPCX). SQLi (CWE-89), die bis zur root-Shell führt; TK-Anlagen stehen oft im Netz und werden selten gepatcht."
+   "context_de": "KEV, EPSS 0,84: VoIP-Telefonanlage (wie Alcatel OmniPCX). SQLi (CWE-89), die bis zur root-Shell führt; TK-Anlagen stehen oft im Netz und werden selten gepatcht.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Grandstream-UCM6200-Gerät exponiert die HTTP-Schnittstelle ohne Anmeldung im Netz."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet einen präparierten HTTP-Request mit einer SQL-Injection an die Passwort-Recovery-Funktion."
+     },
+     {
+      "phase": "impact",
+      "text": "Über die Injection führt er auf älteren Versionen Shell-Befehle als root aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Firmware aktualisieren; Eingaben parametrisiert verarbeiten, Verwaltung nicht offen ins Netz stellen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer lädt über ein Upload-Feld eine Web-Shell hoch.",
+     "Ein lokaler Nutzer nutzt eine Race Condition beim Symlink."
+    ]
+   }
   },
   "CVE-2024-21893": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N",
@@ -392,7 +416,31 @@
      "why": "Keine Verfügbarkeitsauswirkung."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99986: Das erste Glied der Ivanti-Kette vom Januar 2024. Der Auth-Bypass (CWE-287) allein gibt nur Ressourcen-Zugriff; kombiniert mit CVE-2024-21887 (Command Injection) wurde es unauthentifizierte RCE. Die Kette erklärt, warum ein 8,2-Bypass so kritisch war."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99986: Das erste Glied der Ivanti-Kette vom Januar 2024. Der Auth-Bypass (CWE-287) allein gibt nur Ressourcen-Zugriff; kombiniert mit CVE-2024-21887 (Command Injection) wurde es unauthentifizierte RCE. Die Kette erklärt, warum ein 8,2-Bypass so kritisch war.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Ivanti-Connect-Secure/Policy-Secure-Gateway (9.x/22.x) ist über das Netz erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer ruft eine Web-Ressource über einen Pfad auf, der die Zugriffskontrollprüfungen umgeht."
+     },
+     {
+      "phase": "impact",
+      "text": "Er erreicht ohne Anmeldung eingeschränkte Endpunkte; verkettet mit CVE-2024-21887 folgt Codeausführung."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; die bereitgestellten Mitigationen anwenden und den Integritätscheck ausführen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit Standard-Zugangsdaten an.",
+     "Ein Opfer öffnet einen Link mit reflektiertem XSS."
+    ]
+   }
   },
   "CVE-2021-3493": {
    "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",

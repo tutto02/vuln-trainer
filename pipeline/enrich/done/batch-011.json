@@ -284,7 +284,31 @@
      "why": "Keine Verfügbarkeitsauswirkung."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,999: Massenscans, aber allein wenig Nutzen. Ein 5,3 in KEV, weil Scanner es als Fingerprint nutzen."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,999: Massenscans, aber allein wenig Nutzen. Ein 5,3 in KEV, weil Scanner es als Fingerprint nutzen.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Atlassian-Confluence-Server (anfällige Version) exponiert den /s/-Endpunkt ohne Anmeldung."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer ruft über den /s/-Pfad eine Pre-Authorization-Path-Traversal auf eine geschützte Ressource auf."
+     },
+     {
+      "phase": "impact",
+      "text": "Er liest eingeschränkte Dateien (z. B. Konfiguration) ohne Anmeldung: begrenzte Informationspreisgabe."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; den Zugriff auf den /s/-Endpunkt korrigieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer führt über die Lücke beliebigen Code aus.",
+     "Ein Opfer wird per CSRF zu einer administrativen Aktion verleitet."
+    ]
+   }
   },
   "CVE-2024-50603": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
@@ -637,7 +661,31 @@
      "why": "root: alles."
     }
    },
-   "context_de": "KEV, EPSS 0,42: GingerBreak, ein Rooting-Exploit, der von Malware übernommen wurde. Integer-Klasse (nur Maximum geprüft, kein Minimum) als Lehrbuchfall für CWE-190/CWE-129."
+   "context_de": "KEV, EPSS 0,42: GingerBreak, ein Rooting-Exploit, der von Malware übernommen wurde. Integer-Klasse (nur Maximum geprüft, kein Minimum) als Lehrbuchfall für CWE-190/CWE-129.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Der Angreifer besitzt bereits ein unprivilegiertes lokales Konto auf einem Android-Gerät (2.x/3.0) mit verwundbarem vold."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er sendet über einen PF_NETLINK-Socket eine gefälschte Nachricht mit einem negativen Index, der die Obergrenzenprüfung umgeht."
+     },
+     {
+      "phase": "impact",
+      "text": "Der daraus folgende Speicherfehler erlaubt Codeausführung und lokale Rechteausweitung auf root."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitsupdate einspielen; vold darf ungeprüften Netlink-Nachrichten nicht vertrauen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer verbindet sich ohne Konto über das Netz.",
+     "Ein Opfer öffnet eine Webseite mit einem Type-Confusion-Exploit."
+    ]
+   }
   },
   "CVE-2026-11645": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
