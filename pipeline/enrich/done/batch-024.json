@@ -186,7 +186,31 @@
      "why": "Keine Verfügbarkeitsauswirkung."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: In Kette mit CVE-2023-46805 (Auth-Bypass) und CVE-2024-21887 (Command Injection) im Januar 2024. Die SSRF war das Glied, das die anderen beiden verband; die Ivanti-Kette war einer der größten Vorfälle des Jahres."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: In Kette mit CVE-2023-46805 (Auth-Bypass) und CVE-2024-21887 (Command Injection) im Januar 2024. Die SSRF war das Glied, das die anderen beiden verband; die Ivanti-Kette war einer der größten Vorfälle des Jahres.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Ivanti-Connect-Secure/Policy-Secure-Gateway (9.x/22.x) ist verwundbar; die SAML-Komponente ist erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet ohne Anmeldung einen präparierten Request, der das Gateway zu Anfragen an interne Ziele bewegt (SSRF)."
+     },
+     {
+      "phase": "impact",
+      "text": "Er erreicht sonst geschützte interne Ressourcen; verkettet mit CVE-2024-21887 führt das zu Codeausführung."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; ausgehende Ziele beschränken und die bereitgestellten Mitigationen anwenden."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit Standard-Zugangsdaten am Gateway an.",
+     "Ein Opfer öffnet einen Link mit reflektiertem XSS."
+    ]
+   }
   },
   "CVE-2021-21224": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",

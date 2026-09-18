@@ -553,7 +553,31 @@
      "why": "Code: System störbar."
     }
    },
-   "context_de": "KEV, EPSS 0,82: Zero-Day 2012, in Exploit-Kits (Nitro). Use-After-Free (CWE-416) in mshtml.dll; die IE-UAF-Serie im Korpus (2010, 2012, 2013, 2014) belegt, wie lange IE der bevorzugte Browser-Exploit-Vektor war, bevor Chrome ihn ablöste."
+   "context_de": "KEV, EPSS 0,82: Zero-Day 2012, in Exploit-Kits (Nitro). Use-After-Free (CWE-416) in mshtml.dll; die IE-UAF-Serie im Korpus (2010, 2012, 2013, 2014) belegt, wie lange IE der bevorzugte Browser-Exploit-Vektor war, bevor Chrome ihn ablöste.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer nutzt eine verwundbare Internet-Explorer-Version (6–9) und surft im Web."
+     },
+     {
+      "phase": "trigger",
+      "text": "Es öffnet eine präparierte Webseite, die in CMshtmlEd::Exec (mshtml.dll) einen Use-after-free auslöst."
+     },
+     {
+      "phase": "impact",
+      "text": "Der freigegebene Speicher wird angreiferkontrolliert wiederverwendet, was zur Codeausführung im Browserkontext führt."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitsupdate einspielen; als Übergang betroffene ActiveX-/Skriptfunktionen einschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt gültige Windows-Domänen-Zugangsdaten.",
+     "Ein lokaler Nutzer nutzt eine Race Condition beim Anlegen einer Datei."
+    ]
+   }
   },
   "CVE-2023-43770": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",

@@ -134,7 +134,31 @@
      "why": "root: alles."
     }
    },
-   "context_de": "KEV, EPSS 0,84: Jahrelang der Standard-Root-Exploit auf ungepatchten Linux-Systemen und in Containern. Score 7,0 mit AC:H; die Praxis sagt 'jeder Skript-Kiddie schafft es'."
+   "context_de": "KEV, EPSS 0,84: Jahrelang der Standard-Root-Exploit auf ungepatchten Linux-Systemen und in Containern. Score 7,0 mit AC:H; die Praxis sagt 'jeder Skript-Kiddie schafft es'.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Der Angreifer besitzt bereits ein unprivilegiertes lokales Konto auf einem Linux-System mit verwundbarem Kernel (Dirty COW)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er löst wiederholt eine Race Condition im Copy-on-Write-Mechanismus (mm/gup.c) aus, während er in eine read-only-Speicherabbildung schreibt."
+     },
+     {
+      "phase": "impact",
+      "text": "Das Zeitfenster erlaubt das Schreiben in eigentlich schreibgeschützte Dateien (z. B. setuid-Binaries): lokale Rechteausweitung auf root."
+     },
+     {
+      "phase": "stopper",
+      "text": "Kernel aktualisieren; das schließt die COW-Race-Condition."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer verbindet sich ohne Konto über das Netzwerk mit einem Dienst.",
+     "Ein Opfer öffnet ein präpariertes PDF, das den Reader kompromittiert."
+    ]
+   }
   },
   "CVE-2024-20353": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H",

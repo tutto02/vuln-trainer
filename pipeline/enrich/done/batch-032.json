@@ -278,7 +278,31 @@
      "why": "Keine Verfügbarkeitsauswirkung."
     }
    },
-   "context_de": "KEV, EPSS 0,87: BENIGNCERTAIN, aus dem Shadow-Brokers-NSA-Leak (wie EXTRABACON CVE-2016-6366). Ein Memory-Leak (CWE-200) über IKEv1, das VPN-Konfiguration und Private Keys preisgab; wie Heartbleed ein Overread, hier gegen VPN-Gateways."
+   "context_de": "KEV, EPSS 0,87: BENIGNCERTAIN, aus dem Shadow-Brokers-NSA-Leak (wie EXTRABACON CVE-2016-6366). Ein Memory-Leak (CWE-200) über IKEv1, das VPN-Konfiguration und Private Keys preisgab; wie Heartbleed ein Overread, hier gegen VPN-Gateways.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Cisco-IOS/IOS-XE/PIX-Gerät nutzt die verwundbare IKEv1-Implementierung und ist über das Netz erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet eine präparierte IKEv1-Security-Association-Aushandlungsanfrage."
+     },
+     {
+      "phase": "impact",
+      "text": "Das Gerät gibt in der Antwort Teile seines Speichers preis, darunter potenziell sensible Daten (BENIGNCERTAIN)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Software aktualisieren; IKEv1-Zugriff netzseitig beschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer führt über die Lücke beliebigen Code aus.",
+     "Ein Opfer wird per CSRF zu einer administrativen Aktion verleitet."
+    ]
+   }
   },
   "CVE-2020-17496": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

@@ -178,7 +178,31 @@
    "dissent": {
     "I": "Die Beschreibung sagt: beliebige Befehle auf Privilege Level 15. Das wäre I:H, C:H und A:H (8,8). Der offizielle Vektor stammt von einer ADP-Nachbewertung, nicht von NVD, und passt nicht zur Beschreibung."
    },
-   "context_de": "Alte Lücke aus 2008, dennoch 2022 in KEV aufgenommen. Bei Netzwerkgeräten bleibt ungepatchte Firmware jahrelang im Einsatz; die Wahrscheinlichkeit sinkt vor allem durch Beschränkung des Admin-Zugangs auf ein Management-VLAN."
+   "context_de": "Alte Lücke aus 2008, dennoch 2022 in KEV aufgenommen. Bei Netzwerkgeräten bleibt ungepatchte Firmware jahrelang im Einsatz; die Wahrscheinlichkeit sinkt vor allem durch Beschränkung des Admin-Zugangs auf ein Management-VLAN.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Cisco-IOS-Router (871 ISR) hat die HTTP-Administration aktiv; ein Administrator ist dort angemeldet."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer bringt den Administrator dazu, eine präparierte Seite zu öffnen, die Requests an /level/15/exec/- sendet (CSRF)."
+     },
+     {
+      "phase": "impact",
+      "text": "Im Namen des Admins werden privilegierte IOS-Befehle ausgeführt."
+     },
+     {
+      "phase": "stopper",
+      "text": "Firmware aktualisieren; CSRF-Schutz einführen und die HTTP-Administration deaktivieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer sendet OGNL im Content-Type-Header.",
+     "Ein lokaler Nutzer liest über einen Speicher-Leak Kernel-Daten."
+    ]
+   }
   },
   "CVE-2023-40044": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
@@ -284,7 +308,31 @@
    "dissent": {
     "A": "CNA (Samsung): A:L. Ein Neustart ist vorübergehend; ob das 'vollständig' (H) oder 'reduziert' (L) ist, ist Ermessenssache."
    },
-   "context_de": "EPSS nur 0,005, trotzdem KEV: kommerzielle Spyware nutzte die Lücke in Exploit-Ketten. Niedriger EPSS heißt nicht harmlos, wenn gezielte Angreifer sie einsetzen; hier zählt, wer im Bedrohungsmodell steht."
+   "context_de": "EPSS nur 0,005, trotzdem KEV: kommerzielle Spyware nutzte die Lücke in Exploit-Ketten. Niedriger EPSS heißt nicht harmlos, wenn gezielte Angreifer sie einsetzen; hier zählt, wer im Bedrohungsmodell steht.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Der Angreifer besitzt auf einem Samsung-Android-Gerät bereits die Radio-Berechtigung (privilegierter lokaler Kontext)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Er übergibt der Modem-Schnittstelle Eingaben mit Format-Spezifizierern, die nicht validiert werden."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Format-String-Fehler löst eine Kernel-Panik aus: Denial of Service."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitsupdate (SMR) einspielen; Eingaben als Datenargument statt als Format-String verarbeiten."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer erreicht das Ziel unauthentifiziert über das Netzwerk.",
+     "Ein Opfer öffnet eine Webseite mit einem Type-Confusion-Exploit."
+    ]
+   }
   },
   "CVE-2023-49103": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",

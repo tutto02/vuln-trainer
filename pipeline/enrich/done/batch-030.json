@@ -486,7 +486,31 @@
      "why": "Code: System störbar."
     }
    },
-   "context_de": "KEV, EPSS 0,89: Signaturprüfung (CWE-20), wie CVE-2020-1464 (GlueBall) und CurveBall. Malware konnte sich an eine gültig signierte Datei hängen und galt weiter als vertrauenswürdig; die Vertrauenskette der Signatur war der Angriffspunkt."
+   "context_de": "KEV, EPSS 0,89: Signaturprüfung (CWE-20), wie CVE-2020-1464 (GlueBall) und CurveBall. Malware konnte sich an eine gültig signierte Datei hängen und galt weiter als vertrauenswürdig; die Vertrauenskette der Signatur war der Angriffspunkt.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Windows-System verarbeitet eine signierte ausführbare Datei; die Authenticode-Prüfung ist verwundbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer hängt an eine signierte PE-Datei zusätzliche Daten an, ohne die als gültig erkannte Signatur zu brechen."
+     },
+     {
+      "phase": "impact",
+      "text": "Die manipulierte, weiterhin „signiert“ erscheinende Datei wird ausgeführt und bringt Schadcode ein."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitsupdate einspielen; die Prüfung des PE-Digests korrigiert die Signaturvalidierung."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer nutzt einen Deserialisierungsfehler über das Netz.",
+     "Ein Opfer klickt auf einen Link mit reflektiertem XSS."
+    ]
+   }
   },
   "CVE-2023-4863": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",

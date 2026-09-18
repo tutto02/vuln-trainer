@@ -518,7 +518,31 @@
      "why": "Malware: System störbar."
     }
    },
-   "context_de": "KEV, EPSS 0,67: Von russischen Gruppen gegen die Ukraine genutzt. MotW ist eine Schutzschicht (wie Signaturprüfung); ihre Umgehung (CWE-693) senkt die Wirksamkeit der SmartScreen-Warnung, nicht der Angriff selbst."
+   "context_de": "KEV, EPSS 0,67: Von russischen Gruppen gegen die Ukraine genutzt. MotW ist eine Schutzschicht (wie Signaturprüfung); ihre Umgehung (CWE-693) senkt die Wirksamkeit der SmartScreen-Warnung, nicht der Angriff selbst.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Nutzer erhält ein präpariertes Archiv und öffnet es mit einer verwundbaren 7-Zip-Version."
+     },
+     {
+      "phase": "trigger",
+      "text": "Beim Entpacken verliert die enthaltene Datei die Mark-of-the-Web-Kennzeichnung, sodass Windows sie als vertrauenswürdig behandelt."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Nutzer führt die entpackte Datei ohne die üblichen Sicherheitswarnungen aus: der SmartScreen-/MotW-Schutz greift nicht."
+     },
+     {
+      "phase": "stopper",
+      "text": "7-Zip aktualisieren; Mark-of-the-Web an entpackte Dateien weiterreichen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt Netzwerkzugriff ohne jede Nutzerinteraktion.",
+     "Ein unauthentifizierter Angreifer liest über XXE lokale Dateien."
+    ]
+   }
   },
   "CVE-2019-1405": {
    "vector_basis": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",

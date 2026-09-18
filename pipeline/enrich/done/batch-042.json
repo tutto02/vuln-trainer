@@ -310,7 +310,31 @@
      "why": "RCE: Gateway abschaltbar."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: 'Shitrix', eine der folgenreichsten Lücken 2019/2020; monatelang ungepatcht in vielen Organisationen, Grundlage zahlloser Ransomware-Einbrüche. Path Traversal (CWE-22), das eine XML/Perl-Template-Datei schrieb und ausführte; die Kombination aus Traversal und Template-Ausführung ergab RCE. Citrix ist im Korpus ein Dauerthema (NetScaler, ShareFile, StoreFront)."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99999: 'Shitrix', eine der folgenreichsten Lücken 2019/2020; monatelang ungepatcht in vielen Organisationen, Grundlage zahlloser Ransomware-Einbrüche. Path Traversal (CWE-22), das eine XML/Perl-Template-Datei schrieb und ausführte; die Kombination aus Traversal und Template-Ausführung ergab RCE. Citrix ist im Korpus ein Dauerthema (NetScaler, ShareFile, StoreFront).",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Citrix-ADC/Gateway (anfällige Version) ist ohne Anmeldung aus dem Internet erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet eine Path-Traversal-URL, die auf ein VPN-Verzeichnis mit Skript-Templates zeigt."
+     },
+     {
+      "phase": "impact",
+      "text": "Er schreibt und ruft ein Perl-Template auf, wodurch beliebiger Code auf der Appliance ausgeführt wird."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; als Übergang die offizielle Responder-Policy-Mitigation setzen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer errät ein Session-Cookie eines angemeldeten Nutzers.",
+     "Ein lokaler Nutzer eskaliert über eine setuid-Binary zu root."
+    ]
+   }
   },
   "CVE-2019-9515": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",

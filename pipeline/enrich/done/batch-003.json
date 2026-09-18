@@ -273,7 +273,31 @@
      "why": "Keine Verfügbarkeitsauswirkung."
     }
    },
-   "context_de": "KEV, EPSS 0,05: Als Teil einer Spyware-Kette ausgenutzt, um über Intents andere Apps zu erreichen. Ein 6,1 kann Kettenglied sein; einzeln betrachtet ist das Risiko gering."
+   "context_de": "KEV, EPSS 0,05: Als Teil einer Spyware-Kette ausgenutzt, um über Intents andere Apps zu erreichen. Ein 6,1 kann Kettenglied sein; einzeln betrachtet ist das Risiko gering.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer nutzt Chrome auf Android (< 95.0.4638.69) und öffnet eine Webseite."
+     },
+     {
+      "phase": "trigger",
+      "text": "Die präparierte HTML-Seite missbraucht die unzureichende Prüfung von Android-Intents."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Browser wird ohne ausreichende Zustimmung zu einer angreifergewählten URL/Schema geleitet (Scope-Wechsel)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Chrome aktualisieren; die Intent-Validierung korrigiert das Verhalten."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer führt über die Lücke direkt Betriebssystembefehle aus.",
+     "Ein unauthentifizierter Angreifer liest über XXE lokale Dateien."
+    ]
+   }
   },
   "CVE-2025-2775": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
@@ -368,7 +392,31 @@
    "dissent": {
     "AV": "CNA (Microsoft) zum Zeitpunkt der Veröffentlichung: AV:L/PR:L/S:U/C:H/I:N/A:N (5,5). Nach Secura's Analyse wurde klar, dass es unauthentifizierte Domänenübernahme ist. Historisches Beispiel dafür, wie Vektoren sich mit dem Verständnis ändern."
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99. Keine CWE in NVD (noinfo), obwohl es ein Kryptografie-Fehler (CWE-330/CWE-287) ist. Segmentierung des DC-Zugangs senkt die Wahrscheinlichkeit, Offline-Backups die Auswirkung eines Domänenverlusts."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,99. Keine CWE in NVD (noinfo), obwohl es ein Kryptografie-Fehler (CWE-330/CWE-287) ist. Segmentierung des DC-Zugangs senkt die Wahrscheinlichkeit, Offline-Backups die Auswirkung eines Domänenverlusts.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Domänencontroller nutzt das verwundbare Netlogon-Protokoll (Zerologon) und ist im Netz erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer baut wiederholt Netlogon-Sitzungen mit Null-Initialisierungsvektoren auf und nutzt den kryptografischen Fehler aus."
+     },
+     {
+      "phase": "impact",
+      "text": "Er setzt das Computerkonto-Passwort des Domänencontrollers zurück und übernimmt so die gesamte Domäne."
+     },
+     {
+      "phase": "stopper",
+      "text": "Patch einspielen; erzwungenen sicheren Netlogon-Kanal aktivieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer errät das Domänen-Admin-Passwort per Brute Force.",
+     "Ein Opfer öffnet einen bösartigen E-Mail-Anhang mit Makro."
+    ]
+   }
   },
   "CVE-2022-24990": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",

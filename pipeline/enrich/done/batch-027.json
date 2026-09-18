@@ -314,7 +314,31 @@
      "why": "Webshell: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,9995: Von APT-Gruppen (APT41) ausgenutzt. ColdFusion zum fünften Mal im Korpus; ein Datei-Upload (CWE-434), der eine CFM-Webshell platziert. Ein Produkt mit einer langen KEV-Historie verdient eine eigene Beobachtungsliste."
+   "context_de": "KEV, EPSS 0,9995: Von APT-Gruppen (APT41) ausgenutzt. ColdFusion zum fünften Mal im Korpus; ein Datei-Upload (CWE-434), der eine CFM-Webshell platziert. Ein Produkt mit einer langen KEV-Historie verdient eine eigene Beobachtungsliste.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Adobe-ColdFusion-Server (anfällige Version) bietet ohne ausreichende Beschränkung einen Datei-Upload an."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer lädt eine ausführbare CFM/JSP-Datei in ein web-erreichbares Verzeichnis hoch."
+     },
+     {
+      "phase": "impact",
+      "text": "Beim Aufruf der hochgeladenen Datei wird beliebiger Code auf dem Server ausgeführt."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update/Hotfix einspielen; Upload auf ungefährliche Typen beschränken, Upload-Verzeichnis ohne Ausführungsrecht betreiben."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit einem fest eingebauten Passwort an.",
+     "Ein Opfer klickt auf einen CSRF-Link, der Einstellungen ändert."
+    ]
+   }
   },
   "CVE-2020-13166": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

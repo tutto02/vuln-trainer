@@ -164,7 +164,31 @@
    "dissent": {
     "C": "Nur CNA-Vektor (10,0). Die Beschreibung ('sensitive functionality', 'unauthorized operations') ist zu vage für H/H/H; ohne NVD-Zweitmeinung bleibt das stehen."
    },
-   "context_de": "KEV, EPSS 0,05. SMA-Appliances sind seit Jahren ein Ziel; vage Beschreibung plus 10,0 vom Hersteller bedeutet: Advisory lesen, nicht nur den Score."
+   "context_de": "KEV, EPSS 0,05. SMA-Appliances sind seit Jahren ein Ziel; vage Beschreibung plus 10,0 vom Hersteller bedeutet: Advisory lesen, nicht nur den Score.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Eine SonicWall-SMA1000-Appliance bietet über einen unbeabsichtigten Alternativpfad ohne Anmeldung Zugriff auf die Work-Place-Oberfläche."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet einen Request, der die Appliance zu Anfragen an ein von ihm gewähltes Ziel bewegt (Pre-Auth-SSRF)."
+     },
+     {
+      "phase": "impact",
+      "text": "Er erreicht sonst geschützte interne Funktionen und führt unautorisierte Operationen aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen; den alternativen Zugriffspfad schließen und ausgehende Ziele einschränken."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit Standard-Zugangsdaten an.",
+     "Ein lokaler Nutzer eskaliert über pkexec zu root."
+    ]
+   }
   },
   "CVE-2020-11023": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",

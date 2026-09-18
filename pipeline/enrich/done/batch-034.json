@@ -30,7 +30,31 @@
      "why": "Admin: Router abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,99: Auth-Bypass (CWE-287) in Consumer-Routern, in Botnetzen (Cyclops Blink). Router-Auth-Bypässe sind im Korpus ein Dauerthema (ASUS, D-Link, DrayTek, NETGEAR); die Geräte stehen mit Werkskonfiguration am Internet."
+   "context_de": "KEV, EPSS 0,99: Auth-Bypass (CWE-287) in Consumer-Routern, in Botnetzen (Cyclops Blink). Router-Auth-Bypässe sind im Korpus ein Dauerthema (ASUS, D-Link, DrayTek, NETGEAR); die Geräte stehen mit Werkskonfiguration am Internet.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein ASUS-Router (GT-AC2900/Lyra Mini, anfällige Firmware) exponiert die Admin-Anwendung im Netz."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet als unauthentifizierter Nutzer präparierte Eingaben an handle_request."
+     },
+     {
+      "phase": "impact",
+      "text": "Die fehlerhafte Verarbeitung umgeht die Authentifizierung und gewährt Zugriff auf die Admin-Oberfläche."
+     },
+     {
+      "phase": "stopper",
+      "text": "Firmware aktualisieren; Fernzugriff auf die Verwaltung deaktivieren."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer entschlüsselt abgefangenen Verkehr mit einem statischen Schlüssel.",
+     "Ein lokaler Nutzer nutzt eine Format-String-Lücke im Treiber."
+    ]
+   }
   },
   "CVE-2019-19985": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",

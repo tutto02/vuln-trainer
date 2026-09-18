@@ -61,7 +61,31 @@
      "why": "Code: System störbar."
     }
    },
-   "context_de": "KEV, EPSS 0,99: Ein Java-Applet-Sandbox-Escape (CWE-284), 2012 in allen Exploit-Kits. Java-Applets waren jahrelang der gefährlichste Browser-Vektor (wie Flash); der SecurityManager sollte den Applet-Code einsperren, die Reflection-API (ClassFinder) umging ihn. Java-Applets sind heute tot, das Sandbox-Escape-Muster lebt in Browsern weiter."
+   "context_de": "KEV, EPSS 0,99: Ein Java-Applet-Sandbox-Escape (CWE-284), 2012 in allen Exploit-Kits. Java-Applets waren jahrelang der gefährlichste Browser-Vektor (wie Flash); der SecurityManager sollte den Applet-Code einsperren, die Reflection-API (ClassFinder) umging ihn. Java-Applets sind heute tot, das Sandbox-Escape-Muster lebt in Browsern weiter.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer nutzt ein verwundbares Java-7-Browser-Plugin (Update 6 oder älter) und surft im Web."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer liefert ein Applet, das über ClassFinder.findClass und eine Ausnahme die SecurityManager-Beschränkungen umgeht."
+     },
+     {
+      "phase": "impact",
+      "text": "Das Applet verlässt die Sandbox und führt beliebigen Code mit den Rechten des Nutzers aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Java aktualisieren; Browser-Plugin deaktivieren, wenn nicht zwingend nötig."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer nutzt eine SQL-Injection im Login-Formular.",
+     "Ein Dienst gibt wegen fehlendem Secure-Flag ein Cookie preis."
+    ]
+   }
   },
   "CVE-2021-1498": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

@@ -622,7 +622,31 @@
      "why": "Kernel: Gerät abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,52: Operation Triangulation, die aufwendigste iPhone-Spyware-Kette (vier Zero-Days). Der Kernel-Integer-Overflow war das Glied für Kernel-Rechte; jede Stufe ein eigener CVE."
+   "context_de": "KEV, EPSS 0,52: Operation Triangulation, die aufwendigste iPhone-Spyware-Kette (vier Zero-Days). Der Kernel-Integer-Overflow war das Glied für Kernel-Rechte; jede Stufe ein eigener CVE.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Der Angreifer kann auf einem Apple-Gerät eine App bzw. Code mit normalen Rechten ausführen (verkettet mit einer Browser-Kette)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Die App löst durch präparierte Eingaben einen Integer-Overflow im Kernel aus."
+     },
+     {
+      "phase": "impact",
+      "text": "Der Speicherfehler erlaubt die Ausführung von Code mit Kernel-Rechten (aktiv ausgenutzte 0-Day-Kette)."
+     },
+     {
+      "phase": "stopper",
+      "text": "Sicherheitsupdate einspielen; die verbesserte Eingabevalidierung schließt den Overflow."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt gültige Apple-ID-Zugangsdaten des Opfers.",
+     "Ein Web-Formular reflektiert Eingaben ungefiltert als Skript."
+    ]
+   }
   },
   "CVE-2021-25216": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",

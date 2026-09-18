@@ -304,7 +304,31 @@
      "why": "Codeausführung: Firewall abschaltbar."
     }
    },
-   "context_de": "KEV, EPSS 0,62. fgfmd ist nur exponiert, wenn das Interface FortiManager-Zugriff erlaubt; das ist die Konfigurationsfrage, die die Wahrscheinlichkeit bestimmt. Die Auswirkung ist die Firewall selbst."
+   "context_de": "KEV, EPSS 0,62. fgfmd ist nur exponiert, wenn das Interface FortiManager-Zugriff erlaubt; das ist die Konfigurationsfrage, die die Wahrscheinlichkeit bestimmt. Die Auswirkung ist die Firewall selbst.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein FortiOS/FortiProxy-Gerät (anfällige Version) exponiert einen Verwaltungsdienst (fgfmd) ohne Anmeldung im Netz."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet Daten, die als Format-String verarbeitet werden, mit eingebetteten Format-Spezifizierern."
+     },
+     {
+      "phase": "impact",
+      "text": "Der extern kontrollierte Format-String führt zu Speicherkorruption und Ausführung von beliebigem Code."
+     },
+     {
+      "phase": "stopper",
+      "text": "FortiOS aktualisieren; den Verwaltungsdienst nicht offen ins Netz stellen, Eingaben als Datenargument statt als Format-String verwenden."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer meldet sich mit Standard-Admin-Zugangsdaten an.",
+     "Ein Opfer öffnet eine E-Mail mit eingebettetem SVG-Skript."
+    ]
+   }
   },
   "CVE-2026-20316": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",

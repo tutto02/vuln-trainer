@@ -131,7 +131,31 @@
    "dissent": {
     "I": "CNA (Citrix): C:H, I:H, A:L (9,4). Citrix bewertet die Folge (Session-Hijacking), NVD die Primitive."
    },
-   "context_de": "KEV mit Ransomware-Bezug (LockBit, Boeing-Vorfall), EPSS 0,99999. Score 7,5, reale Auswirkung: MFA-Umgehung und Domänenübernahme. Nach dem Patch Sessions invalidieren, sonst bleibt die Auswirkung bestehen."
+   "context_de": "KEV mit Ransomware-Bezug (LockBit, Boeing-Vorfall), EPSS 0,99999. Score 7,5, reale Auswirkung: MFA-Umgehung und Domänenübernahme. Nach dem Patch Sessions invalidieren, sonst bleibt die Auswirkung bestehen.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein NetScaler-ADC/Gateway ist als VPN/AAA-Server konfiguriert und ohne Anmeldung erreichbar (Citrix Bleed)."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet einen überlangen Host-Header, der einen Puffer-Over-Read auslöst."
+     },
+     {
+      "phase": "impact",
+      "text": "Die Appliance gibt Speicherinhalte zurück, darunter gültige Session-Tokens, mit denen sich die Multi-Faktor-Anmeldung umgehen lässt."
+     },
+     {
+      "phase": "stopper",
+      "text": "Update einspielen und danach alle aktiven Sitzungen terminieren, da Tokens abgeflossen sein können."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer führt über die Lücke direkt Betriebssystembefehle aus.",
+     "Ein Opfer öffnet ein bösartiges Office-Dokument mit Makro."
+    ]
+   }
   },
   "CVE-2023-32315": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",

@@ -247,7 +247,31 @@
      "why": "RCE: Dienst abschaltbar."
     }
    },
-   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,9998: Template-Injection (CWE-74) in Confluence, wie die OGNL-Lücke CVE-2021-26084. Confluence ist im Korpus ein Dauerthema; Atlassian-Produkte wiederholen die OGNL/SSTI-Klasse. Massenhaft für Ransomware und Kryptominer genutzt."
+   "context_de": "KEV mit Ransomware-Bezug, EPSS 0,9998: Template-Injection (CWE-74) in Confluence, wie die OGNL-Lücke CVE-2021-26084. Confluence ist im Korpus ein Dauerthema; Atlassian-Produkte wiederholen die OGNL/SSTI-Klasse. Massenhaft für Ransomware und Kryptominer genutzt.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Confluence-Data-Center/Server (ältere Version) ist ohne Anmeldung erreichbar."
+     },
+     {
+      "phase": "trigger",
+      "text": "Der Angreifer sendet einen Request mit einer OGNL/Template-Injection in einem Eingabefeld."
+     },
+     {
+      "phase": "impact",
+      "text": "Die Template-Engine wertet den Ausdruck aus und führt beliebigen Code auf der Instanz aus."
+     },
+     {
+      "phase": "stopper",
+      "text": "Auf eine nicht betroffene Version aktualisieren; Confluence nicht offen ins Internet stellen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer lädt über ein Upload-Feld eine Web-Shell hoch.",
+     "Ein lokaler Nutzer nutzt eine Race Condition beim Anlegen einer Datei."
+    ]
+   }
   },
   "CVE-2021-33620": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",

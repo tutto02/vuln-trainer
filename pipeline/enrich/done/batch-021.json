@@ -30,7 +30,31 @@
      "why": "Code: System störbar."
     }
    },
-   "context_de": "KEV, EPSS 0,87, nur CNA-Vektor. 2009 der PDF-Standardexploit in Kits. Heap-Overflow (CWE-119); PDF-Reader waren vor der Sandbox-Ära das Haupteinfallstor per Mail-Anhang."
+   "context_de": "KEV, EPSS 0,87, nur CNA-Vektor. 2009 der PDF-Standardexploit in Kits. Heap-Overflow (CWE-119); PDF-Reader waren vor der Sandbox-Ära das Haupteinfallstor per Mail-Anhang.",
+   "chain": {
+    "steps": [
+     {
+      "phase": "precondition",
+      "text": "Ein Opfer öffnet mit verwundbarem Adobe Reader/Acrobat (7.x/8.x/9.x) eine Datei."
+     },
+     {
+      "phase": "trigger",
+      "text": "Die präparierte PDF löst einen heap-basierten Pufferüberlauf aus."
+     },
+     {
+      "phase": "impact",
+      "text": "Die Speicherkorruption erlaubt die Ausführung von beliebigem Code im Kontext des Nutzers."
+     },
+     {
+      "phase": "stopper",
+      "text": "Reader/Acrobat aktualisieren; PDFs aus unbekannter Quelle nicht öffnen."
+     }
+    ],
+    "distractors": [
+     "Der Angreifer benötigt Netzwerkzugriff ohne jede Nutzerinteraktion.",
+     "Ein lokaler Angreifer platziert eine DLL im Suchpfad der Anwendung."
+    ]
+   }
   },
   "CVE-2024-48248": {
    "vector_basis": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N",
