@@ -193,3 +193,21 @@ td.due .mini { font-weight:400; }
 /* Lange CVSS-Vektoren ohne Leerzeichen dürfen auf schmalen Bildschirmen umbrechen */
 .vector { overflow-wrap:anywhere; word-break:break-all; max-width:100%; }
 .livebar > div, .official, .prov .row { min-width:0; max-width:100%; }
+
+/* Angriffsketten */
+.ch-cards { display:flex; flex-direction:column; gap:.6rem; }
+.ch-card { border:1px solid var(--line); border-radius:9px; padding:.6rem .75rem; display:flex; gap:.7rem; align-items:flex-start; flex-wrap:wrap; }
+.ch-card .ch-text { flex:1 1 15rem; min-width:0; font-size:.95rem; }
+.ch-card select { font:inherit; color:var(--fg); background:var(--card); border:1px solid var(--line); border-radius:6px; padding:.3rem .45rem; flex:0 0 auto; }
+.ch-card select.set { border-color:var(--accent); }
+.ch-card.ok { border-color:var(--ok); background:color-mix(in srgb, var(--ok) 9%, transparent); }
+.ch-card.bad { border-color:var(--bad); background:color-mix(in srgb, var(--bad) 9%, transparent); }
+.ch-card .ch-verdict { flex-basis:100%; font-size:.85rem; margin:0; }
+.ch-card.ok .ch-verdict { color:var(--ok); } .ch-card.bad .ch-verdict { color:var(--bad); }
+.ch-result { margin-top:1rem; padding:.8rem .9rem; border:1px solid var(--line); border-radius:8px; }
+.ch-result.ok { border-color:var(--ok); } .ch-result.bad { border-color:var(--bad); }
+.ch-result h3 { margin:0 0 .5rem; font-size:1rem; }
+.ch-sol { display:flex; flex-direction:column; gap:.35rem; margin:0; padding:0; list-style:none; }
+.ch-sol li { padding:.35rem .5rem; border-left:3px solid var(--accent); background:var(--code); border-radius:4px; font-size:.9rem; }
+.ch-sol li b { color:var(--accent); }
+.ch-sol li.dis { border-left-color:var(--warn); } .ch-sol li.dis b { color:var(--warn); }

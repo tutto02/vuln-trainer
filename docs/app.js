@@ -338,6 +338,90 @@
     refreshFilterBar(kind);
   }
 
+  // ---------- Angriffsketten (Übungstyp 3: Sortieren mit Ablenkern) ----------
+  const PHASE_DE = { precondition: 'Vorbedingung', trigger: 'Auslöser', impact: 'Auswirkung', stopper: 'Stopper' };
+  const PHASE_ORDER = ['precondition', 'trigger', 'impact', 'stopper'];
+  const chstate = { cur: null, seen: new Set(), items: [], done: false };
+  const chsession = { tries: 0, perfect: 0 };
+
+  function chainPool() { return state.cves.filter(c => c.exercises.chain); }
+  function chPickNext() {
+    const pool = chainPool().filter(c => !chstate.seen.has(c.id));
+    const src = pool.length ? pool : (chstate.seen.clear(), chainPool());
+    return src[Math.floor(Math.random() * src.length)];
+  }
+
+  function showChain(cve) {
+    chstate.cur = cve; chstate.done = false; chstate.seen.add(cve.id);
+    $('ch-id').textContent = cve.id;
+    $('ch-published').textContent = (cve.published || '').slice(0, 10);
+    $('ch-stack').textContent = STACK_DE[cve.stack] || cve.stack;
+    const cls = state.classes[cve.cwe.learn_class];
+    $('ch-class').textContent = cls ? cls.name : cve.cwe.learn_class;
+    $('ch-desc').textContent = cleanDesc(cve.description);
+    // 4 echte Schritte + 2 Ablenker, gemischt. role = wahre Zuordnung.
+    const ch = cve.exercises.chain;
+    const items = ch.steps.map(s => ({ text: s.text, role: s.phase }))
+      .concat((ch.distractors || []).map(d => ({ text: d, role: 'distractor' })));
+    chstate.items = shuffle(items.slice());
+    renderChainCards();
+    $('ch-result').hidden = true;
+    $('ch-check').disabled = true;
+    window.scrollTo({ top: 0 });
+  }
+
+  function renderChainCards() {
+    const host = $('ch-cards'); host.innerHTML = '';
+    chstate.items.forEach((it, i) => {
+      const card = document.createElement('div'); card.className = 'ch-card'; card.dataset.i = i;
+      const sel = document.createElement('select'); sel.dataset.i = i;
+      sel.innerHTML = '<option value="">— zuordnen —</option>'
+        + PHASE_ORDER.map((p, n) => `<option value="${p}">${n + 1}. ${PHASE_DE[p]}</option>`).join('')
+        + '<option value="distractor">Ablenker (gehört nicht dazu)</option>';
+      sel.value = it.assigned || '';
+      sel.addEventListener('change', () => { it.assigned = sel.value; sel.classList.toggle('set', !!sel.value); updateChainProgress(); });
+      const txt = document.createElement('div'); txt.className = 'ch-text'; txt.textContent = it.text;
+      card.appendChild(txt); card.appendChild(sel); host.appendChild(card);
+    });
+    updateChainProgress();
+  }
+
+  function updateChainProgress() {
+    const n = chstate.items.filter(it => it.assigned).length;
+    $('ch-progress').textContent = `${n} / 6 zugeordnet`;
+    $('ch-check').disabled = chstate.done || n < 6;
+  }
+
+  function checkChain() {
+    if (chstate.done) return;
+    const n = chstate.items.filter(it => it.assigned).length; if (n < 6) return;
+    chstate.done = true;
+    let correct = 0;
+    document.querySelectorAll('#ch-cards .ch-card').forEach(card => {
+      const it = chstate.items[+card.dataset.i], ok = it.assigned === it.role;
+      if (ok) correct++;
+      card.classList.add(ok ? 'ok' : 'bad');
+      card.querySelector('select').disabled = true;
+      const v = document.createElement('p'); v.className = 'ch-verdict';
+      const trueLabel = it.role === 'distractor' ? 'Ablenker' : PHASE_DE[it.role];
+      v.textContent = ok ? '✓ richtig' : `✗ richtig wäre: ${trueLabel}`;
+      card.appendChild(v);
+    });
+    const all = correct === 6;
+    chsession.tries++; if (all) chsession.perfect++;
+    $('session-counter').textContent = `Ketten: ${chsession.perfect} / ${chsession.tries} vollständig`;
+    // Musterlösung
+    const ch = chstate.cur.exercises.chain;
+    const sol = PHASE_ORDER.map((p, i) => {
+      const st = ch.steps.find(s => s.phase === p);
+      return `<li><b>${i + 1}. ${PHASE_DE[p]}:</b> ${esc(st ? st.text : '')}</li>`;
+    }).join('') + (ch.distractors || []).map(d => `<li class="dis"><b>Ablenker:</b> ${esc(d)}</li>`).join('');
+    const r = $('ch-result'); r.className = 'ch-result ' + (all ? 'ok' : 'bad');
+    r.innerHTML = `<h3>${all ? 'Alles richtig' : `${correct} von 6 richtig`}</h3><ul class="ch-sol">${sol}</ul>`;
+    r.hidden = false;
+    r.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
   // ---------- Klassen-Quiz ----------
   const QLOG_KEY = 'vt-class-attempts';
   const qstate = { cur: null, seen: new Set(), done: false };
@@ -685,10 +769,11 @@
   function showView(v) {
     document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.view === v));
     $('exercise').hidden = v !== 'cvss'; $('quiz').hidden = v !== 'class';
-    $('progress').hidden = v !== 'progress'; $('patterns').hidden = v !== 'patterns'; $('browse').hidden = v !== 'browse';
+    $('progress').hidden = v !== 'progress'; $('patterns').hidden = v !== 'patterns'; $('browse').hidden = v !== 'browse'; $('chain').hidden = v !== 'chain';
     if (v !== 'cvss') { $('result').hidden = true; $('context').hidden = true; }
     if (v === 'cvss') $('session-counter').textContent = `${session.perfect} / ${session.tries} vollständig richtig`;
     if (v === 'class') { if (!qstate.cur) showQuiz(qPickNext()); $('session-counter').textContent = `Quiz: ${qsession.right} / ${qsession.tries} richtig`; }
+    if (v === 'chain') { if (!chstate.cur) showChain(chPickNext()); $('session-counter').textContent = `Ketten: ${chsession.perfect} / ${chsession.tries} vollständig`; }
     if (v === 'progress') { renderProgress(); $('session-counter').textContent = 'Fortschritt'; }
     if (v === 'patterns') { renderPatterns(); $('session-counter').textContent = 'Fehlerbilder'; }
     if (v === 'browse') { renderBrowse(); $('session-counter').textContent = 'Suche'; setTimeout(() => $('browse-q').focus(), 0); }
@@ -721,12 +806,14 @@
     $('jump').addEventListener('keydown', e => { if (e.key === 'Enter') jump(); });
     document.querySelectorAll('.tab:not(:disabled)').forEach(t => t.addEventListener('click', () => showView(t.dataset.view)));
     $('q-next').addEventListener('click', () => showQuiz(qPickNext()));
+    $('ch-check').addEventListener('click', checkChain);
+    $('ch-next').addEventListener('click', () => showChain(chPickNext()));
     $('prog-export').addEventListener('click', exportProgress);
     $('prog-import').addEventListener('click', () => $('prog-file').click());
     $('prog-file').addEventListener('change', (e) => { const f = e.target.files && e.target.files[0]; if (f) importProgress(f); e.target.value = ''; });
     $('prog-reset').addEventListener('click', () => { if (confirm('Beide Protokolle (CVSS-Übung und Klassen-Quiz) wirklich löschen?')) { try { localStorage.removeItem(LOG_KEY); localStorage.removeItem('vt-class-attempts'); } catch (_) {} renderProgress(); ioMsg('Protokoll gelöscht.', 'ok'); } });
     $('trap-clear').addEventListener('click', clearTrapDrill);
-    window.__vt = { browseSearch, openFromBrowse, cleanDesc, filters, candidates, applyFilter, dueText, pickNext, qPickNext, srStats, renderProgress, renderPatterns, trapStats, startTrapDrill, exportProgress, importProgress, mergeAttempts, readLog };
+    window.__vt = { showChain, chPickNext, checkChain, browseSearch, openFromBrowse, cleanDesc, filters, candidates, applyFilter, dueText, pickNext, qPickNext, srStats, renderProgress, renderPatterns, trapStats, startTrapDrill, exportProgress, importProgress, mergeAttempts, readLog };
     $('q-all').addEventListener('change', () => { if (qstate.cur) showQuiz(qstate.cur); });
     initFilterBar('cvss'); initFilterBar('quiz');
     $('browse-q').addEventListener('input', renderBrowse);

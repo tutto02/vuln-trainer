@@ -23,6 +23,7 @@
     <nav class="tabs" aria-label="Übungstypen">
       <button class="tab active" data-view="cvss">CVSS-Vektor</button>
       <button class="tab" data-view="class">Klassen-Quiz</button>
+      <button class="tab" data-view="chain">Ketten</button>
       <button class="tab" data-view="progress">Fortschritt</button>
       <button class="tab" data-view="patterns">Fehlerbilder</button>
       <button class="tab" data-view="browse">Suche</button>
@@ -127,6 +128,31 @@
       </div>
     </section>
 
+
+
+    <section id="chain" hidden>
+      <div class="card cve-head">
+        <div class="cve-meta">
+          <span class="cve-id" id="ch-id"></span>
+          <span class="chip" id="ch-published"></span>
+          <span class="chip" id="ch-stack"></span>
+          <span class="chip chip-class" id="ch-class"></span>
+        </div>
+        <p class="desc" id="ch-desc" lang="en"></p>
+        <p class="hint">Bring die vier echten Schritte in die richtige Reihenfolge (Vorbedingung → Auslöser → Auswirkung → Stopper) und markiere die zwei Ablenker, die nicht zur Kette gehören.</p>
+      </div>
+      <div class="card">
+        <div id="ch-cards" class="ch-cards"></div>
+        <div class="livebar">
+          <div class="muted" id="ch-progress"></div>
+          <div class="actions">
+            <button id="ch-check" class="primary" disabled>Prüfen</button>
+            <button id="ch-next" class="ghost">Nächste CVE</button>
+          </div>
+        </div>
+        <div id="ch-result" class="ch-result" hidden></div>
+      </div>
+    </section>
 
     <section id="progress" hidden>
       <div class="card">
